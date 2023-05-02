@@ -1,38 +1,39 @@
-import React, { useState } from "react";
-
+import React from 'react';
+import './Styles.css';
+import Box from './Box.svg';
+import Mockup from './Mockup.svg'; 
 function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    // Add your login logic here
-  }
-
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    
+    <div className="Box">
+      
+      <img 
+        src={Box}
+        alt="Box"
+        style={{
+          boxSizing: 'border-box',
+          position: 'absolute',
+          width: '1297px',
+          height: '750px',
+          left: '310px',
+          top: '177px'
+        }}
+      />
+    
+      <div className="Mockup">
+        <img 
+          src={Mockup} 
+          alt="Mockup" 
+          style={{
+            position: 'absolute',
+            width: '668.32px',
+            height: '398.92px',
+            left: '784px',
+            top: '350px',
+          }}
+        />
+      </div>
     </div>
   );
 }
-
 export default LoginPage;
