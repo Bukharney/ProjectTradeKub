@@ -20,9 +20,8 @@ ProjectTradeKub has the following features:
 The following technologies are used in ProjectTradeKub:
 
 - React.js for the front-end
-- Node.js and Express for the back-end
-- MongoDB for the database
-- Stripe for payment integration
+- Python for the back-end
+- PosegreSQL for the database
 
 ## Installation
 
@@ -35,15 +34,14 @@ To run ProjectTradeKub locally, follow these steps:
 5. Run `npm start` to start the development server
 6. Access the app in your browser at `http://localhost:3000`
 
-Note: This project requires a valid Stripe API key to enable payment processing. Please refer to the Stripe documentation for more information on obtaining a key.
-
 ## Contributors
 
 ProjectTradeKub was developed by:
 
-- John Doe
-- Jane Smith
-- Bob Johnson
+- Jirapat Lakma
+- Peerapat Padthawaro
+- 
+-
 
 ## License
 
