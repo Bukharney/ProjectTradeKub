@@ -1,0 +1,13 @@
+body 
+{
+  background-color: #1A1B1E;
+}
+
+::placeholder {
+  color: #4E4F51; /* Set the color of the placeholder text */
+}
+
+option
+{
+  color: #4E4F51;
+}
