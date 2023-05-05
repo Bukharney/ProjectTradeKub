@@ -1,13 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 body {
   background-color: #1a1b1e;
+  font-family: "Poppins", sans-serif;
 }
 
-::placeholder {
-  color: #4e4f51;
-}
-
-.Responsive {
-  position: absolute;
+.Allsection{
+  position: center;
   width: 1920px;
   height: 1080px;
   left: 0px;
@@ -29,7 +28,6 @@ body {
   left: 470px;
   top: 357px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -44,7 +42,6 @@ body {
   left: 492px;
   top: 405px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -78,6 +75,10 @@ body {
   top: 110px;
 }
 
+::placeholder {
+  color: #4e4f51;
+}
+
 .BrokerId select {
   position: absolute;
   width: 254px;
@@ -85,7 +86,6 @@ body {
   left: 465px;
   top: 493px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -104,7 +104,6 @@ body {
   left: 465px;
   top: 450px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -123,7 +122,6 @@ body {
   left: 465px;
   top: 548px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -141,7 +139,6 @@ body {
   left: 465px;
   top: 603px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -169,7 +166,6 @@ body {
   left: 445px;
   top: 656px;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -188,7 +184,6 @@ body {
   border-radius: 29.5px;
   border: none;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
