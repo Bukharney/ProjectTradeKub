@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-function News() {
-  const [brokerId, setBrokerId] = useState(" ");
-}
-return {};
-export default Login;
+import React from "react";
+
+const  News= () => {
+    return <div>
+        News
+        </div>
+};
+
+export default News;
