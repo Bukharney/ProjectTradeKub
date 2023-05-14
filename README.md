@@ -40,7 +40,7 @@ ProjectTradeKub was developed by:
 
 - Jirapat Lakma
 - Peerapat Padthawaro
-- 
+-
 -
 
 ## License
