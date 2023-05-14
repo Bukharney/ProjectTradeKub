@@ -1,0 +1,152 @@
+.Homepage {
+  width: 100%;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.Logo {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.Homepage-header {
+  position: absolute;
+  margin-top: 8rem;
+}
+
+.Banner {
+  position: absolute;
+  margin-top: 8rem;
+}
+
+.Button {
+  display: flex;
+  position: absolute;
+  font-weight: 600;
+}
+
+.Button button {
+  position: absolute;
+}
+
+.Button  button:hover {
+  filter: brightness(300%);
+}
+
+@media screen and (max-width: 1600px) {
+  .Logo {
+    width: 7rem;
+    margin-right: 58rem;
+  }
+
+  .Homepage-header {
+    margin-right: 30rem;
+  }
+  .Banner {
+    width: 30rem;
+    margin-left: 30rem;
+  }
+  .Homepage-header p {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .Homepage-header a {
+    color: #4e4f51;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .Button {
+    margin-top: 22rem;
+    margin-right: 16rem;
+    font-size: 1rem;
+  }
+
+  .Button img{
+    width: 80%;
+    margin-top: -1.5rem;
+    margin-left: -3.75rem;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .Logo {
+    width: 8rem;
+    margin-right: 76rem;
+  }
+  .Homepage-header {
+    margin-right: 40rem;
+  }
+  .Banner {
+    width: 35rem;
+    margin-left: 40rem;
+  }
+  .Homepage-header p {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+
+  .Homepage-header a {
+    color: #4e4f51;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  .Button {
+    margin-top: 27rem;
+    margin-right: 27rem;
+    font-size: 1.2rem;
+  }
+
+  .Button img{
+    width: 90%;
+    margin-top: -1.5rem;
+    margin-left: -4rem;
+  }
+}
+
+@media screen and (min-width: 1801px) {
+  .Logo {
+    width: 10rem;
+    margin-right: 85em;
+  }
+  .Homepage-header {
+    margin-right: 42rem;
+  }
+
+  .Banner {
+    width: 40rem;
+    margin-top: 10rem;
+    margin-left: 42rem;
+  }
+  .Homepage-header p {
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .Homepage-header a {
+    color: #4e4f51;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .Button {
+    margin-top: 32rem;
+    margin-right: 29rem;
+    font-size: 1.3rem;
+  }
+
+  .Button img{
+    width: 100%;
+    margin-top: -1.7rem;
+    margin-left: -4.5rem;
+  }
+}

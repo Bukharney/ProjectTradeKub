@@ -1,0 +1,31 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color:  #282A2E;
+}
+
+.nav-logo{
+  width: 3rem;
+  justify-content: center;
+  margin-left: -0.2rem;
+}
+
+.nav-item{
+  display: flex;
+  width: 2.5rem;
+  height: 100%;
+  align-items: center;
+  margin-top: 1rem;
+  color: #4E4F51;
+  justify-content: center;
+}
+
+.nav-item :focus {
+  color: #CCFF00;
+}
