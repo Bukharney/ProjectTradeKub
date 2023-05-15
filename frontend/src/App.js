@@ -22,7 +22,7 @@ function App() {
           <Route path="/Wallet" element={<Wallet />} />
           <Route path="/News" element={<News />} />
           <Route path="/Notification" element={<Notification />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Profile" element={<Profile />} /> 
         </Routes>
       </div>
     </Router>
