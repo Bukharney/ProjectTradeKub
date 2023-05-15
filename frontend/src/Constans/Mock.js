@@ -50,6 +50,7 @@ export const mockStockQuote = {
   o: 261.07,
   pc: 259.45,
   t: 1582641000,
+  dp: 2.29,
 };
 
 export const mockStockCandle = {

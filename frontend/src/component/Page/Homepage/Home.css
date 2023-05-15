@@ -7,18 +7,15 @@
 }
 
 .Logo {
-  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
 .Homepage-header {
   position: absolute;
-  margin-top: 8rem;
 }
 
 .Banner {
   position: absolute;
-  margin-top: 8rem;
 }
 
 .Button {
@@ -31,23 +28,67 @@
   position: absolute;
 }
 
-.Button  button:hover {
+.Button button:hover {
   filter: brightness(300%);
 }
+
+.Stock__detail {
+  position: absolute;
+  font-weight: 600;
+}
+
+.Member__box {
+  position: absolute;
+  margin-top: 3rem;
+}
+
+.Header__News {
+  font-weight: 600;
+}
+
+.Header__Member{
+  font-weight: 600;
+}
+
+.Head__Name{
+  position: absolute;
+  font-weight: 600;
+}
+
+.Pic{
+  position: absolute;
+  border-radius: 10rem;
+}
+
+.Position{
+  font-weight: 400;
+  color: #4e4f51;
+}
+
+.Detail__Name{
+  position: absolute;
+  font-weight: 400;
+  color: #4e4f51;
+}
+
 
 @media screen and (max-width: 1600px) {
   .Logo {
     width: 7rem;
+    margin-top: 3rem;
     margin-right: 58rem;
   }
 
   .Homepage-header {
     margin-right: 30rem;
+    margin-top: 8rem;
   }
   .Banner {
     width: 30rem;
     margin-left: 30rem;
+    margin-top: 8rem;
   }
+
   .Homepage-header p {
     font-size: 2rem;
     font-weight: 600;
@@ -62,29 +103,162 @@
   }
 
   .Button {
-    margin-top: 22rem;
+    margin-top: 23rem;
     margin-right: 16rem;
     font-size: 1rem;
   }
 
-  .Button img{
+  .Button img {
     width: 80%;
     margin-top: -1.5rem;
     margin-left: -3.75rem;
+  }
+
+  .Stock__detail {
+    position: absolute;
+    margin-top: 28.5rem;
+    font-size: 0.8rem;
+  }
+
+  .Popular {
+    position: absolute;
+    margin-left: -31.75rem;
+  }
+  .Up {
+    width: 8rem;
+    margin-left: -10.85rem;
+    position: absolute;
+  }
+
+  .Down {
+    width: 8rem;
+    position: absolute;
+    margin-left: 10rem;
+  }
+
+  .P1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 9rem;
+    height: 5rem;
+  }
+
+  .P2 {
+    margin-left: 9.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 9rem;
+    height: 5rem;
+  }
+
+  .U1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 9rem;
+    height: 5rem;
+  }
+
+  .U2 {
+    margin-left: 9.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 9rem;
+    height: 5rem;
+  }
+
+  .D1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 9rem;
+    height: 5rem;
+  }
+
+  .D2 {
+    margin-left: 9.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 0.7rem;
+    width: 10rem;
+    height: 5rem;
+  }
+
+  .Header__News {
+    position: absolute;
+    margin-top: 40rem;
+    font-size: 0.8rem;
+    margin-right: 40rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 23rem;
+  }
+
+  .Header__Member {    
+    position: absolute;
+    margin-top: 40rem;
+    font-size: 0.8rem;
+    margin-right: -22rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 35rem;
+  }
+
+  .Head__Name{
+    width: 12rem;
+    margin-left: 4.5rem;
+    font-size: 0.8rem;
+  }
+
+  .Pic{
+    width: 3rem;
+    margin-left: -4rem;
+    margin-top: -0.5rem;
+  }
+
+  .Detail__Name{
+    width: 10rem;
+    margin-top: 3.5rem;
+    font-size: 0.6rem;
+  }
+
+  .Member__2{
+    position: absolute;
+    margin-top: 9rem;
+  }
+  
+  .Member__3{
+    position: absolute;
+    margin-left: 20rem;
+  }
+  
+  .Member__4{
+    position: absolute;
+    margin-top: 9rem;
+    margin-left: 20rem;
   }
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
   .Logo {
+    margin-top: 4rem;
     width: 8rem;
     margin-right: 76rem;
   }
   .Homepage-header {
     margin-right: 40rem;
+    margin-top: 10rem;
   }
   .Banner {
     width: 35rem;
     margin-left: 40rem;
+    margin-top: 10rem;
   }
   .Homepage-header p {
     font-size: 3rem;
@@ -99,30 +273,129 @@
     text-decoration: none;
   }
   .Button {
-    margin-top: 27rem;
+    margin-top: 30rem;
     margin-right: 27rem;
     font-size: 1.2rem;
   }
 
-  .Button img{
+  .Button img {
     width: 90%;
+    margin-top: 21rem;
     margin-top: -1.5rem;
     margin-left: -4rem;
+  }
+
+  .Stock__detail {
+    margin-top: 36.5rem;
+    font-size: 1rem;
+  }
+
+  .Popular {
+    position: absolute;
+    margin-left: -41rem;
+  }
+  .Up {
+    width: 10rem;
+    margin-left: -14rem;
+    position: absolute;
+  }
+
+  .Down {
+    width: 10rem;
+    position: absolute;
+    margin-left: 13rem;
+  }
+
+  .P1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .P2 {
+    margin-left: 13rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .U1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .U2 {
+    margin-left: 13rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .D1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .D2 {
+    margin-left: 13rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 7rem;
+  }
+
+  .Header__News__member {
+    position: absolute;
+    margin-top: 50rem;
+    font-size: 1rem;
+  }
+
+  .Header__News {
+    position: absolute;
+    margin-left: -3rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 37rem;
+  }
+
+  .Header__Member {
+    margin-left: 38rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 37rem;
   }
 }
 
 @media screen and (min-width: 1801px) {
   .Logo {
+    margin-top: 5rem;
     width: 10rem;
     margin-right: 85em;
   }
   .Homepage-header {
     margin-right: 42rem;
+    margin-top: 13rem;
   }
 
   .Banner {
     width: 40rem;
-    margin-top: 10rem;
+    margin-top: 13rem;
     margin-left: 42rem;
   }
   .Homepage-header p {
@@ -139,14 +412,108 @@
   }
 
   .Button {
-    margin-top: 32rem;
+    margin-top: 37rem;
     margin-right: 29rem;
     font-size: 1.3rem;
   }
 
-  .Button img{
+  .Button img {
     width: 100%;
     margin-top: -1.7rem;
     margin-left: -4.5rem;
+  }
+
+  .Stock__detail {
+    margin-top: 45rem;
+    font-size: 1.2rem;
+  }
+
+  .Popular {
+    position: absolute;
+    margin-left: -46.5rem;
+  }
+  .Up {
+    width: 12rem;
+    margin-left: -16rem;
+    position: absolute;
+  }
+
+  .Down {
+    width: 12rem;
+    position: absolute;
+    margin-left: 14.5rem;
+  }
+
+  .P1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+
+  .P2 {
+    margin-left: 14.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+  .U1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+
+  .U2 {
+    margin-left: 14.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+  .D1 {
+    position: absolute;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+
+  .D2 {
+    margin-left: 14.5rem;
+    margin-top: 0.6rem;
+    background-color: #282a2e;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 7rem;
+  }
+
+  .Header__News__member {
+    position: absolute;
+    margin-top: 60rem;
+    font-size: 1.2rem;
+  }
+
+  .Header__News {
+    position: absolute;
+    margin-left: -4rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 42rem;
+  }
+
+  .Header__Member {
+    margin-left: 42rem;
+    border-bottom: 1px solid #4e4f51;
+    padding-bottom: 0.5rem;
+    width: 42rem;
   }
 }

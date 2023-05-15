@@ -1,0 +1,12 @@
+<link
+  rel="icon"
+  href="Logo.svg"
+  type="image/svg+xml"
+>
+<style>
+  /* Select the favicon and set its width and height */
+  link[rel="icon"] {
+    width: 64px;
+    height: 64px;
+  }
+</style>
