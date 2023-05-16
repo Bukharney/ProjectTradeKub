@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Home.css";
 import Logo from "./Logo.svg";
 import Banner from "./Banner.svg";
-import Button from "./Button.svg";
 import { Link } from "react-router-dom";
 import Bigboss from "./Bigboss.svg";
 import Film from "./Film.svg";
 import Bigz from "./BigZ.svg";
 import Ock from "./Ock.svg";
+import { News } from "./DBHome.js";
+import Moon from "./Moon.svg";
 
 export const Home = () => {
   const [click, setClick] = useState(false);
@@ -18,7 +19,7 @@ export const Home = () => {
       <div className="Logo">
         <img src={Logo} alt="Logo" />
       </div>
-      <header className="Homepage-header">
+      <div className="Homepage-header">
         <p>
           Better way <br /> to invest
         </p>
@@ -30,17 +31,8 @@ export const Home = () => {
           placing stock orders, <br />
           making transactions seamless and hassle-free.
         </a>
-      </header>
-      <div className="Banner">
-        <img src={Banner} alt="Banner" />
       </div>
-      <div className="Button">
-        <Link to="/Login">
-          <button onClick={handleClick}>Go to Market</button>
-          <img src={Button} alt="Button" />
-        </Link>
-      </div>
-
+      
       <div className="Stock__detail">
         <div className="Stock__detail__box">
           <div className="Popular">
@@ -64,7 +56,20 @@ export const Home = () => {
       <div className="Header__News">
         <p>News</p>
         <div className="News__box">
-          <div className="News__box__1"></div>
+          <div className="News__box__1">
+            {News.map((newsItem) => (
+              <div className="News__item">
+                <img src={newsItem.Picture} alt={newsItem.Title} />
+                <div className="News__details">
+                  <h2>{newsItem.Title}</h2>
+                  <p>{newsItem.Time}</p>
+                  <p>{newsItem.Text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="News__box__2"></div>
         </div>
       </div>
 
@@ -133,6 +138,23 @@ export const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="Footer">
+        <img src={Logo} alt="Logo1" className="FootLogo" />
+        <div className="Footer_Text">
+          “ Check out the trading strategies, opinions, <br />
+          analytics at absolutely no cost! ”
+        </div>
+      </div>
+      <div className="Button">
+        <Link to="/Login">
+          <button onClick={handleClick}>Go to Market</button>
+        </Link>
+      </div>
+      <div className="Banner">
+        <img src={Banner} alt="Banner" className="Mock"/>
+        <img src={Moon} alt="Moon" className="Moon" />
       </div>
     </div>
   );

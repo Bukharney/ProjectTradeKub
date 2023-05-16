@@ -4,32 +4,24 @@
   color: #ffffff;
   display: flex;
   justify-content: center;
+  position: absolute;
+}
+
+.Button {
+  position: relative;
 }
 
 .Logo {
-  margin-bottom: 2rem;
+  position: absolute;
 }
 
 .Homepage-header {
+  flex: start;
   position: absolute;
 }
 
 .Banner {
   position: absolute;
-}
-
-.Button {
-  display: flex;
-  position: absolute;
-  font-weight: 600;
-}
-
-.Button button {
-  position: absolute;
-}
-
-.Button button:hover {
-  filter: brightness(300%);
 }
 
 .Stock__detail {
@@ -43,34 +35,43 @@
 }
 
 .Header__News {
-  font-weight: 600;
-}
-
-.Header__Member{
-  font-weight: 600;
-}
-
-.Head__Name{
   position: absolute;
   font-weight: 600;
 }
 
-.Pic{
+.Header__Member {
+  position: absolute;
+  font-weight: 600;
+}
+
+.Head__Name {
+  position: absolute;
+  font-weight: 600;
+}
+
+.Pic {
   position: absolute;
   border-radius: 10rem;
 }
 
-.Position{
+.Position {
   font-weight: 400;
   color: #4e4f51;
 }
 
-.Detail__Name{
+.Detail__Name {
   position: absolute;
   font-weight: 400;
   color: #4e4f51;
 }
 
+.Footer {
+  position: absolute;
+}
+
+.News__box__1 {
+  position: absolute;
+}
 
 @media screen and (max-width: 1600px) {
   .Logo {
@@ -79,14 +80,71 @@
     margin-right: 58rem;
   }
 
+  .Button {
+    text-align: center;
+    justify-content: center;
+    padding-top: 0.85rem;
+    width: 10rem;
+    height: 3rem;
+    margin-top: 22rem;
+    margin-right: 25rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background: linear-gradient(
+      126.59deg,
+      rgba(255, 255, 255, 0.08) 12.11%,
+      rgba(255, 255, 255, 0.02) 73.08%
+    );
+    box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .Button:hover {
+    background-color: #ccff00;
+    color: #4e4f51;
+    box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .FootLogo {
+    width: 7rem;
+    margin-top: 63rem;
+    margin-left: 22rem;
+  }
+
+  .Footer_Text {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #ccff00;
+    margin-left: 18rem;
+    margin-bottom: 5rem;
+  }
+
   .Homepage-header {
     margin-right: 30rem;
     margin-top: 8rem;
   }
-  .Banner {
+
+  .Mock {
+    border: none;
     width: 30rem;
-    margin-left: 30rem;
-    margin-top: 8rem;
+    margin-left: 32rem;
+    margin-top: 4rem;
+    z-index: 0;
+  }
+
+  .Moon {
+    position: relative;
+    width: 18rem;
+    margin-left: 41rem;
+    margin-top: -22rem;
+    z-index: -1;
+  }
+
+  .Mock:hover + .Moon{
+    filter: drop-shadow(0 0 1rem #CCFF00);
   }
 
   .Homepage-header p {
@@ -100,18 +158,6 @@
     font-size: 0.8rem;
     font-weight: 400;
     text-decoration: none;
-  }
-
-  .Button {
-    margin-top: 23rem;
-    margin-right: 16rem;
-    font-size: 1rem;
-  }
-
-  .Button img {
-    width: 80%;
-    margin-top: -1.5rem;
-    margin-left: -3.75rem;
   }
 
   .Stock__detail {
@@ -200,7 +246,7 @@
     width: 23rem;
   }
 
-  .Header__Member {    
+  .Header__Member {
     position: absolute;
     margin-top: 40rem;
     font-size: 0.8rem;
@@ -210,39 +256,45 @@
     width: 35rem;
   }
 
-  .Head__Name{
+  .Head__Name {
     width: 12rem;
     margin-left: 4.5rem;
     font-size: 0.8rem;
   }
 
-  .Pic{
+  .Pic {
     width: 3rem;
     margin-left: -4rem;
     margin-top: -0.5rem;
   }
 
-  .Detail__Name{
+  .Detail__Name {
     width: 10rem;
     margin-top: 3.5rem;
     font-size: 0.6rem;
   }
 
-  .Member__2{
+  .Member__2 {
     position: absolute;
     margin-top: 9rem;
   }
-  
-  .Member__3{
+
+  .Member__3 {
     position: absolute;
-    margin-left: 20rem;
+    margin-left: 18rem;
   }
-  
-  .Member__4{
+
+  .Member__4 {
     position: absolute;
     margin-top: 9rem;
-    margin-left: 20rem;
+    margin-left: 18rem;
   }
+
+  .News__box__1{
+    position:absolute;
+  }
+
+  .News__details{}
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
@@ -251,6 +303,55 @@
     width: 8rem;
     margin-right: 76rem;
   }
+
+  .Button {
+    text-align: center;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 12rem;
+    height: 4rem;
+    margin-top: 27rem;
+    margin-right: 34rem;
+    font-weight: 600;
+    font-size: 1rem;
+    background: linear-gradient(
+      126.59deg,
+      rgba(255, 255, 255, 0.08) 12.11%,
+      rgba(255, 255, 255, 0.02) 73.08%
+    );
+    box-shadow: 0px 1.1px 9px -1.1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .Button:hover {
+    background-color: #ccff00;
+    color: #4e4f51;
+    box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .Mock {
+    border: none;
+    width: 32rem;
+    margin-left: 2rem;
+    margin-top: -1rem;
+    z-index: 0;
+  }
+
+  .Moon {
+    position: relative;
+    width: 20rem;
+    margin-left: 10rem;
+    margin-top: -26rem;
+    z-index: -1;
+  }
+
+  .Mock:hover + .Moon{
+    filter: drop-shadow(0 0 1rem #CCFF00);
+  }
+
   .Homepage-header {
     margin-right: 40rem;
     margin-top: 10rem;
@@ -271,18 +372,6 @@
     font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
-  }
-  .Button {
-    margin-top: 30rem;
-    margin-right: 27rem;
-    font-size: 1.2rem;
-  }
-
-  .Button img {
-    width: 90%;
-    margin-top: 21rem;
-    margin-top: -1.5rem;
-    margin-left: -4rem;
   }
 
   .Stock__detail {
@@ -360,25 +449,76 @@
     height: 7rem;
   }
 
-  .Header__News__member {
+  .Header__News {
     position: absolute;
     margin-top: 50rem;
     font-size: 1rem;
-  }
-
-  .Header__News {
-    position: absolute;
-    margin-left: -3rem;
+    margin-right: 45rem;
     border-bottom: 1px solid #4e4f51;
     padding-bottom: 0.5rem;
-    width: 37rem;
+    width: 36rem;
   }
 
   .Header__Member {
-    margin-left: 38rem;
+    position: absolute;
+    margin-top: 50rem;
+    font-size: 1rem;
+    margin-right: -33rem;
     border-bottom: 1px solid #4e4f51;
     padding-bottom: 0.5rem;
-    width: 37rem;
+    width: 38rem;
+  }
+
+  .Head__Name {
+    width: 16rem;
+    margin-left: 4.5rem;
+    font-size: 1rem;
+  }
+
+  .Pic {
+    width: 4rem;
+    margin-left: -5rem;
+    margin-top: -0.5rem;
+  }
+
+  .Detail__Name {
+    width: 10rem;
+    margin-top: 4rem;
+    font-size: 0.8rem;
+  }
+
+  .Member__2 {
+    position: absolute;
+    margin-top: 10rem;
+  }
+
+  .Member__3 {
+    position: absolute;
+    margin-left: 20rem;
+  }
+
+  .Member__4 {
+    position: absolute;
+    margin-top: 10rem;
+    margin-left: 20rem;
+  }
+
+  .FootLogo {
+    width: 9rem;
+    margin-top: 75rem;
+    margin-left: 34rem;
+  }
+
+  .Footer_Text {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #ccff00;
+    margin-left: 29rem;
+    margin-bottom: 5rem;
+  }
+
+  .News__box{
+    margin-top: 4rem;
   }
 }
 
@@ -388,6 +528,55 @@
     width: 10rem;
     margin-right: 85em;
   }
+
+  .Button {
+    text-align: center;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 14rem;
+    height: 4rem;
+    margin-top: 35rem;
+    margin-right: 38rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    background: linear-gradient(
+      126.59deg,
+      rgba(255, 255, 255, 0.08) 12.11%,
+      rgba(255, 255, 255, 0.02) 73.08%
+    );
+    box-shadow: 0px 2px 10px -2px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .Button:hover {
+    background-color: #ccff00;
+    color: #4e4f51;
+    box-shadow: 0px 1px 8px -1px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .Mock {
+    border: none;
+    width: 38rem;
+    margin-left: 5.5rem;
+    margin-top: -1rem;
+    z-index: 0;
+  }
+
+  .Moon {
+    position: relative;
+    width: 23rem;
+    margin-left: 17.5rem;
+    margin-top: -29rem;
+    z-index: -1;
+  }
+
+  .Mock:hover + .Moon{
+    filter: drop-shadow(0 0 1.5rem #CCFF00);
+  }
+
   .Homepage-header {
     margin-right: 42rem;
     margin-top: 13rem;
@@ -409,18 +598,6 @@
     font-size: 1.2rem;
     font-weight: 400;
     text-decoration: none;
-  }
-
-  .Button {
-    margin-top: 37rem;
-    margin-right: 29rem;
-    font-size: 1.3rem;
-  }
-
-  .Button img {
-    width: 100%;
-    margin-top: -1.7rem;
-    margin-left: -4.5rem;
   }
 
   .Stock__detail {
@@ -496,24 +673,75 @@
     height: 7rem;
   }
 
-  .Header__News__member {
+  .Header__News {
     position: absolute;
     margin-top: 60rem;
     font-size: 1.2rem;
-  }
-
-  .Header__News {
-    position: absolute;
-    margin-left: -4rem;
+    margin-right: 55rem;
     border-bottom: 1px solid #4e4f51;
     padding-bottom: 0.5rem;
-    width: 42rem;
+    width: 37rem;
   }
 
   .Header__Member {
-    margin-left: 42rem;
+    position: absolute;
+    margin-top: 60rem;
+    font-size: 1.2rem;
+    margin-right: -37rem;
     border-bottom: 1px solid #4e4f51;
     padding-bottom: 0.5rem;
-    width: 42rem;
+    width: 45rem;
+  }
+
+  .Head__Name {
+    width: 20rem;
+    margin-left: 4.5rem;
+    font-size: 1.2rem;
+  }
+
+  .Pic {
+    width: 4rem;
+    margin-left: -5rem;
+    margin-top: -0.5rem;
+  }
+
+  .Detail__Name {
+    width: 10rem;
+    margin-top: 4rem;
+    font-size: 1rem;
+  }
+
+  .Detail__Name {
+    width: 30rem;
+  }
+
+  .Member__2 {
+    position: absolute;
+    margin-top: 13rem;
+  }
+
+  .Member__3 {
+    position: absolute;
+    margin-left: 23rem;
+  }
+
+  .Member__4 {
+    position: absolute;
+    margin-top: 13rem;
+    margin-left: 23rem;
+  }
+
+  .FootLogo {
+    width: 9rem;
+    margin-top: 92rem;
+    margin-left: 39rem;
+  }
+
+  .Footer_Text {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #ccff00;
+    margin-left: 34rem;
+    margin-bottom: 5rem;
   }
 }
