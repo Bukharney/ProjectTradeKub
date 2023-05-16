@@ -136,6 +136,41 @@
   position: absolute;
 }
 
+.Moon{
+  animation: moveAnimation 3.9s infinite;
+  animation: dropShadowAnimation 4s infinite;
+}
+
+.Mock {
+  animation: moveAnimation 4s infinite;
+}
+
+@keyframes dropShadowAnimation {
+  0% {
+    filter: drop-shadow(0 0 4rem #ccff00);
+  }
+  50% {
+    filter: drop-shadow(0 0 4rem #4e4f51);
+  }
+  100% {
+    filter: drop-shadow(0 0 4rem #ccff00);
+  }
+}
+
+@keyframes moveAnimation {
+  0% {
+
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 @media screen and (max-width: 1600px) {
   .Logo {
     width: 7rem;
@@ -173,7 +208,7 @@
 
   .FootLogo {
     width: 7rem;
-    margin-top: 63rem;
+    margin-top: 62rem;
     margin-left: 22rem;
   }
 
@@ -194,7 +229,7 @@
     border: none;
     width: 30rem;
     margin-left: 32rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
     z-index: 0;
   }
 
@@ -204,10 +239,6 @@
     margin-left: 41rem;
     margin-top: -22rem;
     z-index: -1;
-  }
-
-  .Mock:hover + .Moon {
-    filter: drop-shadow(0 0 1rem #ccff00);
   }
 
   .Homepage-header p {
@@ -902,16 +933,15 @@
 
   .PicNews {
     width: 14rem;
-    margin-left: 2rem;
     margin-top: 2.5rem;
     border-radius: 0.7rem;
   }
 
   .News__title {
     margin-top: -7rem;
-    margin-left: 18rem;
+    margin-left: 16rem;
     font-size: 1rem;
-    width: 100%;
+    width: 20rem;
   }
 
   .News__title p {

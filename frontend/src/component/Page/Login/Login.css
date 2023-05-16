@@ -102,7 +102,19 @@
   position: absolute;
   width: 900px;
   z-index: -1;
-  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
+  animation: ShadowAnimation 4s infinite;
+}
+
+@keyframes ShadowAnimation {
+  0% {
+    filter: drop-shadow(0 0 0.25rem #ccff00);
+  }
+  50% {
+    filter: drop-shadow(0 0 0.25rem #4e4f51);
+  }
+  100% {
+    filter: drop-shadow(0 0 0.25rem #ccff00);
+  }
 }
 
 .button button {

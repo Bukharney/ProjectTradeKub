@@ -83,7 +83,7 @@
 
 @media screen and (max-width: 1600px) {
   .Container_News {
-    margin-right: 3rem;
+    margin-right: 4rem;
   }
   .Header_News {
     margin-top: 2.5rem;
@@ -136,7 +136,7 @@
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
 
     .Container_News {
-        margin-right: 3rem;
+        margin-right: 4rem;
       }
       .Header_News {
         margin-top: 2.5rem;
@@ -189,7 +189,7 @@
 @media screen and (min-width: 1801px) {
 
     .Container_News {
-        margin-right: 3rem;
+        margin-right: 4rem;
       }
       .Header_News {
         margin-top: 2.5rem;
