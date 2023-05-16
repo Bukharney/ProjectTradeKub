@@ -29,7 +29,7 @@ export const Navbar = () => {
               to="/"
               activeClassName="active"
               className="nav-links"
-              onClick={() => handleClick(null)}
+              onClick={() => handleClick(null)} 
             >
               <img src={Logo} alt="Logo" />
             </NavLink>
@@ -41,10 +41,10 @@ export const Navbar = () => {
               to="/Market"
               activeClassName="active"
               className="nav-links"
-              onClick={() => handleClick(0)}
+              onClick={() => handleClick(0)} 
             >
               <i className="bx bxs-dashboard"></i>
-              {showTask === 0 && <img src={Task} alt="Task" className="Task" />} 
+              {showTask === 0 && <img src={Task} alt="Task" className="Task" />}
             </NavLink>
           </li>
           <li className="nav-item">
