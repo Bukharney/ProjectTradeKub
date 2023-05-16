@@ -7,12 +7,12 @@ import Task from "./Task.svg";
 
 export const Navbar = () => {
   const [click, setClick] = useState(false);
-  const [showTask, setShowTask] = useState(null); // new state for showing Task image
+  const [showTask, setShowTask] = useState(null); 
   const location = useLocation();
 
-  const handleClick = (index) => { // modify handleClick to accept the index of the clicked item
+  const handleClick = (index) => { 
     setClick(!click);
-    setShowTask(index); // set the index of the clicked item as the value for showTask
+    setShowTask(index);
   };
 
   if (location.pathname === "/" || location.pathname === "/Login") {
@@ -29,7 +29,7 @@ export const Navbar = () => {
               to="/"
               activeClassName="active"
               className="nav-links"
-              onClick={() => handleClick(null)} // modify to reset showTask to null
+              onClick={() => handleClick(null)}
             >
               <img src={Logo} alt="Logo" />
             </NavLink>
@@ -41,10 +41,10 @@ export const Navbar = () => {
               to="/Market"
               activeClassName="active"
               className="nav-links"
-              onClick={() => handleClick(0)} // pass the index of the clicked item to handleClick
+              onClick={() => handleClick(0)}
             >
               <i className="bx bxs-dashboard"></i>
-              {showTask === 0 && <img src={Task} alt="Task" className="Task" />} {/* conditional rendering for Task image */}
+              {showTask === 0 && <img src={Task} alt="Task" className="Task" />} 
             </NavLink>
           </li>
           <li className="nav-item">

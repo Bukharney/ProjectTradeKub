@@ -52,6 +52,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      
 
       <div className="Header__News">
         <p>News</p>
@@ -59,17 +60,28 @@ export const Home = () => {
           <div className="News__box__1">
             {News.map((newsItem) => (
               <div className="News__item">
-                <img src={newsItem.Picture} alt={newsItem.Title} />
-                <div className="News__details">
-                  <h2>{newsItem.Title}</h2>
+                <img src={newsItem.Picture} className="PicNews"/>
+                <div className="News__title">
                   <p>{newsItem.Time}</p>
-                  <p>{newsItem.Text}</p>
+                  <h2>{newsItem.Title}</h2>
                 </div>
+                  <div className="New__text">{newsItem.Text}</div>
               </div>
             ))}
           </div>
 
-          <div className="News__box__2"></div>
+          <div className="News__box__2">
+          {News.map((newsItem) => (
+              <div className="News__item">
+                <img src={newsItem.Picture1}  className="PicNews"/>
+                <div className="News__title">
+                  <p>{newsItem.Time1}</p>
+                  <h2>{newsItem.Title1}</h2>
+                </div>
+                  <div className="New__text">{newsItem.Text1}</div>
+              </div>
+            ))}
+            </div>
         </div>
       </div>
 
