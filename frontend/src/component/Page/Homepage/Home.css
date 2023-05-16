@@ -4,11 +4,10 @@
   color: #ffffff;
   display: flex;
   justify-content: center;
-  position: absolute;
 }
 
 .Button {
-  position: relative;
+  position: absolute;
 }
 
 .Logo {
@@ -16,7 +15,6 @@
 }
 
 .Homepage-header {
-  flex: start;
   position: absolute;
 }
 
@@ -35,7 +33,6 @@
 }
 
 .Header__News {
-  position: absolute;
   font-weight: 600;
 }
 
@@ -68,9 +65,38 @@
 .Footer {
   position: absolute;
 }
-
-.News__box__1 {
+.News__box {
   position: absolute;
+}
+
+.News__box__2 {
+  position: absolute;
+}
+
+.News__title {
+  position: absolute;
+  font-weight: 600;
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.News__title p {
+  font-weight: 400;
+  color: #4e4f51;
+}
+
+.New__text {
+  position: absolute;
+  color: #4e4f51;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 @media screen and (max-width: 1600px) {
@@ -143,8 +169,8 @@
     z-index: -1;
   }
 
-  .Mock:hover + .Moon{
-    filter: drop-shadow(0 0 1rem #CCFF00);
+  .Mock:hover + .Moon {
+    filter: drop-shadow(0 0 1rem #ccff00);
   }
 
   .Homepage-header p {
@@ -170,6 +196,7 @@
     position: absolute;
     margin-left: -31.75rem;
   }
+  
   .Up {
     width: 8rem;
     margin-left: -10.85rem;
@@ -290,11 +317,29 @@
     margin-left: 18rem;
   }
 
-  .News__box__1{
-    position:absolute;
+  .PicNews {
+    width: 11rem;
+    margin-top: 2.2rem;
+    border-radius: 0.6rem;
   }
 
-  .News__details{}
+  .News__title {
+    margin-top: -5rem;
+    margin-left: 12rem;
+    font-size: 0.7rem;
+    width: 100%;
+  }
+
+  .News__title p {
+    font-size: 0.6rem;
+  }
+
+  .New__text {
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    width: 22.5rem;
+    max-height: 5rem;
+  }
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
@@ -348,8 +393,8 @@
     z-index: -1;
   }
 
-  .Mock:hover + .Moon{
-    filter: drop-shadow(0 0 1rem #CCFF00);
+  .Mock:hover + .Moon {
+    filter: drop-shadow(0 0 1rem #ccff00);
   }
 
   .Homepage-header {
@@ -517,7 +562,7 @@
     margin-bottom: 5rem;
   }
 
-  .News__box{
+  .News__box {
     margin-top: 4rem;
   }
 }
@@ -573,8 +618,8 @@
     z-index: -1;
   }
 
-  .Mock:hover + .Moon{
-    filter: drop-shadow(0 0 1.5rem #CCFF00);
+  .Mock:hover + .Moon {
+    filter: drop-shadow(0 0 1.5rem #ccff00);
   }
 
   .Homepage-header {
