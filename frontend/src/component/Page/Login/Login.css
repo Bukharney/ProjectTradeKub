@@ -5,38 +5,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(65.47% 133.81% at 1.95% 8.19%, #CCFF00 0%, rgba(54, 67, 0, 0) 100%)
 }
 
 .Container {
   position: absolute;
-  margin-left: 40rem;
-  width: 240px;
-
-}
-
-.Background {
-  position: absolute;
-  width: 70%;
-  bottom: 0px;
-  left: 0px;
+  margin-top: 5rem;
+  margin-left: 30rem;
 }
 
 .Header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .Welcomeback {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
-}
-
-.Logo {
-position: relative;
-margin-left: 40px;
-top: -10rem;
-width: 20vh;
+  width: 240px;
 }
 
 .Enterdetail {
@@ -51,7 +36,7 @@ width: 20vh;
 }
 
 .Insert {
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.8rem;
   align-items: center;
 }
 
@@ -100,16 +85,36 @@ width: 20vh;
 }
 
 .ErrorMessage {
+  text-align: center;
   font-size: 0.6rem;
   width: 100%;
   position: absolute;
-  text-align: center;
-  color: #CD3D42;
+  color: #ff0000;
 }
 
 .button {
-  margin-top: 4rem;
+  margin-top: 2.5rem;
   text-align: center;
+  z-index: 0;
+}
+
+.background {
+  position: absolute;
+  width: 900px;
+  z-index: -1;
+  animation: ShadowAnimation 4s infinite;
+}
+
+@keyframes ShadowAnimation {
+  0% {
+    filter: drop-shadow(0 0 0.25rem #ccff00);
+  }
+  50% {
+    filter: drop-shadow(0 0 0.25rem #4e4f51);
+  }
+  100% {
+    filter: drop-shadow(0 0 0.25rem #ccff00);
+  }
 }
 
 .button button {
@@ -117,9 +122,9 @@ width: 20vh;
   height: 2.3rem;
   font-weight: 600;
   font-size: 0.8rem;
-  background: #CCFF00;
+  background: #ccff00;
   border-radius: 10rem;
-  color: #1a1b1e;
+  color: #4e4f51;
   cursor: pointer;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
   user-select: none;

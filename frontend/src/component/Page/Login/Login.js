@@ -110,6 +110,7 @@ export const Login = () => {
           </div>
         </div>
       </div>
+      <img className="background" src={background} alt="background" />
     </div>
   );
 }

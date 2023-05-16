@@ -1,49 +1,26 @@
 export const mockSeachResult = {
-  count: 4,
   result: [
     {
-      description: "APPLE INC",
-      displaySymbol: "AAPL",
-      symbol: "AAPL",
-      type: "Common Stock",
+      symbol: "KBANK",
+      company_name: "ธนาคารกสิกรไทย จำกัด (มหาชน)",
     },
     {
-      description: "APPLE INC",
-      displaySymbol: "AAPL.SW",
-      symbol: "AAPL.SW",
-      type: "Common Stock",
+      symbol: "AOT",
+      company_name: "บริษัท ท่าอากาศยานไทย จำกัด (มหาชน)",
     },
     {
-      description: "APPLE INC",
-      displaySymbol: "APC.BE",
-      symbol: "APC.BE",
-      type: "Common Stock",
+      symbol: "BANPU",
+      company_name: "บริษัท บ้านปู จำกัด (มหาชน)",
     },
     {
-      description: "APPLE INC",
-      displaySymbol: "APC.DE",
-      symbol: "APC.DE",
-      type: "Common Stock",
+      symbol: "CPALL",
+      company_name: "บริษัท ซีพี ออลล์ จำกัด (มหาชน)",
     },
   ],
+  count: 4,
 };
 
-export const mockCompanyDetails = {
-  country: "US",
-  currency: "USD",
-  exchange: "NASDAQ/NMS (GLOBAL MARKET)",
-  ipo: "1980-12-12",
-  marketCapitalization: 1415993,
-  name: "Apple Inc",
-  phone: "14089961010",
-  shareOutstanding: 4375.47998046875,
-  ticker: "AAPL",
-  weburl: "https://www.apple.com/",
-  logo: "https://static.finnhub.io/logo/87cb30d8-80df-11ea-8951-00000000092a.png",
-  finnhubIndustry: "Technology",
-};
-
-export const mockStockQuote2 = {
+export const mockStockQuote = {
   instrumentType: "STOCK",
   symbol: "AOT",
   high: 72.25,
@@ -75,7 +52,7 @@ export const mockStockQuote2 = {
   inav: null,
 };
 
-export const mockStockCandle2 = {
+export const mockStockCandle = {
   lastSequence: 290554,
   time: [1677603600, 1680282000, 1682874000],
   open: [73.0, 71.25, 73.25],
