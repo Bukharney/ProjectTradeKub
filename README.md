@@ -19,7 +19,7 @@ ProjectTradeKub has the following features:
 
 The following technologies are used in ProjectTradeKub:
 
-- React.js for the front-end
+- React.js and tailwind for the front-end
 - Python for the back-end
 - PosegreSQL for the database
 
@@ -40,7 +40,7 @@ ProjectTradeKub was developed by:
 
 - Jirapat Lakma
 - Peerapat Padthawaro
-- 
+-
 -
 
 ## License
