@@ -7,8 +7,9 @@ import Bigboss from "./Bigboss.svg";
 import Film from "./Film.svg";
 import Bigz from "./BigZ.svg";
 import Ock from "./Ock.svg";
-import { News } from "./DBHome.js";
+import { Stock, News } from "./DBHome.js";
 import Moon from "./Moon.svg";
+import Chart from 'react-apexcharts'
 
 export const Home = () => {
   const [click, setClick] = useState(false);
@@ -32,12 +33,28 @@ export const Home = () => {
           making transactions seamless and hassle-free.
         </a>
       </div>
-      
+
       <div className="Stock__detail">
         <div className="Stock__detail__box">
           <div className="Popular">
             <p>Popular</p>
-            <div className="P1"></div>
+            <div className="P1">
+              {Stock.map((Stock) => (
+                <div className="Name__Stock">
+                  <p>{Stock.Name}</p>
+                  <div className="Price">
+                    Last price
+                    <p>{Stock.Price}</p>
+                  </div>
+                  <div className="Change">
+                    Change
+                    <p>{Stock.Change}</p>
+                    </div>
+                    <div className="P1__Chart">
+                    </div>
+                </div>
+              ))}
+            </div>
             <div className="P2"></div>
           </div>
           <div className="Up">
@@ -52,7 +69,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      
 
       <div className="Header__News">
         <p>News</p>
@@ -60,28 +76,28 @@ export const Home = () => {
           <div className="News__box__1">
             {News.map((newsItem) => (
               <div className="News__item">
-                <img src={newsItem.Picture} className="PicNews"/>
+                <img src={newsItem.Picture} className="PicNews" />
                 <div className="News__title">
                   <p>{newsItem.Time}</p>
                   <h2>{newsItem.Title}</h2>
                 </div>
-                  <div className="New__text">{newsItem.Text}</div>
+                <div className="New__text">{newsItem.Text}</div>
               </div>
             ))}
           </div>
 
           <div className="News__box__2">
-          {News.map((newsItem) => (
+            {News.map((newsItem) => (
               <div className="News__item">
-                <img src={newsItem.Picture1}  className="PicNews"/>
+                <img src={newsItem.Picture1} className="PicNews" />
                 <div className="News__title">
                   <p>{newsItem.Time1}</p>
                   <h2>{newsItem.Title1}</h2>
                 </div>
-                  <div className="New__text">{newsItem.Text1}</div>
+                <div className="New__text">{newsItem.Text1}</div>
               </div>
             ))}
-            </div>
+          </div>
         </div>
       </div>
 
@@ -165,7 +181,7 @@ export const Home = () => {
         </Link>
       </div>
       <div className="Banner">
-        <img src={Banner} alt="Banner" className="Mock"/>
+        <img src={Banner} alt="Banner" className="Mock" />
         <img src={Moon} alt="Moon" className="Moon" />
       </div>
     </div>

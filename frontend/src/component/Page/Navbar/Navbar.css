@@ -40,3 +40,32 @@
   height: 1.5rem;
   position: absolute;
 }
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .navbar{
+    width: 3rem;
+  }
+
+  .nav-item{
+    width: 3rem;
+  }
+
+  .nav-logo{
+    width: 3.5rem;
+    margin-right: 0.75px;
+  }
+}
+
+@media screen and (min-width: 1801px) {
+  .navbar{
+    width: 3.5rem;
+  }
+
+  .nav-item{
+    width: 3.5rem;
+  }
+
+  .nav-logo{
+    width: 4rem;
+  }
+}

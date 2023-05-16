@@ -46,9 +46,6 @@ export const Login = () => {
 
   return (
     <div className="Allsection">
-      <div className="Background">
-        <img className="background" src={background} alt="background" />
-      </div>
       <div className="Container">
         <div className="Text">
           <div className="Header">
@@ -105,6 +102,7 @@ export const Login = () => {
           </div>
         </div>
       </div>
+      <img className="background" src={background} alt="background" />
     </div>
   );
 }
