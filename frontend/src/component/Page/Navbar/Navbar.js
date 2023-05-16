@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import{Notification} from '../Notification/Notification.js';
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
 import Task from "./Task.svg";
 
+ 
 export const Navbar = () => {
   const [click, setClick] = useState(false);
   const [showTask, setShowTask] = useState(null); // new state for showing Task image
@@ -20,7 +22,8 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
+     <nav className="navbar">
+      <Notification A = {showTask} />
       <div className="nav-container">
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-logo">
@@ -74,12 +77,11 @@ export const Navbar = () => {
           <li className="nav-item">
             <NavLink
               exact
-              to="/Notification"
               activeClassName="active"
               className="nav-links"
               onClick={() => handleClick(3)}
             >
-              <i className="bx bx-notification"></i>
+               <i className="bx bx-notification"></i>
               {showTask === 3 && <img src={Task} alt="Task" className="Task" />}
             </NavLink>
           </li>
@@ -100,3 +102,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+ 

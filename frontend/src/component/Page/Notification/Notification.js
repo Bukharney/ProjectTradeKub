@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
-export const Notification = () => {
-  return (
-    <div>
-      <h1>Notification</h1>
-    </div>
+import "./Noti.css";
+ export const Notification = ({A}) => {
+  if(A !=3){ return null;}
+   return (
+    <div className = 'Noti'>
+        <h1>Notification</h1>
+     </div>
   );
 };
+
+ 

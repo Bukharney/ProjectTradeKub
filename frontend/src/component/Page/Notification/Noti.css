@@ -1,0 +1,14 @@
+  .Noti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 10 rem;
+    height: 100vh;
+    color: #ffffff;
+    display: flex;
+    margin-left: 2.5rem;
+    background-color: aquamarine;
+  }
+  
+ 
