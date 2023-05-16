@@ -99,6 +99,32 @@
   -webkit-box-orient: vertical;
 }
 
+.Name{
+  font-weight: 600;
+}
+
+.Price{
+  font-weight: 400;
+  color: #4e4f51;
+}
+
+.Price p{
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.Change{
+  font-weight: 400;
+  color: #4e4f51;
+  text-align: right;
+}
+
+.Change p{
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+
 @media screen and (max-width: 1600px) {
   .Logo {
     width: 7rem;
@@ -340,6 +366,32 @@
     width: 22.5rem;
     max-height: 5rem;
   }
+
+  .Name__Stock{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .Price{
+    margin-top: 0.5rem;
+    font-size: 0.5rem;
+  }
+  
+  .Price p{
+    font-size: 0.5rem;
+  }
+  
+  .Change{
+    position: absolute;
+    margin-top: -3.5rem;
+    margin-left: 4.65rem;
+    font-size: 0.5rem;
+  }
+  
+  .Change p{
+    font-size: 0.5rem;
+  }
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
@@ -562,8 +614,29 @@
     margin-bottom: 5rem;
   }
 
-  .News__box {
-    margin-top: 4rem;
+  .PicNews {
+    width: 14rem;
+    margin-left: 2rem;
+    margin-top: 2.2rem;
+    border-radius: 0.7rem;
+  }
+
+  .News__title {
+    margin-top: -6.25rem;
+    margin-left: 18rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .News__title p {
+    font-size: 0.6rem;
+  }
+
+  .New__text {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    width: 35rem;
+    max-height: 5rem;
   }
 }
 
@@ -788,5 +861,30 @@
     color: #ccff00;
     margin-left: 34rem;
     margin-bottom: 5rem;
+  }
+
+  .PicNews {
+    width: 14rem;
+    margin-left: 2rem;
+    margin-top: 2.5rem;
+    border-radius: 0.7rem;
+  }
+
+  .News__title {
+    margin-top: -7rem;
+    margin-left: 18rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .News__title p {
+    font-size: 0.6rem;
+  }
+
+  .New__text {
+    margin-top: 1.3rem;
+    font-size: 0.8rem;
+    width: 35rem;
+    max-height: 5rem;
   }
 }
