@@ -10,6 +10,7 @@ import { Notification } from "./component/Page/Notification/Notification";
 import { Profile } from "./component/Page/Profile/Profile";
 import AuthContext from "./Context/AuthContext";
 import TokenContext from "./Context/TokenContext";
+import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
 
@@ -31,15 +32,52 @@ function App() {
       <TokenContext.Provider value={{ token, setToken }}>
         <Router>
           <div>
-            <Navbar />
+            <ProtectedRoute>
+              <Navbar />
+            </ProtectedRoute>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/market" element={<Market />} />
-              <Route path="/wallet" element={<Wallet />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/notification" element={<Notification />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/market"
+                element={
+                  <ProtectedRoute>
+                    <Market />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/wallet"
+                element={
+                  <ProtectedRoute>
+                    <Wallet />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/news"
+                element={
+                  <ProtectedRoute>
+                    <News />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/notification"
+                element={
+                  <ProtectedRoute>
+                    <Notification />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </div>
         </Router>

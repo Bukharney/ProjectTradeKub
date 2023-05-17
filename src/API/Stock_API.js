@@ -19,3 +19,12 @@ export const login = async (username, password) => {
     console.error(error);
   }
 };
+
+export const get_news = async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/news");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
