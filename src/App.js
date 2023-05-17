@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "./component/Page/Navbar/Navbar";
 import { Login } from "./component/Page/Login/Login";
-import { Home } from "../frontend/src/component/Page/Homepage/Home";
+import { Home } from "./component/Page/Homepage/Home";
 import { Market } from "./component/Page/Market/Market";
 import { Wallet } from "./component/Page/Wallet/Wallet";
 import { News } from "./component/Page/News/News";
