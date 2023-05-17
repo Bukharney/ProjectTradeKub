@@ -4,6 +4,16 @@
   color: #ffffff;
   display: flex;
   justify-content: center;
+  animation: LOLAnimation 2s;
+}
+
+@keyframes LOLAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .Button {
@@ -137,7 +147,6 @@
 }
 
 .Moon{
-  animation: moveAnimation 3.9s infinite;
   animation: dropShadowAnimation 4s infinite;
 }
 

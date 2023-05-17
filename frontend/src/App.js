@@ -15,14 +15,14 @@ function App() {
     <Router>
       <div>
         <Navbar />
+        <Notification />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/Login" element={<Login />} />
           <Route path="/Market" element={<Market />} />
           <Route path="/Wallet" element={<Wallet />} />
           <Route path="/News" element={<News />} />
-          <Route path="/Notification" element={<Notification />} />
-          <Route path="/Profile" element={<Profile />} /> 
+          <Route path="/Profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>

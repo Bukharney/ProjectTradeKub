@@ -7,66 +7,86 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color:  #282A2E;
-  z-index: 10;
+  background-color: #282a2e;
+  z-index: 100;
 }
 
-.nav-logo{
+.nav-logo {
   width: 3rem;
   justify-content: center;
   margin-left: -0.2rem;
 }
 
-.nav-item{
+.Nav__Noti__dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 10px;
+  margin-left: 0.625rem;
+  margin-top: -0.9rem;
+  background-color: #ccff00;
+}
+
+.nav-item {
   display: flex;
   width: 2.5rem;
   height: 100%;
   align-items: center;
   margin-top: 1rem;
-  color: #4E4F51;
+  color: #4e4f51;
   justify-content: center;
 }
 
 .nav-item:hover {
-  filter: drop-shadow(0 0 0.003rem #FFFFFF);
+  filter: drop-shadow(0 0 0.003rem #ffffff);
 }
 
 .nav-item :focus {
-  color: #CCFF00;
+  color: #ccff00;
 }
 
-.Task{
+.Task {
   margin-top: -1.6rem;
   margin-left: -0.75rem;
   height: 1.5rem;
   position: absolute;
+  animation: LOLAnimation 2s;
+}
+
+@keyframes LOLAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
-  .navbar{
+  .navbar {
     width: 3rem;
   }
 
-  .nav-item{
+  .nav-item {
     width: 3rem;
   }
 
-  .nav-logo{
+  .nav-logo {
     width: 3.5rem;
     margin-right: 0.75px;
   }
 }
 
 @media screen and (min-width: 1801px) {
-  .navbar{
+  .navbar {
     width: 3.5rem;
   }
 
-  .nav-item{
+  .nav-item {
     width: 3.5rem;
   }
 
-  .nav-logo{
+  .nav-logo {
     width: 4rem;
   }
 }
