@@ -7,7 +7,6 @@ import hide_password from "./hide_password.svg";
 import { Navigate} from "react-router-dom";
 
 export const Login = () => {
-  const [brokerId, setBrokerId] = useState("Select Broker ID");
   const [accountId, setAccountId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -21,15 +20,13 @@ export const Login = () => {
   function handleLogin() {
     const user = users.find(
       (u) =>
-        u.brokerId === brokerId &&
         u.accountId === accountId &&
         u.password === password
     );
     if (user) {
       console.log(
-        `Broker ID: ${brokerId}, Account ID: ${accountId}, Password: ${password}`
+        ` Account ID: ${accountId}, Password: ${password}`
       );
-      setBrokerId("");
       setAccountId("");
       setPassword("");
       setShowPassword(false);
@@ -54,24 +51,11 @@ export const Login = () => {
           </div>
 
           <div className="Insert">
-            <div className="BrokerID">
-              <select
-                value={brokerId}
-                onChange={(e) => setBrokerId(e.target.value)}
-              >
-                <option value="">Select Broker</option>
-                {users.map((user) => (
-                  <option key={user.brokerId} value={user.brokerId}>
-                    {user.accountId}
-                  </option>
-                ))}
-              </select>
-            </div>
 
             <div className="AccountID">
               <input
                 type="text"
-                placeholder="Account ID"
+                placeholder="Username"
                 value={accountId}
                 onChange={(e) => setAccountId(e.target.value)}
               />

@@ -94,7 +94,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="Up">
-            <p>Top Movers Up</p>
+          <p>Top Movers<span style={{ color: '#42A93C', fontWeight: 400, paddingLeft: '0.5rem' }}>Up</span></p>
             <div className="U1">
               {Stock.map((StockItem, index) => (
                 <div className="Name__Stock" key={index}>
@@ -151,7 +151,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="Down">
-            <p>Top Movers Down</p>
+          <p>Top Movers<span style={{ color: '#CD3D42', fontWeight: 400, paddingLeft: '0.5rem' }}>Down</span></p>
             <div className="D1">
               {Stock.map((StockItem, index) => (
                 <div className="Name__Stock" key={index}>

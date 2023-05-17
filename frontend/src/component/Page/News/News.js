@@ -7,13 +7,15 @@ export const News = () => {
   return (
     <div className="News">
       <div className="Container_News">
-        <div className="Header_News">
-          Hot News
-        </div>
+        <div className="Header_News">Hot News</div>
+
         <div className="News_box_Left">
           <div className="News_box_1">
             {Hotnews.map((newsItem) => (
               <div className="News_item">
+                <div className="Pic__News">
+                  <img src={newsItem.Picture1} />
+                </div>
                 <div className="News_title">
                   <p>{newsItem.Time1}</p>
                   <h2>{newsItem.Title1}</h2>
@@ -34,10 +36,15 @@ export const News = () => {
               </div>
             ))}
           </div>
+        </div>
 
-          <div className="News_box_3">
+        <div className="News_box_Mid">
+          <div className="News_box_1">
             {Hotnews.map((newsItem) => (
               <div className="News_item">
+                <div className="Pic__News">
+                  <img src={newsItem.Picture3} />
+                </div>
                 <div className="News_title">
                   <p>{newsItem.Time3}</p>
                   <h2>{newsItem.Title3}</h2>
@@ -46,10 +53,8 @@ export const News = () => {
               </div>
             ))}
           </div>
-        </div>
 
-        <div className="News_box_Mid">
-          <div className="News_box_1">
+          <div className="News_box_2">
             {Hotnews.map((newsItem) => (
               <div className="News_item">
                 <div className="News_title">
@@ -60,10 +65,15 @@ export const News = () => {
               </div>
             ))}
           </div>
+        </div>
 
-          <div className="News_box_2">
+        <div className="News_box_Right">
+          <div className="News_box_1">
             {Hotnews.map((newsItem) => (
               <div className="News_item">
+                <div className="Pic__News">
+                  <img src={newsItem.Picture5} />
+                </div>
                 <div className="News_title">
                   <p>{newsItem.Time5}</p>
                   <h2>{newsItem.Title5}</h2>
@@ -73,7 +83,7 @@ export const News = () => {
             ))}
           </div>
 
-          <div className="News_box_3">
+          <div className="News_box_2">
             {Hotnews.map((newsItem) => (
               <div className="News_item">
                 <div className="News_title">
@@ -81,44 +91,6 @@ export const News = () => {
                   <h2>{newsItem.Title6}</h2>
                 </div>
                 <div className="New_text">{newsItem.Text6}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="News_box_Right">
-          <div className="News_box_1">
-            {Hotnews.map((newsItem) => (
-              <div className="News_item">
-                <div className="News_title">
-                  <p>{newsItem.Time7}</p>
-                  <h2>{newsItem.Title7}</h2>
-                </div>
-                <div className="New_text">{newsItem.Text7}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="News_box_2">
-            {Hotnews.map((newsItem) => (
-              <div className="News_item">
-                <div className="News_title">
-                  <p>{newsItem.Time8}</p>
-                  <h2>{newsItem.Title8}</h2>
-                </div>
-                <div className="New_text">{newsItem.Text8}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="News_box_3">
-            {Hotnews.map((newsItem) => (
-              <div className="News_item">
-                <div className="News_title">
-                  <p>{newsItem.Time9}</p>
-                  <h2>{newsItem.Title9}</h2>
-                </div>
-                <div className="New_text">{newsItem.Text9}</div>
               </div>
             ))}
           </div>
