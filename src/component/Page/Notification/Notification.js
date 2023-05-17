@@ -6,7 +6,7 @@ import "./Notification.css";
 export const Notification = ({ A }) => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
-  if (A !== 3)  {
+  if (A !== 3) {
     return null;
   }
 
@@ -22,27 +22,28 @@ export const Notification = ({ A }) => {
 
           {NotificationInbox.map((Inbox, index) => (
             <div className="Notification_Item" key={index}>
-              <div className="Notification__Body">
-                <div className="Notification_Dot"></div>
-                <div className="NotiText">
-                  <div className="NotiPrice">
-                    {Inbox[`NotiPrice${index + 1}`]}
-                  </div>
-                  <div className="NotiName">
-                    {Inbox[`NotiName${index + 1}`]}
-                  </div>
-                  <div className="NotiTime">
-                    {Inbox[`NotiTime${index + 1}`]}
-                  </div>
-                </div>
+              <div className="Notification__Button">
+                <Link to="/Wallet">
+                  <button onClick={handleClick}>
+                    <div className="Notification__Body">
+                      <div className="Notification_Dot"></div>
+                      <div className="NotiText">
+                        <div className="NotiPrice">
+                          {Inbox[`NotiPrice${index + 1}`]}
+                        </div>
+                        <div className="NotiName">
+                          {Inbox[`NotiName${index + 1}`]}
+                        </div>
+                        <div className="NotiTime">
+                          {Inbox[`NotiTime${index + 1}`]}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
-          <div className="Notification__Button">
-            <Link to="/Wallet">
-              <button onClick={handleClick}>See all notifications</button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
