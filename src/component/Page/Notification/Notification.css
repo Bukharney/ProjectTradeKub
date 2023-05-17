@@ -1,0 +1,112 @@
+.Notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.Notication__Box {
+  height: 100vh;
+  background-color: #34363c;
+  justify-content: center;
+}
+
+.Nofitication__Header {
+  text-align: center;
+  color: #ccff00;
+  font-weight: 600;
+}
+
+.Notification__Body {
+  background: #1a1b1e;
+
+}
+
+.Notification_Item {
+  font-weight: 400;
+  color: #ffffff;
+  text-align: left;
+}
+
+.Notification_Dot {
+    background-color: #ccff00;
+    position: absolute;
+}
+
+.NotiPrice{
+  font-weight: 600;
+}
+
+.Notification__Button{
+  font-weight: 400;
+  color: #ccff00;
+  text-align: center;
+}
+
+@media screen and (max-width: 1600px) {
+  .Notification {
+    background: linear-gradient(90deg, #1a1b1e 0%, #282a2e 100%);
+    margin-left: 2.5rem;
+  }
+
+  .Notication__Box {
+    width: 15rem;
+  }
+  
+  .Notification__Button{
+    padding-top: 0.5rem;
+    width: 15rem;
+    font-size: 0.6rem;
+  }
+
+  .Nofitication__Header {
+    padding-top: 1.5rem;
+    margin-left: 1.5rem;
+    width: 12rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .Notification__Body {
+    height: 4rem;
+    width: 15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .Notification_Item {
+    font-size: 0.6rem;
+  }
+
+  .Notification_Dot {
+    margin-top: 1.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin-left: 2rem;
+  }
+
+  .NotiText{
+    padding-top: 0.7rem;
+    margin-left: 5rem;
+  }
+
+  .NotiTime {
+    font-size: 0.6rem;
+    color: #4e4f51;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .Notification__Container {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (min-width: 1801px) {
+  .Notification__Container {
+    margin-left: 3.5rem;
+  }
+}
