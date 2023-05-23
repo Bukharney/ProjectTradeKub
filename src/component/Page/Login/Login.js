@@ -39,7 +39,7 @@ export const Login = () => {
         })
         .catch((error) => {
           console.error(error);
-          setErrorMessage(error.response.data.message);
+          setErrorMessage("Please check your information again");
         });
       return res;
     };

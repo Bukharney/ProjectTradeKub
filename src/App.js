@@ -31,10 +31,8 @@ function App() {
     <AuthContext.Provider value={{ auth, setAuth }}>
       <TokenContext.Provider value={{ token, setToken }}>
         <Router>
+          <Navbar />
           <div>
-            <ProtectedRoute>
-              <Navbar />
-            </ProtectedRoute>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

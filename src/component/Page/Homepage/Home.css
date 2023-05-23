@@ -226,7 +226,7 @@
     font-size: 0.8rem;
     color: #ccff00;
     margin-left: 18rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4.5rem;
   }
 
   .Homepage-header {
@@ -442,6 +442,12 @@
   
   .Change p{
     font-size: 0.5rem;
+  }
+
+  .Home__Chart{
+    width: 50%;
+    margin-left: 2.9rem;
+    margin-top: -1.25rem;
   }
 }
 
@@ -666,8 +672,7 @@
   }
 
   .PicNews {
-    width: 14rem;
-    margin-left: 2rem;
+    width: 16rem;
     margin-top: 2.2rem;
     border-radius: 0.7rem;
   }
@@ -714,6 +719,12 @@
   
   .Change p{
     font-size: 0.6rem;
+  }
+
+  .Home__Chart{
+    width: 55%;
+    margin-left: 3.7rem;
+    margin-top: -2rem;
   }
 }
 
@@ -940,8 +951,8 @@
     margin-bottom: 5rem;
   }
 
-  .PicNews {
-    width: 14rem;
+  .PicNews{
+    width: 16rem;
     margin-top: 2.5rem;
     border-radius: 0.7rem;
   }
@@ -988,5 +999,11 @@
   
   .Change p{
     font-size: 0.6rem;
+  }
+
+  .Home__Chart{
+    width: 60%;
+    margin-left: 4.2rem;
+    margin-top: -2rem;
   }
 }
