@@ -41,7 +41,13 @@
   filter: drop-shadow(0 0 0.003rem #ffffff);
 }
 
-.nav-item :focus {
+.nav-itemClicked {
+  display: flex;
+  width: 2.5rem;
+  height: 100%;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: center;
   color: #ccff00;
 }
 
@@ -67,6 +73,10 @@
     width: 3rem;
   }
 
+  .nav-itemClicked {
+    width: 3rem;
+  }
+
   .nav-item {
     width: 3rem;
   }
@@ -79,6 +89,10 @@
 
 @media screen and (min-width: 1801px) {
   .navbar {
+    width: 3.5rem;
+  }
+
+  .nav-itemClicked {
     width: 3.5rem;
   }
 
