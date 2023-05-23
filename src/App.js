@@ -35,7 +35,7 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
+
               <Route
                 path="/market"
                 element={
@@ -76,6 +76,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </Router>

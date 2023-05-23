@@ -7,7 +7,7 @@ import Logo from "./Logo.svg";
 import Task from "./Task.svg";
 import { NotificationInbox } from "../Notification/DBNotification.js";
 
-export let value = { key: 0 };
+export let value = { key: 1 };
 
 export const Navbar = () => {
   const { count } = NotificationInbox;

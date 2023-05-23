@@ -37,6 +37,7 @@ export const Login = () => {
         .then((response) => {
           console.log(response);
           Cookies.set("token", response.data.access_token, { expires: 1 });
+          Auth.setAuth(true);
           return response;
         })
         .catch((error) => {
@@ -50,10 +51,6 @@ export const Login = () => {
       window.location.href = "/market";
     }
   };
-
-  if (Auth.auth) {
-    return <Navigate to="/market" />;
-  }
 
   return (
     <div className="Allsection">
