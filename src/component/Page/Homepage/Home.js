@@ -9,6 +9,12 @@ import Bigz from "./BigZ.svg";
 import Ock from "./Ock.svg";
 import { Stock, News } from "./DBHome.js";
 import Moon from "./Moon.svg";
+import P1 from "./P1.svg";
+import P2 from "./P2.svg";
+import U1 from "./U1.svg";
+import U2 from "./U2.svg";
+import D1 from "./D1.svg";
+import D2 from "./D2.svg";
 
 export const Home = () => {
   const [click, setClick] = useState(false);
@@ -59,12 +65,13 @@ export const Home = () => {
                           {StockItem.ChangeP1}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={P1} className="Home__Chart" alt="P1" />
                     </>
                   )}
                 </div>
               ))}
             </div>
+
             <div className="P2">
               {Stock.map((StockItem, index) => (
                 <div className="Name__Stock" key={index}>
@@ -86,7 +93,7 @@ export const Home = () => {
                           {StockItem.ChangeP2}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={P2} className="Home__Chart" alt="P2" />
                     </>
                   )}
                 </div>
@@ -94,7 +101,18 @@ export const Home = () => {
             </div>
           </div>
           <div className="Up">
-          <p>Top Movers<span style={{ color: '#42A93C', fontWeight: 400, paddingLeft: '0.5rem' }}>Up</span></p>
+            <p>
+              Top Movers
+              <span
+                style={{
+                  color: "#42A93C",
+                  fontWeight: 400,
+                  paddingLeft: "0.5rem",
+                }}
+              >
+                Up
+              </span>
+            </p>
             <div className="U1">
               {Stock.map((StockItem, index) => (
                 <div className="Name__Stock" key={index}>
@@ -116,7 +134,7 @@ export const Home = () => {
                           {StockItem.ChangeU1}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={U1} className="Home__Chart" alt="U1" />
                     </>
                   )}
                 </div>
@@ -143,7 +161,7 @@ export const Home = () => {
                           {StockItem.ChangeU2}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={U2} className="Home__Chart" alt="U2" />
                     </>
                   )}
                 </div>
@@ -151,7 +169,18 @@ export const Home = () => {
             </div>
           </div>
           <div className="Down">
-          <p>Top Movers<span style={{ color: '#CD3D42', fontWeight: 400, paddingLeft: '0.5rem' }}>Down</span></p>
+            <p>
+              Top Movers
+              <span
+                style={{
+                  color: "#CD3D42",
+                  fontWeight: 400,
+                  paddingLeft: "0.5rem",
+                }}
+              >
+                Down
+              </span>
+            </p>
             <div className="D1">
               {Stock.map((StockItem, index) => (
                 <div className="Name__Stock" key={index}>
@@ -173,7 +202,7 @@ export const Home = () => {
                           {StockItem.ChangeD1}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={D1} className="Home__Chart" alt="D1" />
                     </>
                   )}
                 </div>
@@ -200,7 +229,7 @@ export const Home = () => {
                           {StockItem.ChangeD2}
                         </p>
                       </div>
-                      <div className="P1__Chart"></div>
+                      <img src={D2} className="Home__Chart" alt="D2" />
                     </>
                   )}
                 </div>

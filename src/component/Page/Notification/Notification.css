@@ -6,6 +6,16 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  animation: NotiAnimation 0.3s;
+}
+
+@keyframes NotiAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .Notication__Box {
@@ -13,30 +23,48 @@
   background-color: #34363c;
   background: #34363c;
   box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.25);
+  width: 15rem;
 }
 
 .Nofitication__Header {
   text-align: left;
-  color:  #ccff00;
+  color: #ccff00;
   font-weight: 600;
+  padding-top: 1.5rem;
+  margin-left: 1.5rem;
+  width: 12rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .Notification__Body {
   background: #1a1b1e;
+  height: 4rem;
+  width: 15rem;
+  margin-bottom: 0.5rem;
 }
 
 .Notification_Item {
   font-weight: 400;
+  font-size: 0.6rem;
   color: #ffffff;
 }
 
 .Notification_Dot {
   background-color: #ccff00;
   position: absolute;
+  margin-top: 1.75rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-left: 2rem;
 }
 
 .NotiText {
   text-align: left;
+  align-items: left;
+  padding-top: 0.7rem;
+  margin-left: 5rem;
 }
 
 .NotiPrice {
@@ -47,51 +75,30 @@
   transform: translateY(-1px);
 }
 
-@media screen and (max-width: 1600px) {
-  .Notification {
-    margin-left: 2.5rem;
-  }
+.DeleteButton {
+  position: absolute;
+  color: #4e4f51;
+  margin-left: -1.15rem;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
 
-  .Notication__Box {
-    width: 15rem;
-  }
+.DeleteButton:hover {
+  color: #cd3d42;
+}
 
-  .Nofitication__Header {
-    padding-top: 1.5rem;
-    margin-left: 1.5rem;
-    width: 12rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
+.Notification {
+  margin-left: 2.5rem;
+}
 
-  .Notification__Body {
-    height: 4rem;
-    width: 15rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .Notification_Item {
-    font-size: 0.6rem;
-  }
-
-  .Notification_Dot {
-    margin-top: 1.75rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    margin-left: 2rem;
-  }
-
-  .NotiText {
-    align-items: left;
-    padding-top: 0.7rem;
-    margin-left: 5rem;
-  }
-
-  .NotiTime {
-    font-size: 0.6rem;
-    color: #4e4f51;
-  }
+.TextNonoti {
+  color: #ffffff;
+  font-size: 0.8rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #4e4f51;
+  padding-top: 0.5rem;
+  width: 12rem;
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
