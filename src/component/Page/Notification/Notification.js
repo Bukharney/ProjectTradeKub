@@ -34,7 +34,7 @@ export const Notification = () => {
         <div className="Nofitication__Container">
           <div className="Notication__Box">
             <div className="Nofitication__Header">Notification</div>
-            <div className="TextNonoti">No Notifications Yet</div>
+            <div className="TextNonoti">No Notifications Yet!</div>
           </div>
         </div>
       </div>
