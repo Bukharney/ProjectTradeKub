@@ -3,6 +3,7 @@ import AuthContext from "../../../Context/AuthContext";
 import TokenContext from "../../../Context/TokenContext";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 export const Market = () => {
   const [data, setData] = useState("");
@@ -11,6 +12,7 @@ export const Market = () => {
   const handleonclick = () => {
     Auth.setAuth(false);
     Cookies.remove("token");
+    return <Navigate to="/market" />;
   };
   let toke = Token.token;
 
