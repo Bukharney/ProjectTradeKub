@@ -5,10 +5,12 @@ import { Notification } from "../Notification/Notification.js";
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
 import Task from "./Task.svg";
+import { NotificationInbox } from "../Notification/DBNotification.js";
 
 export let value = { key: 0 };
 
 export const Navbar = () => {
+  const { count } = NotificationInbox;
   const [click, setClick] = useState(false);
   const [showTask, setShowTask] = useState(null);
   const location = useLocation();
@@ -61,7 +63,9 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
+              {count > 0 && (
                 <div className="Nav__Noti__dot"></div>
+              )}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />
