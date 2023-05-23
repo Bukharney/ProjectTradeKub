@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "./component/Page/Navbar/Navbar";
 import { Login } from "./component/Page/Login/Login";
@@ -17,71 +17,84 @@ import "./App.css";
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-  const readCookie = () => {
-    let token = Cookies.get("token");
-    if (token) {
-      setAuth(true);
-      setToken(token);
-    }
-  };
-  React.useEffect(() => {
-    readCookie();
-  }, []);
-  return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
-      <TokenContext.Provider value={{ token, setToken }}>
-        <Router>
-          <Navbar />
-          <div>
-            <Routes>
-              <Route path="/" element={<Home />} />
 
-              <Route
-                path="/market"
-                element={
-                  <ProtectedRoute>
-                    <Market />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/wallet"
-                element={
-                  <ProtectedRoute>
-                    <Wallet />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/news"
-                element={
-                  <ProtectedRoute>
-                    <News />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/notification"
-                element={
-                  <ProtectedRoute>
-                    <Notification />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-        </Router>
-      </TokenContext.Provider>
-    </AuthContext.Provider>
+  useEffect(() => {
+    const readCookie = async () => {
+      setAuth(true);
+      setToken("token");
+    };
+
+    readCookie();
+    console.log("useEffect");
+  }, []);
+
+  return (
+    <>
+      {auth ? (
+        <AuthContext.Provider value={{ auth, setAuth }}>
+          <TokenContext.Provider value={{ token, setToken }}>
+            <Router>
+              <Navbar />
+              <div>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route
+                    path="/login"
+                    element={
+                      <ProtectedRoute>
+                        <Login />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/market"
+                    element={
+                      <ProtectedRoute>
+                        <Market />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/wallet"
+                    element={
+                      <ProtectedRoute>
+                        <Wallet />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/news"
+                    element={
+                      <ProtectedRoute>
+                        <News />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/notification"
+                    element={
+                      <ProtectedRoute>
+                        <Notification />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <Profile />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </div>
+            </Router>
+          </TokenContext.Provider>
+        </AuthContext.Provider>
+      ) : (
+        <>loading ...</>
+      )}
+    </>
   );
 }
 

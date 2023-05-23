@@ -7,7 +7,7 @@ import Logo from "./Logo.svg";
 import Task from "./Task.svg";
 import { NotificationInbox } from "../Notification/DBNotification.js";
 
-export let value = { key: 1 };
+export let value = { key: 0 };
 
 export const Navbar = () => {
   const { count } = NotificationInbox;
@@ -63,9 +63,7 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-              {count > 0 && (
-                <div className="Nav__Noti__dot"></div>
-              )}
+                {count > 0 && <div className="Nav__Noti__dot"></div>}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />
