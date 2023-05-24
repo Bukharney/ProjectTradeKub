@@ -150,15 +150,15 @@ export const Wallet = () => {
             </div>
           </div>
 
-          <div className="wallet__button__contactBroker">
+          <button className="button__contactBroker">
             <Link
               to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              className="button__contactBroker"
+              className="wallet__button__contactBroker"
               onClick={handleClick}
             >
-              <button>Contact Broker</button>
+             Contact Broker
             </Link>
-          </div>
+            </button>
           <div className="wallet__description">
             Deposit and Withdraw Please contact the Broker
           </div>
@@ -228,8 +228,8 @@ export const Wallet = () => {
                   }}
                 >
                   {stock.UnrealizedPL >= 0
-                    ? `+${stock.UnrealizedPL.toFixed(2)}%`
-                    : `${stock.UnrealizedPL.toFixed(2)}%`}
+                    ? `+${stock.UnrealizedPL.toFixed(2)}`
+                    : `${stock.UnrealizedPL.toFixed(2)}`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -246,15 +246,15 @@ export const Wallet = () => {
                     : `${stock.UnrealizedPLPercent.toFixed(2)}%`}
                 </div>
               </div>
-              <div className="wallet__table__button">
+              <button className="wallet__table__button__value">
                 <Link
                   to="/Market"
-                  className="wallet__table__button__value"
+                  className="wallet__table__button"
                   onClick={handleClick}
                 >
-                  <button>Place Order</button>
+                  Place Order
                 </Link>
-              </div>
+                </button>
             </div>
           ))}
         </div>

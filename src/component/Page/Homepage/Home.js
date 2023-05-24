@@ -278,7 +278,7 @@ export const Home = () => {
               <div className="Head__Name">
                 <img src={Bigboss} alt="Pic" className="Pic" />
                 <p className="Name">Mr.Jirapat lakme</p>
-                <p className="Position">Full stack developer</p>
+                <p className="Position">Backend developer</p>
               </div>
               <p className="Detail__Name">
                 jirapat.lakm@kmutt.ac.th <br />
@@ -293,7 +293,7 @@ export const Home = () => {
               <div className="Head__Name">
                 <img src={Film} alt="Pic" className="Pic" />
                 <p className="Name">Mr.Peerapat Padtawaro</p>
-                <p className="Position">Full stack developer</p>
+                <p className="Position">Frontend developer</p>
               </div>
               <p className="Detail__Name">
                 Peerapad.padt@kmutt.ac.th <br />
@@ -309,7 +309,7 @@ export const Home = () => {
                 <div className="Head__Name">
                   <img src={Bigz} alt="Pic" className="Pic" />
                   <p className="Name">Mr.Pongsakorn Jansanit</p>
-                  <p className="Position">Full stack developer</p>
+                  <p className="Position">UX/UI Designer</p>
                 </div>
                 <p className="Detail__Name">
                   pongsakorn.jans@kmutt.ac.th <br />
@@ -324,7 +324,7 @@ export const Home = () => {
                 <div className="Head__Name">
                   <img src={Ock} alt="Pic" className="Pic" />
                   <p className="Name">Mr.Nutchapong Pramualsap</p>
-                  <p className="Position">Full stack developer</p>
+                  <p className="Position">Frontend developer</p>
                 </div>
                 <p className="Detail__Name">
                   Nutchapong.pramualsap@kmutt.ac.th <br />
