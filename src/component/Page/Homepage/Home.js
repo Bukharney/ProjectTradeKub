@@ -345,7 +345,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="Button">
-        <Link to="/Login">
+        <Link to="/market">
           <button onClick={handleClick}>Go to Market</button>
         </Link>
       </div>

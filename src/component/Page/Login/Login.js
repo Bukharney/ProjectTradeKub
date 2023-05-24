@@ -5,11 +5,13 @@ import show_password from "./show_password.svg";
 import hide_password from "./hide_password.svg";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../../Context/AuthContext";
+import TokenContext from "../../../Context/TokenContext";
 import Cookies from "js-cookie";
 import axios from "axios";
 
 export const Login = () => {
   const Auth = useContext(AuthContext);
+  const Token = React.useContext(TokenContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +39,8 @@ export const Login = () => {
         .then((response) => {
           console.log(response);
           Cookies.set("token", response.data.access_token, { expires: 1 });
+          Auth.setAuth(true);
+          Token.setToken(response.data.access_token);
           return response;
         })
         .catch((error) => {
@@ -50,10 +54,6 @@ export const Login = () => {
       window.location.href = "/market";
     }
   };
-
-  if (Auth.auth) {
-    return <Navigate to="/market" />;
-  }
 
   return (
     <div className="Allsection">
