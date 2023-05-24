@@ -5,11 +5,15 @@ import{Notification} from '../Notification/Notification.js';
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
 import Task from "./Task.svg";
+ 
+
+
+
 
 const storedValue = localStorage.getItem('key');
 const defaultValue = {'key': 0};
 export const value = storedValue ? JSON.parse(storedValue) : defaultValue;
-export let hasRefresh = {'rkey':1}
+export const hasRefresh = {'rkey':1}
 
 export const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -19,21 +23,22 @@ export const Navbar = () => {
 
   const handleClick = (index) => {
     value['key'] = index;
-    setClick(!click);
+     setClick(!click);
     localStorage.setItem('key', JSON.stringify(value));
     if(index == 3)
     {
       hasRefresh['rkey'] =0;
     }
-
-    };
+    else{hasRefresh['rkey']=1;}
+  
+     };
 
     
    if(value['key']===3 && hasRefresh['rkey']===1)
    {
      if (window.location.pathname.includes('/Market')) {
       value['key'] = 0;
-      localStorage.setItem('key', JSON.stringify(value));
+      localStorage.setItem('key', JSON.stringify(value)); 
     }
     else if (window.location.pathname.includes('/Wallet')) {
       value['key'] = 1;
@@ -58,7 +63,8 @@ export const Navbar = () => {
   return (
      <nav className="navbar">
         <div className="nav-container">
-        <ul className={click ? " " : " "}>
+        <Notification value={value} hasRefresh={hasRefresh} />
+          <ul className={click ? " " : " "}>
           {value['key']}
           {hasRefresh['rkey']}
           <li className="nav-logo">
@@ -127,4 +133,11 @@ export const Navbar = () => {
     </nav>
   );
 };
+ 
+
+
+
+
+ 
+
  

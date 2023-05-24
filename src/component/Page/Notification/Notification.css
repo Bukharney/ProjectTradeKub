@@ -7,6 +7,7 @@
   height: 100vh;
   display: flex;
   animation: NotiAnimation 0.3s;
+  z-index: 1000;
 }
 
 @keyframes NotiAnimation {
