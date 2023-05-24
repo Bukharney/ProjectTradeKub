@@ -43,10 +43,10 @@ export const NotificationInbox = {
     },
 
     {
-        NotiPrice: "400,000",
-        NotiName: "BKBANK Buy Completed",
-        NotiTime: "5 minute ago",
-      },
+      NotiPrice: "400,000",
+      NotiName: "BKBANK Buy Completed",
+      NotiTime: "5 minute ago",
+    },
   ],
   count: 8,
 };
