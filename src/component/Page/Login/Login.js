@@ -32,9 +32,9 @@ export const Login = () => {
     const news = async () => {
       let res = await axios
         .post("https://www.tradekub.me/login", data, {
-          headers: {
+         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-          },
+          } ,
         })
         .then((response) => {
           console.log(response);
@@ -51,7 +51,7 @@ export const Login = () => {
     };
     let x = await news();
     if (x) {
-      window.location.href = "/market";
+      window.location.href = "/Market";
     }
   };
 

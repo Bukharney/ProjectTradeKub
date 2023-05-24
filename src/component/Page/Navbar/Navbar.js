@@ -25,11 +25,13 @@ export const Navbar = () => {
     {
       hasRefresh['rkey'] =0;
     }
-   };
 
+    };
+
+    
    if(value['key']===3 && hasRefresh['rkey']===1)
    {
-    if (window.location.pathname.includes('/Market')) {
+     if (window.location.pathname.includes('/Market')) {
       value['key'] = 0;
       localStorage.setItem('key', JSON.stringify(value));
     }
@@ -57,6 +59,8 @@ export const Navbar = () => {
      <nav className="navbar">
         <div className="nav-container">
         <ul className={click ? " " : " "}>
+          {value['key']}
+          {hasRefresh['rkey']}
           <li className="nav-logo">
             <NavLink
               exact 

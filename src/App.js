@@ -39,7 +39,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route
-                    path="/login"
+                    path="/Login"
                     element={
                       <ProtectedRoute>
                         <Login />
@@ -47,7 +47,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/market"
+                    path="/Market"
                     element={
                       <ProtectedRoute>
                         <Market />
@@ -55,7 +55,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/wallet"
+                    path="/Wallet"
                     element={
                       <ProtectedRoute>
                         <Wallet />
@@ -63,7 +63,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/news"
+                    path="/News"
                     element={
                       <ProtectedRoute>
                         <News />
@@ -71,7 +71,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/notification"
+                    path="/Notification"
                     element={
                       <ProtectedRoute>
                         <Notification />
@@ -79,7 +79,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/profile"
+                    path="/Profile"
                     element={
                       <ProtectedRoute>
                         <Profile />
