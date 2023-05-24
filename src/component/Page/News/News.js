@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./News.css";
 import { Hotnews } from "./DBNews";
 import "boxicons/css/boxicons.min.css";
+import TokenContext from "../../../Context/TokenContext";
+import axios from "axios";
 
 export const News = () => {
+  const [data, setData] = useState([]);
+  const Token = useContext(TokenContext);
+  const get_news = async () => {
+    console.log(Token.token);
+    let res = await axios
+      .get("https://www.tradekub.me/users/1", {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    return res;
+  };
   return (
     <div className="news-container">
       <div className="news-header">

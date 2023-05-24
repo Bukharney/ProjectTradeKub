@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const readCookie = async () => {
       setAuth(true);
-      setToken("token");
+      setToken(Cookies.get("token"));
     };
 
     readCookie();
