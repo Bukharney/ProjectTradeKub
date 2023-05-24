@@ -3,7 +3,7 @@ import { NotificationInbox } from "./DBNotification.js";
 import { Link } from "react-router-dom";
 import "./Notification.css";
 
-import { value } from "../Navbar/Navbar.js";
+import { value, hasRefresh } from "../Navbar/Navbar.js";
 
 export const Notification = () => {
   const [click, setClick] = useState(false);
@@ -23,11 +23,17 @@ export const Notification = () => {
     }
   };
 
-  const handleClick1 = () => {
-    value.key = 1;
+  const handleClick1 = () => 
+  {
+    value['key'] = 1;
+    hasRefresh['rkey']=1;
+    localStorage.setItem('key', JSON.stringify(value));
     setClick(!click);
-  };
-
+  }
+  
+  if (value['key'] !== 3 || hasRefresh['rkey'] == 1)  {
+    return null;
+  }
   if (NotificationInbox.result.length === 0) {
     return (
       <div className="Notification">
@@ -86,3 +92,5 @@ export const Notification = () => {
     </div>
   );
 };
+
+ 
