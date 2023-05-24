@@ -16,11 +16,8 @@ export const Market = () => {
   };
 
   return (
-    <>
-      <h2>Home</h2>
-      <div className="button">
-        <button onClick={handleonclick}>Logout</button>
-      </div>
-    </>
+    <div className="button">
+      <button onClick={handleonclick}>Logout</button>
+    </div>
   );
 };
