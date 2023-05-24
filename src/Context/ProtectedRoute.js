@@ -7,5 +7,6 @@ export const ProtectedRoute = ({ children }) => {
   if (Auth.auth) {
     return children;
   }
-  return <Navigate to="/login" />;
+  console.log("ProtectedRoute");
+  return <Navigate to="/Login" />;
 };
