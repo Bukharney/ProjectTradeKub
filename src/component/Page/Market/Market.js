@@ -12,24 +12,7 @@ export const Market = () => {
   const handleonclick = () => {
     Auth.setAuth(false);
     Cookies.remove("token");
-    return <Navigate to="/market" />;
-  };
-  let toke = Token.token;
-
-  const getdata = async (a) => {
-    axios
-      .get("https://www.tradekub.me/users/1", {
-        headers: {
-          Authorization: `Bearer ${toke}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    window.location.href = "/Login";
   };
 
   return (
@@ -37,9 +20,6 @@ export const Market = () => {
       <h2>Home</h2>
       <div className="button">
         <button onClick={handleonclick}>Logout</button>
-      </div>
-      <div className="button">
-        <button onClick={getdata}>getdata</button>
       </div>
     </>
   );

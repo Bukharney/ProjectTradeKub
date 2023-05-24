@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import background from "./background.svg";
 import show_password from "./show_password.svg";
@@ -32,16 +32,16 @@ export const Login = () => {
     const news = async () => {
       let res = await axios
         .post("https://www.tradekub.me/login", data, {
-          headers: {
+         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-          },
+          } ,
         })
         .then((response) => {
           console.log(response);
-          Cookies.set("token", response.data.access_token, { expires: 1 });
+          Cookies.set("token", response.data.access_token);
           Auth.setAuth(true);
-          Token.setToken(response.data.access_token);
-          return response;
+          console.log(Auth.auth);
+          console.log(Cookies.get("token"));
         })
         .catch((error) => {
           console.error(error);
@@ -49,10 +49,8 @@ export const Login = () => {
         });
       return res;
     };
-    let x = await news();
-    if (x) {
-      window.location.href = "/market";
-    }
+    await news();
+    window.location.href = "/Market";
   };
 
   return (
