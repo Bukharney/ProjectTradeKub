@@ -158,15 +158,15 @@ export const Profile = () => {
               </div>
             </div>
 
-            <div className="wallet__button__contactBroker">
+            <button className="button__contactBroker">
               <Link
                 to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                className="button__contactBroker"
+                className="wallet__button__contactBroker"
                 onClick={handleClick}
               >
-                <button>Contact Broker</button>
+                Contact Broker
               </Link>
-            </div>
+            </button>
             <div className="wallet__description">
               Deposit and Withdraw Please contact the Broker
             </div>
@@ -267,29 +267,32 @@ export const Profile = () => {
             </span>
           </div>
 
-          <div className="profile__Account__LogOut">
-            <Link to="/login" className="profile__Account__LogOut__button">
-              <button onClick={handleClick}>Log Out</button>
+          <button className="profile__Account__LogOut">
+            <Link to="/login" 
+            className="profile__Account__LogOut__button"
+              onClick={handleClick}
+              >Log Out
             </Link>
-          </div>
+            </button>
 
           <div className="Login__device">
             <div className="profile__Account__Topic">Device Log in </div>
             <div className="Login__device__box">
               {SortedDeviceLogin.map((login, index) => (
                 <div className="Login__device__item__List">
-                <div className="Login__device__item" key={index}>
-                  <div className="Login__device__item__detail">
-                    <span className="Login__device__item__name">
-                      {login.device}
-                    </span>
-                    <span className="Login__device__IPaddress">
-                      {login.IPAddress}
-                    </span>
-                    <span className="Login__device__date">
-                      {login.date} {login.time}
-                    </span>
-                  </div> </div>
+                  <div className="Login__device__item" key={index}>
+                    <div className="Login__device__item__detail">
+                      <span className="Login__device__item__name">
+                        {login.device}
+                      </span>
+                      <span className="Login__device__IPaddress">
+                        {login.IPAddress}
+                      </span>
+                      <span className="Login__device__date">
+                        {login.date} {login.time}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
