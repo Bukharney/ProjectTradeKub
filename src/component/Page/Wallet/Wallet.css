@@ -197,6 +197,10 @@
   transform: translateY(-2px);
 }
 
+.Text__Notraacnsaction{
+  position: absolute;
+}
+
 @media screen and (max-width: 1599px) {
   .balance__container {
     width: 30%;
@@ -457,6 +461,9 @@
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .wallet__table__box::-webkit-scrollbar {
+    height: 5px;
+  }
   .balance__container {
     width: 30%;
   }
@@ -717,6 +724,9 @@
 }
 
 @media screen and (min-width: 1801px) {
+  .wallet__table__box::-webkit-scrollbar {
+    height: 6px;
+  }
   .balance__container {
     width: 30%;
   }
