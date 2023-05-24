@@ -109,8 +109,213 @@ export const Wallet = () => {
   }, [SortedStock]);
 
   return (
-    <div>
-      <h1>Wallet</h1>
+    <div className="wallet__container">
+      <div className="balance__container">
+        <div className="balance__title">Your Balance</div>
+        <div className="Donut__Chart" ref={chartRef}>
+          <div className="balance__value__container"></div>
+        </div>
+        <div className="balance__container__text">
+          <div className="balance__Total__Wealth">Total Wealth</div>
+          <div className="balance__Total__Wealth__value">
+            {TotalWealth.toFixed(2)}
+          </div>
+          <div className="THB__Balance">THB</div>
+
+          <div className="balance__Total__Topic">
+            Cash Balance
+            <div className="balance__Total__Cash__Balance__value">
+              {TotalCashBalance.toFixed(2)}
+            </div>
+          </div>
+
+          <div className="wallet__Line__Available">
+            <div className="balance__Total__Topic">
+              Available
+              <div className="wallet__Line__Available__value">
+                {Account.account.map((account) => (
+                  <div key={account.id}>{account.LineAvailable.toFixed(2)}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="Wallet__Creditlimit">
+            <div className="balance__Total__Topic">
+              Credit Limit
+              <div className="wallet__Creditlimit__value">
+                {Account.account.map((account) => (
+                  <div key={account.id}>{account.CreditLimit.toFixed(2)}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="wallet__button__contactBroker">
+            <Link
+              to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              className="button__contactBroker"
+              onClick={handleClick}
+            >
+              <button>Contact Broker</button>
+            </Link>
+          </div>
+          <div className="wallet__description">
+            Deposit and Withdraw Please contact the Broker
+          </div>
+        </div>
+      </div>
+
+      <div className="wallet__table__container">
+        <div className="wallet__table__Header">Your Symbol</div>
+        <div className="wallet__table__box">
+          {SortedStock.map((stock, index) => (
+            <div className="wallet__table__item" key={index}>
+              <div className="wallet__table__CAL"> </div>
+              <div className="wallet__table__symbol">{stock.symbol}</div>
+              <div
+                className="wallet__table__color"
+                style={{
+                  backgroundColor:
+                    colorRef.current[stock.symbol] ||
+                    palettes[index % palettes.length],
+                }}
+              ></div>
+
+              <div className="wallet__table__Percent">
+                CHG%
+                <div
+                  className="wallet__table__Percent__value"
+                  style={{
+                    backgroundColor:
+                      stock.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                  }}
+                >
+                  {stock.percentChange >= 0
+                    ? `+${stock.percentChange.toFixed(2)}%`
+                    : `${stock.percentChange.toFixed(2)}%`}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                AVG Purchase Price
+                <div className="wallet__table__AVGPurchase__value">
+                  {stock.AVGPurchase.toFixed(2)}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                Volume
+                <div className="wallet__table__volume__value">
+                  {stock.volume}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                Total Cost
+                <div className="wallet__table__totalcost__value">
+                  {stock.totalcost.toFixed(2)}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                Market Value
+                <div className="wallet__table__Maket__Value">
+                  {stock.marketValue.toFixed(2)}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                Unrealized P/L
+                <div
+                  className="wallet__table__UnrealizedPL__value"
+                  style={{
+                    color: stock.UnrealizedPL >= 0 ? "#42A93C" : "#CD3D42",
+                  }}
+                >
+                  {stock.UnrealizedPL >= 0
+                    ? `+${stock.UnrealizedPL.toFixed(2)}%`
+                    : `${stock.UnrealizedPL.toFixed(2)}%`}
+                </div>
+              </div>
+              <div className="wallet__table__Topic">
+                Unrealized P/L%
+                <div
+                  className="wallet__table__UnrealizedPLPercent__value"
+                  style={{
+                    color:
+                      stock.UnrealizedPLPercent >= 0 ? "#42A93C" : "#CD3D42",
+                  }}
+                >
+                  {stock.UnrealizedPLPercent >= 0
+                    ? `+${stock.UnrealizedPLPercent.toFixed(2)}%`
+                    : `${stock.UnrealizedPLPercent.toFixed(2)}%`}
+                </div>
+              </div>
+              <div className="wallet__table__button">
+                <Link
+                  to="/Market"
+                  className="wallet__table__button__value"
+                  onClick={handleClick}
+                >
+                  <button>Place Order</button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="transaction__list__container">
+        <div className="transaction__box">
+          <div className="transaction__list__title">Transaction List</div>
+
+          <div className="transaction__list__box">
+            {sortedTransactions.map((transaction, index) => (
+              <div className="transaction__list">
+                <div className="transaction__item" key={index}>
+                  <div className="transaction__details">
+                    <span
+                      className="transaction__side"
+                      style={{
+                        color:
+                          transaction.side === "Buy" ? "#42A93C" : "#CD3D42",
+                      }}
+                    >
+                      {transaction.side}
+                    </span>
+
+                    <span className="transaction__symbol">
+                      {transaction.symbol}
+                    </span>
+                    <span
+                      className="transaction___topic"
+                      style={{ color: "#4E4F51" }}
+                    >
+                      Volume
+                    </span>
+                    <span className="transaction__volume">
+                      <span>{transaction.volume}</span>
+                    </span>
+                    <span
+                      className="transaction___topic"
+                      style={{ color: "#4E4F51" }}
+                    >
+                      Price
+                    </span>
+                    <span className="transaction__price">
+                      {transaction.price.toFixed(2)}
+                    </span>
+                    <span
+                      className="transaction___topic"
+                      style={{ color: "#4E4F51" }}
+                    >
+                      Date
+                    </span>
+                    <span className="transaction__date">
+                      {transaction.date}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
