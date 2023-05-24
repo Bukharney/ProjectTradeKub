@@ -12,7 +12,7 @@ export const Wallet = () => {
 
   const [click, setClick] = useState(false);
   const handleClick = () => {
-    value.key = 1;
+    value.key = 0;
     setClick(!click);
   };
 

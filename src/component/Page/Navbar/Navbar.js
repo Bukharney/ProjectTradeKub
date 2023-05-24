@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { Notification } from "../Notification/Notification.js";
+import { NotificationInbox } from "../Notification/DBNotification.js";
+
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
 import Task from "./Task.svg";
@@ -18,9 +20,13 @@ export const Navbar = () => {
     value["key"] = index;
     setClick(!click);
     localStorage.setItem("key", JSON.stringify(value));
-    if (index == 3) {
+    if (index == 3&&hasRefresh['rkey']==1) {
       hasRefresh["rkey"] = 0;
-    } else {
+    }
+    else if(index == 3&&hasRefresh['rkey']==0){
+      hasRefresh["rkey"] = 1;
+    }
+    else {
       hasRefresh["rkey"] = 1;
     }
   };
@@ -34,6 +40,9 @@ export const Navbar = () => {
       localStorage.setItem("key", JSON.stringify(value));
     } else if (window.location.pathname.includes("/News")) {
       value["key"] = 2;
+      localStorage.setItem("key", JSON.stringify(value));
+    }else if (window.location.pathname.includes("/Profile")) {
+      value["key"] = 4;
       localStorage.setItem("key", JSON.stringify(value));
     }
   }
@@ -80,7 +89,7 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-                <div className="Nav__Noti__dot"></div>
+              {NotificationInbox.result.length !== 0 && <div className="Nav__Noti__dot"></div>}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />
