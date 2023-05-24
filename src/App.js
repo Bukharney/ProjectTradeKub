@@ -16,7 +16,6 @@ import "./App.css";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 import axios from "axios";
 
-
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
@@ -28,7 +27,7 @@ function App() {
       setToken(token);
       setAuth(true);
       await axios
-        .get("https://www.tradekub.me/users/1", {
+        .get("https://www.tradekub.me/users/token", {
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -114,13 +113,14 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-                    <Route
-                    element={
-                      <ProtectedRoute>
-                        <GovernmentView />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/GovernmentView"
+                  element={
+                    <ProtectedRoute>
+                      <GovernmentView />
+                    </ProtectedRoute>
+                  }
+                />
               </Routes>
             </div>
           </Router>
