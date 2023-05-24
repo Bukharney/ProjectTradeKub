@@ -4,7 +4,7 @@
   color: #ffffff;
   display: flex;
   justify-content: center;
-  animation: NotiAnimation 0.5s;
+  animation: NotiAnimation 1.5s;
 }
 
 @keyframes NotiAnimation {
