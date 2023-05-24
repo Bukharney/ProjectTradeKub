@@ -228,8 +228,8 @@ export const Wallet = () => {
                   }}
                 >
                   {stock.UnrealizedPL >= 0
-                    ? `+${stock.UnrealizedPL.toFixed(2)}%`
-                    : `${stock.UnrealizedPL.toFixed(2)}%`}
+                    ? `+${stock.UnrealizedPL.toFixed(2)}`
+                    : `${stock.UnrealizedPL.toFixed(2)}`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
