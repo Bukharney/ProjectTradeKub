@@ -3,16 +3,12 @@ import { NotificationInbox } from "./DBNotification.js";
 import { Link } from "react-router-dom";
 import "./Notification.css";
 
-import { value, hasRefresh } from "../Navbar/Navbar.js";
-
-export const Notification = () => {
+ 
+export const Notification = ({value,hasRefresh}) => {
   const [click, setClick] = useState(false);
   const [deletedNotifications, setDeletedNotifications] = useState([]);
-
-  if (value.key !== 3) {
-    return null;
-  }
-
+  
+ 
   const handleClick2 = (index) => {
     if (deletedNotifications.includes(index)) {
       setDeletedNotifications((prevState) =>
@@ -29,12 +25,12 @@ export const Notification = () => {
     hasRefresh['rkey']=1;
     localStorage.setItem('key', JSON.stringify(value));
     setClick(!click);
-  }
+   }
   
-  if (value['key'] !== 3 || hasRefresh['rkey'] == 1)  {
+  if (value['key'] !== 3)  {
     return null;
   }
-  if (NotificationInbox.result.length === 0) {
+  else if (NotificationInbox.result.length === 0) {
     return (
       <div className="Notification">
         <div className="Nofitication__Container">
@@ -93,4 +89,4 @@ export const Notification = () => {
   );
 };
 
- 
+export default Notification;

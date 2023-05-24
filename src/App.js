@@ -6,14 +6,16 @@ import { Home } from "./component/Page/Homepage/Home";
 import { Market } from "./component/Page/Market/Market";
 import { Wallet } from "./component/Page/Wallet/Wallet";
 import { News } from "./component/Page/News/News";
-import { Notification } from "./component/Page/Notification/Notification";
+import { Notification } from "./component/Page/Notification/Notification.js";
 import { Profile } from "./component/Page/Profile/Profile";
 import AuthContext from "./Context/AuthContext";
 import TokenContext from "./Context/TokenContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
+import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 import axios from "axios";
+
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -112,6 +114,13 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                    <Route
+                    element={
+                      <ProtectedRoute>
+                        <GovernmentView />
+                      </ProtectedRoute>
+                    }
+                  />
               </Routes>
             </div>
           </Router>
