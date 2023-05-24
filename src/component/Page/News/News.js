@@ -8,10 +8,10 @@ import axios from "axios";
 export const News = () => {
   const [data, setData] = useState([]);
   const Token = useContext(TokenContext);
-  const get_news = async () => {
+  const get_news = async (e) => {
     console.log(Token.token);
     let res = await axios
-      .get("https://www.tradekub.me/users/1", {
+      .get(`https://www.tradekub.me/news/`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -30,6 +30,7 @@ export const News = () => {
     <div className="news-container">
       <div className="news-header">
         <h1 className="news-title">News</h1>
+        <button className="news-button" onClick={get_news}></button>
         {Hotnews.News.map((news) => (
           <div key={news.id} className="news-item">
             <h2 className="news-topic">{news.topic}</h2>
