@@ -1,14 +1,10 @@
-const User = [{ id: 1, name: "Document 1" }];
 
-const Account = [{ id: 2, name: "Document 2" }];
+const User = [
+  { id: 4, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const Broker = [{ id: 3, name: "Document 3" }];
-
-const BankTransition = [{ id: 4, name: "Document 1" }];
-
-const StockOrder = [{ id: 5, name: "Document 1" }];
-
-const StockTransaction = [{ id: 5, name: "Document 1" }];
 
 const Login_Logout = [{ id: 6, name: "Document 1" }];
 
