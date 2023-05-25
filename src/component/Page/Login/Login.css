@@ -146,3 +146,9 @@ button button:disabled {
   box-shadow: none;
   transform: translateY(0);
 }
+
+.regis {
+  text-align: center;
+  padding-top: 5%;
+  font-size: 0.6rem;
+}
