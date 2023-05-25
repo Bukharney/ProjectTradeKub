@@ -111,7 +111,7 @@ export const Market = () => {
             <div className="rightSplit-Text">Symbol Price</div>
           </div>
           <div className="rightSplit">
-            <div className="rightSplit-Header">Market Trade</div>
+            <div className="rightSplit-Header">Your Order</div>
           </div>
         </aside>
       </div>
