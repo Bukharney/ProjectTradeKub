@@ -9,8 +9,8 @@ export const Register = () => {
     setIndex(i);
   };
   return (
-    <div className="Allsection">
-        <div>
+    <div>
+        <div className="box_regis">
             Hello
         </div>
     </div>
