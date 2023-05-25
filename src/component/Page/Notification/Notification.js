@@ -66,7 +66,10 @@ export const Notification = ({ value, hasRefresh }) => {
         });
     };
 
-    get_noti(Account.account);
+    const intervalId = setInterval(() => {
+      get_noti(Account.account);
+    }, 1000 * 30);
+    return () => clearInterval(intervalId);
   }, [Account.account, click]);
 
   const handleClick1 = () => {
