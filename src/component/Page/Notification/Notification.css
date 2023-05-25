@@ -7,6 +7,7 @@
   height: 100vh;
   display: flex;
   animation: NotiAnimation 0.3s;
+  z-index: 1000;
 }
 
 @keyframes NotiAnimation {
@@ -92,7 +93,7 @@
 }
 
 .TextNonoti {
-  color: #D9D9D9;
+  color: #d9d9d9;
   font-size: 0.8rem;
   margin-left: 1.5rem;
   margin-top: 1rem;

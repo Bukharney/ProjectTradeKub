@@ -6,94 +6,126 @@ import { Home } from "./component/Page/Homepage/Home";
 import { Market } from "./component/Page/Market/Market";
 import { Wallet } from "./component/Page/Wallet/Wallet";
 import { News } from "./component/Page/News/News";
-import { Notification } from "./component/Page/Notification/Notification";
+import { Notification } from "./component/Page/Notification/Notification.js";
 import { Profile } from "./component/Page/Profile/Profile";
 import AuthContext from "./Context/AuthContext";
 import TokenContext from "./Context/TokenContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
+import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
+import axios from "axios";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
+  const [isLoading, setLoading] = useState(true);
+
+  const readCookie = async () => {
+    let token = Cookies.get("token");
+    if (token) {
+      setToken(token);
+      setAuth(true);
+      await axios
+        .get("https://www.tradekub.me/users/token", {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+          Cookies.remove("token");
+          setAuth(false);
+        });
+      console.log("readCookie");
+      console.log(token);
+    }
+  };
 
   useEffect(() => {
-    const readCookie = async () => {
-      setAuth(true);
-      setToken("token");
-    };
-
     readCookie();
-    console.log("useEffect");
+    setLoading(false);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="loader-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <>
-      {auth ? (
-        <AuthContext.Provider value={{ auth, setAuth }}>
-          <TokenContext.Provider value={{ token, setToken }}>
-            <Router>
-              <Navbar />
-              <div>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route
-                    path="/login"
-                    element={
-                      <ProtectedRoute>
-                        <Login />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/market"
-                    element={
-                      <ProtectedRoute>
-                        <Market />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/wallet"
-                    element={
-                      <ProtectedRoute>
-                        <Wallet />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/news"
-                    element={
-                      <ProtectedRoute>
-                        <News />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/notification"
-                    element={
-                      <ProtectedRoute>
-                        <Notification />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <ProtectedRoute>
-                        <Profile />
-                      </ProtectedRoute>
-                    }
-                  />
-                </Routes>
-              </div>
-            </Router>
-          </TokenContext.Provider>
-        </AuthContext.Provider>
-      ) : (
-        <>loading ...</>
-      )}
+      <AuthContext.Provider value={{ auth, setAuth }}>
+        <TokenContext.Provider value={{ token, setToken }}>
+          <Router>
+            <Navbar />
+            <div>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                {!auth ? (
+                  <Route path="/Login" element={<Login />} />
+                ) : (
+                  () => window.location.replace("/Market")
+                )}
+                <Route
+                  path="/Market"
+                  element={
+                    <ProtectedRoute>
+                      <Market />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Wallet"
+                  element={
+                    <ProtectedRoute>
+                      <Wallet />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/News"
+                  element={
+                    <ProtectedRoute>
+                      <News />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Notification"
+                  element={
+                    <ProtectedRoute>
+                      <Notification />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/GovernmentView"
+                  element={
+                    <ProtectedRoute>
+                      <GovernmentView />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </div>
+          </Router>
+        </TokenContext.Provider>
+      </AuthContext.Provider>
     </>
   );
 }
