@@ -60,7 +60,6 @@ function CandleChart({ data }) {
             show: true,
             formatter: (value) => {
               return value.toFixed(2);
-              
             },
           },
         },        

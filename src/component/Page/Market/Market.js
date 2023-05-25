@@ -1,19 +1,10 @@
-import React, { useState, useContext } from "react";
-import AuthContext from "../../../Context/AuthContext";
-import TokenContext from "../../../Context/TokenContext";
-import Cookies from "js-cookie";
-import axios from "axios";
-import { Navigate } from "react-router-dom";
+import React from "react";
+import "./Market.css";
+import { stock_market, User } from "./DBmarket";
+import CandleChart from "./CandleChart";
 
 export const Market = () => {
-  const [data, setData] = useState("");
-  const Auth = React.useContext(AuthContext);
-  const Token = React.useContext(TokenContext);
-  const handleonclick = () => {
-    Auth.setAuth(false);
-    Cookies.remove("token");
-    window.location.href = "/Login";
-  };
+  const symbolData = stock_market.KBANK[0];
 
   return (
     <div className="Market__container">
@@ -159,20 +150,28 @@ export const Market = () => {
               <div className="Market__Accont__Dropdawn">
                 <div className="Market__Accont">
                   Account
-                  <span className="Market__Accont__value">{User.Acount[0].Acount}</span>
+                  <span className="Market__Accont__value">
+                    {User.Acount[0].Acount}
+                  </span>
                 </div>
               </div>
               <div className="Market__Accont__Credit__limit">
                 Credit Limit
-                <span className="Market__Accont__Credit__limit__value"> {User.Acount[0].Credit_limit.toFixed(2)}</span>
+                <span className="Market__Accont__Credit__limit__value">
+                  {User.Acount[0].Credit_limit.toFixed(2)}
+                </span>
               </div>
               <div className="Market__Accont__Cash__balance">
                 Cash Balance
-                <span className="Market__Accont__Cash__balance__value"> {User.Acount[0].Cash_balance.toFixed(2)}</span>
+                <span className="Market__Accont__Cash__balance__value">
+                  {User.Acount[0].Cash_balance.toFixed(2)}
+                </span>
               </div>
               <div className="Market__Accont__Line_Available">
                 Line Available
-                <span className="Market__Accont__Line_Available__value"> {User.Acount[0].Line_Available.toFixed(2)}</span>
+                <span className="Market__Accont__Line_Available__value">
+                  {User.Acount[0].Line_Available.toFixed(2)}
+                </span>
               </div>
             </div>
 
