@@ -3,7 +3,7 @@ import './GovernmentView.css'
 
 const Table = ({ columns, rows }) => {
   return (
-    <div style={{position: "absolute", marginLeft: "80px",marginTop:"100px"}}>
+    <div style={{position: "absolute", marginLeft: "80px",marginTop:"300px"}}>
     <table>
         
       <thead>
