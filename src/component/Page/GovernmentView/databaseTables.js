@@ -1,20 +1,68 @@
-
 const User = [
   { id: 4, name: "Document 1" },
   { id: 2, name: "Document 2" },
-  { id: 3, name: "Document 3" }
+  { id: 3, name: "Document 3" },
 ];
 
+const Account = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
-const Login_Logout = [{ id: 6, name: "Document 1" }];
+const Broker = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
-const CompanyDetails = [{ id: 7, name: "Document 1" }];
+const BankTransition = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
-const Turnover = [{ id: 8, name: "Document 1" }];
+const StockOrder = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
-const Divident = [{ id: 9, name: "Document 1" }];
+const StockTransaction = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
-const News = [{ id: 10, name: "Document 1" }];
+const Login_Logout = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
+
+const CompanyDetails = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
+
+const Turnover = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
+
+const Divident = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
+
+const News = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" },
+];
 
 const userColumns = Object.keys(User[0]);
 const accountColumns = Object.keys(Account[0]);
