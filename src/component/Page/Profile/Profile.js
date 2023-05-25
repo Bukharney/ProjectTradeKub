@@ -5,8 +5,18 @@ import { Link } from "react-router-dom";
 import { value } from "../Navbar/Navbar.js";
 import ApexCharts from "apexcharts";
 import "boxicons/css/boxicons.min.css";
+import AuthContext from "../../../Context/AuthContext";
+import Cookies from "js-cookie";
+
 
 export const Profile = () => {
+  const Auth = React.useContext(AuthContext);
+  const handleClickLogout = () => {
+    Auth.setAuth(false);
+    Cookies.remove("token");
+    window.location.href = "/Login";
+  };
+
   const SortedStock = Stock.wallet.sort((a, b) => {
     return b.marketValue - a.marketValue;
   });
@@ -112,6 +122,12 @@ export const Profile = () => {
       chart.destroy();
     };
   }, [SortedStock]);
+
+  const handleonclickLogout = () => {
+    Auth.setAuth(false);
+    Cookies.remove("token");
+    window.location.href = "/Login";
+  };
 
   return (
     <div className="Profile__container">
@@ -246,7 +262,7 @@ export const Profile = () => {
           <div className="profile__Account__PersonalInformation">
             Personal Information
           </div>
-
+ 
           <div className="profile__Account__Topic">
             Account Name
             <span className="profile__Account__Name__value">
@@ -270,7 +286,7 @@ export const Profile = () => {
           <button className="profile__Account__LogOut">
             <Link to="/login" 
             className="profile__Account__LogOut__button"
-              onClick={handleClick}
+              onClick={handleClickLogout}
               >Log Out
             </Link>
             </button>

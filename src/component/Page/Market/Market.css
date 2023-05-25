@@ -1,0 +1,282 @@
+.Market__container {
+  width: 100%;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.Market__container__mid {
+  width: 55%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.Market__container__mid__header {
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+
+.Market__container__mid__header__left {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Market__container__symbol {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Market__container__last_Price {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Market__Accont,
+.Market__stock__CHG,
+.Market__stock__volume,
+.Market__stock__Bid_Price,
+.Market__stock__Offer_Price,
+.Market__stock__offer_volume,
+.Market__stock__total_volume,
+.Market__stock__symbol,
+.Market__stock__Last_Price,
+.Market__stock__High,
+.Market__stock__Low,
+.Market__stock__Open,
+.Market__stock__floor,
+.Market__stock__Average,
+.Market__stock__Close {
+  color: #4e4f51;
+  font-weight: 400;
+}
+
+.Market__stock__symbol__value,
+.Market__stock__Last_Price__value {
+  font-weight: 600;
+}
+
+.Market__container__mid__header__right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  justify-content: center;
+}
+
+.Market__container__width {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Market__container__mid__header__Lower {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__mid__header__Lower__width {
+  width: 93%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Market__container__Graph {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__mid__Footer {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__mid__Footer__width {
+  width: 93%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Market__container__mid__Footer__mid,
+.Market__container__mid__Footer__left,
+.Market__container__mid__Footer__right {
+  margin-top: -2%;
+  width: 30%;
+  height: 100%;
+}
+
+.Market__Accont__Line_Available,
+.Market__Accont__Cash__balance,
+.Market__Accont__Credit__limit,
+.Market__Accont__Dropdawn {
+  width: 100%;
+  height: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.Market__Accont__Credit__limit,
+.Market__Accont,
+.Market__Accont__Cash__balance,
+.Market__Accont__Line_Available {
+  color: #4e4f51;
+  padding-left: 10%;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+
+.Market__Accont__Cash__balance__value,
+.Market__Accont__Line_Available__value,
+.Market__Accont__Credit__limit__value,
+.Market__Accont__value {
+  padding-right: 10%;
+  width: 100%;
+  display: flex;
+  text-align: right;
+  color: #ffffff;
+  display: flex;
+  white-space: nowrap;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 1599px) {
+  .Market__container__mid {
+    border-left: 1px solid #282a2e;
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__Lower,
+  .Market__container__mid__header {
+    border-bottom: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__left {
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__stock__symbol,
+  .Market__stock__Last_Price {
+    width: 100%;
+    text-align: left;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__symbol__value,
+  .Market__stock__Last_Price__value {
+    font-size: 1rem;
+  }
+
+  .Market__stock__symbol,
+  .Market__stock__symbol__value {
+    padding-left: 2rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .Market__stock__Last_Price__value,
+  .Market__stock__Last_Price {
+    padding-right: 2rem;
+    width: 100%;
+    text-align: right;
+  }
+
+  .Market__stock__CHG,
+  .Market__stock__volume,
+  .Market__stock__Bid_Price,
+  .Market__stock__Offer_Price,
+  .Market__stock__offer_volume,
+  .Market__stock__total_volume {
+    width: 100%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__High,
+  .Market__stock__Low,
+  .Market__stock__Open,
+  .Market__stock__floor,
+  .Market__stock__Average,
+  .Market__stock__Close {
+    width: 60%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__CHG__value,
+  .Market__stock__volume__value,
+  .Market__stock__Bid_Price__value,
+  .Market__stock__Offer_Price__value,
+  .Market__stock__offer_volume__value,
+  .Market__stock__total_volume__value,
+  .Market__stock__High__value,
+  .Market__stock__Low__value,
+  .Market__stock__Open__value,
+  .Market__stock__floor__value,
+  .Market__stock__Average__value,
+  .Market__stock__Close__value {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__mid__Footer {
+    border-top: 1px solid #282a2e;
+  }
+
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Dropdawn {
+    border-radius: 5px;
+    background-color: #282a2e;
+  }
+
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance__value,
+  .Market__Accont__Line_Available__value,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Credit__limit__value,
+  .Market__Accont,
+  .Market__Accont__value {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+}
+
+@media screen and (min-width: 1801px) {
+}
