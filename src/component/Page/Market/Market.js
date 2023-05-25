@@ -1,12 +1,20 @@
-import React from "react";
-import "./Market.css";
-import { stock_market, User } from "./DBmarket";
-import CandleChart from "./CandleChart";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../../Context/AuthContext";
+import TokenContext from "../../../Context/TokenContext";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 export const Market = () => {
-  const symbolData = stock_market.KBANK[0];
-  
+  const [data, setData] = useState("");
+  const Auth = React.useContext(AuthContext);
+  const Token = React.useContext(TokenContext);
+  const handleonclick = () => {
+    Auth.setAuth(false);
+    Cookies.remove("token");
+    window.location.href = "/Login";
+  };
+
   return (
     <div className="Market__container">
       <div className="Market__container__mid">
