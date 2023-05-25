@@ -65,7 +65,6 @@ stockbox{
     display: flex;
     justify-items: center;
     flex-wrap: wrap;
-
 }
 .rightSplit{
     background: var(--background-color);
