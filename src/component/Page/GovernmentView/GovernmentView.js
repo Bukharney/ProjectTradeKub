@@ -185,8 +185,4 @@ export const GovernmentView = () => {
   );
 };
 
-<<<<<<< HEAD
 export default GovernmentView;
-=======
-export default GovernmentView;
->>>>>>> 6536e51f30ed3a5a78e7974cc61ee641a2de4af2

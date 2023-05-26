@@ -23,12 +23,9 @@ import axios from "axios";
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-<<<<<<< HEAD
   const [account, setAccount] = useState(1);
-=======
-  const [account, setAccount] = useState(2);
->>>>>>> 6536e51f30ed3a5a78e7974cc61ee641a2de4af2
   const [isLoading, setLoading] = useState(true);
+
 
   const readCookie = async () => {
     let token = Cookies.get("token");

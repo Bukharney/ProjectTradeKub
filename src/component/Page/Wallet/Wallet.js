@@ -191,7 +191,6 @@ export const Wallet = () => {
       <div className="balance__container">
         <div className="balance__title">Your Balance</div>
         <div className="Donut__Chart" ref={chartRef}>
-          <div className="balance__value__container"></div>
         </div>
         <div className="balance__container__text">
           <div className="balance__Total__Wealth">Total Wealth</div>
