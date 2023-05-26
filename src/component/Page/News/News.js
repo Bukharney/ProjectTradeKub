@@ -13,7 +13,6 @@ export const News = () => {
   };
   useEffect(() => {
     const get_news = async (e) => {
-      console.log(Token.token);
       let res = await axios
         .get(`https://www.tradekub.me/news/`, {
           headers: {
