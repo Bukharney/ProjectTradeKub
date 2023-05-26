@@ -13,7 +13,7 @@ function CandleChart({ data }) {
           type: 'candlestick',
           width: '235%',
           height: '95%',
-          foreColor: '#4E4F51', 
+          foreColor: '#4E4F51',
           toolbar: {
             show: false,
           },
@@ -34,15 +34,18 @@ function CandleChart({ data }) {
           labels: {
             style: {
               height: '1px',
-              colors: '#4E4F51', 
+              colors: '#4E4F51',
             },
           },
         },
         yaxis: {
+          tooltip: {
+            enabled: true,
+          },
           opposite: true,
           labels: {
             style: {
-              colors: '#4E4F51', 
+              colors: '#4E4F51',
             },
           },
         },
@@ -54,7 +57,7 @@ function CandleChart({ data }) {
           theme: 'dark',
           x: {
             show: true,
-            format: 'dd MMM yyyy',
+            format: 'dd MMM',
           },
           y: {
             show: true,
@@ -62,7 +65,7 @@ function CandleChart({ data }) {
               return value.toFixed(2);
             },
           },
-        },        
+         },
       };
 
       const chart = new ApexCharts(chartRef.current, chartOptions);

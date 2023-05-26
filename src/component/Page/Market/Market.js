@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Market.css";
 import { stock_market, User } from "./DBmarket";
 import CandleChart from "./CandleChart";
 
 export const Market = () => {
   const symbolData = stock_market.KBANK[0];
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [Price, setPrice] = useState("");
+  const [Volume, setVolume] = useState("");
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
+
+  const handleOrderClick = () => {
+    console.log("Place order clicked");
+  };
+
+  const handleResetClick = () => {
+    console.log("Reset order clicked");
+  };
 
   return (
     <div className="Market__container">
@@ -175,8 +190,73 @@ export const Market = () => {
               </div>
             </div>
 
-            <div className="Market__container__mid__Footer__mid"></div>
-            <div className="Market__container__mid__Footer__right"></div>
+            <div className="Market__container__mid__Footer__mid">
+              <div className="Market__Footer__Symbol">
+                Symbol
+                <span className="Market__Footer__Symbol__value">
+                  {symbolData.symbol}
+                </span>
+              </div>
+              <div className="Market__Footer__Price">Price
+              <span className="Market__Footer__Price__value">
+              <input
+                type="text"
+                placeholder="THB"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+                </span>
+              </div>
+              <div className="Market__Footer__Volume">Volume</div>
+              <span className="Market__Footer__Volume__value">
+                <input
+
+                  type="text"
+                  placeholder="Volume"
+                  onChange={(e) => setVolume(e.target.value)}
+                />
+                </span>
+              <div className="Market__Footer__Reset__Order">
+              <button onClick={handleResetClick}>Place Order</button>
+              </div>
+            </div>
+            <div className="Market__container__mid__Footer__right">
+              <div className="Market__Footer__Total">Total</div>
+              <div className="Market__Footer__Pin">Pin</div>
+
+              <div className="Market__Footer__Order">
+                <div className="Market__Footer__Order__div">
+                  <div
+                    className={`Market__Footer__Buy ${
+                      selectedOption === "buy" ? "active" : ""
+                    }`}
+                    onClick={() => handleOptionClick("buy")}
+                  >
+                    <button
+                      className={selectedOption === "buy" ? "activeBuy" : ""}
+                    >
+                      Buy
+                    </button>
+                  </div>
+                  <div
+                    className={`Market__Footer__Sell ${
+                      selectedOption === "sell" ? "active" : ""
+                    }`}
+                    onClick={() => handleOptionClick("sell")}
+                  >
+                    <button
+                      className={
+                        selectedOption === "sell" ? "activeSell" : ""
+                      }
+                    >
+                      Sell
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="Market__Footer__Place__Order">
+              <button onClick={handleOrderClick}>Place Order</button>
+            </div>
+            </div>
           </div>
         </div>
       </div>
