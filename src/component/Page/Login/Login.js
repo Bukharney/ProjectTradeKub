@@ -21,6 +21,11 @@ export const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleRegister =() =>{
+    window.location.href = "/Register"; 
+  }
+  
+
   const handleLogin = async (e) => {
     if (e) {
       e.preventDefault();
@@ -94,6 +99,9 @@ export const Login = () => {
           <div className="ErrorMessage">{errorMessage}</div>
           <div className="button">
             <button onClick={handleLogin}>Log in</button>
+          </div>
+          <div>
+            <button onClick={handleRegister}>Register</button>
           </div>
         </div>
       </div>

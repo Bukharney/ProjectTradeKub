@@ -14,6 +14,7 @@ import AccountContext from "./Context/AccountContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
+import  Register from "./component/Page/Register/Register";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 import axios from "axios";
 
@@ -72,7 +73,10 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   {!auth ? (
+                    <>
                     <Route path="/Login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
+                    </>
                   ) : (
                     () => window.location.replace("/Market")
                   )}

@@ -1,21 +1,68 @@
-
 const User = [
   { id: 4, name: "Document 1" },
   { id: 2, name: "Document 2" },
   { id: 3, name: "Document 3" }
 ];
 
+const Account = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const Login_Logout = [{ id: 6, name: "Document 1" }];
+const Broker = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const CompanyDetails = [{ id: 7, name: "Document 1" }];
+const BankTransition = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const Turnover = [{ id: 8, name: "Document 1" }];
+const StockOrder = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const Divident = [{ id: 9, name: "Document 1" }];
+const StockTransaction = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
-const News = [{ id: 10, name: "Document 1" }];
+const Login_Logout = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
+const CompanyDetails = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const Turnover = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const Divident = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const News = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 const userColumns = Object.keys(User[0]);
 const accountColumns = Object.keys(Account[0]);
 const brokerColumns = Object.keys(Broker[0]);
@@ -39,28 +86,22 @@ const tablesColumns = [
   companyDetailsColumns,
   turnoverColumns,
   dividendColumns,
-  newsColumns,
+  newsColumns
 ];
 
 export { tablesColumns };
 
-const userRows = User.map((document) => Object.values(document));
-const accountRows = Account.map((document) => Object.values(document));
-const brokerRows = Broker.map((document) => Object.values(document));
-const bankTransitionRows = BankTransition.map((document) =>
-  Object.values(document)
-);
-const stockOrderRows = StockOrder.map((document) => Object.values(document));
-const stockTransactionRows = StockTransaction.map((document) =>
-  Object.values(document)
-);
-const loginLogoutRows = Login_Logout.map((document) => Object.values(document));
-const companyDetailsRows = CompanyDetails.map((document) =>
-  Object.values(document)
-);
-const turnoverRows = Turnover.map((document) => Object.values(document));
-const dividendRows = Divident.map((document) => Object.values(document));
-const newsRows = News.map((document) => Object.values(document));
+const userRows = User.map(document => Object.values(document));
+const accountRows = Account.map(document => Object.values(document));
+const brokerRows = Broker.map(document => Object.values(document));
+const bankTransitionRows = BankTransition.map(document => Object.values(document));
+const stockOrderRows = StockOrder.map(document => Object.values(document));
+const stockTransactionRows = StockTransaction.map(document => Object.values(document));
+const loginLogoutRows = Login_Logout.map(document => Object.values(document));
+const companyDetailsRows = CompanyDetails.map(document => Object.values(document));
+const turnoverRows = Turnover.map(document => Object.values(document));
+const dividendRows = Divident.map(document => Object.values(document));
+const newsRows = News.map(document => Object.values(document));
 
 const tablesRows = [
   userRows,
@@ -73,7 +114,7 @@ const tablesRows = [
   companyDetailsRows,
   turnoverRows,
   dividendRows,
-  newsRows,
+  newsRows
 ];
 
 export { tablesRows };
