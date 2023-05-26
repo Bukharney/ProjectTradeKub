@@ -1,6 +1,8 @@
 import React from 'react';
 import './GovernmentView.css'
 
+export const text = {}
+
 const Table = ({ columns, rows }) => {
   return (
     <div style={{position: "absolute", marginLeft: "80px",marginTop:"20rem"}}>
