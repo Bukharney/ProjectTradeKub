@@ -101,7 +101,7 @@ export const Login = () => {
             <button onClick={handleLogin}>Log in</button>
           </div>
           <div>
-            <button onClick={handleRegister}>Register</button>
+            <button className="RegisText" onClick={handleRegister}><u>Register</u></button>
           </div>
         </div>
       </div>
