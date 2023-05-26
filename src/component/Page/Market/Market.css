@@ -161,7 +161,11 @@
   margin-top: 3%;
 }
 
-
+.Market__Footer__Pin,
+.Market__Footer__Volume,
+.Market__Footer__Price{
+  border: 1px solid ;
+}
 
 .Market__Footer__Pin,
   .Market__Footer__Total,
@@ -181,7 +185,10 @@
   justify-content: flex-start;
 }
 
-
+.Market__Footer__Total__value,
+.Market__Footer__Volume__value,
+.Market__Footer__Price__value,
+.Market__Footer__Pin__value,
 .Market__Footer__Symbol__value,
 .Market__Accont__Cash__balance__value,
 .Market__Accont__Line_Available__value,
@@ -195,6 +202,19 @@
   display: flex;
   white-space: nowrap;
   justify-content: flex-end;
+}
+
+.Market__Footer__Volume__value input,
+.Market__Footer__Price__value input,
+.Market__Footer__Pin__value input{
+  background: transparent;
+  outline: none;
+  width: 70%;
+  height: 100%;
+  border: none;
+  color: #ffffff;
+  text-align: right;
+  padding: none;
 }
 
 
@@ -263,7 +283,7 @@
 
 .Market__Footer__Place__Order{
   font-weight: 500;
-  width: 100%;
+  width: 100%; 
   height: 22%;
   margin-top: 3%;
   display: flex;
