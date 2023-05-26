@@ -17,6 +17,7 @@ import "./App.css";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 
 import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
+import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
 
 import axios from "axios";
 
@@ -128,6 +129,16 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+
+                  <Route
+                    path="/AccountManagement"
+                    element={
+                      <ProtectedRoute>
+                        <AccountManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
                 </Routes>
               </div>
             </Router>
