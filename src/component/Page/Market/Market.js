@@ -8,6 +8,12 @@ export const Market = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
+  const [Pin, setPin] = useState("");
+  const [inputBorderColor1, setInputBorderColor1] = useState("");
+  const [inputBorderColor2, setInputBorderColor2] = useState("");
+  const [inputBorderColor3, setInputBorderColor3] = useState("");
+
+  const totalPrice = Price * Volume;
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -19,6 +25,30 @@ export const Market = () => {
 
   const handleResetClick = () => {
     console.log("Reset order clicked");
+  };
+
+  const handleInputFocus1 = () => {
+    setInputBorderColor1("#CCFF00");
+  };
+
+  const handleInputBlur1 = () => {
+    setInputBorderColor1("");
+  };
+
+  const handleInputFocus2 = () => {
+    setInputBorderColor2("#CCFF00");
+  };
+
+  const handleInputBlur2 = () => {
+    setInputBorderColor2("");
+  };
+
+  const handleInputFocus3 = () => {
+    setInputBorderColor3("#CCFF00");
+  };
+
+  const handleInputBlur3 = () => {
+    setInputBorderColor3("");
   };
 
   return (
@@ -197,31 +227,62 @@ export const Market = () => {
                   {symbolData.symbol}
                 </span>
               </div>
-              <div className="Market__Footer__Price">Price
-              <span className="Market__Footer__Price__value">
-              <input
-                type="text"
-                placeholder="THB"
-                onChange={(e) => setPrice(e.target.value)}
-              />
+              <div
+                className="Market__Footer__Price"
+                style={{ borderColor: inputBorderColor1 }}
+              >
+                Price
+                <span className="Market__Footer__Price__value">
+                  <input
+                    type="text"
+                    placeholder="THB"
+                    onFocus={handleInputFocus1}
+                    onBlur={handleInputBlur1}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
                 </span>
               </div>
-              <div className="Market__Footer__Volume">Volume</div>
-              <span className="Market__Footer__Volume__value">
-                <input
-
-                  type="text"
-                  placeholder="Volume"
-                  onChange={(e) => setVolume(e.target.value)}
-                />
+              <div
+                className="Market__Footer__Volume"
+                style={{ borderColor: inputBorderColor2 }}
+              >
+                Volume
+                <span className="Market__Footer__Volume__value">
+                  <input
+                    type="text"
+                    placeholder="Ex. 100"
+                    onFocus={handleInputFocus2}
+                    onBlur={handleInputBlur2}
+                    onChange={(e) => setVolume(e.target.value)}
+                  />
                 </span>
+              </div>
               <div className="Market__Footer__Reset__Order">
-              <button onClick={handleResetClick}>Place Order</button>
+                <button onClick={handleResetClick}>Place Order</button>
               </div>
             </div>
             <div className="Market__container__mid__Footer__right">
-              <div className="Market__Footer__Total">Total</div>
-              <div className="Market__Footer__Pin">Pin</div>
+              <div className="Market__Footer__Total">
+                Total
+                <span className="Market__Footer__Total__value">
+                  {totalPrice.toFixed(2)}
+                </span>
+              </div>
+              <div
+                className="Market__Footer__Pin"
+                style={{ borderColor: inputBorderColor3 }}
+              >
+                Pin
+                <span className="Market__Footer__Pin__value">
+                  <input
+                    type="text"
+                    placeholder="Ex. 1234"
+                    onFocus={handleInputFocus3}
+                    onBlur={handleInputBlur3}
+                    onChange={(e) => setPin(e.target.value)}
+                  />
+                </span>
+              </div>
 
               <div className="Market__Footer__Order">
                 <div className="Market__Footer__Order__div">
@@ -244,9 +305,7 @@ export const Market = () => {
                     onClick={() => handleOptionClick("sell")}
                   >
                     <button
-                      className={
-                        selectedOption === "sell" ? "activeSell" : ""
-                      }
+                      className={selectedOption === "sell" ? "activeSell" : ""}
                     >
                       Sell
                     </button>
@@ -254,8 +313,8 @@ export const Market = () => {
                 </div>
               </div>
               <div className="Market__Footer__Place__Order">
-              <button onClick={handleOrderClick}>Place Order</button>
-            </div>
+                <button onClick={handleOrderClick}>Place Order</button>
+              </div>
             </div>
           </div>
         </div>

@@ -181,28 +181,32 @@
     height: 2.15rem;
   }
 
-  .Wallet__transaction__side {
-    padding-left: 1rem;
-  }
 
-  .Wallet__transaction__side,
-  .profile__transaction___topic {
+  .Wallet__transaction__side
+   {
     text-align: left;
     font-size: 0.65rem;
-    width: 5rem;
+    width: 3rem;
   }
+
+  .profile__transaction___topic{
+    text-align: left;
+    padding-left: 1rem;
+    font-size: 0.65rem;
+    width: 3rem;
+  }
+
 
   .profile__amount__value {
     text-align: right;
     font-size: 0.65rem;
-    width: 4rem;
+    width: 5rem;
   }
 
   .profile__transaction___date {
     text-align: right;
     font-size: 0.65rem;
     width: 9rem;
-    padding-right: 1rem;
   }
 
   .profile__Account___container {
@@ -305,20 +309,20 @@
     color: #4e4f51;
     text-align: left;
     font-size: 0.65rem;
-    width: 3rem;
+    width: 2rem;
     padding-left: 1rem;
   }
 
   .Login__device__IPaddress {
     text-align: right;
     font-size: 0.65rem;
-    width: 6.5rem;
+    width: 5rem;
   }
 
   .Login__device__date {
     text-align: right;
     font-size: 0.65rem;
-    width: 9rem;
+    width: 10rem;
     padding-right: 1rem;
   }
 
@@ -357,28 +361,30 @@
     height: 2.5rem;
   }
 
-  .Wallet__transaction__side {
-    padding-left: 1rem;
-  }
 
-  .Wallet__transaction__side,
-  .profile__transaction___topic {
+  .Wallet__transaction__side{
     text-align: left;
     font-size: 0.75rem;
-    width: 5rem;
+    width: 3rem;
+  }
+
+  .profile__transaction___topic {
+    padding-left: 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    width: 3rem;
   }
 
   .profile__amount__value {
     text-align: right;
     font-size: 0.75rem;
-    width: 4rem;
+    width: 6rem;
   }
 
   .profile__transaction___date {
     text-align: right;
     font-size: 0.75rem;
-    width: 9rem;
-    padding-right: 1rem;
+    width: 10rem;
   }
 
   .profile__Account___container {
@@ -482,8 +488,8 @@
     color: #4e4f51;
     text-align: left;
     font-size: 0.75rem;
-    width: 4rem;
-    padding-left: 1rem;
+    width: 3rem;
+    padding-left: 2rem;
   }
 
   .Login__device__IPaddress {
@@ -495,8 +501,8 @@
   .Login__device__date {
     text-align: right;
     font-size: 0.75rem;
-    width: 9rem;
-    padding-right: 1rem;
+    width: 13rem;
+    padding-right: 2rem;
   }
 
   .Login__device__box {
@@ -559,27 +565,29 @@
   }
 
   .Wallet__transaction__side {
-    padding-left: 1rem;
-  }
-
-  .Wallet__transaction__side,
-  .profile__transaction___topic {
     text-align: left;
     font-size: 0.75rem;
-    width: 5rem;
+    width: 3rem;
+  }
+
+  .profile__transaction___topic {
+    padding-left: 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    width: 4rem;
   }
 
   .profile__amount__value {
+
     text-align: right;
     font-size: 0.75rem;
-    width: 4rem;
+    width: 6.5rem;
   }
 
   .profile__transaction___date {
     text-align: right;
     font-size: 0.75rem;
-    width: 9rem;
-    padding-right: 1rem;
+    width: 10.5rem;
   }
 
   .profile__Account___container {
@@ -683,21 +691,21 @@
     color: #4e4f51;
     text-align: left;
     font-size: 0.75rem;
-    width: 4rem;
-    padding-left: 1rem;
+    width: 3rem;
+    padding-left: 1.5rem;
   }
 
   .Login__device__IPaddress {
     text-align: right;
     font-size: 0.75rem;
-    width: 6.5rem;
+    width: 6rem;
   }
 
   .Login__device__date {
     text-align: right;
     font-size: 0.75rem;
-    width: 9rem;
-    padding-right: 1rem;
+    width: 12rem;
+    padding-right: 1.5rem;
   }
 
   .Login__device__box {
