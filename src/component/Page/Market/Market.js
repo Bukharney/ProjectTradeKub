@@ -28,6 +28,9 @@ export const Market = () => {
     console.log("Reset order clicked");
   };
 
+  const handleSelectStock = (e) => {
+  };
+
   const handleInputFocus1 = () => {
     setInputBorderColor1("#CCFF00");
   };
@@ -54,7 +57,55 @@ export const Market = () => {
 
   return (
     <div className="Market__container">
-      <div className="Market__container__left"></div>
+      <div className="Market__container__left">
+        <div className="Market__container__left__serch">
+          <div className="Market__container__left__serch__input">
+          <div className="srch__icon" ><i class='bx bx-search'></i></div>
+          <div className="Market__container__left__serch__input__box">
+          <input
+              type="text"
+              placeholder="Search symbols"
+            />
+           </div>
+        </div></div>
+        <div className="Market__container__left__stock">
+          <div className="Market__container__left__stock__Box">
+            {stock_left.mock.map((stock) => (
+              <button onClick={handleSelectStock}>
+                <div className="Martket__left_div">
+                  <div className="Market__container__left__stock__Box__stock__symbol">
+                    {stock.Symbol}
+                  </div>
+                  <div className="Market__container__left__stock__Box__stock__lastPrice">
+                    Last Price
+                    <div
+                      className="Market__container__left__stock__Box__stock__lastPrice__value"
+                      style={{
+                        color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                      }}
+                    >
+                      {stock.LastPrice.toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="Market__container__left__stock__Box__stock__percentChange">
+                    Change
+                    <div
+                      className="Market__container__left__stock__Box__stock__percentChange__value"
+                      style={{
+                        color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                      }}
+                    >
+                      {stock.PercentChange > 0
+                        ? `+${stock.PercentChange}%`
+                        : `${stock.PercentChange}%`}
+                    </div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <div className="Market__container__mid">
         <div className="Market__container__mid__header">
@@ -325,95 +376,104 @@ export const Market = () => {
 
       <div className="Market__container__right">
         <div className="Market__container__right__Container">
-          <div className="Market__container__right__Container__Top">
-            <div className="Market__container__right__Header__top">Popular</div>
-            <div className="Market__container__right__top__header__container">
-              <div className="Market__container__right__top__header__Symbol">
-                Symbol
+          <div className="Market__container__right__div">
+            <div className="Market__container__right__Container__Top">
+              <div className="Market__container__right__Header__top">
+                Popular
               </div>
-              <div className="Market__container__right__top__header__Price">
-                Last Price
+              <div className="Market__container__right__top__header__container">
+                <div className="Market__container__right__top__header__Symbol">
+                  Symbol
+                </div>
+                <div className="Market__container__right__top__header__Price">
+                  Last Price
+                </div>
+                <div className="Market__container__right__top__header__Change">
+                  Change
+                </div>
               </div>
-              <div className="Market__container__right__top__header__Change">
-                Change
-              </div>
-            </div>
-            <div className="Market__container__right__Container__stock">
-              <div className="Market__container__stock__box">
-                {stock_left.mock.map((stock) => (
-                  <div
-                    key={stock.Symbol}
-                    className="Market__container__right__Container__box"
-                    style={{
-                      color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
-                    }}
-                  >
-                    <div className="Market__container__right__stock__Symbol">
-                      {stock.Symbol}
-                    </div>
-                    <div className="Market__container__right__stock__Price">
-                      {stock.LastPrice}
-                    </div>
-                    <div className="Market__container__right__stock__Change">
-                      {stock.PercentChange > 0
-                        ? `+${stock.PercentChange}%`
-                        : `${stock.PercentChange}%`}
-                    </div>
+              <div className="Market__container__right__Container__stock">
+                <div className="Market__container__stock__box">
+                  <div className="Market__container__stock__div">
+                    {stock_left.mock.map((stock) => (
+                      <div
+                        key={stock.Symbol}
+                        className="Market__container__right__Container__box"
+                        style={{
+                          color:
+                            stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                        }}
+                      >
+                        <div className="Market__container__right__stock__Symbol">
+                          {stock.Symbol}
+                        </div>
+                        <div className="Market__container__right__stock__Price">
+                          {stock.LastPrice}
+                        </div>
+                        <div className="Market__container__right__stock__Change">
+                          {stock.PercentChange > 0
+                            ? `+${stock.PercentChange}%`
+                            : `${stock.PercentChange}%`}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>{" "}
               </div>
             </div>
-          </div>
 
-          <div className="Market__container__right__Container__Bottom">
-            <div className="Market__container__right__Header__bottom">
-              Your Order
-            </div>
-            <div className="Market__container__right__Bottom__header__container">
-              <div className="Market__container__right__Bottom__header__Symbol">
-                Symbol
+            <div className="Market__container__right__Container__Bottom">
+              <div className="Market__container__right__Header__bottom">
+                Your Order
               </div>
-              <div className="Market__container__right__Bottom__header__Side">
-                Side
+              <div className="Market__container__right__Bottom__header__container">
+                <div className="Market__container__right__Bottom__header__Symbol">
+                  Symbol
+                </div>
+                <div className="Market__container__right__Bottom__header__Side">
+                  Side
+                </div>
+                <div className="Market__container__right__Bottom__header__Price">
+                  Price
+                </div>
+                <div className="Market__container__right__Bottom__header__Volume">
+                  Volume
+                </div>
+                <div className="Market__container__right__Bottom__header__Status">
+                  Status
+                </div>
               </div>
-              <div className="Market__container__right__Bottom__header__Price">
-                Price
-              </div>
-              <div className="Market__container__right__Bottom__header__Volume">
-                Volume
-              </div>
-              <div className="Market__container__right__Bottom__header__Status">
-                Status
-              </div>
-            </div>
-            <div className="Market__container__right__Container__stock">
-              <div className="Market__container__stock__box">
-                {stock_status.mock.map((stock) => (
-                  <div
-                    key={stock.symbol}
-                    className="Market__container__right__Container__box"
-                  >
-                    <div className="Market__container__right__status__Symbol">
-                      {stock.symbol}
-                    </div>
-                    <div className="Market__container__right__statatus__Side">
-                      {stock.side}
-                    </div>
-                    <div className="Market__container__right__status__Price">
-                      {stock.price.toFixed(2)}
-                    </div>
-                    <div className="Market__container__right__status__Volume">
-                      {stock.volume}
-                    </div>
+              <div className="Market__container__right__Container__stock">
+                <div className="Market__container__stock__box">
+                  <div className="Market__container__stock__div">
+                    {stock_status.mock.map((stock) => (
+                      <div
+                        key={stock.symbol}
+                        className="Market__container__right__Container__box"
+                      >
+                        <div className="Market__container__right__status__Symbol">
+                          {stock.symbol}
+                        </div>
+                        <div className="Market__container__right__stock__Side">
+                          {stock.side}
+                        </div>
+                        <div className="Market__container__right__status__Price">
+                          {stock.price.toFixed(2)}
+                        </div>
+                        <div className="Market__container__right__status__Volume">
+                          {stock.volume}
+                        </div>
 
-                    <div className="Market__container__right__status__Status">
-                      {stock.status}
-                    </div>
+                        <div className="Market__container__right__status__Status">
+                          {stock.status}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
             </div>
-          </div>
+          </div>{" "}
         </div>
       </div>
     </div>

@@ -216,6 +216,12 @@
   padding: none;
 }
 
+.Market__Footer__Volume__value input::placeholder,
+.Market__Footer__Price__value input::placeholder,
+.Market__Footer__Pin__value input::placeholder {
+  color: #4E4F51; 
+}
+
 .Market__Footer__Order {
   height: 22%;
   display: flex;
@@ -294,15 +300,6 @@
   transform: translateY(-1px);
 }
 
-.Market__container__left {
-  background-color: #cd3d42;
-  width: 20%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .Market__container__right {
   width: 25%;
   height: 100%;
@@ -316,7 +313,14 @@
   height: 95%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.Market__container__right__div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .Market__container__right__Container__Bottom,
@@ -330,6 +334,7 @@
 
 .Market__container__right__Header__bottom,
 .Market__container__right__Header__top {
+  margin-top: 5%;
   width: 100%;
   text-align: left;
   font-weight: 600;
@@ -343,6 +348,7 @@
   height: 10%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .Market__container__right__Bottom__header__Symbol,
@@ -360,25 +366,24 @@
   justify-content: center;
 }
 
-.Market__container__right__statatus__Side,
-.Market__container__right__statatus__Status{
+.Market__container__right__stock__Side,
+.Market__container__right__status__Status {
   width: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
-.Market__container__right__status__Symbol{
-  width: 20%;
+.Market__container__right__status__Symbol {
+  width: 15%;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Market__container__right__statatus__Price,
-.Market__container__right__statatus__Volume{
+.Market__container__right__status__Price,
+.Market__container__right__status__Volume {
   width: 30%;
   color: #ffffff;
   display: flex;
@@ -388,8 +393,7 @@
 
 .Market__container__right__status__Symbol,
 .Market__container__right__Bottom__header__Symbol,
-.Market__container__right__top__header__Symbol
- {
+.Market__container__right__top__header__Symbol {
   display: flex;
   justify-content: flex-start;
 }
@@ -410,19 +414,19 @@
 }
 
 .Market__container__stock__box {
-  margin-top: 2%;
   width: 100%;
   overflow-y: auto;
-  max-height: 13.5rem;
 }
 
+
+.Market__container__left__stock__Box::-webkit-scrollbar,
 .Market__container__stock__box::-webkit-scrollbar {
   width: 0px;
 }
 
 .Market__container__right__Container__box {
+  padding-top: 5%;
   width: 100%;
-  height: 13%;
   display: flex;
   justify-content: space-between;
 }
@@ -443,6 +447,122 @@
 .Market__container__right__stock__Change {
   display: flex;
   justify-content: flex-end;
+}
+
+.green {
+  color: #42a93c;
+}
+
+.red {
+  color: #cd3d42;
+}
+
+.Market__container__left {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Market__container__left__stock {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.Market__container__left__stock__Box {
+  width: 85%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.Martket__left_div{
+  background-color: #282a2e;
+  margin-bottom: 5%;
+  justify-content: space-between;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Martket__left___div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Market__container__left__stock__Box__stock__symbol
+{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+
+.Market__container__left__stock__Box__stock__lastPrice,
+.Market__container__left__stock__Box__stock__percentChange{
+  flex-direction: column;
+  color: #4e4f51;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.Market__container__left__serch {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Market__container__left__serch__input{
+  color: #ffffff;
+  width: 70%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: none;
+  border: none;
+}
+
+.srch__icon{
+  width: 25%;
+  height: 100%;
+  color: #4e4f51;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5%;
+  align-items: center;
+}
+.Market__container__left__serch__input__box input{
+  color: #ffffff;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background-color: transparent;
+  margin-right:7%;
+}
+
+.Market__container__left__serch__input__box input::placeholder {
+  color: #4E4F51; 
 }
 
 @media screen and (max-width: 1599px) {
@@ -606,10 +726,451 @@
   .Market__container__right__stock__Change {
     font-size: 0.75rem;
   }
+
+  .Market__container__stock__box {
+    max-height: 14rem;
+  }
+
+  .Market__container__left__stock__Box{
+    max-height: 41.25rem;
+  }
+
+  .Market__container__left__stock__Box__stock__symbol
+{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice,
+.Market__container__left__stock__Box__stock__percentChange{
+  font-size: 0.65rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice__value,
+.Market__container__left__stock__Box__stock__percentChange__value{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock{
+  border-radius: 1rem;
+}
+
+.Martket__left_div{
+  border-radius: 0.5rem;
+}
+
+.Market__container__left__serch__input{
+  border-radius: 10rem;
+  border: 1px solid #4e4f51;
+}
+
+.Market__container__left__serch__input__box{
+  font-size: 0.65rem;
+}
+
 }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .Market__container__left {
+    margin-left: 2.5rem;
+  }
+
+  .Market__container__mid {
+    border-left: 1px solid #282a2e;
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__Lower,
+  .Market__container__mid__header {
+    border-bottom: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__left {
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__Footer__Pin,
+  .Market__Footer__Total,
+  .Market__Footer__Volume,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
+  .Market__stock__symbol,
+  .Market__stock__Last_Price {
+    width: 100%;
+    text-align: left;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__symbol__value,
+  .Market__stock__Last_Price__value {
+    font-size: 1rem;
+  }
+
+  .Market__stock__symbol,
+  .Market__stock__symbol__value {
+    padding-left: 2rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .Market__stock__Last_Price__value,
+  .Market__stock__Last_Price {
+    padding-right: 2rem;
+    width: 100%;
+    text-align: right;
+  }
+
+  .Market__stock__CHG,
+  .Market__stock__volume,
+  .Market__stock__Bid_Price,
+  .Market__stock__Offer_Price,
+  .Market__stock__offer_volume,
+  .Market__stock__total_volume {
+    width: 100%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__High,
+  .Market__stock__Low,
+  .Market__stock__Open,
+  .Market__stock__floor,
+  .Market__stock__Average,
+  .Market__stock__Close {
+    width: 60%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__CHG__value,
+  .Market__stock__volume__value,
+  .Market__stock__Bid_Price__value,
+  .Market__stock__Offer_Price__value,
+  .Market__stock__offer_volume__value,
+  .Market__stock__total_volume__value,
+  .Market__stock__High__value,
+  .Market__stock__Low__value,
+  .Market__stock__Open__value,
+  .Market__stock__floor__value,
+  .Market__stock__Average__value,
+  .Market__stock__Close__value {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__mid__Footer {
+    border-top: 1px solid #282a2e;
+  }
+
+  .Market__Footer__Pin,
+  .Market__Footer__Total,
+  .Market__Footer__Volume,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Dropdawn {
+    border-radius: 5px;
+    background-color: #282a2e;
+  }
+
+  .Market__Footer__Symbol__value,
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance__value,
+  .Market__Accont__Line_Available__value,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Credit__limit__value,
+  .Market__Accont,
+  .Market__Accont__value {
+    font-size: 0.75rem;
+  }
+
+  .Market__Footer__Buy,
+  .Market__Footer__Sell {
+    border-radius: 5px;
+    font-size: 0.75rem;
+  }
+
+  .activeBuy,
+  .activeSell {
+    border-radius: 5px;
+  }
+
+  .Market__Footer__Reset__Order {
+    border-radius: 5px;
+    font-size: 0.75rem;
+    border: 1px solid #4e4f51;
+  }
+
+  .Market__Footer__Place__Order {
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Container__Bottom,
+  .Market__container__right__Header__top {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Bottom__header__Symbol,
+  .Market__container__right__Bottom__header__Side,
+  .Market__container__right__Bottom__header__Price,
+  .Market__container__right__Bottom__header__Volume,
+  .Market__container__right__Bottom__header__Status,
+  .Market__container__right__top__header__Symbol,
+  .Market__container__right__top__header__Price,
+  .Market__container__right__top__header__Change {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__stock__Symbol,
+  .Market__container__right__stock__Price,
+  .Market__container__right__stock__Change {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__stock__box {
+    max-height: 14rem;
+  }
+
+  .Market__container__left__stock__Box{
+    max-height: 38rem;
+  }
+
+  .Market__container__left__stock__Box__stock__symbol
+{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice,
+.Market__container__left__stock__Box__stock__percentChange{
+  font-size: 0.65rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice__value,
+.Market__container__left__stock__Box__stock__percentChange__value{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock{
+  border-radius: 1rem;
+}
+
+.Martket__left_div{
+  border-radius: 0.5rem;
+}
+
+.Market__container__left__serch__input{
+  border-radius: 10rem;
+  border: 1px solid #4e4f51;
+}
+
+.Market__container__left__serch__input__box{
+  font-size: 0.65rem;
+}
 }
 
 @media screen and (min-width: 1801px) {
+  .Market__container__left {
+    margin-left: 2.5rem;
+  }
+
+  .Market__container__mid {
+    border-left: 1px solid #282a2e;
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__Lower,
+  .Market__container__mid__header {
+    border-bottom: 1px solid #282a2e;
+  }
+
+  .Market__container__mid__header__left {
+    border-right: 1px solid #282a2e;
+  }
+
+  .Market__Footer__Pin,
+  .Market__Footer__Total,
+  .Market__Footer__Volume,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
+  .Market__stock__symbol,
+  .Market__stock__Last_Price {
+    width: 100%;
+    text-align: left;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__symbol__value,
+  .Market__stock__Last_Price__value {
+    font-size: 1rem;
+  }
+
+  .Market__stock__symbol,
+  .Market__stock__symbol__value {
+    padding-left: 2rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .Market__stock__Last_Price__value,
+  .Market__stock__Last_Price {
+    padding-right: 2rem;
+    width: 100%;
+    text-align: right;
+  }
+
+  .Market__stock__CHG,
+  .Market__stock__volume,
+  .Market__stock__Bid_Price,
+  .Market__stock__Offer_Price,
+  .Market__stock__offer_volume,
+  .Market__stock__total_volume {
+    width: 100%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__High,
+  .Market__stock__Low,
+  .Market__stock__Open,
+  .Market__stock__floor,
+  .Market__stock__Average,
+  .Market__stock__Close {
+    width: 60%;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .Market__stock__CHG__value,
+  .Market__stock__volume__value,
+  .Market__stock__Bid_Price__value,
+  .Market__stock__Offer_Price__value,
+  .Market__stock__offer_volume__value,
+  .Market__stock__total_volume__value,
+  .Market__stock__High__value,
+  .Market__stock__Low__value,
+  .Market__stock__Open__value,
+  .Market__stock__floor__value,
+  .Market__stock__Average__value,
+  .Market__stock__Close__value {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__mid__Footer {
+    border-top: 1px solid #282a2e;
+  }
+
+  .Market__Footer__Pin,
+  .Market__Footer__Total,
+  .Market__Footer__Volume,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Dropdawn {
+    border-radius: 5px;
+    background-color: #282a2e;
+  }
+
+  .Market__Footer__Symbol__value,
+  .Market__Accont__Cash__balance,
+  .Market__Accont__Line_Available,
+  .Market__Accont__Cash__balance__value,
+  .Market__Accont__Line_Available__value,
+  .Market__Accont__Credit__limit,
+  .Market__Accont__Credit__limit__value,
+  .Market__Accont,
+  .Market__Accont__value {
+    font-size: 0.75rem;
+  }
+
+  .Market__Footer__Buy,
+  .Market__Footer__Sell {
+    border-radius: 5px;
+    font-size: 0.75rem;
+  }
+
+  .activeBuy,
+  .activeSell {
+    border-radius: 5px;
+  }
+
+  .Market__Footer__Reset__Order {
+    border-radius: 5px;
+    font-size: 0.75rem;
+    border: 1px solid #4e4f51;
+  }
+
+  .Market__Footer__Place__Order {
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Container__Bottom,
+  .Market__container__right__Header__top {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Bottom__header__Symbol,
+  .Market__container__right__Bottom__header__Side,
+  .Market__container__right__Bottom__header__Price,
+  .Market__container__right__Bottom__header__Volume,
+  .Market__container__right__Bottom__header__Status,
+  .Market__container__right__top__header__Symbol,
+  .Market__container__right__top__header__Price,
+  .Market__container__right__top__header__Change {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__stock__Symbol,
+  .Market__container__right__stock__Price,
+  .Market__container__right__stock__Change {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__stock__box {
+    max-height: 14rem;
+  }
+
+  .Market__container__left__stock__Box{
+    max-height: 38rem;
+  }
+
+  .Market__container__left__stock__Box__stock__symbol
+{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice,
+.Market__container__left__stock__Box__stock__percentChange{
+  font-size: 0.65rem;
+}
+
+.Market__container__left__stock__Box__stock__lastPrice__value,
+.Market__container__left__stock__Box__stock__percentChange__value{
+  font-size: 0.75rem;
+}
+
+.Market__container__left__stock__Box__stock{
+  border-radius: 1rem;
+}
+
+.Martket__left_div{
+  border-radius: 0.5rem;
+}
+
+.Market__container__left__serch__input{
+  border-radius: 10rem;
+  border: 1px solid #4e4f51;
+}
+
+.Market__container__left__serch__input__box{
+  font-size: 0.65rem;
+}
 }

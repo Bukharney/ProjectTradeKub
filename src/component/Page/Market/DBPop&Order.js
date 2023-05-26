@@ -86,7 +86,7 @@ export const stock_left = {
 export const stock_status = {
   mock: [
     {
-      symbol: "KBANK",
+      symbol: "SCB",
       side: "B",
       price: 1000,
       volume: 10000,
@@ -103,14 +103,14 @@ export const stock_status = {
       symbol: "BBL",
       side: "B",
       price: 100,
-      volume: 10000,
+      volume: 100,
       status: "O",
     },
     {
       symbol: "KTB",
       side: "S",
       price: 100,
-      volume: 10000,
+      volume: 100,
       status: "C",
     },
     {
@@ -118,21 +118,21 @@ export const stock_status = {
       side: "B",
       price: 100,
 
-      volume: 10000,
+      volume: 1000,
       status: "O",
     },
     {
       symbol: "BBL",
       side: "B",
       price: 100,
-      volume: 10000,
+      volume: 1000,
       status: "O",
     },
     {
       symbol: "KTB",
       side: "S",
       price: 100,
-      volume: 10000,
+      volume: 1000,
       status: "C",
     },
     {
@@ -141,29 +141,51 @@ export const stock_status = {
       price: 100,
 
       volume: 10000,
+      status: "O",
+    },
+    {
+      symbol: "SCB",
+      side: "S",
+      price: 100,
+      volume: 10000,
+      status: "C",
+    },
+    {
+      symbol: "BBL",
+      side: "B",
+      price: 100,
+      volume: 100,
+      status: "O",
+    },
+    {
+      symbol: "KTB",
+      side: "S",
+      price: 100,
+      volume: 100,
+      status: "C",
+    },
+    {
+      symbol: "TMB",
+      side: "B",
+      price: 100,
+
+      volume: 1000,
       status: "O",
     },
     {
       symbol: "BBL",
       side: "B",
       price: 100,
-      volume: 10000,
+      volume: 1000,
       status: "O",
     },
     {
       symbol: "KTB",
       side: "S",
       price: 100,
-      volume: 10000,
+      volume: 1000,
       status: "C",
     },
-    {
-      symbol: "TMB",
-      side: "B",
-      price: 100,
 
-      volume: 10000,
-      status: "O",
-    },
   ],
 };
