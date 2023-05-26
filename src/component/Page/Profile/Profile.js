@@ -64,6 +64,7 @@ export const Profile = () => {
     "#CD573D",
     "#B9B9B9",
   ];
+
   const chartRef = useRef(null);
   const colorRef = useRef({});
 

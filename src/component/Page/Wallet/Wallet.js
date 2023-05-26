@@ -1,13 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./Wallet.css";
-import { Stock, Transaction, Account } from "./DBWallet";
+import { Stock, Transaction, Account as Accounts } from "./DBWallet";
 import { Link } from "react-router-dom";
 import { value } from "../Navbar/Navbar.js";
 import ApexCharts from "apexcharts";
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 export const Wallet = () => {
-  const SortedStock = Stock.wallet.sort((a, b) => {
-    return b.marketValue - a.marketValue;
+  const Token = useContext(TokenContext);
+  const Account = useContext(AccountContext);
+  const [userPort, setUserPort] = useState([]);
+  const [userAccount, setUserAccount] = useState([]);
+  const [userTsc, setUserTsc] = useState([]);
+  let total = 0;
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const SortedStock = userPort.sort((a, b) => {
+    return b.volume * b.last_price - a.volume * a.last_price;
   });
 
   const [click, setClick] = useState(false);
@@ -16,17 +39,14 @@ export const Wallet = () => {
     setClick(!click);
   };
 
-  const TotalWealth = SortedStock.reduce((acc, stock) => {
-    return acc + stock.marketValue;
-  }, 0);
-
-  const TotalCashBalance = SortedStock.reduce((acc, stock) => {
-    return acc + stock.totalcost;
-  }, 0);
-
   const sortedTransactions = Transaction.List.sort((a, b) => {
     return new Date(a.date) - new Date(b.date);
   });
+
+  const calpl = (e) => {
+    e["upl"] = e.volume * e.last_price - e.volume * e.avg_price;
+    e["upl_per"] = ((e.last_price - e.avg_price) / e.avg_price) * 100;
+  };
 
   const palettes = [
     "#00CB76",
@@ -41,12 +61,70 @@ export const Wallet = () => {
   const colorRef = useRef({});
 
   useEffect(() => {
+    const get_portfolio = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/portfolio/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserPort(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_account_info = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/account/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserAccount(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_account_tsc = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/stock/transactions/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserTsc(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    get_account_tsc(Account.account);
+    get_account_info(Account.account);
+    get_portfolio(Account.account);
+  }, []);
+
+  useEffect(() => {
     const series = SortedStock.map((stock) =>
-      parseFloat(stock.marketValue.toFixed(2))
+      parseFloat(stock.volume * stock.last_price)
     );
+
     const labels = SortedStock.map((stock) => stock.symbol);
 
-    SortedStock.forEach((stock, index) => {
+    userPort.forEach((stock, index) => {
       if (!colorRef.current[stock.symbol]) {
         colorRef.current[stock.symbol] = palettes[index % palettes.length];
       }
@@ -118,14 +196,22 @@ export const Wallet = () => {
         <div className="balance__container__text">
           <div className="balance__Total__Wealth">Total Wealth</div>
           <div className="balance__Total__Wealth__value">
-            {TotalWealth.toFixed(2)}
+            {userPort.map((stock) => {
+              total += stock.last_price * stock.volume;
+              calpl(stock);
+            })}
+            {total.toFixed(2)}
           </div>
           <div className="THB__Balance">THB</div>
 
           <div className="balance__Total__Topic">
             Cash Balance
             <div className="balance__Total__Cash__Balance__value">
-              {TotalCashBalance.toFixed(2)}
+              {userAccount.cash_balance ? (
+                userAccount.cash_balance.toFixed(2)
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
@@ -133,9 +219,11 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Available
               <div className="wallet__Line__Available__value">
-                {Account.account.map((account) => (
-                  <div key={account.id}>{account.LineAvailable.toFixed(2)}</div>
-                ))}
+                {userAccount.line_available ? (
+                  userAccount.line_available.toFixed(2)
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>
@@ -143,9 +231,11 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Credit Limit
               <div className="wallet__Creditlimit__value">
-                {Account.account.map((account) => (
-                  <div key={account.id}>{account.CreditLimit.toFixed(2)}</div>
-                ))}
+                {userAccount.credit_limit ? (
+                  userAccount.credit_limit.toFixed(2)
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>
@@ -156,9 +246,9 @@ export const Wallet = () => {
               className="wallet__button__contactBroker"
               onClick={handleClick}
             >
-             Contact Broker
+              Contact Broker
             </Link>
-            </button>
+          </button>
           <div className="wallet__description">
             Deposit and Withdraw Please contact the Broker
           </div>
@@ -186,19 +276,18 @@ export const Wallet = () => {
                 <div
                   className="wallet__table__Percent__value"
                   style={{
-                    backgroundColor:
-                      stock.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                    backgroundColor: stock.change >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {stock.percentChange >= 0
-                    ? `+${stock.percentChange.toFixed(2)}%`
-                    : `${stock.percentChange.toFixed(2)}%`}
+                  {stock.change >= 0
+                    ? `+${stock.change.toFixed(2)}%`
+                    : `${stock.change.toFixed(2)}%`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 AVG Purchase Price
                 <div className="wallet__table__AVGPurchase__value">
-                  {stock.AVGPurchase.toFixed(2)}
+                  {stock.avg_price}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -210,13 +299,13 @@ export const Wallet = () => {
               <div className="wallet__table__Topic">
                 Total Cost
                 <div className="wallet__table__totalcost__value">
-                  {stock.totalcost.toFixed(2)}
+                  {(stock.volume * stock.avg_price).toFixed(2)}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 Market Value
                 <div className="wallet__table__Maket__Value">
-                  {stock.marketValue.toFixed(2)}
+                  {stock.last_price.toFixed(2)}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -224,12 +313,12 @@ export const Wallet = () => {
                 <div
                   className="wallet__table__UnrealizedPL__value"
                   style={{
-                    color: stock.UnrealizedPL >= 0 ? "#42A93C" : "#CD3D42",
+                    color: stock.upl >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {stock.UnrealizedPL >= 0
-                    ? `+${stock.UnrealizedPL.toFixed(2)}`
-                    : `${stock.UnrealizedPL.toFixed(2)}`}
+                  {stock.upl >= 0
+                    ? `+${stock.upl.toFixed(2)}`
+                    : `${stock.upl.toFixed(2)}`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -237,13 +326,12 @@ export const Wallet = () => {
                 <div
                   className="wallet__table__UnrealizedPLPercent__value"
                   style={{
-                    color:
-                      stock.UnrealizedPLPercent >= 0 ? "#42A93C" : "#CD3D42",
+                    color: stock.upl_per >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {stock.UnrealizedPLPercent >= 0
-                    ? `+${stock.UnrealizedPLPercent.toFixed(2)}%`
-                    : `${stock.UnrealizedPLPercent.toFixed(2)}%`}
+                  {stock.upl2 >= 0
+                    ? `+${stock.upl_per.toFixed(2)}%`
+                    : `${stock.upl_per.toFixed(2)}%`}
                 </div>
               </div>
               <button className="wallet__table__button__value">
@@ -254,7 +342,7 @@ export const Wallet = () => {
                 >
                   Place Order
                 </Link>
-                </button>
+              </button>
             </div>
           ))}
         </div>
@@ -265,7 +353,7 @@ export const Wallet = () => {
           <div className="transaction__list__title">Transaction List</div>
 
           <div className="transaction__list__box">
-            {sortedTransactions.map((transaction, index) => (
+            {userTsc.map((transaction, index) => (
               <div className="transaction__list">
                 <div className="transaction__item" key={index}>
                   <div className="transaction__details">
@@ -307,7 +395,7 @@ export const Wallet = () => {
                       Date
                     </span>
                     <span className="transaction__date">
-                      {transaction.date}
+                      {formatDate(transaction.timestamp)}
                     </span>
                   </div>
                 </div>
