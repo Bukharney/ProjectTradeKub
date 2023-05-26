@@ -7,22 +7,46 @@ import ApexCharts from "apexcharts";
 import "boxicons/css/boxicons.min.css";
 import AuthContext from "../../../Context/AuthContext";
 import Cookies from "js-cookie";
-
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 export const Profile = () => {
+  const Token = React.useContext(TokenContext);
   const Auth = React.useContext(AuthContext);
+  const Accounts = React.useContext(AccountContext);
+  const [userData, setUserData] = useState([]);
+  const [userAccount, setUserAccount] = useState([]);
+  const [userLog, setUserLog] = useState([]);
+  const [userTsc, setUserTsc] = useState([]);
+  const [userPort, setUserPort] = useState([]);
+  let total = 0;
+
+  const formatNumber = (Number) => {
+    return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   const handleClickLogout = () => {
     Auth.setAuth(false);
     Cookies.remove("token");
-    window.location.href = "/Login";
+    window.location.href = "/";
   };
 
-  const SortedStock = Stock.wallet.sort((a, b) => {
-    return b.marketValue - a.marketValue;
-  });
-
-  const SortedDeviceLogin = Device.Login.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
+  const SortedStock = userPort.sort((a, b) => {
+    return b.volume * b.last_price - a.volume * a.last_price;
   });
 
   const [click, setClick] = useState(false);
@@ -30,18 +54,6 @@ export const Profile = () => {
     value.key = 1;
     setClick(!click);
   };
-
-  const TotalWealth = SortedStock.reduce((acc, stock) => {
-    return acc + stock.marketValue;
-  }, 0);
-
-  const TotalCashBalance = SortedStock.reduce((acc, stock) => {
-    return acc + stock.totalcost;
-  }, 0);
-
-  const sortedTransactions = Transaction.List.sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
-  });
 
   const palettes = [
     "#00CB76",
@@ -52,16 +64,110 @@ export const Profile = () => {
     "#CD573D",
     "#B9B9B9",
   ];
+
   const chartRef = useRef(null);
   const colorRef = useRef({});
 
   useEffect(() => {
+    const get_user_info = async () => {
+      await axios
+        .get(`https://www.tradekub.me/users/`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserData(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_account_info = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/account/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserAccount(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_user_log = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/users/login_info`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserLog(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_tsc = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/bank_tsc/my`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserTsc(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_portfolio = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/portfolio/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserPort(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    get_user_info();
+    get_account_info(Accounts.account);
+    get_user_log();
+    get_tsc();
+    get_portfolio(Accounts.account);
+  }, [Accounts.account]);
+
+  useEffect(() => {
     const series = SortedStock.map((stock) =>
-      parseFloat(stock.marketValue.toFixed(2))
+      parseFloat((stock.volume * stock.last_price).toFixed(2))
     );
     const labels = SortedStock.map((stock) => stock.symbol);
 
-    SortedStock.forEach((stock, index) => {
+    userPort.forEach((stock, index) => {
       if (!colorRef.current[stock.symbol]) {
         colorRef.current[stock.symbol] = palettes[index % palettes.length];
       }
@@ -73,7 +179,7 @@ export const Profile = () => {
       },
       series: series,
       labels: labels,
-      colors: SortedStock.map((stock) => colorRef.current[stock.symbol]),
+      colors: userPort.map((stock) => colorRef.current[stock.symbol]),
       fill: {
         type: "gradient",
         gradient: {
@@ -105,8 +211,8 @@ export const Profile = () => {
                 color: "#ffffff",
                 offsetY: -0.25,
                 show: true,
-                formatter: function (val) {
-                  return val + "THB";
+                formatter: (val) => {
+                  return "฿" + formatNumber(Number(val));
                 },
               },
             },
@@ -121,13 +227,7 @@ export const Profile = () => {
     return () => {
       chart.destroy();
     };
-  }, [SortedStock]);
-
-  const handleonclickLogout = () => {
-    Auth.setAuth(false);
-    Cookies.remove("token");
-    window.location.href = "/Login";
-  };
+  }, [SortedStock, userPort]);
 
   return (
     <div className="Profile__container">
@@ -140,14 +240,21 @@ export const Profile = () => {
           <div className="balance__container__text">
             <div className="balance__Total__Wealth">Total Wealth</div>
             <div className="balance__Total__Wealth__value">
-              {TotalWealth.toFixed(2)}
+              {userPort.map((stock) => {
+                total += stock.last_price * stock.volume;
+              })}
+              {formatNumber(total)}
             </div>
             <div className="THB__Balance">THB</div>
 
             <div className="balance__Total__Topic">
               Cash Balance
               <div className="balance__Total__Cash__Balance__value">
-                {TotalCashBalance.toFixed(2)}
+                {userAccount.cash_balance ? (
+                  formatNumber(userAccount.cash_balance)
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
 
@@ -155,11 +262,13 @@ export const Profile = () => {
               <div className="balance__Total__Topic">
                 Available
                 <div className="wallet__Line__Available__value">
-                  {Account.account.map((account) => (
-                    <div key={account.id}>
-                      {account.LineAvailable.toFixed(2)}
-                    </div>
-                  ))}
+                  <div>
+                    {userAccount.line_available ? (
+                      formatNumber(userAccount.line_available)
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,9 +276,13 @@ export const Profile = () => {
               <div className="balance__Total__Topic">
                 Credit Limit
                 <div className="wallet__Creditlimit__value">
-                  {Account.account.map((account) => (
-                    <div key={account.id}>{account.CreditLimit.toFixed(2)}</div>
-                  ))}
+                  <div>
+                    {userAccount.credit_limit ? (
+                      formatNumber(userAccount.credit_limit)
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,7 +310,7 @@ export const Profile = () => {
               Bank Transaction List
             </div>
             <div className="profile__container__List__box">
-              {sortedTransactions.map((transaction, index) => (
+              {userTsc.map((transaction, index) => (
                 <div className="profile__container__List">
                   <div
                     className="profile__container__transaction__item"
@@ -213,7 +326,7 @@ export const Profile = () => {
                               : "#CD3D42",
                         }}
                       >
-                        {transaction.type}
+                        {transaction.type.toUpperCase()}
                       </span>
                       <span
                         className="profile__transaction___topic"
@@ -222,10 +335,10 @@ export const Profile = () => {
                         Amount
                       </span>
                       <span className="profile__amount__value">
-                        {transaction.amount.toFixed(2)}
+                        {formatNumber(transaction.amount)}
                       </span>
                       <span className="profile__transaction___date">
-                        {transaction.date}
+                        {formatDate(transaction.timestamp)}
                       </span>
                     </div>
                   </div>
@@ -244,7 +357,7 @@ export const Profile = () => {
           <div className="profile__Account__ID">
             Account ID
             <span className="profile__Account__ID__value">
-              {Account.account.map((account) => account.ID)}
+              {userAccount.id}
             </span>
           </div>
           <div className="profile__Account__Verified">
@@ -255,46 +368,48 @@ export const Profile = () => {
           <div className="profile__Account__Broker">
             Broker
             <span className="profile__Account__Broker__value">
-              {Account.account.map((account) => account.Broker)}
+              {userAccount.broker_name}
             </span>
           </div>
 
           <div className="profile__Account__PersonalInformation">
             Personal Information
           </div>
- 
+
           <div className="profile__Account__Topic">
             Account Name
             <span className="profile__Account__Name__value">
-              {Account.account.map((account) => account.Username)}
+              {userData.map((user) => user.name)}
             </span>
           </div>
 
           <div className="profile__Account__Topic">
             Phone Number
             <span className="profile__Account__PhoneNumber__value">
-              {Account.account.map((account) => account.PhoneNumber)}
+              {userData.map((user) => user.phone)}
             </span>
           </div>
           <div className="profile__Account__Topic">
             Email
             <span className="profile__Account__Email__value">
-              {Account.account.map((account) => account.EmailAddress)}
+              {userData.map((user) => user.email)}
             </span>
           </div>
 
           <button className="profile__Account__LogOut">
-            <Link to="/login" 
-            className="profile__Account__LogOut__button"
+            <Link
+              to="/"
+              className="profile__Account__LogOut__button"
               onClick={handleClickLogout}
-              >Log Out
+            >
+              Log Out
             </Link>
-            </button>
+          </button>
 
           <div className="Login__device">
             <div className="profile__Account__Topic">Device Log in </div>
             <div className="Login__device__box">
-              {SortedDeviceLogin.map((login, index) => (
+              {userLog.map((login, index) => (
                 <div className="Login__device__item__List">
                   <div className="Login__device__item" key={index}>
                     <div className="Login__device__item__detail">
@@ -302,10 +417,10 @@ export const Profile = () => {
                         {login.device}
                       </span>
                       <span className="Login__device__IPaddress">
-                        {login.IPAddress}
+                        {login.ip}
                       </span>
                       <span className="Login__device__date">
-                        {login.date} {login.time}
+                        {formatDate(login.login)}
                       </span>
                     </div>
                   </div>

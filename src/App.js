@@ -15,12 +15,19 @@ import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
+
+import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
+
 import axios from "axios";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
+<<<<<<< HEAD
   const [account, setAccount] = useState(1);
+=======
+  const [account, setAccount] = useState(2);
+>>>>>>> 6536e51f30ed3a5a78e7974cc61ee641a2de4af2
   const [isLoading, setLoading] = useState(true);
 
   const readCookie = async () => {
@@ -116,11 +123,12 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+                  <Route path="/GovernmentView" element={<GovernmentView />} />
                   <Route
-                    path="/GovernmentView"
+                    path="/AnalyticPage"
                     element={
                       <ProtectedRoute>
-                        <GovernmentView />
+                        <AnalyticPage />
                       </ProtectedRoute>
                     }
                   />

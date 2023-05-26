@@ -39,38 +39,41 @@ export const Notification = ({ value, hasRefresh }) => {
       })
       .then((response) => {
         console.log(response.data);
+        setClick(!click);
       })
       .catch((error) => {
         console.error(error);
       });
-    setClick(!click);
+  };
+
+  const get_noti = async (e) => {
+    await axios
+      .get(`https://www.tradekub.me/noti/${e}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+        setData([]);
+      });
   };
 
   useEffect(() => {
-    const get_noti = async (e) => {
-      await axios
-        .get(`https://www.tradekub.me/noti/${e}`, {
-          headers: {
-            accept: "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setData(response.data);
-        })
-        .catch((error) => {
-          console.error(error.response.data);
-          setData([]);
-          return;
-        });
-    };
+    get_noti(Account.account);
+  }, [Account.account, click]);
 
+  useEffect(() => {
     const intervalId = setInterval(() => {
       get_noti(Account.account);
-    }, 1000 * 30);
+    }, 1000 * 10);
     return () => clearInterval(intervalId);
-  }, [Account.account, click]);
+  }, []);
 
   const handleClick1 = () => {
     value["key"] = 1;
