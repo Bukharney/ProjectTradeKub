@@ -104,7 +104,7 @@ export const Profile = () => {
 
     const get_user_log = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/users/login_info/${e}`, {
+        .get(`https://www.tradekub.me/users/login_info`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -155,7 +155,7 @@ export const Profile = () => {
 
     get_user_info();
     get_account_info(Accounts.account);
-    get_user_log(1);
+    get_user_log();
     get_tsc();
     get_portfolio(Accounts.account);
   }, [Accounts.account]);
