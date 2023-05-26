@@ -1,0 +1,75 @@
+.AllsectionSelectAcc{
+    width: 100%;
+    height: 100vh;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.boxSelectAcc{
+    width: 20%;
+    height: 75%;
+}
+
+.Head-Text-SelectAcc
+{
+    width: 100%;
+    text-align: center;
+    font-size: medium;
+    height: 10%;
+}
+
+.TextUsernameSelectAcc{
+    width: 100%;
+    height: 6%;
+    background: salmon;
+    font-size: x-large;
+    text-align: center;
+}
+
+.TextBoxSelectAcc{
+    background: wheat;
+    width: 100%;
+    height: 68%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.BoxFooterSelectAcc{
+    width: 100%;
+    height: 14%;
+    background:saddlebrown;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.AccEdit {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    background: #282A2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border: 1px solid #767678;
+}
+
+.GoToMarket {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    background: #CCFF00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #282A2E;
+    font-size: 0.8rem;
+    font-weight: 600;
+}

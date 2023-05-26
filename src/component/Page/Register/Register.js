@@ -1,7 +1,5 @@
 import React from "react";
-
 import './Register.css'
-
 
 const Register = () => {
 
@@ -35,10 +33,10 @@ const Register = () => {
               placeholder="Password"
             />
           </div>
-          <div className="CancelConfirm">
+          <button className="CancelConfirm">
           <button className="RegisCancel" onClick={handleBack}>Cancel</button>
             <div className="RegisConfirm">Confirm</div>
-          </div>
+          </button>
       </div>
     </div>
   );
