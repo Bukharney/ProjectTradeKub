@@ -22,6 +22,10 @@ export const Profile = () => {
   const [userPort, setUserPort] = useState([]);
   let total = 0;
 
+  const formatNumber = (Number) => {
+    return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
+
   const formatDate = (dateString) => {
     const options = {
       year: "numeric",
@@ -50,10 +54,6 @@ export const Profile = () => {
     value.key = 1;
     setClick(!click);
   };
-
-  const TotalWealth = SortedStock.reduce((acc, stock) => {
-    return acc + stock.marketValue;
-  }, 0);
 
   const palettes = [
     "#00CB76",
@@ -211,8 +211,8 @@ export const Profile = () => {
                 color: "#ffffff",
                 offsetY: -0.25,
                 show: true,
-                formatter: function (val) {
-                  return val + "THB";
+                formatter: (val) => {
+                  return "฿" + formatNumber(Number(val));
                 },
               },
             },
@@ -243,7 +243,7 @@ export const Profile = () => {
               {userPort.map((stock) => {
                 total += stock.last_price * stock.volume;
               })}
-              {total.toFixed(2)}
+              {formatNumber(total)}
             </div>
             <div className="THB__Balance">THB</div>
 
@@ -251,7 +251,7 @@ export const Profile = () => {
               Cash Balance
               <div className="balance__Total__Cash__Balance__value">
                 {userAccount.cash_balance ? (
-                  userAccount.cash_balance.toFixed(2)
+                  formatNumber(userAccount.cash_balance)
                 ) : (
                   <></>
                 )}
@@ -264,7 +264,7 @@ export const Profile = () => {
                 <div className="wallet__Line__Available__value">
                   <div>
                     {userAccount.line_available ? (
-                      userAccount.line_available.toFixed(2)
+                      formatNumber(userAccount.line_available)
                     ) : (
                       <></>
                     )}
@@ -278,7 +278,7 @@ export const Profile = () => {
                 <div className="wallet__Creditlimit__value">
                   <div>
                     {userAccount.credit_limit ? (
-                      userAccount.credit_limit.toFixed(2)
+                      formatNumber(userAccount.credit_limit)
                     ) : (
                       <></>
                     )}
@@ -335,7 +335,7 @@ export const Profile = () => {
                         Amount
                       </span>
                       <span className="profile__amount__value">
-                        {transaction.amount && transaction.amount.toFixed(2)}
+                        {formatNumber(transaction.amount)}
                       </span>
                       <span className="profile__transaction___date">
                         {formatDate(transaction.timestamp)}

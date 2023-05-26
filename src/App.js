@@ -116,14 +116,7 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-                  <Route
-                    path="/GovernmentView"
-                    element={
-                      <ProtectedRoute>
-                        <GovernmentView />
-                      </ProtectedRoute>
-                    }
-                  />
+                  <Route path="/GovernmentView" element={<GovernmentView />} />
                 </Routes>
               </div>
             </Router>

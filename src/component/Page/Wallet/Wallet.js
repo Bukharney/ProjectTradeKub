@@ -29,6 +29,10 @@ export const Wallet = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const formatNumber = (Number) => {
+    return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
+
   const SortedStock = userPort.sort((a, b) => {
     return b.volume * b.last_price - a.volume * a.last_price;
   });
@@ -38,10 +42,6 @@ export const Wallet = () => {
     value.key = 0;
     setClick(!click);
   };
-
-  const sortedTransactions = Transaction.List.sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
-  });
 
   const calpl = (e) => {
     e["upl"] = e.volume * e.last_price - e.volume * e.avg_price;
@@ -168,8 +168,8 @@ export const Wallet = () => {
                 color: "#ffffff",
                 offsetY: -0.25,
                 show: true,
-                formatter: function (val) {
-                  return val + "THB";
+                formatter: (val) => {
+                  return "฿" + formatNumber(Number(val));
                 },
               },
             },
@@ -200,7 +200,7 @@ export const Wallet = () => {
               total += stock.last_price * stock.volume;
               calpl(stock);
             })}
-            {total.toFixed(2)}
+            {formatNumber(total)}
           </div>
           <div className="THB__Balance">THB</div>
 
@@ -208,7 +208,7 @@ export const Wallet = () => {
             Cash Balance
             <div className="balance__Total__Cash__Balance__value">
               {userAccount.cash_balance ? (
-                userAccount.cash_balance.toFixed(2)
+                formatNumber(userAccount.cash_balance)
               ) : (
                 <></>
               )}
@@ -217,10 +217,10 @@ export const Wallet = () => {
 
           <div className="wallet__Line__Available">
             <div className="balance__Total__Topic">
-              Available
+              Line Available
               <div className="wallet__Line__Available__value">
                 {userAccount.line_available ? (
-                  userAccount.line_available.toFixed(2)
+                  formatNumber(userAccount.line_available)
                 ) : (
                   <></>
                 )}
@@ -232,7 +232,7 @@ export const Wallet = () => {
               Credit Limit
               <div className="wallet__Creditlimit__value">
                 {userAccount.credit_limit ? (
-                  userAccount.credit_limit.toFixed(2)
+                  formatNumber(userAccount.credit_limit)
                 ) : (
                   <></>
                 )}
@@ -280,32 +280,32 @@ export const Wallet = () => {
                   }}
                 >
                   {stock.change >= 0
-                    ? `+${stock.change.toFixed(2)}%`
-                    : `${stock.change.toFixed(2)}%`}
+                    ? `+${formatNumber(stock.change)}%`
+                    : `${formatNumber(stock.change)}%`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 AVG Purchase Price
                 <div className="wallet__table__AVGPurchase__value">
-                  {stock.avg_price}
+                  {formatNumber(stock.avg_price)}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 Volume
                 <div className="wallet__table__volume__value">
-                  {stock.volume}
+                  {stock.volume.toLocaleString()}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 Total Cost
                 <div className="wallet__table__totalcost__value">
-                  {(stock.volume * stock.avg_price).toFixed(2)}
+                  {formatNumber(stock.volume * stock.avg_price)}
                 </div>
               </div>
               <div className="wallet__table__Topic">
                 Market Value
                 <div className="wallet__table__Maket__Value">
-                  {stock.last_price.toFixed(2)}
+                  {formatNumber(stock.last_price * stock.volume)}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -317,8 +317,8 @@ export const Wallet = () => {
                   }}
                 >
                   {stock.upl >= 0
-                    ? `+${stock.upl.toFixed(2)}`
-                    : `${stock.upl.toFixed(2)}`}
+                    ? `+${formatNumber(stock.upl)}`
+                    : `${formatNumber(stock.upl)}`}
                 </div>
               </div>
               <div className="wallet__table__Topic">
@@ -330,8 +330,8 @@ export const Wallet = () => {
                   }}
                 >
                   {stock.upl2 >= 0
-                    ? `+${stock.upl_per.toFixed(2)}%`
-                    : `${stock.upl_per.toFixed(2)}%`}
+                    ? `+${formatNumber(stock.upl_per)}%`
+                    : `${formatNumber(stock.upl_per)}%`}
                 </div>
               </div>
               <button className="wallet__table__button__value">
@@ -364,7 +364,7 @@ export const Wallet = () => {
                           transaction.side === "Buy" ? "#42A93C" : "#CD3D42",
                       }}
                     >
-                      {transaction.side}
+                      {transaction.side.toUpperCase()}
                     </span>
 
                     <span className="transaction__symbol">
@@ -377,7 +377,7 @@ export const Wallet = () => {
                       Volume
                     </span>
                     <span className="transaction__volume">
-                      <span>{transaction.volume}</span>
+                      <span>{transaction.volume.toLocaleString()}</span>
                     </span>
                     <span
                       className="transaction___topic"
@@ -386,7 +386,7 @@ export const Wallet = () => {
                       Price
                     </span>
                     <span className="transaction__price">
-                      {transaction.price.toFixed(2)}
+                      {formatNumber(transaction.price)}
                     </span>
                     <span
                       className="transaction___topic"
