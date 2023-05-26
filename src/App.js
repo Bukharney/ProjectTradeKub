@@ -10,6 +10,7 @@ import { Notification } from "./component/Page/Notification/Notification.js";
 import { Profile } from "./component/Page/Profile/Profile";
 import AuthContext from "./Context/AuthContext";
 import TokenContext from "./Context/TokenContext";
+import AccountContext from "./Context/AccountContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
@@ -22,6 +23,7 @@ import axios from "axios";
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
+  const [account, setAccount] = useState(2);
   const [isLoading, setLoading] = useState(true);
 
   const readCookie = async () => {
@@ -66,77 +68,70 @@ function App() {
     <>
       <AuthContext.Provider value={{ auth, setAuth }}>
         <TokenContext.Provider value={{ token, setToken }}>
-          <Router>
-            <Navbar />
-            <div>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                {!auth ? (
-                  <Route path="/Login" element={<Login />} />
-                ) : (
-                  () => window.location.replace("/Market")
-                )}
-                <Route
-                  path="/Market"
-                  element={
-                    <ProtectedRoute>
-                      <Market />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/Wallet"
-                  element={
-                    <ProtectedRoute>
-                      <Wallet />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/News"
-                  element={
-                    <ProtectedRoute>
-                      <News />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/Notification"
-                  element={
-                    <ProtectedRoute>
-                      <Notification />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/Profile"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/GovernmentView"
-                  element={
-                    <ProtectedRoute>
-                      <GovernmentView />
-                    </ProtectedRoute>
-                  }
-                />
-
-                <Route
-                  path="/AnalyticPage"
-                  element={
-                    <ProtectedRoute>
-                      <AnalyticPage />
-                    </ProtectedRoute>
-                  }
-                />
-
-              </Routes>
-            </div>
-          </Router>
+          <AccountContext.Provider value={{ account, setAccount }}>
+            <Router>
+              <Navbar />
+              <div>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  {!auth ? (
+                    <Route path="/Login" element={<Login />} />
+                  ) : (
+                    () => window.location.replace("/Market")
+                  )}
+                  <Route
+                    path="/Market"
+                    element={
+                      <ProtectedRoute>
+                        <Market />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/Wallet"
+                    element={
+                      <ProtectedRoute>
+                        <Wallet />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/News"
+                    element={
+                      <ProtectedRoute>
+                        <News />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/Notification"
+                    element={
+                      <ProtectedRoute>
+                        <Notification />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/Profile"
+                    element={
+                      <ProtectedRoute>
+                        <Profile />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="/GovernmentView" element={<GovernmentView />} />
+                  <Route
+                    path="/AnalyticPage"
+                    element={
+                      <ProtectedRoute>
+                        <AnalyticPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </div>
+            </Router>
+          </AccountContext.Provider>
         </TokenContext.Provider>
       </AuthContext.Provider>
     </>

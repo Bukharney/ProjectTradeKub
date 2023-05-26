@@ -186,6 +186,3 @@ export const GovernmentView = () => {
 };
 
 export default GovernmentView;
-
-
-

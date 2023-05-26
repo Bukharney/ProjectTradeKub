@@ -5,7 +5,7 @@ export const text = {}
 
 const Table = ({ columns, rows }) => {
   return (
-    <div style={{position: "absolute", marginLeft: "80px",marginTop:"20rem"}}>
+    <div style={{position: "absolute", marginLeft: "80px",marginTop:"300px"}}>
     <table>
         
       <thead>

@@ -12,9 +12,8 @@ export const News = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   useEffect(() => {
-    const get_news = async (e) => {
-      console.log(Token.token);
-      let res = await axios
+    const get_news = async () => {
+      await axios
         .get(`https://www.tradekub.me/news/`, {
           headers: {
             accept: "application/json",
