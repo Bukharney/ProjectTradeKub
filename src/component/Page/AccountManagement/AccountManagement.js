@@ -3,6 +3,8 @@ import './AccountManagement.css'; // Import the CSS file for additional styles
 
 export const AccountManagement = () => {
     const [selectedButton, setSelectedButton] = useState('Add'); // Initial selection is 'Add'
+    const [InputBox0, setInputBox0] = useState('');
+
     const [InputBox1, setInputBox1] = useState('');
     const [InputBox2, setInputBox2] = useState('');
     const [InputBox3, setInputBox3] = useState('');
@@ -21,6 +23,11 @@ export const AccountManagement = () => {
 
 
     // Function to handle input change
+    const handleInputChange0 = (event) => {
+        setInputBox0(event.target.value);
+    };
+
+
     const handleInputChange1 = (event) => {
         setInputBox1(event.target.value);
     };
@@ -41,7 +48,13 @@ export const AccountManagement = () => {
     const handleSubmit1 = (event) => {
         event.preventDefault();
         /*
-        if(InputBox1 ไม่เจอใน database){
+        if(InputBox0 ไม่เจอใน databases)
+        {
+            alert('Cannot find your broker ID')
+            window.location.reload();
+
+        }
+        else if(InputBox1 ไม่เจอใน database){
             alert('Cannot find the username')
             window.location.reload();
         }
@@ -56,7 +69,7 @@ export const AccountManagement = () => {
             window.location.reload();
         }
         else{ // เตรียมยัดข้อมูลตรงนี้}
-        InputBox1 //username สำหรับสร้าง account ของ user เพิ่ม
+        InputBox1 //username สำหรับสร้าง account ของ user เพิ่ม โดยมี InputBox0 คือ broker
         InputBox2 //pin
         InputBox3 //credit limit
         //******************** ADD*/
@@ -234,6 +247,14 @@ export const AccountManagement = () => {
                     <button type="submit" className='submitDelete'>Delete</button>
                 </form>
             }
+
+            <input
+                type="text"
+                value={InputBox0}
+                onChange={handleInputChange0}
+                placeholder="Your broker ID..."
+                className='brokerBox'
+            />
 
         </div>
     );
