@@ -250,7 +250,7 @@ export const Profile = () => {
             <div className="balance__Total__Topic">
               Cash Balance
               <div className="balance__Total__Cash__Balance__value">
-                {userAccount.cash_balance ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.cash_balance)
                 ) : (
                   <></>
@@ -263,7 +263,7 @@ export const Profile = () => {
                 Available
                 <div className="wallet__Line__Available__value">
                   <div>
-                    {userAccount.line_available ? (
+                    {userAccount.id ? (
                       formatNumber(userAccount.line_available)
                     ) : (
                       <></>
@@ -277,7 +277,7 @@ export const Profile = () => {
                 Credit Limit
                 <div className="wallet__Creditlimit__value">
                   <div>
-                    {userAccount.credit_limit ? (
+                    {userAccount.id ? (
                       formatNumber(userAccount.credit_limit)
                     ) : (
                       <></>

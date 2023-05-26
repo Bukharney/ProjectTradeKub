@@ -206,11 +206,7 @@ export const Wallet = () => {
           <div className="balance__Total__Topic">
             Cash Balance
             <div className="balance__Total__Cash__Balance__value">
-              {userAccount.cash_balance ? (
-                formatNumber(userAccount.cash_balance)
-              ) : (
-                <></>
-              )}
+              {userAccount.id ? formatNumber(userAccount.cash_balance) : <></>}
             </div>
           </div>
 
@@ -218,7 +214,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Line Available
               <div className="wallet__Line__Available__value">
-                {userAccount.line_available ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.line_available)
                 ) : (
                   <></>
@@ -230,7 +226,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Credit Limit
               <div className="wallet__Creditlimit__value">
-                {userAccount.credit_limit ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.credit_limit)
                 ) : (
                   <></>

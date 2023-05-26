@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Market.css";
 import { stock_market, User } from "./DBmarket";
 import CandleChart from "./CandleChart";
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 export const Market = () => {
+  const Token = useContext(TokenContext);
+  const Account = useContext(AccountContext);
   const symbolData = stock_market.KBANK[0];
+  const [isLoading, setIsloading] = useState(true);
+  const [symbol, setSymbol] = useState("KBANK");
+  const [marketData, setMarketData] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
@@ -14,6 +22,10 @@ export const Market = () => {
   const [inputBorderColor3, setInputBorderColor3] = useState("");
 
   const totalPrice = Price * Volume;
+
+  const formatNumber = (Number) => {
+    return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -51,6 +63,32 @@ export const Market = () => {
     setInputBorderColor3("");
   };
 
+  const get_market_data = async (symbol) => {
+    await axios
+      .get(`http://127.0.0.1:8000/stock/market_data/${symbol}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setMarketData(response.data);
+        setIsloading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    get_market_data(symbol);
+  }, []);
+
+  if (isLoading) {
+    return <div className="Market__container">Loading...</div>;
+  }
+
   return (
     <div className="Market__container">
       <div className="Market__container__mid">
@@ -58,19 +96,20 @@ export const Market = () => {
           <div className="Market__container__mid__header__left">
             <div className="Market__container__symbol">
               <div className="Market__stock__symbol">Symbol</div>
-              <div className="Market__stock__symbol__value">
-                {symbolData.symbol}
-              </div>
+              <div className="Market__stock__symbol__value">{symbol}</div>
             </div>
             <div className="Market__container__last_Price">
               <div className="Market__stock__Last_Price">last Price</div>
               <div
                 className="Market__stock__Last_Price__value"
                 style={{
-                  color: symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                  color:
+                    marketData.quote_symbol.percentChange >= 0
+                      ? "#42A93C"
+                      : "#CD3D42",
                 }}
               >
-                {symbolData.lastPrice.toFixed(2)}
+                {formatNumber(marketData.quote_symbol.last)}
               </div>
             </div>
           </div>
@@ -82,20 +121,20 @@ export const Market = () => {
                   className="Market__stock__CHG__value"
                   style={{
                     color:
-                      symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                      marketData.quote_symbol.change >= 0
+                        ? "#42A93C"
+                        : "#CD3D42",
                   }}
                 >
-                  {symbolData.percentChange.toFixed(2)}
+                  {formatNumber(marketData.quote_symbol.percentChange)}
                 </div>
               </div>
-
               <div className="Market__container__volume">
                 <div className="Market__stock__volume">Bid Volume</div>
                 <div className="Market__stock__volume__value">
-                  {symbolData.volumeBid}
+                  {formatNumber(Number(marketData.bid_offer.bid_volume1))}
                 </div>
               </div>
-
               <div className="Market__container__Bid_Price">
                 <div className="Market__stock__Bid_Price">Bid Price</div>
                 <div
@@ -105,10 +144,9 @@ export const Market = () => {
                       symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {symbolData.bid.toFixed(2)}
+                  {formatNumber(marketData.bid_offer.bid_price1)}
                 </div>
               </div>
-
               <div className="Market__container__Offer_Price">
                 <div className="Market__stock__Offer_Price">Offer Price</div>
                 <div
@@ -118,21 +156,19 @@ export const Market = () => {
                       symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {symbolData.offer.toFixed(2)}
+                  {formatNumber(marketData.bid_offer.ask_price1)}
                 </div>
               </div>
-
               <div className="Market__container__offer_volume">
                 <div className="Market__stock__offer_volume">Offer Volume</div>
                 <div className="Market__stock__offer_volume__value">
-                  {symbolData.volumeOffer}
+                  {formatNumber(Number(marketData.bid_offer.ask_volume1))}
                 </div>
               </div>
-
               <div className="Market__container__total_volume">
                 <div className="Market__stock__total_volume">Total Volume</div>
                 <div className="Market__stock__total_volume__value">
-                  {symbolData.totalVolume}
+                  {marketData.quote_symbol.totalVolume.toLocaleString()}
                 </div>
               </div>
             </div>
@@ -147,7 +183,7 @@ export const Market = () => {
                 color: "#42A93C",
               }}
             >
-              {symbolData.high.toFixed(2)}
+              {formatNumber(marketData.quote_symbol.high)}
             </span>
             <span className="Market__stock__Low">Low</span>
             <span
@@ -156,7 +192,7 @@ export const Market = () => {
                 color: "#CD3D42",
               }}
             >
-              {symbolData.low.toFixed(2)}
+              {formatNumber(marketData.quote_symbol.low)}
             </span>
             <span className="Market__stock__Open">Ceiling</span>
             <span
@@ -165,7 +201,7 @@ export const Market = () => {
                 color: "#42A93C",
               }}
             >
-              {symbolData.ceiling.toFixed(2)}
+              {formatNumber(marketData.candlestick_1limit.open[0] * 1.3)}
             </span>
             <span className="Market__stock__floor">Floor</span>
             <span
@@ -174,20 +210,20 @@ export const Market = () => {
                 color: "#CD3D42",
               }}
             >
-              {symbolData.floor.toFixed(2)}
+              {formatNumber(marketData.candlestick_1limit.open[0] * 0.7)}
             </span>
             <sapn className="Market__stock__Average">Average</sapn>
             <span className="Market__stock__Average__value">
-              {symbolData.average.toFixed(2)}
+              {formatNumber(marketData.quote_symbol.average)}
             </span>
             <sapn className="Market__stock__Close">Close</sapn>
             <span className="Market__stock__Close__value">
-              {symbolData.close.toFixed(2)}
+              {formatNumber(marketData.candlestick_1limit.close[0])}
             </span>
           </div>
         </div>
         <div className="Market__container__Graph">
-          <CandleChart data={stock_market.candleData} height="100%" />
+          <CandleChart data={marketData.candlestick_50limit} height="100%" />
         </div>
         <div className="Market__container__mid__Footer">
           <div className="Market__container__mid__Footer__width">
@@ -257,6 +293,7 @@ export const Market = () => {
                   />
                 </span>
               </div>
+
               <div className="Market__Footer__Reset__Order">
                 <button onClick={handleResetClick}>Place Order</button>
               </div>
