@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Market.css";
 import { stock_market, User } from "./DBmarket";
+import { stock_left, stock_status } from "./DBPop&Order";
 import CandleChart from "./CandleChart";
 
 export const Market = () => {
@@ -53,6 +54,8 @@ export const Market = () => {
 
   return (
     <div className="Market__container">
+      <div className="Market__container__left"></div>
+
       <div className="Market__container__mid">
         <div className="Market__container__mid__header">
           <div className="Market__container__mid__header__left">
@@ -258,7 +261,7 @@ export const Market = () => {
                 </span>
               </div>
               <div className="Market__Footer__Reset__Order">
-                <button onClick={handleResetClick}>Place Order</button>
+                <button onClick={handleResetClick}>Reset</button>
               </div>
             </div>
             <div className="Market__container__mid__Footer__right">
@@ -320,8 +323,99 @@ export const Market = () => {
         </div>
       </div>
 
-      <div className="Market__container__right"></div>
-      <div className="Market__container__left"></div>
+      <div className="Market__container__right">
+        <div className="Market__container__right__Container">
+          <div className="Market__container__right__Container__Top">
+            <div className="Market__container__right__Header__top">Popular</div>
+            <div className="Market__container__right__top__header__container">
+              <div className="Market__container__right__top__header__Symbol">
+                Symbol
+              </div>
+              <div className="Market__container__right__top__header__Price">
+                Last Price
+              </div>
+              <div className="Market__container__right__top__header__Change">
+                Change
+              </div>
+            </div>
+            <div className="Market__container__right__Container__stock">
+              <div className="Market__container__stock__box">
+                {stock_left.mock.map((stock) => (
+                  <div
+                    key={stock.Symbol}
+                    className="Market__container__right__Container__box"
+                    style={{
+                      color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                    }}
+                  >
+                    <div className="Market__container__right__stock__Symbol">
+                      {stock.Symbol}
+                    </div>
+                    <div className="Market__container__right__stock__Price">
+                      {stock.LastPrice}
+                    </div>
+                    <div className="Market__container__right__stock__Change">
+                      {stock.PercentChange > 0
+                        ? `+${stock.PercentChange}%`
+                        : `${stock.PercentChange}%`}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="Market__container__right__Container__Bottom">
+            <div className="Market__container__right__Header__bottom">
+              Your Order
+            </div>
+            <div className="Market__container__right__Bottom__header__container">
+              <div className="Market__container__right__Bottom__header__Symbol">
+                Symbol
+              </div>
+              <div className="Market__container__right__Bottom__header__Side">
+                Side
+              </div>
+              <div className="Market__container__right__Bottom__header__Price">
+                Price
+              </div>
+              <div className="Market__container__right__Bottom__header__Volume">
+                Volume
+              </div>
+              <div className="Market__container__right__Bottom__header__Status">
+                Status
+              </div>
+            </div>
+            <div className="Market__container__right__Container__stock">
+              <div className="Market__container__stock__box">
+                {stock_status.mock.map((stock) => (
+                  <div
+                    key={stock.symbol}
+                    className="Market__container__right__Container__box"
+                  >
+                    <div className="Market__container__right__status__Symbol">
+                      {stock.symbol}
+                    </div>
+                    <div className="Market__container__right__statatus__Side">
+                      {stock.side}
+                    </div>
+                    <div className="Market__container__right__status__Price">
+                      {stock.price.toFixed(2)}
+                    </div>
+                    <div className="Market__container__right__status__Volume">
+                      {stock.volume}
+                    </div>
+
+                    <div className="Market__container__right__status__Status">
+                      {stock.status}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

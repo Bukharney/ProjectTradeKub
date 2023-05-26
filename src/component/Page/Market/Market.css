@@ -142,10 +142,9 @@
   height: 100%;
 }
 
-
 .Market__Footer__Order,
 .Market__Footer__Pin,
-  .Market__Footer__Total,
+.Market__Footer__Total,
 .Market__Footer__Volume,
 .Market__Footer__Price,
 .Market__Footer__Symbol,
@@ -163,12 +162,12 @@
 
 .Market__Footer__Pin,
 .Market__Footer__Volume,
-.Market__Footer__Price{
-  border: 1px solid ;
+.Market__Footer__Price {
+  border: 1px solid;
 }
 
 .Market__Footer__Pin,
-  .Market__Footer__Total,
+.Market__Footer__Total,
 .Market__Footer__Volume,
 .Market__Footer__Price,
 .Market__Footer__Symbol,
@@ -206,7 +205,7 @@
 
 .Market__Footer__Volume__value input,
 .Market__Footer__Price__value input,
-.Market__Footer__Pin__value input{
+.Market__Footer__Pin__value input {
   background: transparent;
   outline: none;
   width: 70%;
@@ -217,16 +216,14 @@
   padding: none;
 }
 
-
-.Market__Footer__Order
-{
+.Market__Footer__Order {
   height: 22%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Market__Footer__Order__div{
+.Market__Footer__Order__div {
   font-weight: 500;
   height: 100%;
   width: 100%;
@@ -236,7 +233,7 @@
 }
 
 .Market__Footer__Buy,
-.Market__Footer__Sell{
+.Market__Footer__Sell {
   height: 100%;
   width: 48.5%;
   background-color: #282a2e;
@@ -247,30 +244,29 @@
 }
 
 .Market__Footer__Buy:hover,
-.Market__Footer__Sell:hover
-{
+.Market__Footer__Sell:hover {
   height: 100%;
   width: 48.5%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #36383C;
-  color: #FFFFFF;
+  background-color: #36383c;
+  color: #ffffff;
 }
 
 .activeBuy {
   height: 100%;
   width: 100%;
-  background-color: #42A93C;
+  background-color: #42a93c;
 }
 
 .activeSell {
   height: 100%;
   width: 100%;
-  background-color: #CD3D42;
+  background-color: #cd3d42;
 }
 
-.Market__Footer__Reset__Order{
+.Market__Footer__Reset__Order {
   font-weight: 500;
   width: 100%;
   height: 22%;
@@ -281,25 +277,179 @@
   background-color: #282a2e;
 }
 
-.Market__Footer__Place__Order{
+.Market__Footer__Place__Order {
   font-weight: 500;
-  width: 100%; 
+  width: 100%;
   height: 22%;
   margin-top: 3%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #CCFF00;
+  background-color: #ccff00;
   color: #282a2e;
 }
 
 .Market__Footer__Reset__Order:hover,
-.Market__Footer__Place__Order:hover{
-    transform: translateY(-1px);
+.Market__Footer__Place__Order:hover {
+  transform: translateY(-1px);
 }
 
+.Market__container__left {
+  background-color: #cd3d42;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right__Container {
+  width: 85%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Market__container__right__Container__Bottom,
+.Market__container__right__Container__Top {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Market__container__right__Header__bottom,
+.Market__container__right__Header__top {
+  width: 100%;
+  text-align: left;
+  font-weight: 600;
+  color: #ccff00;
+}
+
+.Market__container__right__Bottom__header__container,
+.Market__container__right__top__header__container {
+  margin-top: 2%;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Market__container__right__Bottom__header__Symbol,
+.Market__container__right__Bottom__header__Side,
+.Market__container__right__Bottom__header__Price,
+.Market__container__right__Bottom__header__Volume,
+.Market__container__right__Bottom__header__Status,
+.Market__container__right__top__header__Symbol,
+.Market__container__right__top__header__Price,
+.Market__container__right__top__header__Change {
+  width: 30%;
+  color: #4e4f51;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right__statatus__Side,
+.Market__container__right__statatus__Status{
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.Market__container__right__status__Symbol{
+  width: 20%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right__statatus__Price,
+.Market__container__right__statatus__Volume{
+  width: 30%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right__status__Symbol,
+.Market__container__right__Bottom__header__Symbol,
+.Market__container__right__top__header__Symbol
+ {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Market__container__right__statatus__Status,
+.Market__container__right__Bottom__header__Status,
+.Market__container__right__top__header__Change {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Market__container__right__Container__stock {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Market__container__stock__box {
+  margin-top: 2%;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 13.5rem;
+}
+
+.Market__container__stock__box::-webkit-scrollbar {
+  width: 0px;
+}
+
+.Market__container__right__Container__box {
+  width: 100%;
+  height: 13%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Market__container__right__stock__Symbol,
+.Market__container__right__stock__Price,
+.Market__container__right__stock__Change {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.Market__container__right__stock__Symbol {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Market__container__right__stock__Change {
+  display: flex;
+  justify-content: flex-end;
+}
 
 @media screen and (max-width: 1599px) {
+  .Market__container__left {
+    margin-left: 2.5rem;
+  }
+
   .Market__container__mid {
     border-left: 1px solid #282a2e;
     border-right: 1px solid #282a2e;
@@ -314,11 +464,11 @@
     border-right: 1px solid #282a2e;
   }
 
-.Market__Footer__Pin,
+  .Market__Footer__Pin,
   .Market__Footer__Total,
   .Market__Footer__Volume,
-.Market__Footer__Price,
-.Market__Footer__Symbol,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
   .Market__stock__symbol,
   .Market__stock__Last_Price {
     width: 100%;
@@ -391,8 +541,8 @@
   .Market__Footer__Pin,
   .Market__Footer__Total,
   .Market__Footer__Volume,
-.Market__Footer__Price,
-.Market__Footer__Symbol,
+  .Market__Footer__Price,
+  .Market__Footer__Symbol,
   .Market__Accont__Line_Available,
   .Market__Accont__Cash__balance,
   .Market__Accont__Credit__limit,
@@ -410,29 +560,51 @@
   .Market__Accont__Credit__limit__value,
   .Market__Accont,
   .Market__Accont__value {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .Market__Footer__Buy,
-  .Market__Footer__Sell{
+  .Market__Footer__Sell {
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .activeBuy,
-  .activeSell{
+  .activeSell {
     border-radius: 5px;
   }
 
-  .Market__Footer__Reset__Order{
+  .Market__Footer__Reset__Order {
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     border: 1px solid #4e4f51;
   }
 
-  .Market__Footer__Place__Order{
+  .Market__Footer__Place__Order {
     border-radius: 10px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Container__Bottom,
+  .Market__container__right__Header__top {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__Bottom__header__Symbol,
+  .Market__container__right__Bottom__header__Side,
+  .Market__container__right__Bottom__header__Price,
+  .Market__container__right__Bottom__header__Volume,
+  .Market__container__right__Bottom__header__Status,
+  .Market__container__right__top__header__Symbol,
+  .Market__container__right__top__header__Price,
+  .Market__container__right__top__header__Change {
+    font-size: 0.75rem;
+  }
+
+  .Market__container__right__stock__Symbol,
+  .Market__container__right__stock__Price,
+  .Market__container__right__stock__Change {
+    font-size: 0.75rem;
   }
 }
 
