@@ -15,6 +15,9 @@ import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
+
+import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
+
 import axios from "axios";
 
 function App() {
@@ -117,6 +120,14 @@ function App() {
                     }
                   />
                   <Route path="/GovernmentView" element={<GovernmentView />} />
+                  <Route
+                    path="/AnalyticPage"
+                    element={
+                      <ProtectedRoute>
+                        <AnalyticPage />
+                      </ProtectedRoute>
+                    }
+                  />
                 </Routes>
               </div>
             </Router>
