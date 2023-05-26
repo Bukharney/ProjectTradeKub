@@ -45,6 +45,7 @@ export const Notification = ({ value, hasRefresh }) => {
         console.error(error);
       });
   };
+
   const get_noti = async (e) => {
     await axios
       .get(`https://www.tradekub.me/noti/${e}`, {
@@ -71,7 +72,7 @@ export const Notification = ({ value, hasRefresh }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       get_noti(Account.account);
-    }, 1000 * 30);
+    }, 1000 * 10);
     return () => clearInterval(intervalId);
   }, []);
 
