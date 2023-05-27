@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './GovernmentView.css'
 import Table from './Table';
-import { tablesColumns, tablesRows } from './databaseTables';
+import { tablesColumns, tablesRows} from './databaseTables';
  
   let index = 0;
 
@@ -51,8 +51,10 @@ export const GovernmentView = () => {
       <button className='Box' onClick={() => handleClick(11)}>News</button>
       {(index===11) && <Table columns={tablesColumns[10]} rows={tablesRows[10]}/>} 
 
-      </div>
+     </div>
   );
 };
 
 export default GovernmentView;
+
+

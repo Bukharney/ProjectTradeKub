@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 
-function CandleChart({ data }) {
+function CandleChart3({ data }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -22,12 +22,8 @@ function CandleChart({ data }) {
 
       const chartOptions = {
         chart: {
-          type: 'candlestick',
-          width: '235%',
-          height: '95%',
-          foreColor: '#4E4F51', 
           type: "candlestick",
-          width: "235%",
+          width: "325%",
           height: "95%",
           foreColor: "#4E4F51",
           toolbar: {
@@ -50,7 +46,6 @@ function CandleChart({ data }) {
           labels: {
             style: {
               height: '1px',
-              colors: '#4E4F51', 
               colors: '#4E4F51',
             },
           },
@@ -62,14 +57,14 @@ function CandleChart({ data }) {
           opposite: true,
           labels: {
             style: {
-              colors: '#4E4F51', 
-
+              colors: '#4E4F51',
             },
           },
         },
         grid: {
           borderColor: "#282A2E",
         },
+
         tooltip: {
           enabled: true,
           theme: "dark",
@@ -83,7 +78,7 @@ function CandleChart({ data }) {
               return value.toFixed(2);
             },
           },
-        },        
+        },
       };
 
       const chart = new ApexCharts(chartRef.current, chartOptions);
@@ -111,4 +106,4 @@ function CandleChart({ data }) {
   return <div ref={chartRef} />;
 }
 
-export default CandleChart;
+export default CandleChart3;

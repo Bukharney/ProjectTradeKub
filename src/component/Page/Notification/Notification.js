@@ -39,38 +39,41 @@ export const Notification = ({ value, hasRefresh }) => {
       })
       .then((response) => {
         console.log(response.data);
+        setClick(!click);
       })
       .catch((error) => {
         console.error(error);
       });
-    setClick(!click);
+  };
+
+  const get_noti = async (e) => {
+    await axios
+      .get(`https://www.tradekub.me/noti/${e}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+        setData([]);
+      });
   };
 
   useEffect(() => {
-    const get_noti = async (e) => {
-      await axios
-        .get(`https://www.tradekub.me/noti/${e}`, {
-          headers: {
-            accept: "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setData(response.data);
-        })
-        .catch((error) => {
-          console.error(error.response.data);
-          setData([]);
-          return;
-        });
-    };
+    get_noti(Account.account);
+  }, [Account.account, click]);
 
+  useEffect(() => {
     const intervalId = setInterval(() => {
       get_noti(Account.account);
-    }, 1000 * 30);
+    }, 1000 * 10);
     return () => clearInterval(intervalId);
-  }, [Account.account, click]);
+  }, []);
 
   const handleClick1 = () => {
     value["key"] = 1;
@@ -81,7 +84,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   if (value["key"] !== 3) {
     return null;
-  } else if (data.length === 0) {
+  } else if (data == null || data.length === 0) {
     return (
       <div className="Notification">
         <div className="Nofitication__Container">
@@ -99,39 +102,41 @@ export const Notification = ({ value, hasRefresh }) => {
       <div className="Nofitication__Container">
         <div className="Notication__Box">
           <div className="Nofitication__Header">Notification</div>
-          {data.map((Inbox, index) => {
-            return (
-              <div className="Notification_Item" key={index}>
-                <Link to="/Wallet">
-                  <button
-                    onClick={() => {
-                      handleClick1(index);
-                    }}
-                  >
-                    <div className="Notification__Body">
-                      <div className="Notification_Dot"></div>
-                      <div className="NotiText">
-                        <div className="NotiPrice">{Inbox.volume}</div>
-                        <div className="NotiName">{Inbox.message}</div>
-                        <div className="NotiTime">
-                          {get_time(Inbox.created_at)}
+          {data
+            ? data.map((Inbox, index) => {
+                return (
+                  <div className="Notification_Item" key={index}>
+                    <Link to="/Wallet">
+                      <button
+                        onClick={() => {
+                          handleClick1(index);
+                        }}
+                      >
+                        <div className="Notification__Body">
+                          <div className="Notification_Dot"></div>
+                          <div className="NotiText">
+                            <div className="NotiPrice">{Inbox.volume}</div>
+                            <div className="NotiName">{Inbox.message}</div>
+                            <div className="NotiTime">
+                              {get_time(Inbox.created_at)}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </button>
-                </Link>
+                      </button>
+                    </Link>
 
-                <button
-                  className="DeleteButton"
-                  onClick={() => {
-                    del_noti(Inbox.id);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            );
-          })}
+                    <button
+                      className="DeleteButton"
+                      onClick={() => {
+                        del_noti(Inbox.id);
+                      }}
+                    >
+                      -
+                    </button>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>

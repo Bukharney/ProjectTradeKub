@@ -224,16 +224,6 @@
     z-index: -1;
   }
 
-  .balance__value__container {
-    position: absolute;
-    border: 1.5px solid #00cb76;
-    border-radius: 10rem;
-    margin-left: 2px;
-    width: 7rem;
-    height: 7rem;
-    z-index: 10;
-  }
-
   .balance__container__text {
     margin-top: 1rem;
   }
@@ -455,7 +445,7 @@
   }
 
   .transaction__date {
-    width: 9rem;
+    width: 12rem;
     padding-right: 1.5rem;
   }
 }
@@ -483,18 +473,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1;
+    z-index: -10;
   }
 
-  .balance__value__container {
-    position: absolute;
-    border: 2px solid #00cb76;
-    border-radius: 10rem;
-    margin-left: 2px;
-    width: 8.5rem;
-    height: 8.5rem;
-    z-index: 10;
-  }
 
   .balance__container__text {
     margin-top: 1.5rem;
@@ -697,7 +678,7 @@
   }
 
   .transaction__side {
-    padding-left: 1.5rem;
+    padding-left: 2rem;
     width: 2rem;
   }
 
@@ -718,8 +699,8 @@
   }
 
   .transaction__date {
-    width: 9rem;
-    padding-right: 1.5rem;
+    width: 12rem;
+    padding-right: 2rem;
   }
 }
 
@@ -749,15 +730,6 @@
     z-index: -1;
   }
 
-  .balance__value__container {
-    position: absolute;
-    border: 2px solid #00cb76;
-    border-radius: 10rem;
-    margin-left: 2px;
-    width: 8.5rem;
-    height: 8.5rem;
-    z-index: 10;
-  }
 
   .balance__container__text {
     margin-top: 1.5rem;
@@ -961,7 +933,7 @@
   }
 
   .transaction__side {
-    padding-left: 1.5rem;
+    padding-left: 2.5rem;
     width: 2rem;
   }
 
@@ -982,7 +954,7 @@
   }
 
   .transaction__date {
-    width: 9rem;
-    padding-right: 1.5rem;
+    width: 13rem;
+    padding-right: 2.5rem;
   }
 }

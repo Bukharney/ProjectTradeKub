@@ -16,12 +16,18 @@ import Cookies from "js-cookie";
 import "./App.css";
 import  Register from "./component/Page/Register/Register";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
+
+import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
+import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
+import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
+import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
+
 import axios from "axios";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-  const [account, setAccount] = useState(0);
+  const [account, setAccount] = useState(2);
   const [isLoading, setLoading] = useState(true);
 
   const readCookie = async () => {
@@ -120,14 +126,45 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+                  <Route path="/GovernmentView" element={<GovernmentView />} />
                   <Route
-                    path="/GovernmentView"
+                    path="/AnalyticPage"
                     element={
                       <ProtectedRoute>
-                        <GovernmentView />
+                        <AnalyticPage />
                       </ProtectedRoute>
                     }
                   />
+
+                  <Route
+                    path="/AccountManagement"
+                    element={
+                      <ProtectedRoute>
+                        <AccountManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  <Route
+                    path="/NewsManagement"
+                    element={
+                      <ProtectedRoute>
+                        <NewsManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+
+                  <Route
+                    path="/BankTransactionManagement"
+                    element={
+                      <ProtectedRoute>
+                        <BankTransactionManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+
                 </Routes>
               </div>
             </Router>

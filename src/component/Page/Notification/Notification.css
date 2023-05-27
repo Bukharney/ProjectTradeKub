@@ -40,7 +40,7 @@
 
 .Notification__Body {
   background: #1a1b1e;
-  height: 4rem;
+  height: 4.5rem;
   width: 15rem;
   margin-bottom: 0.5rem;
 }
@@ -54,7 +54,7 @@
 .Notification_Dot {
   background-color: #ccff00;
   position: absolute;
-  margin-top: 1.75rem;
+  margin-top: 2rem;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
@@ -64,7 +64,7 @@
 .NotiText {
   text-align: left;
   align-items: left;
-  padding-top: 0.7rem;
+  padding-top: 1rem;
   margin-left: 5rem;
 }
 
