@@ -27,7 +27,7 @@
 }
 
 .GovernmentView__data__container__table::-webkit-scrollbar {
-  height: 4px;
+  height: 7px;
 }
 
 .GovernmentView__data__container__table::-webkit-scrollbar-track {
@@ -36,7 +36,7 @@
 
 .GovernmentView__data__container__table::-webkit-scrollbar-thumb {
   background: #282a2e;
-  border-radius: 4px;
+  border-radius: 7px;
 }
 
 .GovernmentView__data__container__table::-webkit-scrollbar-thumb:hover {
@@ -51,6 +51,7 @@
 }
 
 .GovernmentView__data_______container{
+
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -97,7 +98,7 @@
   padding-left: 5%;
   padding-right: 5%;
   margin-top: 15%;
-  display: flex;
+  display: flex; 
   height: 40%;
   justify-content: center;
   align-items: center;
@@ -107,6 +108,8 @@
 }
 
 .GovernmentView__data__table__container{
+  
+  border: 1.5px solid #4e4f51;
   width: 82%;
   height: 100%;
 }
@@ -119,8 +122,8 @@
 }
 
 .GovernmentView__data__table__container__size::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
+  height: 7px;
+  width: 7px;
 }
 
 .GovernmentView__data__table__container__size::-webkit-scrollbar-track {
@@ -129,7 +132,7 @@
 
 .GovernmentView__data__table__container__size::-webkit-scrollbar-thumb {
   background: #282a2e;
-  border-radius: 4px;
+  border-radius: 7px;
 }
 
 .GovernmentView__data__table__container__size::-webkit-scrollbar-thumb:hover {
@@ -137,12 +140,13 @@
 }
 
 .GovernmentView__table {
-  margin-top: 2%;
+  margin-top: 2%; 
   width: 100%;
   border-collapse: collapse;
 }
 
 .GovernmentView__tableHeaderBox {
+
   color: white;
   text-align: center;
 }
@@ -203,6 +207,7 @@
   }
 
   .GovernmentView__container____serch__input{
+
     border: 1px solid #4e4f51;
     border-radius: 10px;
     font-size: 0.75rem;
@@ -210,6 +215,7 @@
 
 
   .GovernmentView__tableHeaderBox {
+    padding-bottom: 30px;
     font-size: 0.75rem;
     padding: 10px 15px;
     border-bottom: 1.5px solid #4e4f51;
@@ -223,3 +229,4 @@
     text-align: center;
     font-size: 0.75rem;
   }
+

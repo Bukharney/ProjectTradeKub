@@ -558,9 +558,12 @@ export const Market = () => {
                 </span>
               </div>
 
-              <div className="Market__Footer__Reset__Order">
-                <button onClick={handleResetClick}>Reset</button>
-              </div>
+              <button
+                className="Market__Footer__Reset__Order"
+                onClick={handleResetClick}
+              >
+                Reset
+              </button>
             </div>
             <div className="Market__container__mid__Footer__right">
               <div className="Market__Footer__Total">
@@ -615,9 +618,13 @@ export const Market = () => {
                   </div>
                 </div>
               </div>
-              <div className="Market__Footer__Place__Order">
-                <button onClick={handleOrderClick}>Place Order</button>
-              </div>
+
+              <button
+                className="Market__Footer__Place__Order"
+                onClick={handleOrderClick}
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>

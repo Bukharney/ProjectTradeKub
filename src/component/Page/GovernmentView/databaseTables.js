@@ -11,7 +11,7 @@ import {
   DividentData,
   NewsData
 }
-  from './allData.js'
+  from './allData.js' 
 
 let view_UserData = [{ NULL: 'NULL' }];
 let view_AccountData = [{ NULL: 'NULL' }];
