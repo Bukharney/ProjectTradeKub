@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Market.css";
 import { stock_market, User } from "./DBmarket";
 import { stock_left, stock_status } from "./DBPop&Order";
-import CandleChart1 from "./CandleChart1";
+import CandleChart from "./CandleChart";
 import CandleChart2 from "./CandleChart2";
 import CandleChart3 from "./CandleChart3";
 import axios from "axios";
@@ -337,7 +337,7 @@ export const Market = () => {
     display: 'flex'
   }
 }}>
-  {window.innerWidth <= 1599 && <CandleChart1 data={marketData.candlestick_50limit} height="100%" />}
+  {window.innerWidth <= 1599 && <CandleChart data={marketData.candlestick_50limit} height="100%" />}
   {window.innerWidth >= 1600 && window.innerWidth <= 1800 && <CandleChart2 data={marketData.candlestick_50limit} height="100%" />}
   {window.innerWidth >= 1801 && <CandleChart3 data={marketData.candlestick_50limit} height="100%" />}
 </div>
