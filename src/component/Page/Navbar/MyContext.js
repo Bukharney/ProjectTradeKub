@@ -1,11 +1,4 @@
-import React from 'react';
+// AnotherFile.js
+import { myExportedFunction } from './Module';
 
-   const ButtonComponent = () => {
-    // Refresh Notification.js
-
-  };
  
-export default ButtonComponent;
-
-
-
