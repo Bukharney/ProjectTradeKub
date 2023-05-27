@@ -1,4 +1,4 @@
-.AllsectionRegis{
+.AllsectionRegis {
     width: 100%;
     height: 100vh;
     color: #ffffff;
@@ -6,74 +6,138 @@
     align-items: center;
     justify-content: center;
   }
-
-.boxRegis{
+  
+  .boxRegis {
     width: 15%;
     height: 40%;
-
     display: flex;
     flex-wrap: wrap;
-}
-
-.Head-Text
-{
+  }
+  
+  .Head-Text {
+    font-weight: 600;
     width: 100%;
     text-align: center;
-    font-size: large;
-}
-
-.TextBoxInsert{
-    background: #282A2E;
+    font-size: 0.85rem;
+  }
+  
+  .TextBoxInsert {
+    border: 1px solid #4e4f51;
+    background-color: #282a2e;
     width: 100%;
     border-radius: 5px;
     margin-top: 5%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.TextBoxInsert input{
-    background: #282A2E;
-    font-size: 0.8rem;
+  }
+  
+  .TextBoxInsert input {
+    background-color: transparent;
+    font-size: 0.65rem;
     color: #ffffff;
     width: 90%;
     height: 70%;
-    outline: none;   
-}
-
-.CancelConfirm {
+    outline: none;
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+  
+  .CancelConfirm {
     width: 100%;
     border-radius: 5px;
     margin-top: 5%;
     height: 15%;
-    
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.RegisCancel {
+  }
+  
+  .RegisCancel {
     width: 48%;
     height: 80%;
     border-radius: 5px;
-    background: #282A2E;
+    background-color: #282a2e;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    border: 1px solid #767678;
-}
-
-.RegisConfirm {
+    font-size: 0.75rem;
+    border: 1px solid #4e4f51;
+  }
+  .RegisCancel :hover {
+      background-color: #cd3d42;
+      box-shadow: 0px 1px 16px -1px #CD3D42(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+  
+    .RegisConfirm button:hover{
+      transform: translateY(-2px);
+    }
+  
+  .RegisConfirm {
     width: 48%;
     height: 80%;
     border-radius: 5px;
-    background: #CCFF00;
+    background: #ccff00;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #282A2E;
-    font-size: 0.8rem;
+    color: #282a2e;
+    font-size: 0.75rem;
     font-weight: 600;
-}
+  }
+  
+  .Reis___background {
+    position: absolute;
+    width: 23%;
+    z-index: -99;
+  }
+  
+  @media screen and (min-width: 1600px) and (max-width: 1800px) {
+    .TextBoxInsert input {
+      font-size: 0.8rem;
+    }
+  
+    .RegisCancel {
+      font-size: 1rem;
+    }
+  
+    .RegisConfirm {
+      font-size: 1rem;
+    }
+  
+    .TextBoxInsert input {
+      font-size: 0.8rem;
+    }
+  
+    .Head-Text {
+  
+      font-size: 1rem;
+    }
+  
+  
+  }
+  
+  @media screen and (min-width: 1801px) {
+      .TextBoxInsert input {
+          font-size: 1rem;
+        }
+  
+        .RegisCancel {
+          font-size: 1.25rem;
+        }
+  
+        .RegisConfirm {
+          font-size: 1.25rem;
+        }
+  
+        .TextBoxInsert input {
+          font-size: 1rem;
+        }
+  
+        .Head-Text {
+  
+          font-size: 1.25rem;
+        }
+  
+  }
