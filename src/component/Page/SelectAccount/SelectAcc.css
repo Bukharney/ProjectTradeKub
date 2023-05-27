@@ -1,0 +1,109 @@
+.AllsectionSelectAcc{
+    width: 100%;
+    height: 100vh;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.boxSelectAcc{
+    width: 25%;
+    height: 75%;
+}
+
+.Head-Text-SelectAcc
+{
+    width: 100%;
+    text-align: center;
+    font-size: medium;
+    height: 10%;
+}
+
+.TextUsernameSelectAcc{
+    width: 100%;
+    height: 6%;
+    font-size: x-large;
+    text-align: center;
+}
+
+.TextBoxSelectAcc{
+    width: 100%;
+    height: 68%;
+}
+
+.BoxFooterSelectAcc{
+    width: 100%;
+    height: 14%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.AccEdit {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    background: #282A2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border: 1px solid #767678;
+}
+
+.GoToMarket {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    background: #CCFF00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #282A2E;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.SelectAccDropDownBox {
+    width: 100%;
+    background: #282A2E;
+    height: 10%;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
+.SelectAccDropDown {
+    width: 100%;
+    text-align: center;
+    background: #282A2E;
+    outline: none;
+    font-size: larger;
+}
+
+.SelectBrokerIDandCash_Box{
+    width: 100%;
+    font-weight: 600;
+    height: 10%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.SelectBrokerIDandCash_Text{
+    width: 50%;
+    text-align: left;
+
+}
+
+.SelectBrokerIDandCash_Data{
+    width: 50%;
+    text-align: right;
+}

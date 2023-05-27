@@ -11,6 +11,7 @@ import { NumericFormat, PatternFormat } from "react-number-format";
 export const Market = () => {
   const Token = useContext(TokenContext);
   const Account = useContext(AccountContext);
+  
   const symbolData = stock_market.KBANK[0];
   const [isLoading, setIsloading] = useState(true);
   const [symbol, setSymbol] = useState("KBANK");

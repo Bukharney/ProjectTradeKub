@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import './AccountManagement.css'; // Import the CSS file for additional styles
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 
 export const AccountManagement = () => {
     const [selectedButton, setSelectedButton] = useState('Add'); // Initial selection is 'Add'
     const [InputBox0, setInputBox0] = useState('');
+    const Token = useContext(TokenContext);
+    const Account = useContext(AccountContext);
+    const [userAccount, setUserAccount] = useState([]);
 
     const [InputBox1, setInputBox1] = useState('');
     const [InputBox2, setInputBox2] = useState('');
@@ -54,6 +58,24 @@ export const AccountManagement = () => {
     const handleInputChange5 = (event) => {
         setInputBox5(event.target.value);
     };
+
+    const get_user_info = async (e) => {
+        await axios
+          .get(`https://www.tradekub.me/user/${e}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            setUserAccount(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+    
 
     // Function to handle form submission
     const handleSubmit1 = (event) => {

@@ -52,6 +52,7 @@ export const StockTransactionManagement = () => {
         setInputBox5(event.target.value);
     };
 
+    
      const handleSubmit2 = (event) => {
         event.preventDefault();
         // Perform any necessary actions with the input value
