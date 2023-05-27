@@ -263,7 +263,7 @@ export const AccountManagement = () => {
                         type="text"
                         value={InputBox1}
                         onChange={handleInputChange1}
-                        placeholder="Existing account ID..."
+                        placeholder="Existing account ID"
                         className='box_1_forSearch'
                     />
 
@@ -277,7 +277,7 @@ export const AccountManagement = () => {
                 type="text"
                 value={InputBox0}
                 onChange={handleInputChange0}
-                placeholder="Your broker ID..."
+                placeholder="Your broker ID"
                 className='brokerBox'
             />
 

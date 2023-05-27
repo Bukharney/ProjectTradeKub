@@ -117,6 +117,7 @@
 
 
 .box_1_forSearch {
+    
     box-sizing: border-box;
 
     position: fixed;
@@ -141,7 +142,6 @@
     bottom: 46.3%;
     background: #282A2E;
     border-radius: 5px;
-
     color: #FFFFFF;
 }
 
@@ -153,7 +153,6 @@
     bottom: 39.91%;
     background: #282A2E;
     border-radius: 5px;
-
     color: #FFFFFF;
 
 }
@@ -219,6 +218,7 @@
 }
 
 .resetAdd {
+    color: #FFFFFF;
     box-sizing: border-box;
 
     position: absolute;
@@ -233,6 +233,7 @@
 }
 
 .submitEdit1 {
+    color: #FFFFFF;
     position: absolute;
     left: 49.26%;
     right: 37.68%;
@@ -244,6 +245,7 @@
 }
 
 .resetEdit1 {
+    color: #FFFFFF;
     box-sizing: border-box;
 
     position: absolute;
@@ -269,6 +271,7 @@
 }
 
 .resetDelete {
+    color: #FFFFFF;
     box-sizing: border-box;
 
     position: absolute;
@@ -284,14 +287,17 @@
 }
 
 .brokerBox {
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 2%;
+    padding-right: 2%;
     position: absolute;
     left: 2.76%;
     right: 78.59%;
     top: 4.35%;
     bottom: 91.3%;
-
+    margin-left: 3%;
     background: #282A2E;
     border-radius: 5px;
     color: #FFFFFF;
-
 }
