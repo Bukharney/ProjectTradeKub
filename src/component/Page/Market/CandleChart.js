@@ -22,10 +22,10 @@ function CandleChart({ data }) {
 
       const chartOptions = {
         chart: {
-          type: 'candlestick',
-          width: '235%',
-          height: '95%',
-          foreColor: '#4E4F51', 
+          type: "candlestick",
+          width: "235%",
+          height: "95%",
+          foreColor: "#4E4F51",
           type: "candlestick",
           width: "235%",
           height: "95%",
@@ -49,9 +49,9 @@ function CandleChart({ data }) {
           type: "datetime",
           labels: {
             style: {
-              height: '1px',
-              colors: '#4E4F51', 
-              colors: '#4E4F51',
+              height: "1px",
+              colors: "#4E4F51",
+              colors: "#4E4F51",
             },
           },
         },
@@ -62,8 +62,7 @@ function CandleChart({ data }) {
           opposite: true,
           labels: {
             style: {
-              colors: '#4E4F51', 
-
+              colors: "#4E4F51",
             },
           },
         },
@@ -83,7 +82,7 @@ function CandleChart({ data }) {
               return value.toFixed(2);
             },
           },
-        },        
+        },
       };
 
       const chart = new ApexCharts(chartRef.current, chartOptions);

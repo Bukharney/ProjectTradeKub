@@ -14,7 +14,7 @@ import AccountContext from "./Context/AccountContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
-import  Register from "./component/Page/Register/Register";
+import Register from "./component/Page/Register/Register";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 
 import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
@@ -22,13 +22,12 @@ import { AccountManagement } from "./component/Page/AccountManagement/AccountMan
 import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
 
-
 import axios from "axios";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-  const [account, setAccount] = useState(2);
+  const [account, setAccount] = useState(1);
   const [isLoading, setLoading] = useState(true);
 
   const readCookie = async () => {
@@ -81,8 +80,8 @@ function App() {
                   <Route path="/" element={<Home />} />
                   {!auth ? (
                     <>
-                    <Route path="/Login" element={<Login />} />
-                    <Route path="/Register" element={<Register />} />
+                      <Route path="/Login" element={<Login />} />
+                      <Route path="/Register" element={<Register />} />
                     </>
                   ) : (
                     () => window.location.replace("/Market")
@@ -155,7 +154,6 @@ function App() {
                     }
                   />
 
-
                   <Route
                     path="/BankTransactionManagement"
                     element={
@@ -165,7 +163,7 @@ function App() {
                     }
                   />
 
-<Route
+                  <Route
                     path="/Register"
                     element={
                       <ProtectedRoute>
@@ -173,8 +171,6 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-
-
                 </Routes>
               </div>
             </Router>
