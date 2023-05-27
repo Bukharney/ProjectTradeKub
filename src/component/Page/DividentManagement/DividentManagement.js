@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import './BankTransactionManagement.css'; // Import the CSS file for additional styles
+import './DividentManagement.css'; // Import the CSS file for additional styles
 
-export const BankTransactionManagement = () => {
+export const DividentManagement = () => {
     const [selectedButton, setSelectedButton] = useState('');
     const [InputBox0, setInputBox0] = useState('');
 
     const [InputBox1, setInputBox1] = useState('');
+    const [InputBox2, setInputBox2] = useState('');
+
     const [InputBox6, setInputBox6] = useState('');
     const [InputBox3, setInputBox3] = useState('');
     const [InputBox4, setInputBox4] = useState('');
@@ -41,6 +43,11 @@ export const BankTransactionManagement = () => {
     const handleInputChange1 = (event) => {
         setInputBox1(event.target.value);
     };
+
+    const handleInputChange2 = (event) => {
+        setInputBox2(event.target.value);
+    };
+
     const handleInputChange3 = (event) => {
         setInputBox3(event.target.value);
     };
@@ -102,28 +109,23 @@ export const BankTransactionManagement = () => {
             window.location.reload();
 
         }
-        else if(selectedButton !== 'Deposit' && selectedButton !== 'Withdraw')
+        else if(InputBox2(stock symbol) ไม่มีใน database)
         {
-            alert('Please select the transaction type')
+            alert('Cannot find the stock symbol')
             window.location.reload();
         }
         else if(isNaN(InputBox3)|| InputBox3 === '')
-        {
-            alert('Wrong format of bank account number')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox4) || InputBox4 === '')
         {
             alert('Wrong format of amount')
             window.location.reload();
         }
          else {
          //เตรียมยัดข้อมูลตรงนี้ 
-                InputBox1(account),3(bank number),4(amount) กับ TIMESTAMP จะ insert ข้อมูลของ Bank_Transaction_Table
-                InputBox4(Amount) ไปอัพเดท cash_balance กับ line_available ของ InputBox1(account)
+                InputBox1(account),2(stock symbol),3(amount) กับ TIMESTAMP จะ insert ข้อมูลของ Bank_Transaction_Table
+                InputBox3(Amount) ไปอัพเดท cash_balance กับ line_available ของ InputBox1(account)
          /*InputBox1 //account Id ที่ต้องการอัพเดท
-        InputBox3 //bank account number  
-        InputBox4 //amount
+        InputBox2 //stock symbol 
+        InputBox3 //amount
          */
         //******************** Edit*/
         window.location.reload();
@@ -149,26 +151,9 @@ export const BankTransactionManagement = () => {
     return (
         <div>
             <pre className='ManagementHeader'>
-                Account
-                <br></br>Bank Transaction
+                <br></br>Divident Transaction
                 <br></br>Management
             </pre>
-            <div className="button-group">
-                <button
-                    className={`buttonDeposit ${selectedButton === 'Deposit' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Deposit')}
-                >
-                    Deposit
-                </button>
-                <button
-                    className={`buttonWithdraw ${selectedButton === 'Withdraw' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Withdraw')}
-                >
-                    Withdraw
-
-                </button>
-
-            </div>
 
             <div>
                 <form onSubmit={handleSubmit2}>
@@ -181,23 +166,22 @@ export const BankTransactionManagement = () => {
                     />
                     <input
                         type="text"
-                        value={InputBox3}
-                        onChange={handleInputChange3}
-                        placeholder="Bank account number..."
-                        className='box_3_input'
+                        value={InputBox2}
+                        onChange={handleInputChange2}
+                        placeholder="Stock symbol..."
+                        className='box_2_input'
                     />
                     <input
                         type="text"
-                        value={InputBox4}
-                        onChange={handleInputChange4}
+                        value={InputBox3}
+                        onChange={handleInputChange3}
                         placeholder="Amount..."
-                        className='box_4_input'
+                        className='box_3_input'
                     />
 
-
-                    <button type="submit" className='submitTransaction'>Confirm transaction</button>
+                    <button type="submit" className='submitTransaction2'>Confirm transaction</button>
                 </form>
-                <button className='resetTransaction' onClick={handleReset}>Reset</button>
+                <button className='resetTransaction2' onClick={handleReset}>Reset</button>
             </div>
 
             <input
@@ -212,4 +196,4 @@ export const BankTransactionManagement = () => {
     );
 };
 
-export default BankTransactionManagement;
+export default DividentManagement;

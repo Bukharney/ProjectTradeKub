@@ -62,11 +62,7 @@ function CandleChart({ data }) {
           opposite: true,
           labels: {
             style: {
-<<<<<<< HEAD
-              colors: '#4E4F51', 
-=======
               colors: '#4E4F51',
->>>>>>> d04337124d172312449a0115069050c370b5e989
             },
           },
         },
@@ -86,11 +82,7 @@ function CandleChart({ data }) {
               return value.toFixed(2);
             },
           },
-<<<<<<< HEAD
-        },        
-=======
         },
->>>>>>> d04337124d172312449a0115069050c370b5e989
       };
 
       const chart = new ApexCharts(chartRef.current, chartOptions);
