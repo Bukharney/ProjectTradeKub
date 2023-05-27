@@ -356,7 +356,9 @@
 .Market__container__right__Bottom__header__Side,
 .Market__container__right__Bottom__header__Price,
 .Market__container__right__Bottom__header__Volume,
-.Market__container__right__Bottom__header__Status,
+.Market__container__right__Bottom__header__Status {
+  color: #4e4f51;
+}
 .Market__container__right__top__header__Symbol,
 .Market__container__right__top__header__Price,
 .Market__container__right__top__header__Change {
@@ -367,9 +369,19 @@
   justify-content: center;
 }
 
+.Market__container__right__Bottom__header__Side,
+.Market__container__right__Bottom__header__Status,
 .Market__container__right__stock__Side,
 .Market__container__right__status__Status {
-  width: 5%;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Market__container__right__Bottom__header__Symbol {
+  width: 15%;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,9 +395,17 @@
   justify-content: center;
 }
 
+.Market__container__right__Bottom__header__Price,
+.Market__container__right__Bottom__header__Volume {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Market__container__right__status__Price,
 .Market__container__right__status__Volume {
-  width: 30%;
+  width: 20%;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -529,7 +549,7 @@
   padding: none;
   border: none;
 }
- 
+
 .srch__icon {
   width: 25%;
   height: 100%;
