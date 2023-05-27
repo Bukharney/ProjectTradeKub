@@ -45,8 +45,7 @@ export const Market = () => {
     console.log("Reset order clicked");
   };
 
-  const handleSelectStock = (e) => {
-  };
+  const handleSelectStock = (e) => {};
 
   const handleInputFocus1 = () => {
     setInputBorderColor1("#CCFF00");
@@ -121,14 +120,14 @@ export const Market = () => {
       <div className="Market__container__left">
         <div className="Market__container__left__serch">
           <div className="Market__container__left__serch__input">
-          <div className="srch__icon" ><i class='bx bx-search'></i></div>
-          <div className="Market__container__left__serch__input__box">
-          <input
-              type="text"
-              placeholder="Search symbols"
-            />
-           </div>
-        </div></div>
+            <div className="srch__icon">
+              <i class="bx bx-search"></i>
+            </div>
+            <div className="Market__container__left__serch__input__box">
+              <input type="text" placeholder="Search symbols" />
+            </div>
+          </div>
+        </div>
         <div className="Market__container__left__stock">
           <div className="Market__container__left__stock__Box">
             {stock_left.mock.map((stock) => (
@@ -406,6 +405,7 @@ export const Market = () => {
                 Pin
                 <span className="Market__Footer__Pin__value">
                   <PatternFormat
+                    className="Input__pin__market"
                     format="# # # # # #"
                     allowEmptyFormatting
                     mask="_"

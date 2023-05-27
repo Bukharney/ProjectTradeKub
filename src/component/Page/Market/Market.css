@@ -218,7 +218,8 @@
 
 .Market__Footer__Volume__value input::placeholder,
 .Market__Footer__Price__value input::placeholder,
-.Market__Footer__Pin__value input::placeholder {
+.Market__Footer__Pin__value input::placeholder,
+.Input__pin__market input::placeholder {
   color: #4E4F51; 
 }
 
@@ -557,6 +558,7 @@
 .Market__container__left__serch__input__box input::placeholder {
   color: #4E4F51; 
 }
+
 
 @media screen and (max-width: 1599px) {
   .Market__container__left {
