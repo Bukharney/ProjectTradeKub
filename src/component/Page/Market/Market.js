@@ -17,16 +17,19 @@ export const Market = () => {
   const [isLoading, setIsloading] = useState(true);
   const [symbol, setSymbol] = useState("KBANK");
   const [marketData, setMarketData] = useState([]);
-  const [userAccount, setUserAccount] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("Buy");
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
   const [Pin, setPin] = useState("");
   const [inputBorderColor1, setInputBorderColor1] = useState("");
   const [inputBorderColor2, setInputBorderColor2] = useState("");
   const [inputBorderColor3, setInputBorderColor3] = useState("");
+  const [userAccount, setUserAccount] = useState([]);
+  const [userOrder, setUserOrder] = useState([]);
+  const [userStock, setUserStock] = useState([]);
+  const [userSearch, setUserSearch] = useState([]);
 
-  const totalPrice = Price * Volume;
+  const totalPrice = Number(Price) * Number(Volume);
 
   const formatNumber = (Number) => {
     return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
@@ -37,17 +40,22 @@ export const Market = () => {
   };
 
   const handleOrderClick = () => {
-    console.log(Price);
-    console.log(Volume);
-    console.log(Pin);
     console.log("Place order clicked");
+    place_order();
   };
 
   const handleResetClick = () => {
+    setPrice("");
+    setVolume("");
+    setPin("");
     console.log("Reset order clicked");
   };
 
-  const handleSelectStock = (e) => {};
+  const handleSelectStock = (e) => {
+    console.log(e);
+    console.log(userSearch[e].symbol);
+    setSymbol(userSearch[e].symbol);
+  };
 
   const handleInputFocus1 = () => {
     setInputBorderColor1("#CCFF00");
@@ -73,9 +81,39 @@ export const Market = () => {
     setInputBorderColor3("");
   };
 
-  const get_market_data = async (symbol) => {
+  const place_order = async (e) => {
+    const data = {
+      account_id: Account.account,
+      symbol: symbol,
+      type: "Normal",
+      volume: Number(Volume),
+      price: Number(Price),
+      side: selectedOption,
+      validity: "Day",
+      pin: Number(Pin),
+    };
+
     await axios
-      .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
+      .post("https://www.tradekub.me/order", data, {
+        headers: {
+          accep: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Order successfull");
+      })
+      .catch((error) => {
+        console.error(error.data);
+        alert("Order failed please try again");
+      });
+  };
+
+  const get_search_stock = async (symbol) => {
+    await axios
+      .get(`https://www.tradekub.me/stock/search/${symbol}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -83,35 +121,97 @@ export const Market = () => {
       })
       .then((response) => {
         console.log(response.data);
-        setMarketData(response.data);
-        setIsloading(false);
+        setUserSearch([...response.data, ...userSearch]);
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const get_account_info = async (e) => {
-    await axios
-      .get(`https://www.tradekub.me/account/${e}`, {
-        headers: {
-          accept: "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setUserAccount(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      console.log(event.target.value);
+      get_search_stock(event.target.value);
+    }
   };
 
   useEffect(() => {
+    const get_market_data = async (symbol) => {
+      await axios
+        .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setMarketData(response.data);
+          setIsloading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_account_info = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/account/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserAccount(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_stock = async () => {
+      await axios
+        .get(`https://www.tradekub.me/stock/`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserStock(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    const get_order = async (e) => {
+      await axios
+        .get(`https://www.tradekub.me/order/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserOrder(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    setTimeout(() => {
+      get_market_data(symbol);
+    }, 5000);
+    get_order(Account.account);
     get_account_info(Account.account);
-    get_market_data(symbol);
-  }, []);
+    get_stock();
+  }, [Account.account, symbol, Token.token]);
 
   if (isLoading) {
     return (
@@ -135,27 +235,31 @@ export const Market = () => {
               <i class="bx bx-search"></i>
             </div>
             <div className="Market__container__left__serch__input__box">
-              <input type="text" placeholder="Search symbols" />
+              <input
+                type="text"
+                placeholder="Search symbols"
+                onKeyDown={handleKeyDown}
+              />
             </div>
           </div>
         </div>
         <div className="Market__container__left__stock">
           <div className="Market__container__left__stock__Box">
-            {stock_left.mock.map((stock) => (
-              <button onClick={handleSelectStock}>
+            {userSearch.map((stock, index) => (
+              <button key={index} onClick={() => handleSelectStock(index)}>
                 <div className="Martket__left_div">
                   <div className="Market__container__left__stock__Box__stock__symbol">
-                    {stock.Symbol}
+                    {stock.symbol}
                   </div>
                   <div className="Market__container__left__stock__Box__stock__lastPrice">
                     Last Price
                     <div
                       className="Market__container__left__stock__Box__stock__lastPrice__value"
                       style={{
-                        color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                        color: stock.change >= 0 ? "#42A93C" : "#CD3D42",
                       }}
                     >
-                      {stock.LastPrice.toFixed(2)}
+                      {stock.close.toFixed(2)}
                     </div>
                   </div>
                   <div className="Market__container__left__stock__Box__stock__percentChange">
@@ -163,12 +267,12 @@ export const Market = () => {
                     <div
                       className="Market__container__left__stock__Box__stock__percentChange__value"
                       style={{
-                        color: stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                        color: stock.change >= 0 ? "#42A93C" : "#CD3D42",
                       }}
                     >
-                      {stock.PercentChange > 0
-                        ? `+${stock.PercentChange}%`
-                        : `${stock.PercentChange}%`}
+                      {stock.change > 0
+                        ? `+${stock.change.toFixed(2)}`
+                        : `${stock.change.toFixed(2)}`}
                     </div>
                   </div>
                 </div>
@@ -228,7 +332,11 @@ export const Market = () => {
               <div className="Market__container__volume">
                 <div className="Market__stock__volume">Bid Volume</div>
                 <div className="Market__stock__volume__value">
-                  {formatNumber(Number(marketData.bid_offer.bid_volume1))}
+                  {formatNumber(
+                    marketData.bid_offer.bid_volume1
+                      ? Number(marketData.bid_offer.bid_volume1)
+                      : 0
+                  )}
                 </div>
               </div>
               <div className="Market__container__Bid_Price">
@@ -240,7 +348,11 @@ export const Market = () => {
                       symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {formatNumber(marketData.bid_offer.bid_price1)}
+                  {formatNumber(
+                    marketData.bid_offer.bid_price1
+                      ? marketData.bid_offer.bid_price1
+                      : 0
+                  )}
                 </div>
               </div>
               <div className="Market__container__Offer_Price">
@@ -252,13 +364,23 @@ export const Market = () => {
                       symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
                   }}
                 >
-                  {formatNumber(marketData.bid_offer.ask_price1)}
+                  {formatNumber(
+                    marketData.bid_offer.ask_price1
+                      ? marketData.bid_offer.ask_price1
+                      : 0
+                  )}
                 </div>
               </div>
               <div className="Market__container__offer_volume">
                 <div className="Market__stock__offer_volume">Offer Volume</div>
                 <div className="Market__stock__offer_volume__value">
-                  {formatNumber(Number(marketData.bid_offer.ask_volume1))}
+                  {formatNumber(
+                    Number(
+                      marketData.bid_offer.ask_volume1
+                        ? marketData.bid_offer.ask_volume1
+                        : 0
+                    )
+                  )}
                 </div>
               </div>
               <div className="Market__container__total_volume">
@@ -301,7 +423,11 @@ export const Market = () => {
                 color: "#42A93C",
               }}
             >
-              {formatNumber(marketData.candlestick_1limit.open[0] * 1.3)}
+              {formatNumber(
+                marketData.candlestick_1limit.open[0]
+                  ? marketData.candlestick_1limit.open[0] * 1.3
+                  : 0
+              )}
             </span>
             <span className="Market__stock__floor">Floor</span>
             <span
@@ -310,7 +436,11 @@ export const Market = () => {
                 color: "#CD3D42",
               }}
             >
-              {formatNumber(marketData.candlestick_1limit.open[0] * 0.7)}
+              {formatNumber(
+                marketData.candlestick_1limit.open[0]
+                  ? marketData.candlestick_1limit.open[0] * 0.7
+                  : 0
+              )}
             </span>
             <sapn className="Market__stock__Average">Average</sapn>
             <span className="Market__stock__Average__value">
@@ -322,26 +452,38 @@ export const Market = () => {
             </span>
             <sapn className="Market__stock__Close">Close</sapn>
             <span className="Market__stock__Close__value">
-              {formatNumber(marketData.candlestick_1limit.close[0])}
+              {formatNumber(
+                marketData.candlestick_1limit.close[0]
+                  ? marketData.candlestick_1limit.close[0]
+                  : 0
+              )}
             </span>
           </div>
         </div>
-        <div className="Market__container__Graph" style={{
-  '@media screen and (max-width: 1599px)': {
-    display: 'flex'
-  },
-  '@media screen and (min-width: 1600px) and (max-width: 1800px)': {
-    display: 'flex'
-  },
-  '@media screen and (min-width: 1801px)': {
-    display: 'flex'
-  }
-}}>
-  {window.innerWidth <= 1599 && <CandleChart data={marketData.candlestick_50limit} height="100%" />}
-  {window.innerWidth >= 1600 && window.innerWidth <= 1800 && <CandleChart2 data={marketData.candlestick_50limit} height="100%" />}
-  {window.innerWidth >= 1801 && <CandleChart3 data={marketData.candlestick_50limit} height="100%" />}
-</div>
-
+        <div
+          className="Market__container__Graph"
+          style={{
+            "@media screen and (max-width: 1599px)": {
+              display: "flex",
+            },
+            "@media screen and (min-width: 1600px) and (max-width: 1800px)": {
+              display: "flex",
+            },
+            "@media screen and (min-width: 1801px)": {
+              display: "flex",
+            },
+          }}
+        >
+          {window.innerWidth <= 1599 && (
+            <CandleChart data={marketData.candlestick_50limit} height="100%" />
+          )}
+          {window.innerWidth >= 1600 && window.innerWidth <= 1800 && (
+            <CandleChart2 data={marketData.candlestick_50limit} height="100%" />
+          )}
+          {window.innerWidth >= 1801 && (
+            <CandleChart3 data={marketData.candlestick_50limit} height="100%" />
+          )}
+        </div>
 
         <div className="Market__container__mid__Footer">
           <div className="Market__container__mid__Footer__width">
@@ -386,13 +528,14 @@ export const Market = () => {
                 Price
                 <span className="Market__Footer__Price__value">
                   <NumericFormat
+                    value={Price}
                     decimalScale={2}
                     fixedDecimalScale
                     thousandSeparator=","
                     placeholder="THB"
                     onFocus={handleInputFocus1}
                     onBlur={handleInputBlur1}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => setPrice(e.target.value.replace(/,/g, ""))}
                   />
                 </span>
               </div>
@@ -403,11 +546,14 @@ export const Market = () => {
                 Volume
                 <span className="Market__Footer__Volume__value">
                   <NumericFormat
+                    value={Volume}
                     thousandSeparator=","
                     placeholder="Unit"
                     onFocus={handleInputFocus2}
                     onBlur={handleInputBlur2}
-                    onChange={(e) => setVolume(e.target.value)}
+                    onChange={(e) => {
+                      setVolume(e.target.value.replace(/,/g, ""));
+                    }}
                   />
                 </span>
               </div>
@@ -420,7 +566,7 @@ export const Market = () => {
               <div className="Market__Footer__Total">
                 Total
                 <span className="Market__Footer__Total__value">
-                  {totalPrice.toFixed(2)}
+                  {totalPrice.toLocaleString()}
                 </span>
               </div>
               <div
@@ -430,12 +576,13 @@ export const Market = () => {
                 Pin
                 <span className="Market__Footer__Pin__value">
                   <PatternFormat
+                    value={Pin}
                     format="# # # # # #"
                     allowEmptyFormatting
                     mask="_"
                     onFocus={handleInputFocus3}
                     onBlur={handleInputBlur3}
-                    onChange={(e) => setPin(e.target.value)}
+                    onChange={(e) => setPin(e.target.value.replace(/ /g, ""))}
                   />
                 </span>
               </div>
@@ -444,24 +591,24 @@ export const Market = () => {
                 <div className="Market__Footer__Order__div">
                   <div
                     className={`Market__Footer__Buy ${
-                      selectedOption === "buy" ? "active" : ""
+                      selectedOption === "Buy" ? "active" : ""
                     }`}
-                    onClick={() => handleOptionClick("buy")}
+                    onClick={() => handleOptionClick("Buy")}
                   >
                     <button
-                      className={selectedOption === "buy" ? "activeBuy" : ""}
+                      className={selectedOption === "Buy" ? "activeBuy" : ""}
                     >
                       Buy
                     </button>
                   </div>
                   <div
                     className={`Market__Footer__Sell ${
-                      selectedOption === "sell" ? "active" : ""
+                      selectedOption === "Sell" ? "active" : ""
                     }`}
-                    onClick={() => handleOptionClick("sell")}
+                    onClick={() => handleOptionClick("Sell")}
                   >
                     <button
-                      className={selectedOption === "sell" ? "activeSell" : ""}
+                      className={selectedOption === "Sell" ? "activeSell" : ""}
                     >
                       Sell
                     </button>
@@ -497,25 +644,24 @@ export const Market = () => {
               <div className="Market__container__right__Container__stock">
                 <div className="Market__container__stock__box">
                   <div className="Market__container__stock__div">
-                    {stock_left.mock.map((stock) => (
+                    {userStock.map((stock, index) => (
                       <div
-                        key={stock.Symbol}
+                        key={index}
                         className="Market__container__right__Container__box"
                         style={{
-                          color:
-                            stock.PercentChange >= 0 ? "#42A93C" : "#CD3D42",
+                          color: stock.change >= 0 ? "#42A93C" : "#CD3D42",
                         }}
                       >
                         <div className="Market__container__right__stock__Symbol">
-                          {stock.Symbol}
+                          {stock.symbol}
                         </div>
                         <div className="Market__container__right__stock__Price">
-                          {stock.LastPrice}
+                          {stock.close.toFixed(2)}
                         </div>
                         <div className="Market__container__right__stock__Change">
-                          {stock.PercentChange > 0
-                            ? `+${stock.PercentChange}%`
-                            : `${stock.PercentChange}%`}
+                          {stock.change > 0
+                            ? `+${stock.change.toFixed(2)}`
+                            : `${stock.change.toFixed(2)}`}
                         </div>
                       </div>
                     ))}
@@ -548,16 +694,16 @@ export const Market = () => {
               <div className="Market__container__right__Container__stock">
                 <div className="Market__container__stock__box">
                   <div className="Market__container__stock__div">
-                    {stock_status.mock.map((stock) => (
+                    {userOrder.map((stock, index) => (
                       <div
-                        key={stock.symbol}
+                        key={index}
                         className="Market__container__right__Container__box"
                       >
                         <div className="Market__container__right__status__Symbol">
                           {stock.symbol}
                         </div>
                         <div className="Market__container__right__stock__Side">
-                          {stock.side}
+                          {stock.side === "Buy" ? "B" : "S"}
                         </div>
                         <div className="Market__container__right__status__Price">
                           {stock.price.toFixed(2)}

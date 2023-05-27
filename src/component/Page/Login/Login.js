@@ -11,7 +11,6 @@ import axios from "axios";
 
 export const Login = () => {
   const Auth = useContext(AuthContext);
-  const Token = React.useContext(TokenContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -21,10 +20,9 @@ export const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleRegister =() =>{
-    window.location.href = "/Register"; 
-  }
-  
+  const handleRegister = () => {
+    window.location.href = "/Register";
+  };
 
   const handleLogin = async (e) => {
     if (e) {
@@ -103,7 +101,9 @@ export const Login = () => {
             <button onClick={handleLogin}>Log in</button>
           </div>
           <div>
-            <button className="RegisText" onClick={handleRegister}><u>Register</u></button>
+            <button className="RegisText" onClick={handleRegister}>
+              <u>Register</u>
+            </button>
           </div>
         </div>
       </div>

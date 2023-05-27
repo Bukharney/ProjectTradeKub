@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import TableMapping from "./TableMap";
-import Table from "../GovernmentView/Table";
-
 function Goverment() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -10,7 +8,7 @@ function Goverment() {
   const [password, setPassword] = React.useState("string");
   const [token, setToken] = React.useState("");
   const [role, setRole] = React.useState("");
-  const [table, setTable] = React.useState([]);
+  const [table, setTable] = React.useState(null);
   const people = [
     {
       name: "John Doe",
@@ -141,9 +139,9 @@ function Goverment() {
     login();
   };
 
-  const get_all_user = async () => {
+  const get_all_user = async (e) => {
     await axios
-      .get(`https://www.tradekub.me/users/`, {
+      .get(`http://127.0.0.1:8000/users/${e}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + token,
@@ -164,7 +162,8 @@ function Goverment() {
   useEffect(() => {}, []);
 
   const handleRole = (role) => {
-    setRole("");
+    setRole(null);
+    setTable(null);
     console.log(role);
     setTimeout(() => {
       setRole(role);
@@ -173,9 +172,13 @@ function Goverment() {
   };
 
   const handleTable = (table) => {
+    setTable(null);
     if (table == "User") {
       if (role == "admin") {
-        get_all_user();
+        get_all_user("");
+      }
+      if (role == "user") {
+        get_all_user("my");
       }
     }
   };
