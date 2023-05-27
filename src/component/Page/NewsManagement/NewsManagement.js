@@ -12,6 +12,14 @@ export const NewsManagement = () => {
     const [InputBox5, setInputBox5] = useState('');
 
 
+    const handleReset = () => {
+        setInputBox1('');
+        setInputBox2('');
+        setInputBox3('');
+        setInputBox4('');
+        setInputBox5('');
+    };
+
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
         setInputBox1('');
@@ -75,11 +83,17 @@ export const NewsManagement = () => {
             alert('Cannot find the the news in the date')
             window.location.reload();
         }
+        else if(InputBox1(News) มี แต่ stock_id ของข่าวไม่ตรงกับ InputBox0 (your company stock ID))
+        {
+            alert('the account isn't belong to your company')
+            window.location.reload();
+
+        }
         else {
          //เตรียมยัดข้อมูลตรงนี้ ถ้า Input2,3,4 มันว่าง ไม่ต้องอัพ}
-            if(InputBox2 !== ''){// ยัด InputBox2 อัพเดทค่า topic ของ ข่าวของ stock InputBox0 ที่ วันที่ InputBox1}
-            if(InputBox3 !== ''){// ยัด InputBox3 อัพเดทค่า contents ของ ข่าวของ stock InputBox0 ที่ วันที่ InputBox1}
-            if(InputBox4 !== ''){// ยัด InputBox4 อัพเดทค่า line available ของ ข่าวของ stock InputBox0 ที่ วันที่ InputBox1}
+            if(InputBox2 !== ''){// ยัด InputBox2 อัพเดทค่า topic ของ ข่าวของ stock(InputBox0) ที่วันที่ InputBox1}
+            if(InputBox3 !== ''){// ยัด InputBox3 อัพเดทค่า contents ของ ข่าวของ stock(InputBox0) ที่วันที่ InputBox1}
+            if(InputBox4 !== ''){// ยัด InputBox4 อัพเดทค่า line available ของ ข่าวของ stock(InputBox0) ที่วันที่ InputBox1}
         /*InputBox1 //account Id ที่ต้องการอัพเดท
         //******************** Edit*/
         window.location.reload();
@@ -110,7 +124,7 @@ export const NewsManagement = () => {
 
     return (
         <div>
-            <h className='ManagementHeader'>Account Management</h>
+            <h className='ManagementHeader3'>News Management</h>
             <div className="button-group">
                 <button
                     className={`buttonAdd ${selectedButton === 'Add' ? 'selected' : ''}`}
@@ -135,19 +149,20 @@ export const NewsManagement = () => {
             </div>
 
             {selectedButton === 'Add' &&
+            <div>
                 <form onSubmit={handleSubmit1}>
                     <input
                         type="text"
                         value={InputBox1}
                         onChange={handleInputChange1}
-                        placeholder="topic..."
+                        placeholder="Topic..."
                         className='box_1_Input'
                     />
                     <input
                         type="text"
                         value={InputBox2}
                         onChange={handleInputChange2}
-                        placeholder="contents..."
+                        placeholder="Contents..."
                         className='box_2_input'
                     />
                     <input
@@ -157,32 +172,34 @@ export const NewsManagement = () => {
                         placeholder="API of the content file..."
                         className='box_3_input'
                     />
-                    <button className='resetAdd'>Reset</button>
                     <button type="submit" className='submitAdd'>Create</button>
                 </form>
+                <button className='resetAdd' onClick={handleReset}>Reset</button>
+                </div>
             }
 
             {selectedButton === 'Edit' &&
+            <div>
                 <form onSubmit={handleSubmit2}>
                     <input
                         type="text"
                         value={InputBox1}
                         onChange={handleInputChange1}
-                        placeholder="date of the news you want to edit..."
+                        placeholder="Datetime of the news you want to edit..."
                         className='box_1_forSearch'
                     />
                     <input
                         type="text"
                         value={InputBox2}
                         onChange={handleInputChange2}
-                        placeholder="topic {optional}"
+                        placeholder="Topic {optional}"
                         className='box_2_input'
                     />
                     <input
                         type="text"
                         value={InputBox3}
                         onChange={handleInputChange3}
-                        placeholder="contents {optional}"
+                        placeholder="Contents {optional}"
                         className='box_3_input'
                     />
                     <input
@@ -193,24 +210,27 @@ export const NewsManagement = () => {
                         className='box_4_input'
                     />
 
-                    <button className='resetEdit'>Reset</button>
                     <button type="submit" className='submitEdit'>Update</button>
                 </form>
+                <button className='resetEdit' onClick={handleReset}>Reset</button>
+                </div>
             }
 
             {selectedButton === 'Delete' &&
+            <div>
                 <form onSubmit={handleSubmit3}>
                     <input
                         type="text"
                         value={InputBox1}
                         onChange={handleInputChange1}
-                        placeholder="date of the news you want to delete..."
+                        placeholder="Date of the news you want to delete..."
                         className='box_1_forSearch'
                     />
 
-                    <button className='resetDelete'>Reset</button>
                     <button type="submit" className='submitDelete'>Delete</button>
                 </form>
+                <button className='resetDelete' onClick={handleReset}>Reset</button>
+                </div>
             }
 
             <input

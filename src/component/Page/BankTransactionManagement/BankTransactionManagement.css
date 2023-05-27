@@ -1,11 +1,11 @@
-.ManagementHeader1 {
+.ManagementHeader {
     position: fixed;
-    left: 35.47%;
-    top: 24.26%;
+    left: 38.47%;
+    top: 15.26%;
 
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 600;   
+    font-weight: 600;
     font-size: 36px;
     line-height: 54px;
     /* identical to box height */
@@ -23,9 +23,46 @@
     display: flex;
 }
 
-.buttonAdd {
+.buttonDeposit {
     position: fixed;
     background: #282A2E;
+    color: rgba(255, 255, 255, 0.6);
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+
+    width: 101.02px;
+    height: 37px;
+
+    left: 40%;
+    top: 49%;
+
+
+
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttonDeposit.selected {
+    background: hsl(72, 100%, 50%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #282A2E;
+}
+
+.buttonDeposit:hover {
+    background: #CCFF00;
+    color: #FFFFFF;
+}
+
+.buttonWithdraw {
+    position: fixed;
+    background: #282A2E;
+    color: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.4);
     font-family: 'Poppins';
     font-style: normal;
@@ -35,54 +72,26 @@
     width: 101.02px;
     height: 37px;
 
-    left: 35.47%;
-    top: 36.39%;
+    left: 50%;
+    top: 49%;
+
+
 
     text-align: center;
-    color: #FFFFFF;
-    cursor: pointer;
+     cursor: pointer;
+    border-radius: 5px;
 }
 
-.buttonAdd.selected {
+.buttonWithdraw.selected {
     background: hsl(72, 100%, 50%);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: #282A2E;
 }
 
-.buttonAdd:hover {
+.buttonWithdraw:hover {
     background: #CCFF00;
-}
-
-.buttonEdit {
-    position: fixed;
-    background: #282A2E;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    width: 101.02px;
-    height: 37px;
-
-    left: 45.07%;
-    top: 36.39%;
-
-
-
-    text-align: center;
     color: #FFFFFF;
-    cursor: pointer;
-}
 
-.buttonEdit.selected {
-    background: hsl(72, 100%, 50%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #282A2E;
-}
-
-.buttonEdit:hover {
-    background: #CCFF00;
 }
 
 .buttonDelete {
@@ -133,12 +142,12 @@
 
 }
 
-.box_2_input {
+.box_6_input {
     position: absolute;
     left: 35.47%;
     right: 37.68%;
-    top: 49.35%;
-    bottom: 46.3%;
+    top: 75.09%;
+    bottom: 20.65%;
     background: #282A2E;
     border-radius: 5px;
 
@@ -196,27 +205,7 @@
     background: #CCFF00;
     border-radius: 20px;
 }
-.submitAdd:hover{
-    background: #5cea4a;
-}
-.submitEdit1:hover{
-    background: #5cea4a;
-}
-.submitDelete:hover{
-    background: #5cea4a;
-}
 
-.resetAdd:hover{
-    background: #4f535b;
-
-}
-.resetEdit1:hover{
-    background: #4f535b;
-
-}.resetDelete:hover{
-    background: #4f535b;
-
-}
 
 .resetAdd {
     box-sizing: border-box;
@@ -232,29 +221,36 @@
     border-radius: 5px;
 }
 
-.submitEdit1 {
+.submitTransaction {
     position: absolute;
     left: 49.26%;
     right: 37.68%;
-    top: 75.09%;
-    bottom: 17.65%;
+    top: 81.48%;
+    bottom: 11.26%;
 
     background: #CCFF00;
     border-radius: 20px;
 }
+.submitTransaction:hover{
+     background: #5cea4a;
+ }
 
-.resetEdit1 {
+.resetTransaction {
     box-sizing: border-box;
 
     position: absolute;
     left: 35.47%;
     right: 52.26%;
-    top: 75.09%;
-    bottom: 17.65%;
+    top: 81.48%;
+    bottom: 11.26%;
 
     background: #282A2E;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 5px;
+}
+
+.resetTransaction:hover{
+    background: #4f535b;
 }
 
 .submitDelete {
