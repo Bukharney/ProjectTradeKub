@@ -112,7 +112,13 @@ export const Market = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="Market__container">Loading...</div>;
+    return (
+      <div className="container__Loading">
+      <div className="Market__container__Loading">
+        <img src="https://global.discourse-cdn.com/sitepoint/original/3X/e/3/e352b26bbfa8b233050087d6cb32667da3ff809c.gif" alt="Loading" />
+      </div></div>
+    );
+    
   }
 
   return (
@@ -404,15 +410,16 @@ export const Market = () => {
               >
                 Pin
                 <span className="Market__Footer__Pin__value">
-                  <PatternFormat
-                    className="Input__pin__market"
-                    format="# # # # # #"
-                    allowEmptyFormatting
-                    mask="_"
-                    onFocus={handleInputFocus3}
-                    onBlur={handleInputBlur3}
-                    onChange={(e) => setPin(e.target.value)}
-                  />
+                <PatternFormat
+  format="# # # # # #"
+  allowEmptyFormatting
+  mask="_"
+  onFocus={handleInputFocus3}
+  onBlur={handleInputBlur3}
+  onChange={(e) => setPin(e.target.value)}
+/>
+
+
                 </span>
               </div>
 
