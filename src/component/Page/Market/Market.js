@@ -5,6 +5,7 @@ import CandleChart from "./CandleChart";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
+import { NumericFormat, PatternFormat } from "react-number-format";
 
 export const Market = () => {
   const Token = useContext(TokenContext);
@@ -13,6 +14,7 @@ export const Market = () => {
   const [isLoading, setIsloading] = useState(true);
   const [symbol, setSymbol] = useState("KBANK");
   const [marketData, setMarketData] = useState([]);
+  const [userAccount, setUserAccount] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
@@ -32,6 +34,9 @@ export const Market = () => {
   };
 
   const handleOrderClick = () => {
+    console.log(Price);
+    console.log(Volume);
+    console.log(Pin);
     console.log("Place order clicked");
   };
 
@@ -65,7 +70,7 @@ export const Market = () => {
 
   const get_market_data = async (symbol) => {
     await axios
-      .get(`http://127.0.0.1:8000/stock/market_data/${symbol}`, {
+      .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -81,7 +86,25 @@ export const Market = () => {
       });
   };
 
+  const get_account_info = async (e) => {
+    await axios
+      .get(`https://www.tradekub.me/account/${e}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setUserAccount(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
+    get_account_info(Account.account);
     get_market_data(symbol);
   }, []);
 
@@ -109,7 +132,11 @@ export const Market = () => {
                       : "#CD3D42",
                 }}
               >
-                {formatNumber(marketData.quote_symbol.last)}
+                {formatNumber(
+                  marketData.quote_symbol.last
+                    ? marketData.quote_symbol.last
+                    : 0
+                )}
               </div>
             </div>
           </div>
@@ -126,7 +153,12 @@ export const Market = () => {
                         : "#CD3D42",
                   }}
                 >
-                  {formatNumber(marketData.quote_symbol.percentChange)}
+                  {formatNumber(
+                    marketData.quote_symbol.percentChange
+                      ? marketData.quote_symbol.percentChange
+                      : 0
+                  )}
+                  %
                 </div>
               </div>
               <div className="Market__container__volume">
@@ -183,7 +215,9 @@ export const Market = () => {
                 color: "#42A93C",
               }}
             >
-              {formatNumber(marketData.quote_symbol.high)}
+              {formatNumber(
+                marketData.quote_symbol.high ? marketData.quote_symbol.high : 0
+              )}
             </span>
             <span className="Market__stock__Low">Low</span>
             <span
@@ -192,7 +226,9 @@ export const Market = () => {
                 color: "#CD3D42",
               }}
             >
-              {formatNumber(marketData.quote_symbol.low)}
+              {formatNumber(
+                marketData.quote_symbol.low ? marketData.quote_symbol.low : 0
+              )}
             </span>
             <span className="Market__stock__Open">Ceiling</span>
             <span
@@ -214,7 +250,11 @@ export const Market = () => {
             </span>
             <sapn className="Market__stock__Average">Average</sapn>
             <span className="Market__stock__Average__value">
-              {formatNumber(marketData.quote_symbol.average)}
+              {formatNumber(
+                marketData.quote_symbol.average
+                  ? marketData.quote_symbol.average
+                  : 0
+              )}
             </span>
             <sapn className="Market__stock__Close">Close</sapn>
             <span className="Market__stock__Close__value">
@@ -232,26 +272,26 @@ export const Market = () => {
                 <div className="Market__Accont">
                   Account
                   <span className="Market__Accont__value">
-                    {User.Acount[0].Acount}
+                    {userAccount.id}
                   </span>
                 </div>
               </div>
               <div className="Market__Accont__Credit__limit">
                 Credit Limit
                 <span className="Market__Accont__Credit__limit__value">
-                  {User.Acount[0].Credit_limit.toFixed(2)}
+                  {formatNumber(userAccount.credit_limit)}
                 </span>
               </div>
               <div className="Market__Accont__Cash__balance">
                 Cash Balance
                 <span className="Market__Accont__Cash__balance__value">
-                  {User.Acount[0].Cash_balance.toFixed(2)}
+                  {formatNumber(userAccount.cash_balance)}
                 </span>
               </div>
               <div className="Market__Accont__Line_Available">
                 Line Available
                 <span className="Market__Accont__Line_Available__value">
-                  {User.Acount[0].Line_Available.toFixed(2)}
+                  {formatNumber(userAccount.line_available)}
                 </span>
               </div>
             </div>
@@ -259,9 +299,7 @@ export const Market = () => {
             <div className="Market__container__mid__Footer__mid">
               <div className="Market__Footer__Symbol">
                 Symbol
-                <span className="Market__Footer__Symbol__value">
-                  {symbolData.symbol}
-                </span>
+                <span className="Market__Footer__Symbol__value">{symbol}</span>
               </div>
               <div
                 className="Market__Footer__Price"
@@ -269,8 +307,10 @@ export const Market = () => {
               >
                 Price
                 <span className="Market__Footer__Price__value">
-                  <input
-                    type="text"
+                  <NumericFormat
+                    decimalScale={2}
+                    fixedDecimalScale
+                    thousandSeparator=","
                     placeholder="THB"
                     onFocus={handleInputFocus1}
                     onBlur={handleInputBlur1}
@@ -284,9 +324,9 @@ export const Market = () => {
               >
                 Volume
                 <span className="Market__Footer__Volume__value">
-                  <input
-                    type="text"
-                    placeholder="Ex. 100"
+                  <NumericFormat
+                    thousandSeparator=","
+                    placeholder="Unit"
                     onFocus={handleInputFocus2}
                     onBlur={handleInputBlur2}
                     onChange={(e) => setVolume(e.target.value)}
@@ -311,9 +351,10 @@ export const Market = () => {
               >
                 Pin
                 <span className="Market__Footer__Pin__value">
-                  <input
-                    type="text"
-                    placeholder="Ex. 1234"
+                  <PatternFormat
+                    format="# # # # # #"
+                    allowEmptyFormatting
+                    mask="_"
                     onFocus={handleInputFocus3}
                     onBlur={handleInputBlur3}
                     onChange={(e) => setPin(e.target.value)}
