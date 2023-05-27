@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
-import './AccountManagement.css'; // Import the CSS file for additional styles
+import './BankTransactionManagement.css'; // Import the CSS file for additional styles
 
-export const AccountManagement = () => {
-    const [selectedButton, setSelectedButton] = useState('Add'); // Initial selection is 'Add'
+export const BankTransactionManagement = () => {
+    const [selectedButton, setSelectedButton] = useState('');
     const [InputBox0, setInputBox0] = useState('');
 
     const [InputBox1, setInputBox1] = useState('');
-    const [InputBox2, setInputBox2] = useState('');
+    const [InputBox6, setInputBox6] = useState('');
     const [InputBox3, setInputBox3] = useState('');
     const [InputBox4, setInputBox4] = useState('');
     const [InputBox5, setInputBox5] = useState('');
 
     const handleReset = () => {
         setInputBox1('');
-        setInputBox2('');
+        setInputBox6('');
         setInputBox3('');
         setInputBox4('');
         setInputBox5('');
+        setSelectedButton('');
     };
 
 
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
         setInputBox1('');
-        setInputBox2('');
         setInputBox3('');
         setInputBox4('');
         setInputBox5('');
+        setInputBox6('');
+
     };
 
 
@@ -39,9 +41,6 @@ export const AccountManagement = () => {
     const handleInputChange1 = (event) => {
         setInputBox1(event.target.value);
     };
-    const handleInputChange2 = (event) => {
-        setInputBox2(event.target.value);
-    };
     const handleInputChange3 = (event) => {
         setInputBox3(event.target.value);
     };
@@ -51,8 +50,12 @@ export const AccountManagement = () => {
     const handleInputChange5 = (event) => {
         setInputBox5(event.target.value);
     };
+    const handleInputChange6 = (event) => {
+        setInputBox6(event.target.value);
+    };
 
     // Function to handle form submission
+    //ไม่ใช้ handleSubmit 1 กับ 3 , ใช้ handleSubmit2 ซึ่งดัดแปลงมาจาก edit ของ Newsmanagement แต่เปลี่ยนเป็น add+edit แทน
     const handleSubmit1 = (event) => {
         event.preventDefault();
         /*
@@ -83,6 +86,8 @@ export const AccountManagement = () => {
         //******************** ADD*/
         window.location.reload();
     };
+
+    //ฟอร์มนี้ทำทั้ง add (bank transaction) และ update (account)
     const handleSubmit2 = (event) => {
         event.preventDefault();
         // Perform any necessary actions with the input value
@@ -97,37 +102,40 @@ export const AccountManagement = () => {
             window.location.reload();
 
         }
-        else if(isNaN(InputBox2) || !Number.isInteger(InputBox2) || InputBox2.length !== 6)
+        else if(selectedButton !== 'Deposit' && selectedButton !== 'Withdraw')
         {
-            alert('Wrong format of pin')
+            alert('Please select the transaction type')
             window.location.reload();
         }
-        else if(isNaN(InputBox3))
+        else if(isNaN(InputBox3)|| InputBox3 === '')
         {
-            alert('Wrong format of cash balance')
+            alert('Wrong format of bank account number')
             window.location.reload();
         }
-        else if(isNaN(InputBox4))
+        else if(isNaN(InputBox4) || InputBox4 === '')
         {
-            alert('Wrong format of line available')
+            alert('Wrong format of amount')
             window.location.reload();
         }
-        else if(isNaN(InputBox5))
+        else if(isNaN(InputBox5)|| InputBox5 === '')
         {
-            alert('Wrong format of credit limit')
+            alert('Wrong format of new line available')
             window.location.reload();
-        }            
+        }
+        else if(isNaN(InputBox6)|| InputBox6 === '')
+        {
+            alert('Wrong format of new cash balance')
+            window.location.reload();
+        }                 
         else {
          //เตรียมยัดข้อมูลตรงนี้ ถ้า Input2,3,4,5 มันว่าง ไม่ต้องอัพ}
-            if(InputBox2 !== ''){// ยัด InputBox2 อัพเดทค่า pin ของ accountID}
-            if(InputBox3 !== ''){// ยัด InputBox3 อัพเดทค่า cash balance ของ accountID}
-            if(InputBox4 !== ''){// ยัด InputBox4 อัพเดทค่า line available ของ accountID}
-            if(InputBox5 !== ''){// ยัด InputBox5 อัพเดทค่า credit limit ของ accountID
-        /*InputBox1 //account Id ที่ต้องการอัพเดท
-        InputBox2 //pin ที่ต้องการอัพเดท
-        InputBox3 //cash balance ที่ต้องการอัพเดท 
-        InputBox4 //line available ที่ต้องการอัพเดท
-        InputBox5 //credit limit ที่ต้องการอัพเดท*/
+
+         /*InputBox1 //account Id ที่ต้องการอัพเดท
+        InputBox3 //bank account number  
+        InputBox4 //amount
+        InputBox5 //new line available
+        InputBox6 //new cash balance
+        */
         //******************** Edit*/
         window.location.reload();
     };
@@ -140,12 +148,6 @@ export const AccountManagement = () => {
             alert('Cannot find the account id')
             window.location.reload();
         }
-        else if(InputBox1(account) มี แต่ broker_id ไม่ตรงกับ InputBox0 (broker ID))
-        {
-            alert('the account isn't belong to your broker')
-            window.location.reload();
-
-        }
         else{//ลบ accountID}
         */
         /*InputBox1 //accountID ที่ต้องการลบ
@@ -157,60 +159,28 @@ export const AccountManagement = () => {
 
     return (
         <div>
-            <h className='ManagementHeader1'>Account Management</h>
+            <pre className='ManagementHeader'>
+                Account
+                <br></br>Bank Transaction
+                <br></br>Management
+            </pre>
             <div className="button-group">
                 <button
-                    className={`buttonAdd ${selectedButton === 'Add' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Add')}
+                    className={`buttonDeposit ${selectedButton === 'Deposit' ? 'selected' : ''}`}
+                    onClick={() => handleButtonClick('Deposit')}
                 >
-                    Add
+                    Deposit
                 </button>
                 <button
-                    className={`buttonEdit ${selectedButton === 'Edit' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Edit')}
+                    className={`buttonWithdraw ${selectedButton === 'Withdraw' ? 'selected' : ''}`}
+                    onClick={() => handleButtonClick('Withdraw')}
                 >
-                    Edit
-                </button>
-                <button
-                    className={`buttonDelete ${selectedButton === 'Delete' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Delete')}
-                >
-                    Delete
-                </button>
+                    Withdraw
 
+                </button>
 
             </div>
 
-            {selectedButton === 'Add' && <div>
-                <form onSubmit={handleSubmit1}>
-                    <input
-                        type="text"
-                        value={InputBox1}
-                        onChange={handleInputChange1}
-                        placeholder="Existing username..."
-                        className='box_1_forSearch'
-                    />
-                    <input
-                        type="text"
-                        value={InputBox2}
-                        onChange={handleInputChange2}
-                        placeholder="Set the pin..."
-                        className='box_2_input'
-                    />
-                    <input
-                        type="text"
-                        value={InputBox3}
-                        onChange={handleInputChange3}
-                        placeholder="Set the credit Limit..."
-                        className='box_3_input'
-                    />
-                    <button type="submit" className='submitAdd'>Create</button>
-                </form>
-                <button className='resetAdd' onClick={handleReset}>Reset</button>
-            </div>
-            }
-
-            {selectedButton === 'Edit' &&
             <div>
                 <form onSubmit={handleSubmit2}>
                     <input
@@ -222,23 +192,16 @@ export const AccountManagement = () => {
                     />
                     <input
                         type="text"
-                        value={InputBox2}
-                        onChange={handleInputChange2}
-                        placeholder="Change the pin {optional}"
-                        className='box_2_input'
-                    />
-                    <input
-                        type="text"
                         value={InputBox3}
                         onChange={handleInputChange3}
-                        placeholder="Change Cash Balance {optional}"
+                        placeholder="Bank account number..."
                         className='box_3_input'
                     />
                     <input
                         type="text"
                         value={InputBox4}
                         onChange={handleInputChange4}
-                        placeholder="Change line available {optional}"
+                        placeholder="Amount..."
                         className='box_4_input'
                     />
 
@@ -246,32 +209,22 @@ export const AccountManagement = () => {
                         type="text"
                         value={InputBox5}
                         onChange={handleInputChange5}
-                        placeholder="Change credit limit {optional}"
+                        placeholder="New line available..."
                         className='box_5_input'
                     />
-
-                    <button type="submit" className='submitEdit1'>Update</button>
-                </form>
-                <button className='resetEdit1' onClick={handleReset}>Reset</button>
-                </div>
-            }
-
-            {selectedButton === 'Delete' &&
-            <div>
-                <form onSubmit={handleSubmit3}>
                     <input
                         type="text"
-                        value={InputBox1}
-                        onChange={handleInputChange1}
-                        placeholder="Existing account ID..."
-                        className='box_1_forSearch'
+                        value={InputBox6}
+                        onChange={handleInputChange6}
+                        placeholder="New cash balance..."
+                        className='box_6_input'
                     />
 
-                    <button type="submit" className='submitDelete'>Delete</button>
+
+                    <button type="submit" className='submitTransaction'>Confirm transaction</button>
                 </form>
-                <button className='resetDelete' onClick={handleReset}>Reset</button>
+                <button className='resetTransaction' onClick={handleReset}>Reset</button>
             </div>
-            }
 
             <input
                 type="text"
@@ -285,4 +238,4 @@ export const AccountManagement = () => {
     );
 };
 
-export default AccountManagement;
+export default BankTransactionManagement;

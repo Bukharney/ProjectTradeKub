@@ -191,7 +191,6 @@ export const Wallet = () => {
       <div className="balance__container">
         <div className="balance__title">Your Balance</div>
         <div className="Donut__Chart" ref={chartRef}>
-          <div className="balance__value__container"></div>
         </div>
         <div className="balance__container__text">
           <div className="balance__Total__Wealth">Total Wealth</div>
@@ -207,11 +206,7 @@ export const Wallet = () => {
           <div className="balance__Total__Topic">
             Cash Balance
             <div className="balance__Total__Cash__Balance__value">
-              {userAccount.cash_balance ? (
-                formatNumber(userAccount.cash_balance)
-              ) : (
-                <></>
-              )}
+              {userAccount.id ? formatNumber(userAccount.cash_balance) : <></>}
             </div>
           </div>
 
@@ -219,7 +214,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Line Available
               <div className="wallet__Line__Available__value">
-                {userAccount.line_available ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.line_available)
                 ) : (
                   <></>
@@ -231,7 +226,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Credit Limit
               <div className="wallet__Creditlimit__value">
-                {userAccount.credit_limit ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.credit_limit)
                 ) : (
                   <></>

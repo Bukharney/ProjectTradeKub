@@ -1,4 +1,4 @@
-.ManagementHeader {
+.ManagementHeader3 {
     position: fixed;
     left: 35.47%;
     top: 24.26%;
@@ -288,5 +288,27 @@
     background: #282A2E;
     border-radius: 5px;
     color: #FFFFFF;
+
+}
+
+.submitAdd:hover{
+    background: #5cea4a;
+}
+.submitEdit:hover{
+    background: #5cea4a;
+}
+.submitDelete:hover{
+    background: #5cea4a;
+}
+
+.resetAdd:hover{
+    background: #4f535b;
+
+}
+.resetEdit:hover{
+    background: #4f535b;
+
+}.resetDelete:hover{
+    background: #4f535b;
 
 }
