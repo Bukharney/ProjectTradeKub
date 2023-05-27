@@ -3,6 +3,8 @@ import "./Market.css";
 import { stock_market, User } from "./DBmarket";
 import { stock_left, stock_status } from "./DBPop&Order";
 import CandleChart from "./CandleChart";
+import CandleChart2 from "./CandleChart2";
+import CandleChart3 from "./CandleChart3";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
@@ -114,11 +116,14 @@ export const Market = () => {
   if (isLoading) {
     return (
       <div className="container__Loading">
-      <div className="Market__container__Loading">
-        <img src="https://global.discourse-cdn.com/sitepoint/original/3X/e/3/e352b26bbfa8b233050087d6cb32667da3ff809c.gif" alt="Loading" />
-      </div></div>
+        <div className="Market__container__Loading">
+          <img
+            src="https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"
+            alt="Loading"
+          />
+        </div>
+      </div>
     );
-    
   }
 
   return (
@@ -321,9 +326,23 @@ export const Market = () => {
             </span>
           </div>
         </div>
-        <div className="Market__container__Graph">
-          <CandleChart data={marketData.candlestick_50limit} height="100%" />
-        </div>
+        <div className="Market__container__Graph" style={{
+  '@media screen and (max-width: 1599px)': {
+    display: 'flex'
+  },
+  '@media screen and (min-width: 1600px) and (max-width: 1800px)': {
+    display: 'flex'
+  },
+  '@media screen and (min-width: 1801px)': {
+    display: 'flex'
+  }
+}}>
+  {window.innerWidth <= 1599 && <CandleChart data={marketData.candlestick_50limit} height="100%" />}
+  {window.innerWidth >= 1600 && window.innerWidth <= 1800 && <CandleChart2 data={marketData.candlestick_50limit} height="100%" />}
+  {window.innerWidth >= 1801 && <CandleChart3 data={marketData.candlestick_50limit} height="100%" />}
+</div>
+
+
         <div className="Market__container__mid__Footer">
           <div className="Market__container__mid__Footer__width">
             <div className="Market__container__mid__Footer__left">
@@ -410,16 +429,14 @@ export const Market = () => {
               >
                 Pin
                 <span className="Market__Footer__Pin__value">
-                <PatternFormat
-  format="# # # # # #"
-  allowEmptyFormatting
-  mask="_"
-  onFocus={handleInputFocus3}
-  onBlur={handleInputBlur3}
-  onChange={(e) => setPin(e.target.value)}
-/>
-
-
+                  <PatternFormat
+                    format="# # # # # #"
+                    allowEmptyFormatting
+                    mask="_"
+                    onFocus={handleInputFocus3}
+                    onBlur={handleInputBlur3}
+                    onChange={(e) => setPin(e.target.value)}
+                  />
                 </span>
               </div>
 
@@ -503,7 +520,7 @@ export const Market = () => {
                       </div>
                     ))}
                   </div>
-                </div>{" "}
+                </div>
               </div>
             </div>
 
@@ -558,7 +575,7 @@ export const Market = () => {
                 </div>
               </div>
             </div>
-          </div>{" "}
+          </div>
         </div>
       </div>
     </div>
