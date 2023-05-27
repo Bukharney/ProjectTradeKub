@@ -34,7 +34,11 @@ export const Wallet = () => {
   };
 
   const SortedStock = userPort.sort((a, b) => {
-    return b.volume * b.last_price - a.volume * a.last_price;
+    if (a.market_status === "CLOSE_E") {
+      return b.volume * b.close - a.volume * a.close;
+    } else {
+      return b.volume * b.last_price - a.volume * a.last_price;
+    }
   });
 
   const [click, setClick] = useState(false);
@@ -44,8 +48,13 @@ export const Wallet = () => {
   };
 
   const calpl = (e) => {
-    e["upl"] = e.volume * e.last_price - e.volume * e.avg_price;
-    e["upl_per"] = ((e.last_price - e.avg_price) / e.avg_price) * 100;
+    if (e.market_status === "CLOSE_E") {
+      e["upl"] = e.volume * e.close - e.volume * e.avg_price;
+      e["upl_per"] = ((e.close - e.avg_price) / e.avg_price) * 100;
+    } else {
+      e["upl"] = e.volume * e.last_price - e.volume * e.avg_price;
+      e["upl_per"] = ((e.last_price - e.avg_price) / e.avg_price) * 100;
+    }
   };
 
   const palettes = [
@@ -115,11 +124,14 @@ export const Wallet = () => {
     get_account_tsc(Account.account);
     get_account_info(Account.account);
     get_portfolio(Account.account);
-  }, []);
+  }, [Account.account]);
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
-      parseFloat(stock.volume * stock.last_price)
+      parseFloat(
+        stock.volume *
+          (stock.market_status == "CLOSE_E" ? stock.close : stock.last_price)
+      )
     );
 
     const labels = SortedStock.map((stock) => stock.symbol);
@@ -190,13 +202,15 @@ export const Wallet = () => {
     <div className="wallet__container">
       <div className="balance__container">
         <div className="balance__title">Your Balance</div>
-        <div className="Donut__Chart" ref={chartRef}>
-        </div>
+        <div className="Donut__Chart" ref={chartRef}></div>
         <div className="balance__container__text">
           <div className="balance__Total__Wealth">Total Wealth</div>
           <div className="balance__Total__Wealth__value">
             {userPort.map((stock) => {
-              total += stock.last_price * stock.volume;
+              total +=
+                (stock.market_status == "CLOSE_E"
+                  ? stock.close
+                  : stock.last_price) * stock.volume;
               calpl(stock);
             })}
             {formatNumber(total)}
@@ -206,11 +220,7 @@ export const Wallet = () => {
           <div className="balance__Total__Topic">
             Cash Balance
             <div className="balance__Total__Cash__Balance__value">
-              {userAccount.cash_balance ? (
-                formatNumber(userAccount.cash_balance)
-              ) : (
-                <></>
-              )}
+              {userAccount.id ? formatNumber(userAccount.cash_balance) : <></>}
             </div>
           </div>
 
@@ -218,7 +228,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Line Available
               <div className="wallet__Line__Available__value">
-                {userAccount.line_available ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.line_available)
                 ) : (
                   <></>
@@ -230,7 +240,7 @@ export const Wallet = () => {
             <div className="balance__Total__Topic">
               Credit Limit
               <div className="wallet__Creditlimit__value">
-                {userAccount.credit_limit ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.credit_limit)
                 ) : (
                   <></>
@@ -275,11 +285,18 @@ export const Wallet = () => {
                 <div
                   className="wallet__table__Percent__value"
                   style={{
-                    backgroundColor: stock.change >= 0 ? "#42A93C" : "#CD3D42",
+                    backgroundColor:
+                      stock.change > 0
+                        ? "#42A93C"
+                        : stock.change < 0
+                        ? "#CD3D42"
+                        : "#F2B807",
                   }}
                 >
-                  {stock.change >= 0
+                  {stock.change > 0
                     ? `+${formatNumber(stock.change)}%`
+                    : stock.change < 0
+                    ? `-${formatNumber(stock.change)}%`
                     : `${formatNumber(stock.change)}%`}
                 </div>
               </div>
@@ -304,7 +321,11 @@ export const Wallet = () => {
               <div className="wallet__table__Topic">
                 Market Value
                 <div className="wallet__table__Maket__Value">
-                  {formatNumber(stock.last_price * stock.volume)}
+                  {formatNumber(
+                    (stock.market_status == "CLOSE_E"
+                      ? stock.close
+                      : stock.last_price) * stock.volume
+                  )}
                 </div>
               </div>
               <div className="wallet__table__Topic">

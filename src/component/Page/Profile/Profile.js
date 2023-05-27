@@ -46,7 +46,11 @@ export const Profile = () => {
   };
 
   const SortedStock = userPort.sort((a, b) => {
-    return b.volume * b.last_price - a.volume * a.last_price;
+    if (a.market_status === "CLOSE_E") {
+      return b.volume * b.close - a.volume * a.close;
+    } else {
+      return b.volume * b.last_price - a.volume * a.last_price;
+    }
   });
 
   const [click, setClick] = useState(false);
@@ -163,7 +167,10 @@ export const Profile = () => {
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
-      parseFloat((stock.volume * stock.last_price).toFixed(2))
+      parseFloat(
+        stock.volume *
+          (stock.market_status == "CLOSE_E" ? stock.close : stock.last_price)
+      )
     );
     const labels = SortedStock.map((stock) => stock.symbol);
 
@@ -241,7 +248,10 @@ export const Profile = () => {
             <div className="balance__Total__Wealth">Total Wealth</div>
             <div className="balance__Total__Wealth__value">
               {userPort.map((stock) => {
-                total += stock.last_price * stock.volume;
+                total +=
+                  (stock.market_status == "CLOSE_E"
+                    ? stock.close
+                    : stock.last_price) * stock.volume;
               })}
               {formatNumber(total)}
             </div>
@@ -250,7 +260,7 @@ export const Profile = () => {
             <div className="balance__Total__Topic">
               Cash Balance
               <div className="balance__Total__Cash__Balance__value">
-                {userAccount.cash_balance ? (
+                {userAccount.id ? (
                   formatNumber(userAccount.cash_balance)
                 ) : (
                   <></>
@@ -263,7 +273,7 @@ export const Profile = () => {
                 Available
                 <div className="wallet__Line__Available__value">
                   <div>
-                    {userAccount.line_available ? (
+                    {userAccount.id ? (
                       formatNumber(userAccount.line_available)
                     ) : (
                       <></>
@@ -277,7 +287,7 @@ export const Profile = () => {
                 Credit Limit
                 <div className="wallet__Creditlimit__value">
                   <div>
-                    {userAccount.credit_limit ? (
+                    {userAccount.id ? (
                       formatNumber(userAccount.credit_limit)
                     ) : (
                       <></>

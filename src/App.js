@@ -17,15 +17,16 @@ import "./App.css";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 
 import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
+import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
+import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 
 import axios from "axios";
 
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-  const [account, setAccount] = useState(1);
+  const [account, setAccount] = useState(2);
   const [isLoading, setLoading] = useState(true);
-
 
   const readCookie = async () => {
     let token = Cookies.get("token");
@@ -129,6 +130,26 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+
+                  <Route
+                    path="/AccountManagement"
+                    element={
+                      <ProtectedRoute>
+                        <AccountManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  <Route
+                    path="/NewsManagement"
+                    element={
+                      <ProtectedRoute>
+                        <NewsManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+
                 </Routes>
               </div>
             </Router>

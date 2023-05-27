@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import "./GovernmentView.css";
 import Table from "./Table";
-import { SearchFunction, Updating, GettingRoleIndex, SearchGeting, tablesColumns, tablesRows } from "./databaseTables.js";
+import {
+  SearchFunction,
+  Updating,
+  GettingRoleIndex,
+  SearchGeting,
+  tablesColumns,
+  tablesRows,
+} from "./databaseTables.js";
 import Logo from "./Logo.svg";
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
-let roleIndex = (storedRoleIndex ? JSON.parse(storedRoleIndex) : defaultRoleI)
+let roleIndex = storedRoleIndex ? JSON.parse(storedRoleIndex) : defaultRoleI;
 
 let storedLabel = localStorage.getItem("Label");
-let defaultLabel = '';
+let defaultLabel = "";
 
 export const GovernmentView = () => {
   const [Label, setLabel] = useState(defaultLabel);
@@ -26,7 +33,6 @@ export const GovernmentView = () => {
     window.location.reload();
   };
 
-
   // Function to handle input change
   const handleInputChange = (event) => {
     setLabel(event.target.value);
@@ -40,15 +46,7 @@ export const GovernmentView = () => {
     window.location.reload();
   };
 
-
-
-  const RoleNames = [
-    "User",
-    "Broker",
-    "Government",
-    "Admin",
-    "Company"
-  ]
+  const RoleNames = ["User", "Broker", "Government", "Admin", "Company"];
 
   const tableNames = [
     [
@@ -103,18 +101,15 @@ export const GovernmentView = () => {
       "Divident",
       "News",
     ],
-    [
-      "Company Details",
-      "Turnover",
-      "Divident",
-      "News",
-    ]//<only company can view these
+    ["Company Details", "Turnover", "Divident", "News"], //<only company can view these
   ];
 
   return (
     <div className="GovernmentView__container">
       <GettingRoleIndex roleIndexGet={roleIndex} />
-      <SearchGeting ViewerLabelGet={(storedLabel ? JSON.parse(storedLabel) : defaultLabel)} />
+      <SearchGeting
+        ViewerLabelGet={storedLabel ? JSON.parse(storedLabel) : defaultLabel}
+      />
       <SearchFunction></SearchFunction>
       <Updating></Updating>
       <div className="GovernmentView__data__container">
@@ -150,37 +145,33 @@ export const GovernmentView = () => {
             {RoleName}
           </button>
         </p>
-      ))
-      }
+      ))}
 
-      {roleIndex == 0 &&
+      {roleIndex == 0 && (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={Label}
             onChange={handleInputChange}
             placeholder="Enter your username..."
-            style={{ color: 'black' }} // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
+            style={{ color: "black" }} // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
           />
           <button type="submit">Submit</button>
         </form>
-      }
+      )}
 
-      {roleIndex == 1 &&
+      {roleIndex == 1 && (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={Label}
             onChange={handleInputChange}
             placeholder="Enter your broker organization name..."
-            style={{ color: 'black' }} // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
+            style={{ color: "black" }} // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
           />
           <button type="submit">Submit</button>
         </form>
-      }
-
-
-
+      )}
     </div>
   );
 };
