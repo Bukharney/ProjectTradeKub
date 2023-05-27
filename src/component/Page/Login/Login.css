@@ -150,5 +150,7 @@ button button:disabled {
 .RegisText{
   text-align: center;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  margin-top: 5%;
+  color: #ffffff;
 }
