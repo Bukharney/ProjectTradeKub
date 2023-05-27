@@ -75,7 +75,7 @@ export const Profile = () => {
   useEffect(() => {
     const get_user_info = async () => {
       await axios
-        .get(`https://www.tradekub.me/users/`, {
+        .get(`https://www.tradekub.me/users/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -107,7 +107,7 @@ export const Profile = () => {
         });
     };
 
-    const get_user_log = async (e) => {
+    const get_user_log = async () => {
       await axios
         .get(`https://www.tradekub.me/users/login_info`, {
           headers: {
@@ -124,7 +124,7 @@ export const Profile = () => {
         });
     };
 
-    const get_tsc = async (e) => {
+    const get_tsc = async () => {
       await axios
         .get(`https://www.tradekub.me/bank_tsc/my`, {
           headers: {
@@ -389,20 +389,20 @@ export const Profile = () => {
           <div className="profile__Account__Topic">
             Account Name
             <span className="profile__Account__Name__value">
-              {userData.map((user) => user.name)}
+              {userData ? userData.name : "Loading..."}
             </span>
           </div>
 
           <div className="profile__Account__Topic">
             Phone Number
             <span className="profile__Account__PhoneNumber__value">
-              {userData.map((user) => user.phone)}
+              {userData ? userData.phone : "Loading..."}
             </span>
           </div>
           <div className="profile__Account__Topic">
             Email
             <span className="profile__Account__Email__value">
-              {userData.map((user) => user.email)}
+              {userData ? userData.email : "Loading..."}
             </span>
           </div>
 
