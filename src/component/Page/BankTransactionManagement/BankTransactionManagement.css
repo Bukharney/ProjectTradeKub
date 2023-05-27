@@ -208,6 +208,7 @@
 
 
 .resetAdd {
+
     box-sizing: border-box;
 
     position: absolute;
@@ -236,6 +237,7 @@
  }
 
 .resetTransaction {
+    color: #FFFFFF;
     box-sizing: border-box;
 
     position: absolute;

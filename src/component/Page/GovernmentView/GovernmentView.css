@@ -9,6 +9,8 @@
 .GovernmentView__data__container {
   display: flex;
   flex-direction: column;
+  margin-left: 7%;
+  width: 80%;
 }
 
 .GovermentView__title {
@@ -17,7 +19,7 @@
 
 .GovernmentView__data__container__table {
   display: flex;
-  justify-content: space-between;
+
 }
 
 .GovernmentView__Header__container {
@@ -48,13 +50,116 @@
   transform: translateY(-2px);
 }
 
-@media screen and (max-width: 1599px) {
-  .GovernmentView__data__container {
-    width: 80%;
-  }
+.GovernmentView__data_______container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60%;
+}
+
+.GovernmentView__Role__container{
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  width: 19%;
+  height: 100%;
+}
+
+.GovernmentView__src__button{
+  background-color: #CCFF00;
+  font-weight: 400;
+  color: #212225;
+  margin-top: 7%;
+  margin-left: 18%;
+  width: 60%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.GovernmentView__src__button:hover {
+  color: #242529;
+  background-color: #ccff00;
+  box-shadow: 0px 1px 16px -1px #ccff00(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.GovernmentView__insert__button{
+  margin-left: 7%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 80%;
+}
+
+.GovernmentView__container____serch__input{
+  margin-left: 9%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 15%;
+  display: flex;
+  height: 40%;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  width: 75%;
+}
+
+.GovernmentView__data__table__container{
+  width: 82%;
+  height: 100%;
+}
+
+.GovernmentView__data__table__container__size{
+  overflow-y: auto;
+  overflow-x: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.GovernmentView__data__table__container__size::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+.GovernmentView__data__table__container__size::-webkit-scrollbar-track {
+  background: #212225;
+}
+
+.GovernmentView__data__table__container__size::-webkit-scrollbar-thumb {
+  background: #282a2e;
+  border-radius: 4px;
+}
+
+.GovernmentView__data__table__container__size::-webkit-scrollbar-thumb:hover {
+  background: #4e4f51;
+}
+
+.GovernmentView__table {
+  margin-top: 2%;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.GovernmentView__tableHeaderBox {
+  color: white;
+  text-align: center;
+}
+
+.GovernmentView__tableColBox {
+  color: white;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.GovernmentView__tableColBox:hover {
+  background-color: #282a2e;
+}
+
 
   .GovernmentView__Header__container {
-    margin-top: 3rem;
+    margin-top: 5%;
   }
 
   .GovernmentView__logo {
@@ -91,10 +196,30 @@
     background-color: #242529;
     margin-top: 10px;
   }
-}
 
-@media screen and (min-width: 1600px) and (max-width: 1800px) {
-}
+  .GovernmentView__src__button{
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
 
-@media screen and (min-width: 1801px) {
-}
+  .GovernmentView__container____serch__input{
+    border: 1px solid #4e4f51;
+    border-radius: 10px;
+    font-size: 0.75rem;
+  }
+
+
+  .GovernmentView__tableHeaderBox {
+    font-size: 0.75rem;
+    padding: 10px 15px;
+    border-bottom: 1.5px solid #4e4f51;
+  }
+
+
+  .GovernmentView__tableColBox {
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    color: white;
+    text-align: center;
+    font-size: 0.75rem;
+  }

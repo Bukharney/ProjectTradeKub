@@ -21,6 +21,7 @@ import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
 import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
 import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
+import {Register} from "./component/Page/Register/Register";
 
 import axios from "axios";
 
@@ -160,6 +161,15 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <BankTransactionManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+<Route
+                    path="/Register"
+                    element={
+                      <ProtectedRoute>
+                        <Register />
                       </ProtectedRoute>
                     }
                   />

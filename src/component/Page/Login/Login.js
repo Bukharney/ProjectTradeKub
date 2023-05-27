@@ -68,33 +68,35 @@ export const Login = () => {
           </div>
 
           <div className="Insert">
-            <div className="Username">
-              <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-
-            <div className="Password">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-
-              <div className="Showpassword" style={{ position: "relative" }}>
-                {password && (
-                  <img
-                    src={showPassword ? hide_password : show_password}
-                    alt="Toggle Password Visibility"
-                    onClick={handleTogglePassword}
-                  />
-                )}
+            <form>
+              <div className="Username">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
               </div>
-            </div>
+
+              <div className="Password">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+
+                <div className="Showpassword" style={{ position: "relative" }}>
+                  {password && (
+                    <img
+                      src={showPassword ? hide_password : show_password}
+                      alt="Toggle Password Visibility"
+                      onClick={handleTogglePassword}
+                    />
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
           <div className="ErrorMessage">{errorMessage}</div>
           <div className="button">
