@@ -84,7 +84,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   if (value["key"] !== 3) {
     return null;
-  } else if (data.length === 0) {
+  } else if (data == null || data.length === 0) {
     return (
       <div className="Notification">
         <div className="Nofitication__Container">
@@ -102,39 +102,41 @@ export const Notification = ({ value, hasRefresh }) => {
       <div className="Nofitication__Container">
         <div className="Notication__Box">
           <div className="Nofitication__Header">Notification</div>
-          {data.map((Inbox, index) => {
-            return (
-              <div className="Notification_Item" key={index}>
-                <Link to="/Wallet">
-                  <button
-                    onClick={() => {
-                      handleClick1(index);
-                    }}
-                  >
-                    <div className="Notification__Body">
-                      <div className="Notification_Dot"></div>
-                      <div className="NotiText">
-                        <div className="NotiPrice">{Inbox.volume}</div>
-                        <div className="NotiName">{Inbox.message}</div>
-                        <div className="NotiTime">
-                          {get_time(Inbox.created_at)}
+          {data
+            ? data.map((Inbox, index) => {
+                return (
+                  <div className="Notification_Item" key={index}>
+                    <Link to="/Wallet">
+                      <button
+                        onClick={() => {
+                          handleClick1(index);
+                        }}
+                      >
+                        <div className="Notification__Body">
+                          <div className="Notification_Dot"></div>
+                          <div className="NotiText">
+                            <div className="NotiPrice">{Inbox.volume}</div>
+                            <div className="NotiName">{Inbox.message}</div>
+                            <div className="NotiTime">
+                              {get_time(Inbox.created_at)}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </button>
-                </Link>
+                      </button>
+                    </Link>
 
-                <button
-                  className="DeleteButton"
-                  onClick={() => {
-                    del_noti(Inbox.id);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            );
-          })}
+                    <button
+                      className="DeleteButton"
+                      onClick={() => {
+                        del_noti(Inbox.id);
+                      }}
+                    >
+                      -
+                    </button>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>
