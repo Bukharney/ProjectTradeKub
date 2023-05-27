@@ -7,6 +7,10 @@
   animation: LOLAnimation 2s;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 @keyframes LOLAnimation {
   0% {
     opacity: 0;
