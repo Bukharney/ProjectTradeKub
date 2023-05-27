@@ -27,3 +27,7 @@ export const Account = {
       }
     ]
   };
+
+export const User = {
+
+};
