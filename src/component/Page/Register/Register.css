@@ -75,7 +75,6 @@
 
 .RegisCancel:hover {
   background-color: #cd3d42;
-  box-shadow: 0px 1px 16px -1px rgba(205, 61, 66, 0.4);
   transform: translateY(-2px);
 }
 
@@ -95,7 +94,6 @@
 .RegisConfirm:hover {
   transform: translateY(-2px);
 }
-
 
 .Reis___background {
   position: absolute; 

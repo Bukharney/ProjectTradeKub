@@ -444,7 +444,14 @@
   width: 0px;
 }
 
-.Market__container__right__Container__box {
+.Market__container__right__Container__box1 {
+  padding-top: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Market__container__right__Container__box2 {
   padding-top: 5%;
   width: 100%;
   display: flex;
@@ -508,6 +515,10 @@
   align-items: center;
 }
 
+.Martket__left_div:hover {
+  background: linear-gradient(102.44deg, #282A2E 0%, #1A1B1E 134.06%);
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.25);
+}
 .Market__container__left__stock__Box__stock__symbol {
   padding-top: 10%;
   padding-bottom: 10%;
@@ -591,6 +602,12 @@
 
 .Market__Footer__Reset__Order:hover {
   background-color: #4e4f51;
+}
+
+.PopUP {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @media screen and (max-width: 1599px) {
