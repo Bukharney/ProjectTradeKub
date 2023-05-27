@@ -326,22 +326,30 @@ export const Market = () => {
             </span>
           </div>
         </div>
-        <div className="Market__container__Graph" style={{
-  '@media screen and (max-width: 1599px)': {
-    display: 'flex'
-  },
-  '@media screen and (min-width: 1600px) and (max-width: 1800px)': {
-    display: 'flex'
-  },
-  '@media screen and (min-width: 1801px)': {
-    display: 'flex'
-  }
-}}>
-  {window.innerWidth <= 1599 && <CandleChart data={marketData.candlestick_50limit} height="100%" />}
-  {window.innerWidth >= 1600 && window.innerWidth <= 1800 && <CandleChart2 data={marketData.candlestick_50limit} height="100%" />}
-  {window.innerWidth >= 1801 && <CandleChart3 data={marketData.candlestick_50limit} height="100%" />}
-</div>
-
+        <div
+          className="Market__container__Graph"
+          style={{
+            "@media screen and (max-width: 1599px)": {
+              display: "flex",
+            },
+            "@media screen and (min-width: 1600px) and (max-width: 1800px)": {
+              display: "flex",
+            },
+            "@media screen and (min-width: 1801px)": {
+              display: "flex",
+            },
+          }}
+        >
+          {window.innerWidth <= 1599 && (
+            <CandleChart data={marketData.candlestick_50limit} height="100%" />
+          )}
+          {window.innerWidth >= 1600 && window.innerWidth <= 1800 && (
+            <CandleChart2 data={marketData.candlestick_50limit} height="100%" />
+          )}
+          {window.innerWidth >= 1801 && (
+            <CandleChart3 data={marketData.candlestick_50limit} height="100%" />
+          )}
+        </div>
 
         <div className="Market__container__mid__Footer">
           <div className="Market__container__mid__Footer__width">
@@ -412,9 +420,12 @@ export const Market = () => {
                 </span>
               </div>
 
-              <div className="Market__Footer__Reset__Order">
-                <button onClick={handleResetClick}>Reset</button>
-              </div>
+              <button
+                className="Market__Footer__Reset__Order"
+                onClick={handleResetClick}
+              >
+                Reset
+              </button>
             </div>
             <div className="Market__container__mid__Footer__right">
               <div className="Market__Footer__Total">
@@ -468,9 +479,13 @@ export const Market = () => {
                   </div>
                 </div>
               </div>
-              <div className="Market__Footer__Place__Order">
-                <button onClick={handleOrderClick}>Place Order</button>
-              </div>
+
+              <button
+                className="Market__Footer__Place__Order"
+                onClick={handleOrderClick}
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>

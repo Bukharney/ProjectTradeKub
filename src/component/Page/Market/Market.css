@@ -529,7 +529,7 @@
   padding: none;
   border: none;
 }
-
+ 
 .srch__icon {
   width: 25%;
   height: 100%;
@@ -567,6 +567,10 @@
 .Market__container__Loading {
   width: 1.5%;
   margin-top: 22%;
+}
+
+.Market__Footer__Reset__Order:hover {
+  background-color: #4e4f51;
 }
 
 @media screen and (max-width: 1599px) {

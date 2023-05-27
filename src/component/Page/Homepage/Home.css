@@ -192,6 +192,7 @@
   }
 
   .Button {
+    display: flex;
     text-align: center;
     justify-content: center;
     padding-top: 0.85rem;
@@ -463,9 +464,10 @@
   }
 
   .Button {
+    display: flex;
     text-align: center;
     justify-content: center;
-    padding-top: 1rem;
+    padding-top: 1.25rem;
     width: 12rem;
     height: 4rem;
     margin-top: 27rem;
@@ -740,6 +742,7 @@
   }
 
   .Button {
+    display: flex;
     text-align: center;
     justify-content: center;
     padding-top: 1rem;
@@ -963,9 +966,9 @@
 
   .News__title {
     margin-top: -7rem;
-    margin-left: 16rem;
+    margin-left: 18rem;
     font-size: 1rem;
-    width: 20rem;
+    width: 18rem;
   }
 
   .News__title p {
@@ -1006,8 +1009,8 @@
   }
 
   .Home__Chart{
-    width: 60%;
+    width: 50%;
     margin-left: 4.2rem;
-    margin-top: -2rem;
+    margin-top: -1.8rem;
   }
 }

@@ -8,7 +8,7 @@ export const News = [
 
   {
     Title1:
-      "UAC ผนึกก.พลังงานสปป.ลาวศึกษาแปรรูปขยะ เป็นพลังงานสีเขียว",
+      "UAC ผนึกก.พลังงานสปป.ลาวศึกษาแปรรูปขยะ เป็นพลังงานสีเขียวศึกษาแปรรูปขยะ เป็นพลังงานสีเขียว",
     Picture1:
       "https://www.banmuang.co.th/uploads/news/img/l/329078_th.jpg",
     Time1: "18 hours ago",

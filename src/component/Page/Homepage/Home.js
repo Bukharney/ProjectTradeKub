@@ -344,11 +344,11 @@ export const Home = () => {
           analytics at absolutely no cost! ”
         </div>
       </div>
-      <div className="Button">
-        <Link to="/Market">
-          <button onClick={handleClick}>Go to Market</button>
-        </Link>
-      </div>
+
+      <button className="Button" onClick={handleClick}>
+        <Link to="/Market">Go to Market</Link>
+      </button>
+
       <div className="Banner">
         <img src={Banner} alt="Banner" className="Mock" />
         <img src={Moon} alt="Moon" className="Moon" />

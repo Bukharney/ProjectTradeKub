@@ -97,7 +97,7 @@ const Register = () => {
         </div>
         <div className="CancelConfirm">
           <button className="RegisCancel" onClick={handleBack}>
-            Cancel
+            Cancel 
           </button>
           <button className="RegisConfirm">Confirm</button>
         </div>
