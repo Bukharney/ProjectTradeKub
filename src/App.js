@@ -14,13 +14,14 @@ import AccountContext from "./Context/AccountContext";
 import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
+import  Register from "./component/Page/Register/Register";
 import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
 
 import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
 import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
 import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
-import {Register} from "./component/Page/Register/Register";
+
 
 import axios from "axios";
 
@@ -79,7 +80,10 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   {!auth ? (
+                    <>
                     <Route path="/Login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
+                    </>
                   ) : (
                     () => window.location.replace("/Market")
                   )}

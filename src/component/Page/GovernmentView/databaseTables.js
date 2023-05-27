@@ -175,6 +175,29 @@ else if (roleIndex_inDB == 1) {
     UserData.filter(item => view_AccountData.find(accountItem => accountItem.user_id === item.user_id) && search === item.user_id)
   );
 
+const Account = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const Broker = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const BankTransition = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
+
+const StockOrder = [
+  { id: 1, name: "Document 1" },
+  { id: 2, name: "Document 2" },
+  { id: 3, name: "Document 3" }
+];
 
   //search broker by broker id, but technically show only 1 row or not show
   view_BrokerData = (search === '' ?
@@ -494,7 +517,7 @@ let tablesColumns = [
   companyDetailsColumns,
   turnoverColumns,
   dividendColumns,
-  newsColumns,
+  newsColumns
 ];
 
 

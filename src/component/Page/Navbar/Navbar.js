@@ -47,7 +47,7 @@ export const Navbar = () => {
     }
   }
 
-  if (location.pathname === "/" || location.pathname === "/Login") {
+  if (location.pathname === "/" || location.pathname === "/Login"||location.pathname==="/Register") {
     return null;
   }
 
