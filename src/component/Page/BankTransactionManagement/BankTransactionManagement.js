@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './BankTransactionManagement.css'; // Import the CSS file for additional styles
+import axios from 'axios';
+import TokenContext from '../../../Context/TokenContext';
+import { async } from 'q';
 
 export const BankTransactionManagement = () => {
     const [selectedButton, setSelectedButton] = useState('');
@@ -10,6 +13,10 @@ export const BankTransactionManagement = () => {
     const [InputBox3, setInputBox3] = useState('');
     const [InputBox4, setInputBox4] = useState('');
     const [InputBox5, setInputBox5] = useState('');
+
+    const Token = useContext(TokenContext);
+    let retreiveValue = [{}];
+
 
     const handleReset = () => {
         setInputBox1('');
@@ -23,12 +30,6 @@ export const BankTransactionManagement = () => {
 
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
-        setInputBox1('');
-        setInputBox3('');
-        setInputBox4('');
-        setInputBox5('');
-        setInputBox6('');
-
     };
 
 
@@ -54,107 +55,202 @@ export const BankTransactionManagement = () => {
         setInputBox6(event.target.value);
     };
 
-    // Function to handle form submission
-    //ไม่ใช้ handleSubmit 1 กับ 3 , ใช้ handleSubmit2 ซึ่งดัดแปลงมาจาก edit ของ Newsmanagement แต่เปลี่ยนเป็น add+edit แทน
-    const handleSubmit1 = (event) => {
-        event.preventDefault();
-        /*
-        if(InputBox0 ไม่เจอใน databases)
-        {
-            alert('Cannot find your broker ID')
-            window.location.reload();
+ 
+    const BrokerExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/broker/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
 
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
         }
-        else if(InputBox1 ไม่เจอใน database){
-            alert('Cannot find the username')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox2) || !Number.isInteger(InputBox2) || InputBox2.length !== 6)
-        {
-            alert('Wrong format of pin')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox3))
-        {
-            alert('Wrong format of credit limit')
-            window.location.reload();
-        }
-        else{ // เตรียมยัดข้อมูลตรงนี้}
-        InputBox1 //username สำหรับสร้าง account ของ user เพิ่ม โดยมี InputBox0 คือ broker
-        InputBox2 //pin
-        InputBox3 //credit limit
-        //******************** ADD*/
-        window.location.reload();
     };
+
+    const UserExist = async (u) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const Get_user_data = async (u) => {
+        await axios
+          .get(`https://www.tradekub.me/users/username/${u}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            retreiveValue = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+    const Get_account_data = async (a) => {
+        await axios
+          .get(`https://www.tradekub.me/account/${a}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            retreiveValue = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+
+    const AccountExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/account/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+
+             console.log(response);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+
+    const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
+        const data = {
+            user_id: Number(retreiveValue.id),
+            broker_id: Number(InputBox0),
+            cash_balance: 0,
+            line_available: 0,
+            credit_limit:  Number(InputBox3),
+            pin: Number(InputBox2)
+        };
+
+        await axios
+            .post("https://www.tradekub.me/account/", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("Create account successfull");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Create account failed please try again");
+                
+            });
+    };
+
+    const CreateBankTransaction = async ({InputBox1,InputBox3,InputBox4,selectedButton}) => {
+        const data = {
+            account_id: 0,//Number(InputBox1),
+            account_number: "InputBox3",
+            type: "deposit",
+            amount: 0//Number(InputBox4),
+        };
+
+        await axios
+            .post("https://www.tradekub.me/bank_tsc/", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("Add Transaction Success");
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Add Transaction failed please try again");
+             });
+    };
+
 
     //ฟอร์มนี้ทำทั้ง add (bank transaction) และ update (account)
     const handleSubmit2 = (event) => {
         event.preventDefault();
-        // Perform any necessary actions with the input value
-        /*
-         if(InputBox1 ไม่เจอใน database){
-            alert('Cannot find the account id')
-            window.location.reload();
+        (async () => {
+            await Get_account_data(InputBox1);
+            if (await BrokerExist(InputBox0) === 0) {
+                alert('Cannot find your broker ID')
+                window.location.reload();
+            }
+            else if (await AccountExist(Number(InputBox1)) === 0) {
+                alert('Cannot find the Account')
+                window.location.reload();
+            }
+            else if (retreiveValue.broker_id !== Number(InputBox0)) {
+                alert("the account isn't belong to your broker")
+                window.location.reload();
+            }   
+            else if(selectedButton !== 'Deposit' && selectedButton !== 'Withdraw')
+            {
+                alert('Please select the transaction type')
+                window.location.reload();
+            }
+            else if(isNaN(InputBox3) || !Number.isInteger(Number(InputBox3)) || InputBox3.length !== 10)
+            {
+                alert('Wrong format of bank account number[10 digit number]')
+                window.location.reload();
+            }
+            else if(isNaN(InputBox4) || InputBox4 === '')
+            {
+                alert('Wrong format of amount')
+                window.location.reload();
+            }
+            else if(isNaN(InputBox5)|| InputBox5 === '')
+            {
+                alert('Wrong format of new line available')
+                window.location.reload();
+            }
+            else if(isNaN(InputBox6)|| InputBox6 === '')
+            {
+                alert('Wrong format of new cash balance')
+                window.location.reload();
+            }                 
+            else{
+                await CreateBankTransaction({InputBox1,InputBox3,InputBox4,selectedButton});
+             }
         }
-        else if(InputBox1(account) มี แต่ broker_id ไม่ตรงกับ InputBox0 (broker ID))
-        {
-            alert('the account isn't belong to your broker')
-            window.location.reload();
-
-        }
-        else if(selectedButton !== 'Deposit' && selectedButton !== 'Withdraw')
-        {
-            alert('Please select the transaction type')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox3)|| InputBox3 === '')
-        {
-            alert('Wrong format of bank account number')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox4) || InputBox4 === '')
-        {
-            alert('Wrong format of amount')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox5)|| InputBox5 === '')
-        {
-            alert('Wrong format of new line available')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox6)|| InputBox6 === '')
-        {
-            alert('Wrong format of new cash balance')
-            window.location.reload();
-        }                 
-        else {
-         //เตรียมยัดข้อมูลตรงนี้ ถ้า Input2,3,4,5 มันว่าง ไม่ต้องอัพ}
-
-         /*InputBox1 //account Id ที่ต้องการอัพเดท
-        InputBox3 //bank account number  
-        InputBox4 //amount
-        InputBox5 //new line available
-        InputBox6 //new cash balance
-        */
-        //******************** Edit*/
-        window.location.reload();
-    };
-
-    const handleSubmit3 = (event) => {
-        event.preventDefault();
-        // Perform any necessary actions with the input value
-        /*
-         if(InputBox1 ไม่เจอใน database){
-            alert('Cannot find the account id')
-            window.location.reload();
-        }
-        else{//ลบ accountID}
-        */
-        /*InputBox1 //accountID ที่ต้องการลบ
-        //********************ยัดข้อมูลตรงนี้ Delete*/
-        window.location.reload();
-    };
-
+        )();
+ 
+    }
 
 
     return (
