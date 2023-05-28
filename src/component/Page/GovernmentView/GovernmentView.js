@@ -13,6 +13,7 @@ import Logo from "./Logo.svg";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import TableMapping from "./TableMap";
+import { AllDataUpdate } from "./allData";
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
@@ -20,6 +21,7 @@ let roleIndex = storedRoleIndex ? JSON.parse(storedRoleIndex) : defaultRoleI;
 
 let storedLabel = localStorage.getItem("Label");
 let defaultLabel = "";
+let loading = false;
 
 export const GovernmentView = () => {
   const [role, setRole] = useState("admin");
@@ -38,6 +40,7 @@ export const GovernmentView = () => {
   const handleClick2 = (i) => {
     roleIndex = i;
     localStorage.setItem("roleI", JSON.stringify(roleIndex));
+    localStorage.setItem("Label", JSON.stringify(""));
     window.location.reload();
   };
 
@@ -162,91 +165,97 @@ export const GovernmentView = () => {
       />
       <SearchFunction></SearchFunction>
       <Updating></Updating>
-      <div className="GovernmentView__data__container">
-        <div className="GovernmentView__Header__container">
-          <img src={Logo} alt="logo" className="GovernmentView__logo" />
-          <div className="GovermentView__title">Table Views</div>
-        </div>
-        <div className="GovernmentView__data__container__table">
-          {tableNames[roleIndex].map((tableName, i) => (
-            <div className="GovernmentView__container__button">
-              <button
-                style={{
-                  backgroundColor: index === i ? FocusBG_GV1 : "",
-                  color: index === i ? "#282A2E" : "",
-                }}
-                key={i}
-                className="table__Box"
-                onFocus={handleInputFocusBG_GV1}
-                onClick={() => handleClick(i)}
-              >
-                {tableName}
-              </button>
-            </div>
-          ))}
-        </div>
+      {(loading = <AllDataUpdate></AllDataUpdate>)}
 
-        <div className="GovernmentView__data_______container">
-          <div className="GovernmentView__data__table__container">
-            <div className="GovernmentView__data__table__container__size">
-              {table === "" && <TableMapping data={userData} />}
-            </div>{" "}
+      {loading === true ? (
+        "sdadas"
+      ) : (
+        <div className="GovernmentView__data__container">
+          <div className="GovernmentView__Header__container">
+            <img src={Logo} alt="logo" className="GovernmentView__logo" />
+            <div className="GovermentView__title">Table Views</div>
           </div>
-          <div className="GovernmentView__Role__container">
-            {RoleNames.map((RoleName, i) => (
-              <div className="GovernmentView__container__button" key={i}>
+          <div className="GovernmentView__data__container__table">
+            {tableNames[roleIndex].map((tableName, i) => (
+              <div className="GovernmentView__container__button">
                 <button
                   style={{
-                    backgroundColor: roleIndex === i ? "#CCFF00" : "",
-                    color: roleIndex === i ? "#282A2E" : "",
+                    backgroundColor: index === i ? FocusBG_GV1 : "",
+                    color: index === i ? "#282A2E" : "",
                   }}
+                  key={i}
                   className="table__Box"
-                  onClick={() => handleClick2(i)}
+                  onFocus={handleInputFocusBG_GV1}
+                  onClick={() => handleClick(i)}
                 >
-                  {RoleName}
+                  {tableName}
                 </button>
               </div>
             ))}
+          </div>
 
-            {roleIndex == 0 && (
-              <form onSubmit={handleSubmit}>
-                <div className="GovernmentView__container____serch__input">
-                  <i class="bx bx-search"></i>
-                  <input
-                    type="text"
-                    value={Label}
-                    className="GovernmentView__insert__button"
-                    onChange={handleInputChange}
-                    placeholder="Username"
-                    // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
-                  />
+          <div className="GovernmentView__data_______container">
+            <div className="GovernmentView__data__table__container">
+              <div className="GovernmentView__data__table__container__size">
+                {table === "" && <TableMapping data={userData} />}
+              </div>{" "}
+            </div>
+            <div className="GovernmentView__Role__container">
+              {RoleNames.map((RoleName, i) => (
+                <div className="GovernmentView__container__button" key={i}>
+                  <button
+                    style={{
+                      backgroundColor: roleIndex === i ? "#CCFF00" : "",
+                      color: roleIndex === i ? "#282A2E" : "",
+                    }}
+                    className="table__Box"
+                    onClick={() => handleClick2(i)}
+                  >
+                    {RoleName}
+                  </button>
                 </div>
-                <button type="submit" className="GovernmentView__src__button">
-                  Submit
-                </button>
-              </form>
-            )}
+              ))}
 
-            {roleIndex === 1 && (
-              <form onSubmit={handleSubmit}>
-                <div className="GovernmentView__container____serch__input">
-                  <i class="bx bx-search"></i>
-                  <input
-                    type="text"
-                    value={Label}
-                    className="GovernmentView__insert__button"
-                    onChange={handleInputChange}
-                    placeholder="Broker name"
-                  />
-                </div>
-                <button type="submit" className="GovernmentView__src__button">
-                  <p>Submit</p>
-                </button>
-              </form>
-            )}
+              {roleIndex == 0 && (
+                <form onSubmit={handleSubmit}>
+                  <div className="GovernmentView__container____serch__input">
+                    <i class="bx bx-search"></i>
+                    <input
+                      type="text"
+                      value={Label}
+                      className="GovernmentView__insert__button"
+                      onChange={handleInputChange}
+                      placeholder="Username"
+                      // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
+                    />
+                  </div>
+                  <button type="submit" className="GovernmentView__src__button">
+                    Submit
+                  </button>
+                </form>
+              )}
+
+              {roleIndex === 1 && (
+                <form onSubmit={handleSubmit}>
+                  <div className="GovernmentView__container____serch__input">
+                    <i class="bx bx-search"></i>
+                    <input
+                      type="text"
+                      value={Label}
+                      className="GovernmentView__insert__button"
+                      onChange={handleInputChange}
+                      placeholder="Broker name"
+                    />
+                  </div>
+                  <button type="submit" className="GovernmentView__src__button">
+                    <p>Submit</p>
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

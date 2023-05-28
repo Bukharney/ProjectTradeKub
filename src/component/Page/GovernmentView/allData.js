@@ -1,6 +1,13 @@
 //ดึงข้อมูลทุกแถวของแต่ละ Table ลงนี่เลย เดะ query ใน databaseTable.js เอา
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
-export const UserData =
+
+
+
+export let UserData =
     [
         {
             user_id: 2,
@@ -91,7 +98,7 @@ export const UserData =
             phone_number: '087'
         },
     ];
-export const AccountData =
+export let AccountData =
     [
         {
             account_id: 0,
@@ -146,7 +153,7 @@ export const AccountData =
             contracted_datetime: '1990-03-29'
         },
     ];
-export const BrokerData =
+export let BrokerData =
     [
         {
             broker_id: 2,
@@ -162,7 +169,7 @@ export const BrokerData =
     ];
 
 //https://forum.5paisa.com/portal/en/kb/articles/types-of-stock-trading-order-and-its-validity
-export const StockOrderData =
+export let StockOrderData =
     [
         {
             order_id: 2,
@@ -197,7 +204,7 @@ export const StockOrderData =
 
         },
     ];
-export const StockTransData =
+export let StockTransData =
     [
         {
             stock_transaction_id: 2,
@@ -214,7 +221,7 @@ export const StockTransData =
             transaction_price: 10
         },
     ];
-export const BankTransData =
+export let BankTransData =
     [
         {
             bank_transaction_id: 2,
@@ -224,7 +231,7 @@ export const BankTransData =
             transaction_datetime: '1990-02-30'
         }
     ];
-export const TurnoverData =
+export let TurnoverData =
     [
         {
             stock_symbol: 'ABC',
@@ -237,7 +244,7 @@ export const TurnoverData =
             net_profit: 20
         }
     ];
-export const LogInOutData =
+export let LogInOutData =
     [
         {
             user_id: 2,
@@ -247,7 +254,7 @@ export const LogInOutData =
             ip_address: '127.0.1'
         }
     ];
-export const CompanyData =
+export let CompanyData =
     [
         {
             stock_symbol: 'ABC',
@@ -265,7 +272,7 @@ export const CompanyData =
             mojor_shareholder: 30,
         }
     ];
-export const DividentData =
+export let DividentData =
     [
         {
             divident_transaction_id: 2,
@@ -275,16 +282,287 @@ export const DividentData =
             value: 20
         }
     ];
-export const NewsData =
+export let NewsData =
     [
-        { stock_symbol: 'ABC',
-         news_datetime: '1999-05-05' ,
-        stock_symbol: 'ABC',
-        contents: 'กล้วยตานีปลายหวีเหี่ยว',
-        news_datetime: '1999-09-15',
-        files: 'asdasdasdasd'
+        {
+            stock_symbol: 'ABC',
+            news_datetime: '1999-05-05',
+            stock_symbol: 'ABC',
+            contents: 'กล้วยตานีปลายหวีเหี่ยว',
+            news_datetime: '1999-09-15',
+            files: 'asdasdasdasd'
         }
     ];
+ 
+    let isLoading = true;
+
+export const AllDataUpdate = () => {
+    /*userRows,
+        accountRows,
+        brokerRows,
+        bankTransitionRows,
+        stockOrderRows,
+        stockTransactionRows,
+        loginLogoutRows,
+        companyDetailsRows,
+    
+        turnoverRows,
+        dividendRows,
+        newsRows,*/
+
+    const Token = useContext(TokenContext);
+    let [UserDataServer, setUser] = useState([]);
+    let [AccountDataServer, setAccount] = useState([]);
+    let [BrokerDataServer, setBroker] = useState([]);
+    let [BankTransDataServer, setBankTrans] = useState([]);
+
+    let [StockOrderDataServer, setOrder] = useState([]);
+    let [StockTransDataServer, setStockTrans] = useState([]);
+    let [LoginoutDataServer, setLoginout] = useState([]);
+    let [CompanyDataServer, setCompany] = useState([]);
+
+    let [TurnoverDataServer, setTurnover] = useState([]);
+    let [DividentDataServer, setDivident] = useState([]);
+    let [NewsDataServer, setNews] = useState([]);
 
 
+    const Get_user_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/users/`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setUser(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_account_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/account/all`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setAccount(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_broker_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/broker/`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setBroker(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+    const Get_banktrans_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/bank_tsc/`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setBankTrans(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_StockOrder_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/order/all`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setOrder(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_StockTrans_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/stock/transactions/all`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setStockTrans(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_LoginLogout_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/users/login_info/all`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setLoginout(response.data);
+              })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_Company_data = async () => {
+        await axios
+            .get('https://www.tradekub.me/stock/company_info/all', {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setCompany(response.data);
+
+              })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_Turnover_data = async () => {
+        await axios
+            .get('https://www.tradekub.me/turnover/all', {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setTurnover(response.data);
+              })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_Divident_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/dividend/`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setDivident(response.data);
+              })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_News_data = async () => {
+        await axios
+            .get(`https://www.tradekub.me/news/`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setNews(response.data);
+                isLoading = false;
+             })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+
+    useEffect(() => {
+        Get_user_data();
+        Get_account_data();
+        Get_broker_data();
+        Get_banktrans_data();
+
+        Get_StockOrder_data();
+        Get_StockTrans_data();
+        Get_LoginLogout_data();
+        Get_Company_data();
+
+        Get_Turnover_data();
+        Get_Divident_data();
+        Get_News_data()
+    }
+        , []
+    );
+    UserData = UserDataServer;
+    AccountData = AccountDataServer;
+    BrokerData = BrokerDataServer;
+    StockOrderData = StockOrderDataServer;
+
+    BankTransData = BankTransDataServer;
+    StockTransData = StockTransDataServer;
+    LogInOutData = LoginoutDataServer;
+    CompanyData = CompanyDataServer;
+
+    TurnoverData = TurnoverDataServer;
+    DividentData = DividentDataServer;
+    NewsData =NewsDataServer;
+    return isLoading;
+}
+
+
+    /*userRows,
+        accountRows,
+        brokerRows,
+        bankTransitionRows,
+        stockOrderRows,
+
+        stockTransactionRows,
+        loginLogoutRows,
+        companyDetailsRows,
+    
+        turnoverRows,
+        dividendRows,
+        newsRows,*/
 

@@ -85,7 +85,7 @@ export const NewsManagement = () => {
         }
         else if(InputBox1(News) มี แต่ stock_id ของข่าวไม่ตรงกับ InputBox0 (your company stock ID))
         {
-            alert('the account isn't belong to your company')
+            alert('the News isn't belong to your company')
             window.location.reload();
 
         }

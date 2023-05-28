@@ -13,6 +13,7 @@
     "boxicons": "^2.1.4",
     "chart.js": "^4.3.0",
     "js-cookie": "^3.0.5",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^5.2.0",

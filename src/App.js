@@ -22,6 +22,8 @@ import { AccountManagement } from "./component/Page/AccountManagement/AccountMan
 import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
 import { SelectAccount } from "./component/Page/SelectAccount/SelectAccount";
+import { StockTransactionManagement } from "./component/Page/StockTransactionManagement/StockTransactionManagement";
+import { DividentManagement } from "./component/Page/DividentManagement/DividentManagement";
 
 import axios from "axios";
 
@@ -160,6 +162,24 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <BankTransactionManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+<Route
+                    path="/DividentManagement"
+                    element={
+                      <ProtectedRoute>
+                        <DividentManagement />
+                      </ProtectedRoute>
+                    }
+                  />
+
+<Route
+                    path="/StockTransactionManagement"
+                    element={
+                      <ProtectedRoute>
+                        <StockTransactionManagement />
                       </ProtectedRoute>
                     }
                   />
