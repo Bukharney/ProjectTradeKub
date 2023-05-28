@@ -131,7 +131,7 @@ const Register = () => {
         </div>
       </div>
 
-      <div className="stone1" style={{ transform: `translate(${stoneOffset.offsetX * 60}px, ${stoneOffset.offsetY * 60}px)` }}>
+      <div className="stone1" style={{ pointerEvents: "none", transform: `translate(${stoneOffset.offsetX * 60}px, ${stoneOffset.offsetY * 60}px)` }}>
         <img src={s1} alt="Stone" className="stone-image" />
       </div>
       <div className="stone2" style={{ transform: `translate(${stoneOffset.offsetX * 30}px, ${stoneOffset.offsetY * 30}px)` }}>
