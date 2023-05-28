@@ -7,6 +7,7 @@ import ApexCharts from "apexcharts";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
+import LoadingOverlay from "react-loading-overlay";
 
 export const Wallet = () => {
   const Token = useContext(TokenContext);
@@ -14,6 +15,7 @@ export const Wallet = () => {
   const [userPort, setUserPort] = useState([]);
   const [userAccount, setUserAccount] = useState([]);
   const [userTsc, setUserTsc] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
   let total = 0;
 
   const formatDate = (dateString) => {
@@ -81,9 +83,11 @@ export const Wallet = () => {
         .then((response) => {
           console.log(response.data);
           setUserPort(response.data);
+          setIsloading(false);
         })
         .catch((error) => {
           console.error(error);
+          window.location.href = "/";
         });
     };
 
@@ -199,7 +203,7 @@ export const Wallet = () => {
   }, [SortedStock]);
 
   return (
-    <div className="wallet__container">
+    <LoadingOverlay active={isLoading} spinner className="wallet__container">
       <div className="balance__container">
         <div className="balance__title">Your Balance</div>
         <div className="Donut__Chart" ref={chartRef}></div>
@@ -424,6 +428,6 @@ export const Wallet = () => {
           </div>
         </div>
       </div>
-    </div>
+    </LoadingOverlay>
   );
 };
