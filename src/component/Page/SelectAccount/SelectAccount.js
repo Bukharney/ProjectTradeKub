@@ -3,6 +3,7 @@ import "./SelectAcc.css";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
+import Logo from "./Logo.svg";
 
 export const SelectAccount = () => {
   const [data, setData] = useState([]);
@@ -67,7 +68,9 @@ export const SelectAccount = () => {
       <div className="boxSelectAcc">
         <div className="Head-Text-SelectAcc">
           Welcome to <br />
-          TradeKub
+          <div className="Slect__Logo">
+            <img src={Logo} alt="Logo" />
+          </div>
         </div>
         <div className="TextBoxSelectAcc">
           <div className="SelectAccDropDownBox">

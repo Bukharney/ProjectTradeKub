@@ -33,7 +33,7 @@ const PopUP = ({
           <div className="PopupContent">
             <h2>Cancel Order</h2>
             <p>
-              Enter your PIN to cancel <br />
+              Enter your PIN to cancel <br/>
               {selectedStock}
             </p>
             <input

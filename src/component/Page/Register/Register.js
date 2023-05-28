@@ -105,8 +105,8 @@ const Register = () => {
 
   return (
     <div className="AllsectionRegis">
-      <div className="boxRegis">
-        <div className="Head-Text">
+      <div className="boxRegis_">
+        <div className="Regis__Head-Text">
           Create new <br />
           TradeKub account
         </div>

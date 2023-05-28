@@ -826,7 +826,7 @@ export const Market = () => {
                         <PopUP
                           pin={cancelPin}
                           handlePinChange={handlePinChange}
-                          selectedStock={selectedStock.id}
+                          selectedStock={selectedStock.symbol}
                           handleCancelOrder={handleCancelOrder}
                           handleOkClick={handleOkClick}
                         />
