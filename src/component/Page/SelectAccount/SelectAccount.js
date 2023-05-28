@@ -1,35 +1,39 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./SelectAcc.css";
-import { Account } from "./AccountDB.js";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 export const SelectAccount = () => {
-  const { account } = Account;
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAccountId, setSelectedAccountId] = useState("");
   const [selectedCB, setSelectedCB] = useState("");
   const [selectedBroker, setSelectedBroker] = useState("");
   const Token = useContext(TokenContext);
+  const { account, setAccount } = useContext(AccountContext);
 
-  const handleAccountChange = (event) => {
-    setSelectedAccountId(event.target.value);
+  const handleChange = (e) => {
+    setSelectedAccountId(e.target.value);
+    console.log("e.target.value", e.target.value);
+  };
+
+  const handleAccountSelected = () => {
+    console.log("selectedCB", selectedCB);
+    console.log("selectedBroker", selectedBroker);
+    setAccount(selectedAccountId);
+    console.log("account", account);
+    window.location.href = "/Market";
+  };
+
+  useEffect(() => {
     data.map((item) => {
       if (item.id == selectedAccountId) {
         setSelectedCB(item.cash_balance);
         setSelectedBroker(item.broker_id);
       }
     });
-    console.log(selectedAccountId);
-  };
-
-  const handleAccountSelected = () => {
-    console.log("selectedCB", selectedCB);
-    console.log("selectedBroker", selectedBroker);
-    Account.account = selectedAccountId;
-    console.log("Account.account", Account.account);
-  };
+  }, [selectedAccountId, selectedCB, selectedBroker]);
 
   useEffect(() => {
     const get_account = async () => {
@@ -70,7 +74,7 @@ export const SelectAccount = () => {
             <select
               id="SelectAccDropDown"
               className="SelectAccDropDown"
-              onChange={handleAccountChange}
+              onChange={handleChange}
             >
               <option value="">Select an Account</option>
               {data.map((item) => (
