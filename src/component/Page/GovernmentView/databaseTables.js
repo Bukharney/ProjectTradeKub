@@ -431,13 +431,16 @@ else if (roleIndex_inDB == 2 || roleIndex_inDB == 3) {
 else if (roleIndex_inDB == 4) { }//company
 */
 
-view_TurnoverData = TurnoverData.sort((a, b) => new Date(b.datetime) - new Date(a.datetime))
+
+export const SearchFunction = () => {
+
+  view_TurnoverData = TurnoverData.sort((a, b) => new Date(b.datetime) - new Date(a.datetime))
 view_CompanyData = CompanyData.sort((a, b) => a.company_name.localeCompare(b.company_name));
 view_NewsData = NewsData.sort((a, b) => new Date(b.news_datetime) - new Date(a.news_datetime));
 
-export const SearchFunction = () => {
+
   if (roleIndex_inDB === 0) {
-    view_UserData = UserData.filter(item => item.username === ViewerLabel);
+    view_UserData = UserData.filter(item => item.name === ViewerLabel);
     view_AccountData = AccountData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
       .sort((a, b) => new Date(b.contracted_datetime) - new Date(a.contracted_datetime));
     view_BrokerData = BrokerData.filter(item => view_AccountData.find(accountItem => accountItem.broker_id === item.broker_id));
