@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './EditUser.css';
 import { Username } from "./UserDB.js";
+import EdituserBG from "./EdituserBG.svg";
 
-const EditUser = () => {
+export const EditUser = () => {
 
     const user = Username.username[0];
 
@@ -16,7 +17,7 @@ const EditUser = () => {
     };
   
     const handleInputBlur1 = () => {
-      setInputBorderColor1("");
+      setInputBorderColor1(""); 
     };
   
     const handleInputFocus2 = () => {
@@ -87,11 +88,16 @@ const EditUser = () => {
                 <button className='EditConfirm'>Confirm</button>
             </div>
             <div className='CancelConfirm-Edit'>
-                <button className='EditDeleteAcc'>Delete an Account</button>
+                <button className='EditDeleteAcc'>Delete an User</button>
             </div>
                 
         </div>
+        <div className="creditcardSSSS" >
+        <img src={EdituserBG}/>
+      </div>
     </div>
+
+
  
     )
 }

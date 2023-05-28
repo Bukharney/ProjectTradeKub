@@ -166,7 +166,7 @@ function App() {
                     }
                   />
 
-<Route
+                  <Route
                     path="/DividentManagement"
                     element={
                       <ProtectedRoute>
@@ -175,7 +175,7 @@ function App() {
                     }
                   />
 
-<Route
+                  <Route
                     path="/StockTransactionManagement"
                     element={
                       <ProtectedRoute>
