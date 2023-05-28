@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PopUP.css";
 
-const PopUP = ({ selectedStock, pin, handlePinChange, handleCancelOrder, handleOkClick }) => {
+const PopUP = ({
+  selectedStock,
+  pin,
+  handlePinChange,
+  handleCancelOrder,
+  handleOkClick,
+}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [inputBorderColor4, setInputBorderColor4] = useState("");
 
@@ -28,7 +34,6 @@ const PopUP = ({ selectedStock, pin, handlePinChange, handleCancelOrder, handleO
             <h2>Cancel Order</h2>
             <p>
               Enter your PIN to cancel <br />
-              here its not work ? 
               {selectedStock}
             </p>
             <input
