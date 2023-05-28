@@ -96,37 +96,37 @@ export const StockTransactionManagement = () => {
 
     const Get_user_data = async (u) => {
         await axios
-          .get(`https://www.tradekub.me/users/username/${u}`, {
-            headers: {
-              accept: "application/json",
-              Authorization: "Bearer " + Token.token,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            retreiveValue = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+            .get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     const Get_account_data = async (a) => {
         await axios
-          .get(`https://www.tradekub.me/account/${a}`, {
-            headers: {
-              accept: "application/json",
-              Authorization: "Bearer " + Token.token,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            retreiveValue = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+            .get(`https://www.tradekub.me/account/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
 
     const AccountExist = async (b) => {
@@ -139,7 +139,7 @@ export const StockTransactionManagement = () => {
                 },
             });
 
-             console.log(response);
+            console.log(response);
             return 1; // Resolving the Promise with the desired value
         } catch (error) {
             console.error(error);
@@ -157,7 +157,7 @@ export const StockTransactionManagement = () => {
                 },
             });
 
-             console.log(response);
+            console.log(response);
             return 1; // Resolving the Promise with the desired value
         } catch (error) {
             console.error(error);
@@ -167,20 +167,20 @@ export const StockTransactionManagement = () => {
 
     const Get_order_data = async (a) => {
         await axios
-          .get(`https://www.tradekub.me/order/one/${a}`, {
-            headers: {
-              accept: "application/json",
-              Authorization: "Bearer " + Token.token,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            retreiveValue2 = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+            .get(`https://www.tradekub.me/order/one/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue2 = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
 
 
@@ -190,7 +190,7 @@ export const StockTransactionManagement = () => {
             broker_id: Number(InputBox0),
             cash_balance: 0,
             line_available: 0,
-            credit_limit:  Number(InputBox3),
+            credit_limit: Number(InputBox3),
             pin: Number(InputBox2)
         };
 
@@ -215,16 +215,13 @@ export const StockTransactionManagement = () => {
 
     const AddStockTransaction = async () => {
         const data = {
-            user_id: Number(retreiveValue.id),
-            broker_id: Number(InputBox0),
-            cash_balance: 0,
-            line_available: 0,
-            credit_limit:  Number(InputBox3),
-            pin: Number(InputBox2)
+            order_id: retreiveValue2.id,
+            price: Number(InputBox4),
+            volume: Number(InputBox3)
         };
 
         await axios
-            .post("https://www.tradekub.me/account/", data, {
+            .post("https://www.tradekub.me/stock/transactions", data, {
                 headers: {
                     accep: "application/json",
                     "Content-Type": "application/json",
@@ -233,18 +230,76 @@ export const StockTransactionManagement = () => {
             })
             .then((response) => {
                 console.log(response);
-                alert("Create account successfull");
+                alert("commit stock transaction successfull");
                 window.location.reload();
             })
             .catch((error) => {
                 console.error(error.data);
-                alert("Create account failed please try again");
+                alert("stock transaction failed please try again");
             });
     };
 
 
-    
-     const handleSubmit2 = (event) => {
+    const UpdateAccountMoney = async (b) => {
+        let sum = Number(InputBox3) * Number(InputBox4);
+        const data = {
+            user_id: retreiveValue.user_id,
+            broker_id: retreiveValue.broker_id,
+            cash_balance: retreiveValue.cash_balance,
+            line_available: retreiveValue.line_available + sum,
+            credit_limit: retreiveValue.credit_limit,
+            pin: retreiveValue.pin
+        };
+
+        await axios
+            .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Update account balance failed please try again");
+                window.location.reload();
+            });
+    };
+
+    const UpdateOrder= async (b) => {
+        let sum = Number(InputBox3) * Number(InputBox4);
+        const data = {
+            user_id: retreiveValue.user_id,
+            broker_id: retreiveValue.broker_id,
+            cash_balance: retreiveValue.cash_balance,
+            line_available: retreiveValue.line_available + sum,
+            credit_limit: retreiveValue.credit_limit,
+            pin: retreiveValue.pin
+        };
+
+        await axios
+            .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Update order failed please try again");
+                window.location.reload();
+            });
+    };
+
+
+    const handleSubmit2 = (event) => {
         event.preventDefault();
         (async () => {
             await Get_account_data(InputBox1);
@@ -256,34 +311,32 @@ export const StockTransactionManagement = () => {
             }
             else if (await AccountExist(Number(InputBox1)) === 0) {
                 alert('Cannot find the Account')
-                window.location.reload();
+                // window.location.reload();
             }
             else if (retreiveValue.broker_id !== Number(InputBox0)) {
                 alert("the account isn't belong to your broker")
                 window.location.reload();
-            }   
-            else if(retreiveValue.id !== retreiveValue2.account_id)
-            {
-                alert("the account isn't belong to your account")
+            }
+            else if (retreiveValue.id !== retreiveValue2.account_id) {
+                alert("the order isn't belong to your account")
                 window.location.reload();
             }
-            else if(isNaN(InputBox4) || InputBox4 === '')
-            {
+            else if (isNaN(InputBox3) || InputBox3 === '') {
                 alert('Wrong format of volume')
                 window.location.reload();
             }
-            else if(isNaN(InputBox5)|| InputBox5 === '')
-            {
+            else if (isNaN(InputBox4) || InputBox4 === '') {
                 alert('Wrong format of stock unit price')
                 window.location.reload();
             }
-            else{
-                await (alert(retreiveValue.id))
-                await (alert(retreiveValue2.account_id))
-              }
+            else {
+                await UpdateAccountMoney();
+                await AddStockTransaction();
+                window.location.reload();
+            }
         }
         )();
- 
+
         // Perform any necessary actions with the input value
         /*
         if(InputBox0 (broker ID)ไม่เจอใน databases)
@@ -313,17 +366,17 @@ export const StockTransactionManagement = () => {
          InputBox3 //Volume
          InputBox4 //price
         //******************** Edit*/
-     };
+    };
 
- 
+
 
 
     return (
         <div>
             <h className='ManagementHeader4'>Stock Transaction</h>
- 
 
- 
+
+
             <div>
                 <form onSubmit={handleSubmit2}>
                     <input
@@ -358,7 +411,7 @@ export const StockTransactionManagement = () => {
                     <button type="submit" className='submitTransaction'>Confirm Transaction</button>
                 </form>
                 <button className='resetTransaction' onClick={handleReset}>Reset</button>
-                </div>
+            </div>
 
             <input
                 type="text"
