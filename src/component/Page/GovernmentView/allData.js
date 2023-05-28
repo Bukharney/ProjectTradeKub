@@ -293,7 +293,8 @@ export let NewsData =
             files: 'asdasdasdasd'
         }
     ];
-export const isLoading = { key: 1 };
+ 
+    let isLoading = true;
 
 export const AllDataUpdate = () => {
     /*userRows,
@@ -308,6 +309,7 @@ export const AllDataUpdate = () => {
         turnoverRows,
         dividendRows,
         newsRows,*/
+
     const Token = useContext(TokenContext);
     let [UserDataServer, setUser] = useState([]);
     let [AccountDataServer, setAccount] = useState([]);
@@ -368,7 +370,7 @@ export const AllDataUpdate = () => {
             })
             .then((response) => {
                 console.log(response.data);
-                setAccount(response.data);
+                setBroker(response.data);
             })
             .catch((error) => {
                 console.error(error);
@@ -387,7 +389,6 @@ export const AllDataUpdate = () => {
             .then((response) => {
                 console.log(response.data);
                 setBankTrans(response.data);
-                isLoading.key = 0;
             })
             .catch((error) => {
                 console.error(error);
@@ -456,7 +457,6 @@ export const AllDataUpdate = () => {
             .then((response) => {
                 console.log(response.data);
                 setCompany(response.data);
-                isLoading.key = 0;
 
               })
             .catch((error) => {
@@ -509,6 +509,7 @@ export const AllDataUpdate = () => {
             .then((response) => {
                 console.log(response.data);
                 setNews(response.data);
+                isLoading = false;
              })
             .catch((error) => {
                 console.error(error);
@@ -547,7 +548,7 @@ export const AllDataUpdate = () => {
     TurnoverData = TurnoverDataServer;
     DividentData = DividentDataServer;
     NewsData =NewsDataServer;
-
+    return isLoading;
 }
 
 

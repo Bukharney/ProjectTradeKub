@@ -10,7 +10,7 @@ import {
   tablesRows,
 } from "./databaseTables.js";
 import Logo from "./Logo.svg";
-import {AllDataUpdate,isLoading} from './allData'
+import {AllDataUpdate} from './allData'
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
@@ -18,6 +18,8 @@ let roleIndex = storedRoleIndex ? JSON.parse(storedRoleIndex) : defaultRoleI;
 
 let storedLabel = localStorage.getItem("Label");
 let defaultLabel = "";
+let loading = false;
+
 
 export const GovernmentView = () => {
   const [Label, setLabel] = useState(defaultLabel);
@@ -111,7 +113,7 @@ export const GovernmentView = () => {
     InputFocusBG_GV1("#CCFF00");
   };
 
- 
+
   return (
     <div className="GovernmentView__container">
       <GettingRoleIndex roleIndexGet={roleIndex} />
@@ -120,8 +122,9 @@ export const GovernmentView = () => {
       />
       <SearchFunction></SearchFunction>
       <Updating></Updating>
-      <AllDataUpdate></AllDataUpdate>
-      {isLoading.key == 1 ? 'Loading' :
+      {loading = <AllDataUpdate></AllDataUpdate>}
+
+       {loading === true ? 'sdadas' :
       <div className="GovernmentView__data__container">
         <div className="GovernmentView__Header__container">
           <img src={Logo} alt="logo" className="GovernmentView__logo" />

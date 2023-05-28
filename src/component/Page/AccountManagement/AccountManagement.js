@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './AccountManagement.css'; // Import the CSS file for additional styles
+import axios from 'axios';
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
+import { async } from 'q';
 
 export const AccountManagement = () => {
     const [selectedButton, setSelectedButton] = useState('Add'); // Initial selection is 'Add'
@@ -10,6 +14,29 @@ export const AccountManagement = () => {
     const [InputBox3, setInputBox3] = useState('');
     const [InputBox4, setInputBox4] = useState('');
     const [InputBox5, setInputBox5] = useState('');
+
+    const Token = useContext(TokenContext);
+    const Account = useContext(AccountContext);
+  
+    const checkBroker = async (b) => {
+        await axios
+          .get(`https://www.tradekub.me/broker/${b}`, {
+            headers: {
+              accep: "application/json",
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            alert("FoundBroker");
+          })
+          .catch((error) => {
+            console.error(error.data);
+            alert("BrokerNotFound");
+          });
+      };
+    
 
     const handleReset = () => {
         setInputBox1('');
@@ -55,6 +82,7 @@ export const AccountManagement = () => {
     // Function to handle form submission
     const handleSubmit1 = (event) => {
         event.preventDefault();
+        if(checkBroker(InputBox0)){}
         /*
         if(InputBox0 ไม่เจอใน databases)
         {
@@ -81,7 +109,7 @@ export const AccountManagement = () => {
         InputBox2 //pin
         InputBox3 //credit limit
         //******************** ADD*/
-        window.location.reload();
+       // window.location.reload();
     };
     const handleSubmit2 = (event) => {
         event.preventDefault();
