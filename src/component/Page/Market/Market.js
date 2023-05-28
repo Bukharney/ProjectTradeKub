@@ -20,6 +20,7 @@ export const Market = () => {
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
   const [Pin, setPin] = useState("");
+  const [cancelPin, setCancelPin] = useState("");
   const [inputBorderColor1, setInputBorderColor1] = useState("");
   const [inputBorderColor2, setInputBorderColor2] = useState("");
   const [inputBorderColor3, setInputBorderColor3] = useState("");
@@ -27,7 +28,7 @@ export const Market = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [userStock, setUserStock] = useState([]);
   const [userSearch, setUserSearch] = useState([]);
-  const [isLoadingGraph, setIsLoadingGraph] = useState(true);
+  const [isLoadingGraph, setIsLoadingGraph] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState("");
 
@@ -43,16 +44,18 @@ export const Market = () => {
   };
 
   const handlePinChange = (event) => {
-    setPin(event.target.value);
+    setCancelPin(event.target.value);
   };
 
   const handleCancelOrder = () => {
     console.log("Order Cancelled");
+    setCancelPin("");
     togglePopup(null);
   };
 
   const handleOkClick = () => {
     console.log("OK Clicked");
+    cancal_order(selectedStock.id);
     togglePopup(null);
   };
 
@@ -100,6 +103,41 @@ export const Market = () => {
 
   const handleInputBlur3 = () => {
     setInputBorderColor3("");
+  };
+
+  const cancal_order = async (id) => {
+    await axios
+      .get(`https://www.tradekub.me/order/cancel/${id}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Cancle order successfull");
+        const get_order = async (e) => {
+          await axios
+            .get(`https://www.tradekub.me/order/${e}`, {
+              headers: {
+                accept: "application/json",
+                Authorization: "Bearer " + Token.token,
+              },
+            })
+            .then((response) => {
+              console.log(response.data);
+              setUserOrder(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        };
+        get_order(Account.account);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Cancle order failed please try again");
+      });
   };
 
   const place_order = async (e) => {
@@ -174,8 +212,8 @@ export const Market = () => {
   };
 
   useEffect(() => {
+    setIsLoadingGraph(true);
     const get_market_data = async (symbol) => {
-      setIsLoadingGraph(true);
       await axios
         .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
           headers: {
@@ -187,10 +225,11 @@ export const Market = () => {
           console.log(response.data);
           setMarketData(response.data);
           setIsLoadingGraph(false);
+          setIsloading(false);
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/Profile";
+          window.location.href = "/News";
         });
     };
 
@@ -210,24 +249,6 @@ export const Market = () => {
           console.error(error);
         });
     };
-
-    const get_stock = async () => {
-      await axios
-        .get(`https://www.tradekub.me/stock/`, {
-          headers: {
-            accept: "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setUserStock(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
     const get_order = async (e) => {
       await axios
         .get(`https://www.tradekub.me/order/${e}`, {
@@ -245,14 +266,33 @@ export const Market = () => {
         });
     };
 
-    get_stock();
-    get_account_info(Account.account);
     get_order(Account.account);
     setTimeout(() => {
       get_market_data(symbol);
-      setIsloading(false);
     }, 5000);
+    get_account_info(Account.account);
   }, [Account.account, symbol, Token.token]);
+
+  useEffect(() => {
+    const get_stock = async () => {
+      await axios
+        .get(`https://www.tradekub.me/stock/`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setUserStock(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    get_stock();
+  }, []);
 
   if (isLoading) {
     return (
@@ -330,7 +370,9 @@ export const Market = () => {
                 className="Market__stock__Last_Price__value"
                 style={{
                   color:
-                    marketData.quote_symbol.percentChange >= 0
+                    (marketData.quote_symbol.percentChange
+                      ? marketData.quote_symbol.percentChange
+                      : 0) >= 0
                       ? "#42A93C"
                       : "#CD3D42",
                 }}
@@ -380,7 +422,9 @@ export const Market = () => {
                   className="Market__stock__Bid_Price__value"
                   style={{
                     color:
-                      marketData.quote_symbol.percentChange >= 0
+                      (marketData.quote_symbol.percentChange
+                        ? marketData.quote_symbol.percentChange
+                        : 0) >= 0
                         ? "#42A93C"
                         : "#CD3D42",
                   }}
@@ -398,7 +442,9 @@ export const Market = () => {
                   className="Market__stock__Offer_Price__value"
                   style={{
                     color:
-                      marketData.quote_symbol.percentChange >= 0
+                      (marketData.quote_symbol.percentChange
+                        ? marketData.quote_symbol.percentChange
+                        : 0) >= 0
                         ? "#42A93C"
                         : "#CD3D42",
                   }}
@@ -770,9 +816,9 @@ export const Market = () => {
                     <div className="PopUP">
                       {isPopupOpen && (
                         <PopUP
-                          pin={Pin}
+                          pin={cancelPin}
                           handlePinChange={handlePinChange}
-                          selectedStock={selectedStock.symbol}
+                          selectedStock={selectedStock.id}
                           handleCancelOrder={handleCancelOrder}
                           handleOkClick={handleOkClick}
                         />
