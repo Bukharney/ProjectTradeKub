@@ -30,12 +30,14 @@ import axios from "axios";
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
-  const [account, setAccount] = useState(3);
+  const [account, setAccount] = useState("");
   const [isLoading, setLoading] = useState(true);
 
   const readCookie = async () => {
     let token = Cookies.get("token");
+    let account = Cookies.get("account");
     if (token) {
+      setAccount(account);
       setToken(token);
       setAuth(true);
       await axios
@@ -72,142 +74,140 @@ function App() {
   }
 
   return (
-    <>
-      <AuthContext.Provider value={{ auth, setAuth }}>
-        <TokenContext.Provider value={{ token, setToken }}>
-          <AccountContext.Provider value={{ account, setAccount }}>
-            <Router>
-              <Navbar />
-              <div>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  {!auth ? (
-                    <>
-                      <Route path="/Login" element={<Login />} />
-                      <Route path="/Register" element={<Register />} />
-                    </>
-                  ) : (
-                    () => window.location.replace("/Market")
-                  )}
-                  <Route
-                    path="/Market"
-                    element={
-                      <ProtectedRoute>
-                        <Market />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/Wallet"
-                    element={
-                      <ProtectedRoute>
-                        <Wallet />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/News"
-                    element={
-                      <ProtectedRoute>
-                        <News />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/Notification"
-                    element={
-                      <ProtectedRoute>
-                        <Notification />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/Profile"
-                    element={
-                      <ProtectedRoute>
-                        <Profile />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="/GovernmentView" element={<GovernmentView />} />
-                  <Route
-                    path="/AnalyticPage"
-                    element={
-                      <ProtectedRoute>
-                        <AnalyticPage />
-                      </ProtectedRoute>
-                    }
-                  />
+    <AuthContext.Provider value={{ auth, setAuth }}>
+      <TokenContext.Provider value={{ token, setToken }}>
+        <AccountContext.Provider value={{ account, setAccount }}>
+          <Router>
+            <Navbar />
+            <div>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                {!auth ? (
+                  <>
+                    <Route path="/Login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
+                  </>
+                ) : (
+                  () => window.location.replace("/Market")
+                )}
+                <Route
+                  path="/Market"
+                  element={
+                    <ProtectedRoute>
+                      <Market />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Wallet"
+                  element={
+                    <ProtectedRoute>
+                      <Wallet />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/News"
+                  element={
+                    <ProtectedRoute>
+                      <News />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Notification"
+                  element={
+                    <ProtectedRoute>
+                      <Notification />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/Profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/GovernmentView" element={<GovernmentView />} />
+                <Route
+                  path="/AnalyticPage"
+                  element={
+                    <ProtectedRoute>
+                      <AnalyticPage />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/AccountManagement"
-                    element={
-                      <ProtectedRoute>
-                        <AccountManagement />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/AccountManagement"
+                  element={
+                    <ProtectedRoute>
+                      <AccountManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/NewsManagement"
-                    element={
-                      <ProtectedRoute>
-                        <NewsManagement />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/NewsManagement"
+                  element={
+                    <ProtectedRoute>
+                      <NewsManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/BankTransactionManagement"
-                    element={
-                      <ProtectedRoute>
-                        <BankTransactionManagement />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/BankTransactionManagement"
+                  element={
+                    <ProtectedRoute>
+                      <BankTransactionManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/DividentManagement"
-                    element={
-                      <ProtectedRoute>
-                        <DividentManagement />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/DividentManagement"
+                  element={
+                    <ProtectedRoute>
+                      <DividentManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/StockTransactionManagement"
-                    element={
-                      <ProtectedRoute>
-                        <StockTransactionManagement />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/StockTransactionManagement"
+                  element={
+                    <ProtectedRoute>
+                      <StockTransactionManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/SelectAccount"
-                    element={
-                      <ProtectedRoute>
-                        <SelectAccount />
-                      </ProtectedRoute>
-                    }
-                  />
+                <Route
+                  path="/SelectAccount"
+                  element={
+                    <ProtectedRoute>
+                      <SelectAccount />
+                    </ProtectedRoute>
+                  }
+                />
 
-                  <Route
-                    path="/Register"
-                    element={
-                      <ProtectedRoute>
-                        <Register />
-                      </ProtectedRoute>
-                    }
-                  />
-                </Routes>
-              </div>
-            </Router>
-          </AccountContext.Provider>
-        </TokenContext.Provider>
-      </AuthContext.Provider>
-    </>
+                <Route
+                  path="/Register"
+                  element={
+                    <ProtectedRoute>
+                      <Register />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </div>
+          </Router>
+        </AccountContext.Provider>
+      </TokenContext.Provider>
+    </AuthContext.Provider>
   );
 }
 

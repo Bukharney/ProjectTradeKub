@@ -4,6 +4,7 @@ import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import Logo from "./Logo.svg";
+import Cookies from "js-cookie";
 
 export const SelectAccount = () => {
   const [data, setData] = useState([]);
@@ -22,9 +23,13 @@ export const SelectAccount = () => {
   const handleAccountSelected = () => {
     console.log("selectedCB", selectedCB);
     console.log("selectedBroker", selectedBroker);
-    setAccount(selectedAccountId);
     console.log("account", account);
-    window.location.href = "/Market";
+
+    if (account == null) {
+      alert("Please select account");
+    } else {
+      window.location.href = "/Market";
+    }
   };
 
   useEffect(() => {
@@ -34,6 +39,8 @@ export const SelectAccount = () => {
         setSelectedBroker(item.broker_id);
       }
     });
+    console.log(Cookies.set("account", selectedAccountId));
+    console.log("Account", account);
   }, [selectedAccountId, selectedCB, selectedBroker]);
 
   useEffect(() => {

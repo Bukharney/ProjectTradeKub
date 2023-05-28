@@ -5,17 +5,15 @@ import show_password from "./show_password.svg";
 import hide_password from "./hide_password.svg";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../../Context/AuthContext";
-import TokenContext from "../../../Context/TokenContext";
 import Cookies from "js-cookie";
 import axios from "axios";
 
 export const Login = () => {
-  const Auth = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [data, setData] = useState([]);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -43,8 +41,8 @@ export const Login = () => {
         .then((response) => {
           console.log(response);
           Cookies.set("token", response.data.access_token);
-          Auth.setAuth(true);
-          console.log(Auth.auth);
+          setAuth(true);
+          console.log(auth);
           console.log(Cookies.get("token"));
           window.location.href = "/SelectAccount";
         })
