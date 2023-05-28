@@ -381,7 +381,6 @@
 
 .Market__container__right__Bottom__header__Symbol {
   width: 15%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -389,7 +388,6 @@
 
 .Market__container__right__status__Symbol {
   width: 15%;
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -406,7 +404,6 @@
 .Market__container__right__status__Price,
 .Market__container__right__status__Volume {
   width: 20%;
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -438,6 +435,11 @@
   width: 100%;
   overflow-y: auto;
 }
+
+.Market__container__right__Container__box2:hover{
+  color: #ccff00;
+}
+
 
 .Market__container__left__stock__Box::-webkit-scrollbar,
 .Market__container__stock__box::-webkit-scrollbar {
@@ -573,7 +575,7 @@
 
 .Market__container__left__serch__input__box input {
   color: #ffffff;
-  width: 75%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -581,6 +583,7 @@
   outline: none;
   background-color: transparent;
   margin-right: 7%;
+  margin-left: -5%;
 }
 
 .Market__container__left__serch__input__box input::placeholder {
@@ -610,6 +613,7 @@
   left: 50%;
 }
 
+
 @media screen and (max-width: 1599px) {
   .Market__container__left {
     margin-left: 2.5rem;
@@ -638,7 +642,7 @@
   .Market__stock__Last_Price {
     width: 100%;
     text-align: left;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .Market__stock__symbol__value,
@@ -808,7 +812,7 @@
   }
 
   .Market__container__left__serch__input__box {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .Market__container__left__serch__input__box input {
@@ -818,6 +822,12 @@
   .Market__container__left__serch__input__box input::placeholder {
     color: #4e4f51;
     font-size: 0.75;
+  }
+
+  .srch__icon {
+    width: 30%;
+    height: 100%;
+    padding-top: 1.5%;
   }
 }
 
@@ -849,7 +859,7 @@
   .Market__stock__Last_Price {
     width: 100%;
     text-align: left;
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .Market__stock__symbol__value,
@@ -1066,7 +1076,7 @@
   .Market__stock__Last_Price {
     width: 100%;
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .Market__stock__symbol__value,

@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Market.css";
-import { stock_market, User } from "./DBmarket";
-import { stock_left, stock_status } from "./DBPop&Order";
 import CandleChart from "./CandleChart";
 import CandleChart2 from "./CandleChart2";
 import CandleChart3 from "./CandleChart3";
@@ -9,12 +7,12 @@ import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import { NumericFormat, PatternFormat } from "react-number-format";
+import LoadingOverlay from "react-loading-overlay";
 import PopUP from "./PopUP";
 
 export const Market = () => {
   const Token = useContext(TokenContext);
   const Account = useContext(AccountContext);
-  const symbolData = stock_market.KBANK[0];
   const [isLoading, setIsloading] = useState(true);
   const [symbol, setSymbol] = useState("KBANK");
   const [marketData, setMarketData] = useState([]);
@@ -29,9 +27,9 @@ export const Market = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [userStock, setUserStock] = useState([]);
   const [userSearch, setUserSearch] = useState([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const [isLoadingGraph, setIsLoadingGraph] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState("");
-  const [inputBorderColor4, setInputBorderColor4] = useState("");
 
   const totalPrice = Number(Price) * Number(Volume);
 
@@ -104,14 +102,6 @@ export const Market = () => {
     setInputBorderColor3("");
   };
 
-  const handleInputFocus4 = () => {
-    setInputBorderColor4("#CCFF00");
-  };
-
-  const handleInputBlur4 = () => {
-    setInputBorderColor4("");
-  };
-
   const place_order = async (e) => {
     const data = {
       account_id: Account.account,
@@ -125,7 +115,7 @@ export const Market = () => {
     };
 
     await axios
-      .post("https://www.tradekub.me/order", data, {
+      .post("https://www.tradekub.me/order/", data, {
         headers: {
           accep: "application/json",
           "Content-Type": "application/json",
@@ -135,6 +125,23 @@ export const Market = () => {
       .then((response) => {
         console.log(response);
         alert("Order successfull");
+        const get_order = async (e) => {
+          await axios
+            .get(`https://www.tradekub.me/order/${e}`, {
+              headers: {
+                accept: "application/json",
+                Authorization: "Bearer " + Token.token,
+              },
+            })
+            .then((response) => {
+              console.log(response.data);
+              setUserOrder(response.data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        };
+        get_order(Account.account);
       })
       .catch((error) => {
         console.error(error.data);
@@ -168,6 +175,7 @@ export const Market = () => {
 
   useEffect(() => {
     const get_market_data = async (symbol) => {
+      setIsLoadingGraph(true);
       await axios
         .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
           headers: {
@@ -178,10 +186,11 @@ export const Market = () => {
         .then((response) => {
           console.log(response.data);
           setMarketData(response.data);
-          setIsloading(false);
+          setIsLoadingGraph(false);
         })
         .catch((error) => {
           console.error(error);
+          window.location.href = "/Profile";
         });
     };
 
@@ -236,24 +245,20 @@ export const Market = () => {
         });
     };
 
+    get_stock();
+    get_account_info(Account.account);
+    get_order(Account.account);
     setTimeout(() => {
       get_market_data(symbol);
+      setIsloading(false);
     }, 5000);
-    get_order(Account.account);
-    get_account_info(Account.account);
-    get_stock();
   }, [Account.account, symbol, Token.token]);
 
   if (isLoading) {
     return (
-      <div className="container__Loading">
-        <div className="Market__container__Loading">
-          <img
-            src="https://media.tenor.com/I6kN-6X7nhAAAAAi/loading-buffering.gif"
-            alt="Loading"
-          />
-        </div>
-      </div>
+      <LoadingOverlay active={isLoading} spinner>
+        <div className="Market__container"></div>
+      </LoadingOverlay>
     );
   }
 
@@ -312,7 +317,6 @@ export const Market = () => {
           </div>
         </div>
       </div>
-
       <div className="Market__container__mid">
         <div className="Market__container__mid__header">
           <div className="Market__container__mid__header__left">
@@ -376,7 +380,9 @@ export const Market = () => {
                   className="Market__stock__Bid_Price__value"
                   style={{
                     color:
-                      symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                      marketData.quote_symbol.percentChange >= 0
+                        ? "#42A93C"
+                        : "#CD3D42",
                   }}
                 >
                   {formatNumber(
@@ -392,7 +398,9 @@ export const Market = () => {
                   className="Market__stock__Offer_Price__value"
                   style={{
                     color:
-                      symbolData.percentChange >= 0 ? "#42A93C" : "#CD3D42",
+                      marketData.quote_symbol.percentChange >= 0
+                        ? "#42A93C"
+                        : "#CD3D42",
                   }}
                 >
                   {formatNumber(
@@ -491,7 +499,9 @@ export const Market = () => {
             </span>
           </div>
         </div>
-        <div
+        <LoadingOverlay
+          active={isLoadingGraph}
+          spinner
           className="Market__container__Graph"
           style={{
             "@media screen and (max-width: 1599px)": {
@@ -514,8 +524,7 @@ export const Market = () => {
           {window.innerWidth >= 1801 && (
             <CandleChart3 data={marketData.candlestick_50limit} height="100%" />
           )}
-        </div>
-
+        </LoadingOverlay>
         <div className="Market__container__mid__Footer">
           <div className="Market__container__mid__Footer__width">
             <div className="Market__container__mid__Footer__left">
@@ -735,46 +744,24 @@ export const Market = () => {
                     {userOrder.map((stock, index) => (
                       <button
                         onClick={() => togglePopup(stock)}
-                        onFocus={handleInputFocus4}
-                        onBlur={handleInputBlur4}
                         key={index}
                         className={`Market__container__right__Container__box2 ${
                           selectedStock === stock ? "selected" : ""
                         }`}
                       >
-                        <div className="Market__container__right__status__Symbol"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div className="Market__container__right__status__Symbol">
                           {stock.symbol}
                         </div>
-                        <div className="Market__container__right__stock__Side"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div className="Market__container__right__stock__Side">
                           {stock.side === "Buy" ? "B" : "S"}
                         </div>
-                        <div className="Market__container__right__status__Price"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div className="Market__container__right__status__Price">
                           {stock.price.toFixed(2)}
                         </div>
-                        <div className="Market__container__right__status__Volume"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div className="Market__container__right__status__Volume">
                           {stock.volume}
                         </div>
-                        <div className="Market__container__right__status__Status"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div className="Market__container__right__status__Status">
                           {stock.status}
                         </div>
                       </button>
@@ -785,7 +772,7 @@ export const Market = () => {
                         <PopUP
                           pin={Pin}
                           handlePinChange={handlePinChange}
-                          selectedStock={selectedStock}
+                          selectedStock={selectedStock.symbol}
                           handleCancelOrder={handleCancelOrder}
                           handleOkClick={handleOkClick}
                         />

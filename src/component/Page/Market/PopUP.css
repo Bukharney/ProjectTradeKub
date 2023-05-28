@@ -12,13 +12,15 @@
   }
   
   .PopupContent {
-    background: linear-gradient(101.5deg, #282A2E 0%, #1A1B1E 100%);
+    background: linear-gradient(117.24deg, #282A2E -2.58%, #1A1B1E 82.89%);
     box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.25);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
+    border: 2px solid rgba(26, 27, 30, 0.4);
     text-align: center;
     width: 20%;
   }
+  
   
   .PopupContent h2 {
     font-size: 1.15rem;
@@ -39,6 +41,7 @@
     border-radius: 5px;
     outline: none;
   }
+
   
   .ButtonGroup {
     display: flex;

@@ -20,13 +20,11 @@ export const Navbar = () => {
     value["key"] = index;
     setClick(!click);
     localStorage.setItem("key", JSON.stringify(value));
-    if (index == 3&&hasRefresh['rkey']==1) {
+    if (index == 3 && hasRefresh["rkey"] == 1) {
       hasRefresh["rkey"] = 0;
-    }
-    else if(index == 3&&hasRefresh['rkey']==0){
+    } else if (index == 3 && hasRefresh["rkey"] == 0) {
       hasRefresh["rkey"] = 1;
-    }
-    else {
+    } else {
       hasRefresh["rkey"] = 1;
     }
   };
@@ -41,13 +39,23 @@ export const Navbar = () => {
     } else if (window.location.pathname.includes("/News")) {
       value["key"] = 2;
       localStorage.setItem("key", JSON.stringify(value));
-    }else if (window.location.pathname.includes("/Profile")) {
+    } else if (window.location.pathname.includes("/Profile")) {
       value["key"] = 4;
       localStorage.setItem("key", JSON.stringify(value));
     }
   }
 
-  if (location.pathname === "/" || location.pathname === "/Login"||location.pathname==="/Register") {
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/Login" ||
+    location.pathname === "/Register" ||
+    location.pathname === "/GovernmentView" ||
+    location.pathname === "/AnalyticPage" ||
+    location.pathname === "/AccountManagement" ||
+    location.pathname === "/NewsManagement" ||
+    location.pathname === "/BankTransactionManagement" ||
+    location.pathname === "/SelectAccount"
+  ) {
     return null;
   }
 
@@ -89,7 +97,9 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-              {NotificationInbox.result.length !== 0 && <div className="Nav__Noti__dot"></div>}
+                {NotificationInbox.result.length !== 0 && (
+                  <div className="Nav__Noti__dot"></div>
+                )}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />
