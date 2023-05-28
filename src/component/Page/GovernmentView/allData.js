@@ -345,7 +345,7 @@ export const AllDataUpdate = () => {
 
     const Get_account_data = async () => {
         await axios
-            .get(`https://www.tradekub.me/account/`, {
+            .get(`https://www.tradekub.me/account/all`, {
                 headers: {
                     accept: "application/json",
                     Authorization: "Bearer " + Token.token,

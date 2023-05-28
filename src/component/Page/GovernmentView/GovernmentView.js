@@ -33,6 +33,7 @@ export const GovernmentView = () => {
   const handleClick2 = (i) => {
     roleIndex = i;
     localStorage.setItem("roleI", JSON.stringify(roleIndex));
+    localStorage.setItem("Label", JSON.stringify(''));
     window.location.reload();
   };
 

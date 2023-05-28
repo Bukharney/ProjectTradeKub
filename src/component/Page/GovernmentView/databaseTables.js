@@ -441,25 +441,25 @@ view_NewsData = NewsData.sort((a, b) => new Date(b.news_datetime) - new Date(a.n
 
   if (roleIndex_inDB === 0) {
     view_UserData = UserData.filter(item => item.name === ViewerLabel);
-    view_AccountData = AccountData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
+    view_AccountData = AccountData.filter(item => view_UserData.find(userItem => userItem.id === item.user_id))
       .sort((a, b) => new Date(b.contracted_datetime) - new Date(a.contracted_datetime));
-    view_BrokerData = BrokerData.filter(item => view_AccountData.find(accountItem => accountItem.broker_id === item.broker_id));
-    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.order_id === item.order_id))
-    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
-    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
+    view_BrokerData = BrokerData.filter(item => view_AccountData.find(accountItem => accountItem.broker_id === item.id));
+    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
+    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.id === item.order_id))
+    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
+    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.id === item.id))
+    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
   }
   else if(roleIndex_inDB === 1)
   {
-    view_BrokerData = BrokerData.filter(item => item.organization_name === ViewerLabel)
-    view_AccountData = AccountData.filter(item => view_BrokerData.find(BItem => BItem.broker_id === item.broker_id))
-    view_UserData = UserData.filter(item=> view_AccountData.find(AItem => AItem.user_id === item.user_id))
-    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.order_id === item.order_id))
-    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
-    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
+    view_BrokerData = BrokerData.filter(item => item.name === ViewerLabel)
+    view_AccountData = AccountData.filter(item => view_BrokerData.find(BItem => BItem.id === item.broker_id))
+    view_UserData = UserData.filter(item=> view_AccountData.find(AItem => AItem.user_id === item.id))
+    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
+    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.id === item.order_id))
+    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
+    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.id === item.user_id))
+    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.id === item.account_id))
 
   }
   else if(roleIndex_inDB === 2|| roleIndex_inDB === 3)
