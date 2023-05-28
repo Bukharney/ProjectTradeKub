@@ -10,10 +10,41 @@ let index = 0;
 
 export const AnalyticPage = () => {
   const [click, setClick] = useState(false);
+  const [dateRange, setDateRange] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const handleClick = (i) => {
     index = i;
     setClick(!click);
+  };
+
+  const handleDateRangeChange = (event) => {
+    setDateRange(event.target.value);
+  };
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  const handleStartTimeChange = (event) => {
+    setStartTime(event.target.value);
+  };
+
+  const handleEndTimeChange = (event) => {
+    setEndTime(event.target.value);
+  };
+
+  const handleDateRangeSubmit = () => {
+    // Perform desired action with the date and time range
+    console.log("Selected date range:", startDate, "-", endDate);
+    console.log("Selected time range:", startTime, "-", endTime);
   };
 
   const [inputBorderColor1, setInputBorderColor1] = useState("");
@@ -24,6 +55,10 @@ export const AnalyticPage = () => {
   const [inputBorderColor6, setInputBorderColor6] = useState("");
   const [inputBorderColor7, setInputBorderColor7] = useState("");
   const [inputBorderColor8, setInputBorderColor8] = useState("");
+  const [inputBorderColor9, setInputBorderColor9] = useState("");
+  const [inputBorderColor10, setInputBorderColor10] = useState("");
+  const [inputBorderColor11, setInputBorderColor11] = useState("");
+  const [inputBorderColor12, setInputBorderColor12] = useState("");
 
   const handleInputFocus1 = () => {
     setInputBorderColor1("#CCFF00");
@@ -63,6 +98,38 @@ export const AnalyticPage = () => {
   const handleInputBlur4 = () => {
     setInputBorderColor4("");
     setInputBorderColor8("");
+  };
+
+  const handleInputFocus9 = () => {
+    setInputBorderColor9("#CCFF00");
+  };
+
+  const handleInputBlur9 = () => {
+    setInputBorderColor9("");
+  };
+
+  const handleInputFocus10 = () => {
+    setInputBorderColor10("#CCFF00");
+  };
+
+  const handleInputBlur10 = () => {
+    setInputBorderColor10("");
+  };
+
+  const handleInputFocus11 = () => {
+    setInputBorderColor11("#CCFF00");
+  };
+
+  const handleInputBlur11 = () => {
+    setInputBorderColor11("");
+  };
+
+  const handleInputFocus12 = () => {
+    setInputBorderColor12("#CCFF00");
+  };
+
+  const handleInputBlur12 = () => {
+    setInputBorderColor12("");
   };
 
   return (
@@ -124,6 +191,82 @@ export const AnalyticPage = () => {
               onClick={() => handleClick(4)}
             >
               Most Cancel Ratio <br /> by date
+            </button>
+          </div>
+
+          <div className="Analytic__date__container">
+            <div
+              className="Analytic__date__input"
+              style={{
+                borderColor: inputBorderColor9,
+              }}
+            >
+              <input
+                type="text"
+                onFocus={handleInputFocus9}
+                onBlur={handleInputBlur9}
+                className="Analytic__date__input"
+                placeholder="Start Time (hh:mm)"
+                value={startTime}
+                onChange={handleStartTimeChange}
+              />
+            </div>
+            <div
+              className="Analytic__date__input"
+              style={{
+                borderColor: inputBorderColor10,
+              }}
+            >
+              <input
+                type="text"
+                onFocus={handleInputFocus10}
+                onBlur={handleInputBlur10}
+                className="Analytic__date__input"
+                placeholder="Start Date (dd-mm-yyyy)"
+                value={startDate}
+                onChange={handleStartDateChange}
+              />
+            </div>
+
+            <div className="Analytic__date__TO"> To </div>
+            <div
+              className="Analytic__date__input"
+              style={{
+                borderColor: inputBorderColor11,
+              }}
+            >
+              <input
+                type="text"
+                onFocus={handleInputFocus11}
+                onBlur={handleInputBlur11}
+                className="Analytic__date__input"
+                placeholder="End Time (hh:mm)"
+                value={endTime}
+                onChange={handleEndTimeChange}
+              />
+            </div>
+            <div
+              className="Analytic__date__input"
+              style={{
+                borderColor: inputBorderColor12,
+              }}
+            >
+              <input
+                type="text"
+                onFocus={handleInputFocus12}
+                onBlur={handleInputBlur12}
+                className="Analytic__date__input"
+                placeholder="End Date (dd-mm-yyyy)"
+                value={endDate}
+                onChange={handleEndDateChange}
+              />
+            </div>
+
+            <button
+              className="Analytic__date__button"
+              onClick={handleDateRangeSubmit}
+            >
+              Apply
             </button>
           </div>
 
