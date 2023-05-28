@@ -22,16 +22,12 @@ export const Market = () => {
   const [Price, setPrice] = useState("");
   const [Volume, setVolume] = useState("");
   const [Pin, setPin] = useState("");
-  const [inputBorderColor1, setInputBorderColor1] = useState("");
-  const [inputBorderColor2, setInputBorderColor2] = useState("");
-  const [inputBorderColor3, setInputBorderColor3] = useState("");
   const [userAccount, setUserAccount] = useState([]);
   const [userOrder, setUserOrder] = useState([]);
   const [userStock, setUserStock] = useState([]);
   const [userSearch, setUserSearch] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState("");
-  const [inputBorderColor4, setInputBorderColor4] = useState("");
 
   const totalPrice = Number(Price) * Number(Volume);
 
@@ -80,37 +76,6 @@ export const Market = () => {
     setSymbol(userSearch[e].symbol);
   };
 
-  const handleInputFocus1 = () => {
-    setInputBorderColor1("#CCFF00");
-  };
-
-  const handleInputBlur1 = () => {
-    setInputBorderColor1("");
-  };
-
-  const handleInputFocus2 = () => {
-    setInputBorderColor2("#CCFF00");
-  };
-
-  const handleInputBlur2 = () => {
-    setInputBorderColor2("");
-  };
-
-  const handleInputFocus3 = () => {
-    setInputBorderColor3("#CCFF00");
-  };
-
-  const handleInputBlur3 = () => {
-    setInputBorderColor3("");
-  };
-
-  const handleInputFocus4 = () => {
-    setInputBorderColor4("#CCFF00");
-  };
-
-  const handleInputBlur4 = () => {
-    setInputBorderColor4("");
-  };
 
   const place_order = async (e) => {
     const data = {
