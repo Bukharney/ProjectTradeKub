@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './StockTransactionManagement.css'; // Import the CSS file for additional styles
+import axios from 'axios';
+import TokenContext from '../../../Context/TokenContext';
+import { async } from 'q';
 
 export const StockTransactionManagement = () => {
     const [selectedButton, setSelectedButton] = useState('Add'); // Initial selection is 'Add'
@@ -10,6 +13,9 @@ export const StockTransactionManagement = () => {
     const [InputBox3, setInputBox3] = useState('');
     const [InputBox4, setInputBox4] = useState('');
     const [InputBox5, setInputBox5] = useState('');
+
+    const Token = useContext(TokenContext);
+    let retreiveValue = [{}];
 
 
     const handleReset = () => {
@@ -50,6 +56,124 @@ export const StockTransactionManagement = () => {
     };
     const handleInputChange5 = (event) => {
         setInputBox5(event.target.value);
+    };
+
+    const BrokerExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/broker/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const UserExist = async (u) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const Get_user_data = async (u) => {
+        await axios
+          .get(`https://www.tradekub.me/users/username/${u}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            retreiveValue = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+    const Get_account_data = async (a) => {
+        await axios
+          .get(`https://www.tradekub.me/account/${a}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            retreiveValue = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
+
+    const AccountExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/account/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+
+             console.log(response);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+
+    const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
+        const data = {
+            user_id: Number(retreiveValue.id),
+            broker_id: Number(InputBox0),
+            cash_balance: 0,
+            line_available: 0,
+            credit_limit:  Number(InputBox3),
+            pin: Number(InputBox2)
+        };
+
+        await axios
+            .post("https://www.tradekub.me/account/", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("Create account successfull");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Create account failed please try again");
+            });
     };
 
     
