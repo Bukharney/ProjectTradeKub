@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./SelectAcc.css";
-import { Account } from "./AccountDB.js";
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
+import Logo from "./Logo.svg";
 
 export const SelectAccount = () => {
   const [data, setData] = useState([]);
@@ -16,22 +19,12 @@ export const SelectAccount = () => {
     console.log("e.target.value", e.target.value);
   };
 
-  const handleAccountChange = (event) => {
-    const selectedAccountId = event.target.value;
-    const selectedAccount = account.find(
-      (acc) => acc.AccID === selectedAccountId
-    );
-    if (selectedAccount) {
-      // Update the broker and cash balance display based on the selected account
-      document.getElementById("SelectedBroker").textContent =
-        selectedAccount.BrokerID;
-      document.getElementById("SelectedCashBalance").textContent =
-        selectedAccount.CashBalance;
-    } else {
-      // Clear the broker and cash balance display if no account is selected
-      document.getElementById("SelectedBroker").textContent = "";
-      document.getElementById("SelectedCashBalance").textContent = "";
-    }
+  const handleAccountSelected = () => {
+    console.log("selectedCB", selectedCB);
+    console.log("selectedBroker", selectedBroker);
+    setAccount(selectedAccountId);
+    console.log("account", account);
+    window.location.href = "/Market";
   };
 
   useEffect(() => {
@@ -75,10 +68,8 @@ export const SelectAccount = () => {
       <div className="boxSelectAcc">
         <div className="Head-Text-SelectAcc">
           Welcome to <br />
-          <div className="Head-Text-SelectAcc-2">
-            <div className="Slect__Logo">
-              <img src={Logo} alt="Logo" />
-            </div>
+          <div className="Slect__Logo">
+            <img src={Logo} alt="Logo" />
           </div>
         </div>
         <div className="TextBoxSelectAcc">
@@ -86,12 +77,12 @@ export const SelectAccount = () => {
             <select
               id="SelectAccDropDown"
               className="SelectAccDropDown"
-              onChange={handleAccountChange}
+              onChange={handleChange}
             >
               <option value="">Select an Account</option>
-              {account.map((acc, index) => (
-                <option key={index} value={acc.AccID}>
-                  {acc.AccID}
+              {data.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.id}
                 </option>
               ))}
             </select>
