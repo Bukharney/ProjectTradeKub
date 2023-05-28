@@ -8,6 +8,7 @@ import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import LoadingOverlay from "react-loading-overlay";
+import PopUP from "./PopUP";
 
 export const Market = () => {
   const Token = useContext(TokenContext);
@@ -27,11 +28,32 @@ export const Market = () => {
   const [userStock, setUserStock] = useState([]);
   const [userSearch, setUserSearch] = useState([]);
   const [isLoadingGraph, setIsLoadingGraph] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedStock, setSelectedStock] = useState("");
 
   const totalPrice = Number(Price) * Number(Volume);
 
   const formatNumber = (Number) => {
     return Number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
+
+  const togglePopup = (stock) => {
+    setSelectedStock(stock);
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const handlePinChange = (event) => {
+    setPin(event.target.value);
+  };
+
+  const handleCancelOrder = () => {
+    console.log("Order Cancelled");
+    togglePopup(null);
+  };
+
+  const handleOkClick = () => {
+    console.log("OK Clicked");
+    togglePopup(null);
   };
 
   const handleOptionClick = (option) => {
@@ -672,7 +694,7 @@ export const Market = () => {
                     {userStock.map((stock, index) => (
                       <div
                         key={index}
-                        className="Market__container__right__Container__box"
+                        className="Market__container__right__Container__box1"
                         style={{
                           color: stock.change >= 0 ? "#42A93C" : "#CD3D42",
                         }}
@@ -720,9 +742,12 @@ export const Market = () => {
                 <div className="Market__container__stock__box">
                   <div className="Market__container__stock__div">
                     {userOrder.map((stock, index) => (
-                      <div
+                      <button
+                        onClick={() => togglePopup(stock)}
                         key={index}
-                        className="Market__container__right__Container__box"
+                        className={`Market__container__right__Container__box2 ${
+                          selectedStock === stock ? "selected" : ""
+                        }`}
                       >
                         <div className="Market__container__right__status__Symbol">
                           {stock.symbol}
@@ -736,12 +761,23 @@ export const Market = () => {
                         <div className="Market__container__right__status__Volume">
                           {stock.volume}
                         </div>
-
                         <div className="Market__container__right__status__Status">
                           {stock.status}
                         </div>
-                      </div>
+                      </button>
                     ))}
+
+                    <div className="PopUP">
+                      {isPopupOpen && (
+                        <PopUP
+                          pin={Pin}
+                          handlePinChange={handlePinChange}
+                          selectedStock={selectedStock.symbol}
+                          handleCancelOrder={handleCancelOrder}
+                          handleOkClick={handleOkClick}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
