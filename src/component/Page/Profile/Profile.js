@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Profile.css";
-import { Stock, Transaction, Account, Device } from "./DBProfile";
 import { Link } from "react-router-dom";
 import { value } from "../Navbar/Navbar.js";
 import ApexCharts from "apexcharts";
@@ -10,6 +9,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
+import LoadingOverlay from "react-loading-overlay";
 
 export const Profile = () => {
   const Token = React.useContext(TokenContext);
@@ -20,6 +20,7 @@ export const Profile = () => {
   const [userLog, setUserLog] = useState([]);
   const [userTsc, setUserTsc] = useState([]);
   const [userPort, setUserPort] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
   let total = 0;
 
   const formatNumber = (Number) => {
@@ -152,9 +153,11 @@ export const Profile = () => {
         .then((response) => {
           console.log(response.data);
           setUserPort(response.data);
+          setIsloading(false);
         })
         .catch((error) => {
           console.error(error);
+          window.location.href = "/";
         });
     };
 
@@ -163,13 +166,13 @@ export const Profile = () => {
     get_user_log();
     get_tsc();
     get_portfolio(Accounts.account);
-  }, [Accounts.account]);
+  }, [Accounts.account, Token.token]);
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
       parseFloat(
         stock.volume *
-          (stock.market_status == "CLOSE_E" ? stock.close : stock.last_price)
+          (stock.market_status === "CLOSE_E" ? stock.close : stock.last_price)
       )
     );
     const labels = SortedStock.map((stock) => stock.symbol);
@@ -231,13 +234,17 @@ export const Profile = () => {
     const chart = new ApexCharts(chartRef.current, chartOptions);
     chart.render();
 
+    setTimeout(() => {
+      setIsloading(false);
+    }, 5000);
+
     return () => {
       chart.destroy();
     };
-  }, [SortedStock, userPort]);
+  }, [SortedStock, userPort, palettes]);
 
   return (
-    <div className="Profile__container">
+    <LoadingOverlay active={isLoading} spinner className="Profile__container">
       <div className="wallet__container">
         <div className="balance__container">
           <div className="balance__title">Your Balance</div>
@@ -249,9 +256,10 @@ export const Profile = () => {
             <div className="balance__Total__Wealth__value">
               {userPort.map((stock) => {
                 total +=
-                  (stock.market_status == "CLOSE_E"
+                  (stock.market_status === "CLOSE_E"
                     ? stock.close
                     : stock.last_price) * stock.volume;
+                return;
               })}
               {formatNumber(total)}
             </div>
@@ -389,20 +397,26 @@ export const Profile = () => {
           <div className="profile__Account__Topic">
             Account Name
             <span className="profile__Account__Name__value">
-              {userData ? userData.name : "Loading..."}
+              {userData.map((user) => {
+                return user.email;
+              })}
             </span>
           </div>
 
           <div className="profile__Account__Topic">
             Phone Number
             <span className="profile__Account__PhoneNumber__value">
-              {userData ? userData.phone : "Loading..."}
+              {userData.map((user) => {
+                return user.phone;
+              })}
             </span>
           </div>
           <div className="profile__Account__Topic">
             Email
             <span className="profile__Account__Email__value">
-              {userData ? userData.email : "Loading..."}
+              {userData.map((user) => {
+                return user.email;
+              })}
             </span>
           </div>
 
@@ -440,6 +454,6 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </LoadingOverlay>
   );
 };

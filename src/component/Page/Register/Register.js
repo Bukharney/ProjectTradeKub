@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
-import background from "./background.svg";
+import s1 from "./imgStone/stone 1.svg";
+import s2 from "./imgStone/stone 2.svg";
+import s3 from "./imgStone/stone 3.svg";
+import s4 from "./imgStone/stone 4.svg";
+import s5 from "./imgStone/stone 5.svg";
+import s6 from "./imgStone/stone 6.svg";
+import s7 from "./imgStone/stone 7.svg";
+import s8 from "./imgStone/stone 8.svg";
+import s9 from "./imgStone/stone 9.svg";
+import s10 from "./imgStone/stone 10.svg";
+import creditcard from "./imgStone/Credit cards.svg";
 
 const Register = () => {
   const [inputBorderColor1, setInputBorderColor1] = useState("");
   const [inputBorderColor2, setInputBorderColor2] = useState("");
   const [inputBorderColor3, setInputBorderColor3] = useState("");
   const [inputBorderColor4, setInputBorderColor4] = useState("");
+
+  const [stoneOffset, setStoneOffset] = useState({ offsetX: 0, offsetY: 0 });
 
   const handleInputFocus1 = () => {
     setInputBorderColor1("#CCFF00");
@@ -44,12 +56,28 @@ const Register = () => {
     window.location.href = "/Login";
   };
 
+  const handleMouseMove = (event) => {
+    const { clientX, clientY } = event;
+    const offsetX = clientX / window.innerWidth - 0.5;
+    const offsetY = clientY / window.innerHeight - 0.5;
+    setStoneOffset({ offsetX, offsetY });
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+
   return (
     <div className="AllsectionRegis">
       <div className="boxRegis">
         <div className="Head-Text">
           Create new <br />
           TradeKub account
+          
         </div>
         <div
           className="TextBoxInsert1"
@@ -102,7 +130,41 @@ const Register = () => {
           <button className="RegisConfirm">Confirm</button>
         </div>
       </div>
-      <img className="Reis___background" src={background} alt="background" />
+
+      <div className="stone1" style={{ pointerEvents: "none", transform: `translate(${stoneOffset.offsetX * 60}px, ${stoneOffset.offsetY * 60}px)` }}>
+        <img src={s1} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone2" style={{ transform: `translate(${stoneOffset.offsetX * 30}px, ${stoneOffset.offsetY * 30}px)` }}>
+        <img src={s2} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone3" style={{ transform: `translate(${stoneOffset.offsetX * 20}px, ${stoneOffset.offsetY * 20}px)` }}>
+        <img src={s3} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone4" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+        <img src={s4} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone5" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+        <img src={s5} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone6" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+        <img src={s6} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone7" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+        <img src={s7} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone8" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+        <img src={s8} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone9" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+        <img src={s9} alt="Stone" className="stone-image" />
+      </div>
+      <div className="stone10" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+        <img src={s10} alt="Stone" className="stone-image" />
+      </div>
+      <div className="creditcardS" >
+        <img src={creditcard} className="Reis___backgroun"/>
+      </div>
+
     </div>
   );
 };
