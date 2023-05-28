@@ -59,7 +59,7 @@ export const Notification = ({ value, hasRefresh }) => {
         setData(response.data);
       })
       .catch((error) => {
-        console.error(error.response.data);
+        console.error(error.response);
         setData([]);
       });
   };

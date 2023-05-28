@@ -9,31 +9,30 @@ import {
   LogInOutData,
   CompanyData,
   DividentData,
-  NewsData
-}
-  from './allData.js' 
+  NewsData,
+} from "./allData.js";
 
-let view_UserData = [{ NULL: 'NULL' }];
-let view_AccountData = [{ NULL: 'NULL' }];
-let view_BrokerData = [{ NULL: 'NULL' }];
-let view_StockOrderData = [{ NULL: 'NULL' }];
-let view_StockTransData = [{ NULL: 'NULL' }];
-let view_BankTransData = [{ NULL: 'NULL' }];
-let view_TurnoverData = [{ NULL: 'NULL' }];
-let view_LogInOutData = [{ NULL: 'NULL' }];
-let view_CompanyData = [{ NULL: 'NULL' }];
-let view_DividentData = [{ NULL: 'NULL' }];
-let view_NewsData = [{ NULL: 'NULL' }];
+let view_UserData = [{ NULL: "NULL" }];
+let view_AccountData = [{ NULL: "NULL" }];
+let view_BrokerData = [{ NULL: "NULL" }];
+let view_StockOrderData = [{ NULL: "NULL" }];
+let view_StockTransData = [{ NULL: "NULL" }];
+let view_BankTransData = [{ NULL: "NULL" }];
+let view_TurnoverData = [{ NULL: "NULL" }];
+let view_LogInOutData = [{ NULL: "NULL" }];
+let view_CompanyData = [{ NULL: "NULL" }];
+let view_DividentData = [{ NULL: "NULL" }];
+let view_NewsData = [{ NULL: "NULL" }];
 
 let roleIndex_inDB = 0;
 export const GettingRoleIndex = ({ roleIndexGet }) => {
   roleIndex_inDB = roleIndexGet;
 };
-let ViewerLabel = '';
+let ViewerLabel = "";
 
-let search = '';
-let search2 = '';
-export const SearchGeting = ({ViewerLabelGet}) => {
+let search = "";
+let search2 = "";
+export const SearchGeting = ({ ViewerLabelGet }) => {
   //search = searchGet;
   //search2 = searchGet2;
   ViewerLabel = ViewerLabelGet;
@@ -431,48 +430,77 @@ else if (roleIndex_inDB == 2 || roleIndex_inDB == 3) {
 else if (roleIndex_inDB == 4) { }//company
 */
 
-view_TurnoverData = TurnoverData.sort((a, b) => new Date(b.datetime) - new Date(a.datetime))
-view_CompanyData = CompanyData.sort((a, b) => a.company_name.localeCompare(b.company_name));
-view_NewsData = NewsData.sort((a, b) => new Date(b.news_datetime) - new Date(a.news_datetime));
-
 export const SearchFunction = () => {
+  view_TurnoverData = TurnoverData.sort(
+    (a, b) => new Date(b.datetime) - new Date(a.datetime)
+  );
+  view_CompanyData = CompanyData.sort((a, b) =>
+    a.company_name.localeCompare(b.company_name)
+  );
+  view_NewsData = NewsData.sort(
+    (a, b) => new Date(b.news_datetime) - new Date(a.news_datetime)
+  );
+
   if (roleIndex_inDB === 0) {
-    view_UserData = UserData.filter(item => item.username === ViewerLabel);
-    view_AccountData = AccountData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
-      .sort((a, b) => new Date(b.contracted_datetime) - new Date(a.contracted_datetime));
-    view_BrokerData = BrokerData.filter(item => view_AccountData.find(accountItem => accountItem.broker_id === item.broker_id));
-    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.order_id === item.order_id))
-    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
-    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
+    view_UserData = UserData.filter((item) => item.name === ViewerLabel);
+    view_AccountData = AccountData.filter((item) =>
+      view_UserData.find((userItem) => userItem.id === item.user_id)
+    ).sort(
+      (a, b) =>
+        new Date(b.contracted_datetime) - new Date(a.contracted_datetime)
+    );
+    view_BrokerData = BrokerData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.broker_id === item.id)
+    );
+    view_StockOrderData = StockOrderData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+    view_StockTransData = StockTransData.filter((item) =>
+      view_StockOrderData.find((orderItem) => orderItem.id === item.order_id)
+    );
+    view_BankTransData = BankTransData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+    view_LogInOutData = LogInOutData.filter((item) =>
+      view_UserData.find((userItem) => userItem.id === item.id)
+    );
+    view_DividentData = DividentData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+  } else if (roleIndex_inDB === 1) {
+    view_BrokerData = BrokerData.filter((item) => item.name === ViewerLabel);
+    view_AccountData = AccountData.filter((item) =>
+      view_BrokerData.find((BItem) => BItem.id === item.broker_id)
+    );
+    view_UserData = UserData.filter((item) =>
+      view_AccountData.find((AItem) => AItem.user_id === item.id)
+    );
+    view_StockOrderData = StockOrderData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+    view_StockTransData = StockTransData.filter((item) =>
+      view_StockOrderData.find((orderItem) => orderItem.id === item.order_id)
+    );
+    view_BankTransData = BankTransData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+    view_LogInOutData = LogInOutData.filter((item) =>
+      view_UserData.find((userItem) => userItem.id === item.user_id)
+    );
+    view_DividentData = DividentData.filter((item) =>
+      view_AccountData.find((accountItem) => accountItem.id === item.account_id)
+    );
+  } else if (roleIndex_inDB === 2 || roleIndex_inDB === 3) {
+    view_BrokerData = BrokerData;
+    view_AccountData = AccountData;
+    view_UserData = UserData;
+    view_StockOrderData = StockOrderData;
+    view_StockTransData = StockTransData;
+    view_BankTransData = BankTransData;
+    view_LogInOutData = LogInOutData;
+    view_DividentData = DividentData;
   }
-  else if(roleIndex_inDB === 1)
-  {
-    view_BrokerData = BrokerData.filter(item => item.organization_name === ViewerLabel)
-    view_AccountData = AccountData.filter(item => view_BrokerData.find(BItem => BItem.broker_id === item.broker_id))
-    view_UserData = UserData.filter(item=> view_AccountData.find(AItem => AItem.user_id === item.user_id))
-    view_StockOrderData = StockOrderData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_StockTransData = StockTransData.filter(item => view_StockOrderData.find(orderItem => orderItem.order_id === item.order_id))
-    view_BankTransData = BankTransData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-    view_LogInOutData = LogInOutData.filter(item => view_UserData.find(userItem => userItem.user_id === item.user_id))
-    view_DividentData = DividentData.filter(item => view_AccountData.find(accountItem => accountItem.account_id === item.account_id))
-
-  }
-  else if(roleIndex_inDB === 2|| roleIndex_inDB === 3)
-  {
-    view_BrokerData = BrokerData
-     view_AccountData = AccountData
-    view_UserData = UserData
-    view_StockOrderData = StockOrderData
-    view_StockTransData = StockTransData
-    view_BankTransData = BankTransData
-    view_LogInOutData = LogInOutData
-    view_DividentData = DividentData
-  }
-
-}
-
+};
 
 const getColumnKeys = (data) => {
   if (data && data[0]) {
@@ -517,9 +545,8 @@ let tablesColumns = [
   companyDetailsColumns,
   turnoverColumns,
   dividendColumns,
-  newsColumns
+  newsColumns,
 ];
-
 
 let userRows = User.map((document) => Object.values(document));
 let accountRows = Account.map((document) => Object.values(document));
@@ -553,34 +580,32 @@ let tablesRows = [
   newsRows,
 ];
 
-
 export const Updating = () => {
+  User = view_UserData;
+  Account = view_AccountData;
+  Broker = view_BrokerData;
+  BankTransition = view_BankTransData;
+  StockOrder = view_StockOrderData;
+  StockTransaction = view_StockTransData;
+  Login_Logout = view_LogInOutData;
+  CompanyDetails = view_CompanyData;
+  Turnover = view_TurnoverData;
+  Divident = view_DividentData;
+  News = view_NewsData;
 
-   User = view_UserData;
-   Account = view_AccountData;
-   Broker = view_BrokerData;
-   BankTransition = view_BankTransData;
-   StockOrder = view_StockOrderData;
-   StockTransaction = view_StockTransData;
-   Login_Logout = view_LogInOutData;
-   CompanyDetails = view_CompanyData;
-   Turnover = view_TurnoverData;
-   Divident = view_DividentData;
-   News = view_NewsData;
+  userColumns = getColumnKeys(User);
+  accountColumns = getColumnKeys(Account);
+  brokerColumns = getColumnKeys(Broker);
+  bankTransitionColumns = getColumnKeys(BankTransition);
+  stockOrderColumns = getColumnKeys(StockOrder);
+  stockTransactionColumns = getColumnKeys(StockTransaction);
+  loginLogoutColumns = getColumnKeys(Login_Logout);
+  companyDetailsColumns = getColumnKeys(CompanyDetails);
+  turnoverColumns = getColumnKeys(Turnover);
+  dividendColumns = getColumnKeys(Divident);
+  newsColumns = getColumnKeys(News);
 
-   userColumns = getColumnKeys(User);
-   accountColumns = getColumnKeys(Account);
-   brokerColumns = getColumnKeys(Broker);
-   bankTransitionColumns = getColumnKeys(BankTransition);
-   stockOrderColumns = getColumnKeys(StockOrder);
-   stockTransactionColumns = getColumnKeys(StockTransaction);
-   loginLogoutColumns = getColumnKeys(Login_Logout);
-   companyDetailsColumns = getColumnKeys(CompanyDetails);
-   turnoverColumns = getColumnKeys(Turnover);
-   dividendColumns = getColumnKeys(Divident);
-   newsColumns = getColumnKeys(News);
-
-   tablesColumns = [
+  tablesColumns = [
     userColumns,
     accountColumns,
     brokerColumns,
@@ -594,26 +619,25 @@ export const Updating = () => {
     newsColumns,
   ];
 
+  userRows = User.map((document) => Object.values(document));
+  accountRows = Account.map((document) => Object.values(document));
+  brokerRows = Broker.map((document) => Object.values(document));
+  bankTransitionRows = BankTransition.map((document) =>
+    Object.values(document)
+  );
+  stockOrderRows = StockOrder.map((document) => Object.values(document));
+  stockTransactionRows = StockTransaction.map((document) =>
+    Object.values(document)
+  );
+  loginLogoutRows = Login_Logout.map((document) => Object.values(document));
+  companyDetailsRows = CompanyDetails.map((document) =>
+    Object.values(document)
+  );
+  turnoverRows = Turnover.map((document) => Object.values(document));
+  dividendRows = Divident.map((document) => Object.values(document));
+  newsRows = News.map((document) => Object.values(document));
 
-   userRows = User.map((document) => Object.values(document));
-   accountRows = Account.map((document) => Object.values(document));
-   brokerRows = Broker.map((document) => Object.values(document));
-   bankTransitionRows = BankTransition.map((document) =>
-    Object.values(document)
-  );
-   stockOrderRows = StockOrder.map((document) => Object.values(document));
-   stockTransactionRows = StockTransaction.map((document) =>
-    Object.values(document)
-  );
-   loginLogoutRows = Login_Logout.map((document) => Object.values(document));
-   companyDetailsRows = CompanyDetails.map((document) =>
-    Object.values(document)
-  );
-   turnoverRows = Turnover.map((document) => Object.values(document));
-   dividendRows = Divident.map((document) => Object.values(document));
-   newsRows = News.map((document) => Object.values(document));
-
-   tablesRows = [
+  tablesRows = [
     userRows,
     accountRows,
     brokerRows,
@@ -626,7 +650,6 @@ export const Updating = () => {
     dividendRows,
     newsRows,
   ];
-
-}
+};
 export { tablesColumns };
 export { tablesRows };
