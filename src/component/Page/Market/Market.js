@@ -29,7 +29,7 @@ export const Market = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [userStock, setUserStock] = useState([]);
   const [userSearch, setUserSearch] = useState([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState("");
   const [inputBorderColor4, setInputBorderColor4] = useState("");
 
@@ -742,39 +742,33 @@ export const Market = () => {
                           selectedStock === stock ? "selected" : ""
                         }`}
                       >
-                        <div className="Market__container__right__status__Symbol"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div
+                          className="Market__container__right__status__Symbol"
+                    
+                        >
                           {stock.symbol}
                         </div>
-                        <div className="Market__container__right__stock__Side"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div
+                          className="Market__container__right__stock__Side"
+                   
+                        >
                           {stock.side === "Buy" ? "B" : "S"}
                         </div>
-                        <div className="Market__container__right__status__Price"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div
+                          className="Market__container__right__status__Price"
+                   
+                        >
                           {stock.price.toFixed(2)}
                         </div>
-                        <div className="Market__container__right__status__Volume"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div
+                          className="Market__container__right__status__Volume"
+       
+                        >
                           {stock.volume}
                         </div>
-                        <div className="Market__container__right__status__Status"
-                        style={{
-                          color:
-                            selectedStock === stock ? inputBorderColor4 : " ",
-                        }}>
+                        <div
+                          className="Market__container__right__status__Status"
+                        >
                           {stock.status}
                         </div>
                       </button>
@@ -785,7 +779,7 @@ export const Market = () => {
                         <PopUP
                           pin={Pin}
                           handlePinChange={handlePinChange}
-                          selectedStock={selectedStock}
+                          selectedStock={selectedStock.symbol}
                           handleCancelOrder={handleCancelOrder}
                           handleOkClick={handleOkClick}
                         />
