@@ -105,6 +105,9 @@ export const Profile = () => {
         })
         .catch((error) => {
           console.error(error);
+          alert("Please Select Account");
+          Cookies.remove("token");
+          Auth.setAuth(false);
         });
     };
 
@@ -157,7 +160,6 @@ export const Profile = () => {
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/";
         });
     };
 

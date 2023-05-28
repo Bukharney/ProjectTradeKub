@@ -254,6 +254,7 @@ export const Market = () => {
         })
         .catch((error) => {
           console.error(error);
+          window.location.href = "/News";
         });
     };
     const get_order = async (e) => {

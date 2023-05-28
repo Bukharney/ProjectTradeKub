@@ -15,6 +15,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [data, setData] = useState([]);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -45,6 +46,7 @@ export const Login = () => {
           Auth.setAuth(true);
           console.log(Auth.auth);
           console.log(Cookies.get("token"));
+          window.location.href = "/SelectAccount";
         })
         .catch((error) => {
           console.error(error);
@@ -53,7 +55,6 @@ export const Login = () => {
       return res;
     };
     await news();
-    window.location.href = "/Market";
   };
 
   return (
@@ -102,7 +103,9 @@ export const Login = () => {
           </div>
           <div className="RegisText">
             Don't have an account ? {"  "}
-            <button className="RegisTextButton" onClick={handleRegister}><u>Register</u></button>
+            <button className="RegisTextButton" onClick={handleRegister}>
+              <u>Register</u>
+            </button>
           </div>
         </div>
       </div>
