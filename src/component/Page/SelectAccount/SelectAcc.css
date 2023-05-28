@@ -1,109 +1,228 @@
-.AllsectionSelectAcc{
-    width: 100%;
-    height: 100vh;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-.boxSelectAcc{
-    width: 25%;
-    height: 75%;
+.AllsectionSelectAcc {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.Head-Text-SelectAcc
-{
-    width: 100%;
-    text-align: center;
-    font-size: medium;
-    height: 10%;
+.boxSelectAcc {
+  width: 25%;
+  padding: 20px;
+  background: linear-gradient(148.85deg, #26282c -10.58%, #1a1b1e 104.12%);
+  border: 1px solid #4e4f51;
+  border-radius: 10px;
+  border-radius: 8px;
+  text-align: center;
 }
 
-.TextUsernameSelectAcc{
-    width: 100%;
-    height: 6%;
-    font-size: x-large;
-    text-align: center;
+.Head-Text-SelectAcc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
 }
 
-.TextBoxSelectAcc{
-    width: 100%;
-    height: 68%;
+.TextUsernameSelectAcc {
+  font-size: 0.85rem;
+  margin-bottom: 20px;
 }
 
-.BoxFooterSelectAcc{
-    width: 100%;
-    height: 14%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.AccEdit {
-    width: 100%;
-    height: 2rem;
-    border-radius: 10px;
-    background: #282A2E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    border: 1px solid #767678;
-}
-
-.GoToMarket {
-    width: 100%;
-    height: 2rem;
-    border-radius: 10px;
-    background: #CCFF00;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #282A2E;
-    font-size: 0.8rem;
-    font-weight: 600;
+.TextBoxSelectAcc {
+  margin-bottom: 20px;
 }
 
 .SelectAccDropDownBox {
-    width: 100%;
-    background: #282A2E;
-    height: 10%;
-    border-radius: 5px;
-    border: 1px solid #ffffff;
-    margin-top: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10%;
+  border: 1px solid #4e4f51;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  border-radius: 4px;
 }
 
 .SelectAccDropDown {
-    width: 100%;
-    text-align: center;
-    background: #282A2E;
-    outline: none;
-    font-size: larger;
+  background-color: transparent;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  width: 90%;
+  outline: none;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.SelectBrokerIDandCash_Box{
-    width: 100%;
-    font-weight: 600;
-    height: 10%;
-    margin-top: 5%;
-    display: flex;
-    justify-content: flex-start;
+.SelectAccDropDown option {
+  outline: none;
+  background-color: #282a2e;
+  border: 1px solid #4e4f51;
+  border-radius: 4px;
+  font-size: 0.75rem;
 }
 
-.SelectBrokerIDandCash_Text{
-    width: 50%;
-    text-align: left;
 
+.SelectBrokerIDandCash_Box {
+  display: flex;
+  justify-content: space-between;
 }
 
-.SelectBrokerIDandCash_Data{
-    width: 50%;
-    text-align: right;
+.SelectBrokerIDandCash_Text {
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.SelectBrokerIDandCash_Data {
+  font-size: 0.75rem;
+}
+
+.BoxFooterSelectAcc {
+  display: flex;
+  flex-direction: column;
+}
+
+.GoToMarket,
+.AccEdit {
+  width: 100%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-bottom: 5%;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.Slect__Logo {
+  margin-top: 3%;
+  width: 45%;
+}
+
+.SelectAccDropDownText {
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+}
+
+.Head-Text-SelectAcc-2 {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.GoToMarket {
+  background: #ccff00;
+  display: flex;
+  color: #282a2e;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.GoToMarket:hover {
+  transform: translateY(-2px);
+}
+
+.AccEdit {
+  background-color: #282a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.AccEdit:hover {
+  background-color: #cd3d42;
+  transform: translateY(-2px);
+}
+
+.boxSelectAcc {
+  padding: 3%;
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+  .Head-Text-SelectAcc {
+    font-size: 1.6rem;
+  }
+
+  .TextUsernameSelectAcc {
+    font-size: 1.2rem;
+  }
+
+  .SelectAccDropDown {
+    font-size: 1rem;
+  }
+
+  .SelectBrokerIDandCash_Text {
+    font-size: 1rem;
+  }
+
+  .SelectBrokerIDandCash_Data {
+    font-size: 1rem;
+  }
+
+  .GoToMarket,
+  .AccEdit {
+    font-size: 1rem;
+  }
+
+  .GoToMarket {
+    font-size: 1rem;
+  }
+
+  .AccEdit {
+    font-size: 1rem;
+  }
+
+  .boxSelectAcc {
+    width: 25%;
+    padding: 3%;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 1801px) {
+  .Head-Text-SelectAcc {
+    font-size: 1.6rem;
+  }
+
+  .TextUsernameSelectAcc {
+    font-size: 1.2rem;
+  }
+
+  .SelectAccDropDown {
+    font-size: 1rem;
+  }
+
+  .SelectBrokerIDandCash_Text {
+    font-size: 1rem;
+  }
+
+  .SelectBrokerIDandCash_Data {
+    font-size: 1rem;
+  }
+
+  .GoToMarket,
+  .AccEdit {
+    font-size: 1rem;
+  }
+
+  .GoToMarket {
+    font-size: 1rem;
+  }
+
+  .AccEdit {
+    font-size: 1rem;
+  }
+
+  .boxSelectAcc {
+    width: 25%;
+    padding: 3%;
+    border-radius: 25px;
+  }
 }

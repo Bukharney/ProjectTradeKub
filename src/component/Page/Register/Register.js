@@ -11,12 +11,17 @@ import s8 from "./imgStone/stone 8.svg";
 import s9 from "./imgStone/stone 9.svg";
 import s10 from "./imgStone/stone 10.svg";
 import creditcard from "./imgStone/Credit cards.svg";
+import axios from "axios";
 
 const Register = () => {
   const [inputBorderColor1, setInputBorderColor1] = useState("");
   const [inputBorderColor2, setInputBorderColor2] = useState("");
   const [inputBorderColor3, setInputBorderColor3] = useState("");
   const [inputBorderColor4, setInputBorderColor4] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   const [stoneOffset, setStoneOffset] = useState({ offsetX: 0, offsetY: 0 });
 
@@ -70,24 +75,52 @@ const Register = () => {
     };
   }, []);
 
+  const post_regsiter = async (e) => {
+    const data = {
+      name: username,
+      phone: phone,
+      email: email,
+      password: password,
+    };
+    await axios
+      .post("https://www.tradekub.me/users/", data, {
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Register Success");
+        window.location.href = "/Login";
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleSubmit = () => {
+    post_regsiter();
+  };
 
   return (
     <div className="AllsectionRegis">
-      <div className="boxRegis">
-        <div className="Head-Text">
+      <div className="boxRegis_">
+        <div className="Regis__Head-Text">
           Create new <br />
           TradeKub account
-          
         </div>
         <div
           className="TextBoxInsert1"
           style={{ borderColor: inputBorderColor1 }}
         >
           <input
+            value={email}
             type="text"
             placeholder="E-mail"
             onFocus={handleInputFocus1}
             onBlur={handleInputBlur1}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div
@@ -95,10 +128,12 @@ const Register = () => {
           style={{ borderColor: inputBorderColor2 }}
         >
           <input
+            value={phone}
             type="text"
             placeholder="Phone Number"
             onFocus={handleInputFocus2}
             onBlur={handleInputBlur2}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
         <div
@@ -106,10 +141,12 @@ const Register = () => {
           style={{ borderColor: inputBorderColor3 }}
         >
           <input
+            value={username}
             type="text"
             placeholder="Username"
             onFocus={handleInputFocus3}
             onBlur={handleInputBlur3}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div
@@ -117,54 +154,128 @@ const Register = () => {
           style={{ borderColor: inputBorderColor4 }}
         >
           <input
+            value={password}
             type="text"
             placeholder="Password"
             onFocus={handleInputFocus4}
             onBlur={handleInputBlur4}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="CancelConfirm">
           <button className="RegisCancel" onClick={handleBack}>
-            Cancel 
+            Cancel
           </button>
-          <button className="RegisConfirm">Confirm</button>
+          <button className="RegisConfirm" onClick={handleSubmit}>
+            Confirm
+          </button>
         </div>
       </div>
 
-      <div className="stone1" style={{ pointerEvents: "none", transform: `translate(${stoneOffset.offsetX * 60}px, ${stoneOffset.offsetY * 60}px)` }}>
+      <div
+        className="stone1"
+        style={{
+          pointerEvents: "none",
+          transform: `translate(${stoneOffset.offsetX * 60}px, ${
+            stoneOffset.offsetY * 60
+          }px)`,
+        }}
+      >
         <img src={s1} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone2" style={{ transform: `translate(${stoneOffset.offsetX * 30}px, ${stoneOffset.offsetY * 30}px)` }}>
+      <div
+        className="stone2"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 30}px, ${
+            stoneOffset.offsetY * 30
+          }px)`,
+        }}
+      >
         <img src={s2} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone3" style={{ transform: `translate(${stoneOffset.offsetX * 20}px, ${stoneOffset.offsetY * 20}px)` }}>
+      <div
+        className="stone3"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 20}px, ${
+            stoneOffset.offsetY * 20
+          }px)`,
+        }}
+      >
         <img src={s3} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone4" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+      <div
+        className="stone4"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 15}px, ${
+            stoneOffset.offsetY * 15
+          }px)`,
+        }}
+      >
         <img src={s4} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone5" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+      <div
+        className="stone5"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 15}px, ${
+            stoneOffset.offsetY * 15
+          }px)`,
+        }}
+      >
         <img src={s5} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone6" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+      <div
+        className="stone6"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 10}px, ${
+            stoneOffset.offsetY * 10
+          }px)`,
+        }}
+      >
         <img src={s6} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone7" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+      <div
+        className="stone7"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 15}px, ${
+            stoneOffset.offsetY * 15
+          }px)`,
+        }}
+      >
         <img src={s7} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone8" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+      <div
+        className="stone8"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 10}px, ${
+            stoneOffset.offsetY * 10
+          }px)`,
+        }}
+      >
         <img src={s8} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone9" style={{ transform: `translate(${stoneOffset.offsetX * 15}px, ${stoneOffset.offsetY * 15}px)` }}>
+      <div
+        className="stone9"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 15}px, ${
+            stoneOffset.offsetY * 15
+          }px)`,
+        }}
+      >
         <img src={s9} alt="Stone" className="stone-image" />
       </div>
-      <div className="stone10" style={{ transform: `translate(${stoneOffset.offsetX * 10}px, ${stoneOffset.offsetY * 10}px)` }}>
+      <div
+        className="stone10"
+        style={{
+          transform: `translate(${stoneOffset.offsetX * 10}px, ${
+            stoneOffset.offsetY * 10
+          }px)`,
+        }}
+      >
         <img src={s10} alt="Stone" className="stone-image" />
       </div>
-      <div className="creditcardS" >
-        <img src={creditcard} className="Reis___backgroun"/>
+      <div className="creditcardS">
+        <img src={creditcard} className="Reis___backgroun" />
       </div>
-
     </div>
   );
 };

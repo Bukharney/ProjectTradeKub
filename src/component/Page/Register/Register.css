@@ -8,27 +8,28 @@
   position: relative;
   overflow: hidden;
 }
-  
-.boxRegis {
-  width: 20%;
-  height: 48%;
+
+.boxRegis_{
+  width: 17%;
   display: flex;
   flex-wrap: wrap;
-  
+  justify-content: center;
+  align-items: center;
 }
 
-.Head-Text {
+.Regis__Head-Text {
+  margin-bottom: 10%;
   font-weight: 600;
   width: 100%;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .TextBoxInsert1,
 .TextBoxInsert2,
 .TextBoxInsert3,
 .TextBoxInsert4 {
-  border: 1px solid #4e4f51;
+  border: 1px solid transparent;
   background-color: #282a2e;
   width: 100%;
   border-radius: 5px;
@@ -49,15 +50,14 @@
   width: 90%;
   height: 70%;
   outline: none;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
-
 
 .CancelConfirm {
   width: 100%;
   border-radius: 5px;
-  margin-top: 5%;
+  margin-top: 10%;
   height: 15%;
   display: flex;
   align-items: center;
@@ -65,6 +65,8 @@
 }
 
 .RegisCancel {
+  font-weight: 600;
+  padding: 3%;
   width: 48%;
   height: 80%;
   border-radius: 5px;
@@ -82,6 +84,8 @@
 }
 
 .RegisConfirm {
+
+  padding: 3%;
   width: 48%;
   height: 80%;
   border-radius: 5px;
@@ -99,111 +103,114 @@
 }
 
 .stone1 {
-    position: absolute;
-    top: 58%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-  }
+  position: absolute;
+  top: 58%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
 
 .stone2 {
-    position: absolute;
-    top: 18%;
-    left: 32%;
-    transform: translate(-60%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -5;
+  position: absolute;
+  top: 18%;
+  left: 32%;
+  transform: translate(-60%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -5;
 }
 .stone3 {
-    position: absolute;
-    top: 40%;
-    left: 28%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -4;
-  }
+  position: absolute;
+  top: 40%;
+  left: 28%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -4;
+}
 
 .stone4 {
-    position: absolute;
-    top: 20%;
-    left: 54%;
-    transform: translate(-60%, -50%);
-    transition: transform 0.1s ease;
-    z-index: 3;
+  position: absolute;
+  top: 20%;
+  left: 54%;
+  transform: translate(-60%, -50%);
+  transition: transform 0.1s ease;
+  z-index: 3;
 }
 .stone5 {
-    position: absolute;
-    top: 52%;
-    left: 60%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-
-  }
+  position: absolute;
+  top: 52%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
 
 .stone6 {
-    position: absolute;
-    top: 42%;
-    left: 58%;
-    transform: translate(-60%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -5;
+  position: absolute;
+  top: 42%;
+  left: 58%;
+  transform: translate(-60%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -5;
 }
 
 .stone7 {
-    position: absolute;
-    top: 70%;
-    left: 32%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -4;
-  }
+  position: absolute;
+  top: 70%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -4;
+}
 
 .stone8 {
-    position: absolute;
-    top: 12%;
-    left: 44%;
-    transform: translate(-60%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -5;
+  position: absolute;
+  top: 12%;
+  left: 44%;
+  transform: translate(-60%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -5;
 }
 .stone9 {
-    position: absolute;
-    top: 74%;
-    left: 58%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-
-  }
+  position: absolute;
+  top: 74%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
 
 .stone10 {
-    position: absolute;
-    top: 74%;
-    left: 46%;
-    transform: translate(-60%, -50%);
-    transition: transform 0.1s ease;
-    z-index: -5;
+  position: absolute;
+  top: 74%;
+  left: 46%;
+  transform: translate(-60%, -50%);
+  transition: transform 0.1s ease;
+  z-index: -5;
 }
 
 .stone-image {
-    width: 90%; 
-    height: 90%;
-    
+  background: none;
+  width: 70%;
+  height: 70%;
 }
 
-.creditcardS{
-    z-index: -2;
-    position: absolute;
+.creditcardS {
+  z-index: -2;
+  width: 23%;
+  position: absolute;
 }
 
 .Reis___background {
-    position: absolute; 
-    width: 23%;
-    z-index: -99;
-  }
+  position: absolute;
+  z-index: -99;
+}
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
+
+  .Regis__Head-Text {
+    font-size: 1.5rem;
+  }
+
   .TextBoxInsert input {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .RegisCancel {
@@ -215,37 +222,47 @@
   }
 
   .TextBoxInsert input {
-    font-size: 0.8rem;
-  }
-
-  .Head-Text {
-
     font-size: 1rem;
   }
 
+  .Head-Text {
+    font-size: 1rem;
+  }
 
+  .stone-image {
+    background: none;
+    width: 90%;
+    height: 90%;
+  }
 }
 
 @media screen and (min-width: 1801px) {
-    .TextBoxInsert input {
-        font-size: 1rem;
-      }
+  .Regis__Head-Text {
+    font-size: 1.8rem;
+  }
 
-      .RegisCancel {
-        font-size: 1.25rem;
-      }
+  .TextBoxInsert input {
+    font-size: 1rem;
+  }
 
-      .RegisConfirm {
-        font-size: 1.25rem; 
-      }
+  .RegisCancel {
+    font-size: 1.25rem;
+  }
 
-      .TextBoxInsert input {
-        font-size: 1rem;
-      }
+  .RegisConfirm {
+    font-size: 1.25rem;
+  }
 
-      .Head-Text {
+  .TextBoxInsert input {
+    font-size: 1.25rem;
+  }
 
-        font-size: 1.25rem;
-      }
-
+  .Head-Text {
+    font-size: 1.25rem;
+  }
+  .stone-image {
+    background: none;
+    width: 100%;
+    height: 100%;
+  }
 }

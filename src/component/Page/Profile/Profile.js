@@ -105,6 +105,9 @@ export const Profile = () => {
         })
         .catch((error) => {
           console.error(error);
+          alert("Please Select Account");
+          Cookies.remove("token");
+          Auth.setAuth(false);
         });
     };
 
@@ -157,7 +160,6 @@ export const Profile = () => {
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/";
         });
     };
 
@@ -397,26 +399,20 @@ export const Profile = () => {
           <div className="profile__Account__Topic">
             Account Name
             <span className="profile__Account__Name__value">
-              {userData.map((user) => {
-                return user.email;
-              })}
+              {userData.name}
             </span>
           </div>
 
           <div className="profile__Account__Topic">
             Phone Number
             <span className="profile__Account__PhoneNumber__value">
-              {userData.map((user) => {
-                return user.phone;
-              })}
+              {userData.phone}
             </span>
           </div>
           <div className="profile__Account__Topic">
             Email
             <span className="profile__Account__Email__value">
-              {userData.map((user) => {
-                return user.email;
-              })}
+              {userData.email}
             </span>
           </div>
 
