@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./GovernmentView.css";
 import Table from "./Table";
 import {
@@ -10,9 +10,6 @@ import {
   tablesRows,
 } from "./databaseTables.js";
 import Logo from "./Logo.svg";
-import axios from "axios";
-import TokenContext from "../../../Context/TokenContext";
-import TableMapping from "./TableMap";
 import { AllDataUpdate } from "./allData";
 
 let storedRoleIndex = localStorage.getItem("roleI");
@@ -24,17 +21,12 @@ let defaultLabel = "";
 let loading = false;
 
 export const GovernmentView = () => {
-  const [role, setRole] = useState("admin");
   const [Label, setLabel] = useState(defaultLabel);
-  const [userData, setUserData] = useState([]);
-  const [table, setTable] = useState("");
-  const Token = useContext(TokenContext);
 
   const [index, setIndex] = useState(-1);
 
   const handleClick = (i) => {
-    setTable(i);
-    console.log(i);
+    setIndex(i);
   };
 
   const handleClick2 = (i) => {
@@ -44,12 +36,15 @@ export const GovernmentView = () => {
     window.location.reload();
   };
 
+  // Function to handle input change
   const handleInputChange = (event) => {
     setLabel(event.target.value);
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Perform any necessary actions with the input value
     localStorage.setItem("Label", JSON.stringify(Label));
     window.location.reload();
   };
@@ -118,45 +113,6 @@ export const GovernmentView = () => {
     InputFocusBG_GV1("#CCFF00");
   };
 
-  useEffect(() => {
-    const get_all_users = async () => {
-      await axios
-        .get(`https://www.tradekub.me/users/`, {
-          headers: {
-            accept: "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setUserData(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
-    const get_all_brokers = async () => {
-      await axios
-        .get(`https://www.tradekub.me/broker/`, {
-          headers: {
-            accept: "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setUserData(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-
-    get_all_brokers();
-    get_all_users();
-  }, [role]);
-
   return (
     <div className="GovernmentView__container">
       <GettingRoleIndex roleIndexGet={roleIndex} />
@@ -197,7 +153,12 @@ export const GovernmentView = () => {
           <div className="GovernmentView__data_______container">
             <div className="GovernmentView__data__table__container">
               <div className="GovernmentView__data__table__container__size">
-                {table === "" && <TableMapping data={userData} />}
+                {index > -1 && (
+                  <Table
+                    columns={tablesColumns[index]}
+                    rows={tablesRows[index]}
+                  />
+                )}
               </div>{" "}
             </div>
             <div className="GovernmentView__Role__container">
