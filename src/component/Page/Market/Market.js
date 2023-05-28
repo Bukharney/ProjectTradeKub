@@ -39,6 +39,7 @@ export const Market = () => {
   };
 
   const togglePopup = (stock) => {
+    console.log(stock);
     setSelectedStock(stock);
     setIsPopupOpen(!isPopupOpen);
   };
@@ -106,15 +107,21 @@ export const Market = () => {
   };
 
   const cancal_order = async (id) => {
+    const data = {
+      id: id,
+      pin: Number(cancelPin),
+    };
+
     await axios
-      .get(`https://www.tradekub.me/order/cancel/${id}`, {
+      .post("https://www.tradekub.me/order/cancel", data, {
         headers: {
-          accept: "application/json",
+          accep: "application/json",
+          "Content-Type": "application/json",
           Authorization: "Bearer " + Token.token,
         },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         alert("Cancle order successfull");
         const get_order = async (e) => {
           await axios
@@ -135,7 +142,7 @@ export const Market = () => {
         get_order(Account.account);
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error.data);
         alert("Cancle order failed please try again");
       });
   };
