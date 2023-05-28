@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import "./Wallet.css";
-import { Stock, Transaction, Account as Accounts } from "./DBWallet";
 import { Link } from "react-router-dom";
 import { value } from "../Navbar/Navbar.js";
 import ApexCharts from "apexcharts";

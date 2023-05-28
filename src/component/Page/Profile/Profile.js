@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Profile.css";
-import { Stock, Transaction, Account, Device } from "./DBProfile";
 import { Link } from "react-router-dom";
 import { value } from "../Navbar/Navbar.js";
 import ApexCharts from "apexcharts";

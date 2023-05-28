@@ -168,6 +168,7 @@ export const Market = () => {
         })
         .catch((error) => {
           console.error(error);
+          window.location.href = "/Profile";
         });
     };
 
@@ -221,11 +222,12 @@ export const Market = () => {
           console.error(error);
         });
     };
-    get_market_data(symbol);
+
+    get_stock();
+    get_account_info(Account.account);
+    get_order(Account.account);
     setTimeout(() => {
-      get_order(Account.account);
-      get_account_info(Account.account);
-      get_stock();
+      get_market_data(symbol);
       setIsloading(false);
     }, 5000);
   }, [Account.account, symbol, Token.token]);
