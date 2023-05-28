@@ -55,7 +55,7 @@ export const BankTransactionManagement = () => {
         setInputBox6(event.target.value);
     };
 
- 
+
     const BrokerExist = async (b) => {
         try {
             const response = await axios.get(`https://www.tradekub.me/broker/${b}`, {
@@ -93,37 +93,37 @@ export const BankTransactionManagement = () => {
 
     const Get_user_data = async (u) => {
         await axios
-          .get(`https://www.tradekub.me/users/username/${u}`, {
-            headers: {
-              accept: "application/json",
-              Authorization: "Bearer " + Token.token,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            retreiveValue = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+            .get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     const Get_account_data = async (a) => {
         await axios
-          .get(`https://www.tradekub.me/account/${a}`, {
-            headers: {
-              accept: "application/json",
-              Authorization: "Bearer " + Token.token,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            retreiveValue = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+            .get(`https://www.tradekub.me/account/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
 
     const AccountExist = async (b) => {
@@ -136,7 +136,7 @@ export const BankTransactionManagement = () => {
                 },
             });
 
-             console.log(response);
+            console.log(response);
             return 1; // Resolving the Promise with the desired value
         } catch (error) {
             console.error(error);
@@ -151,7 +151,7 @@ export const BankTransactionManagement = () => {
             broker_id: Number(InputBox0),
             cash_balance: 0,
             line_available: 0,
-            credit_limit:  Number(InputBox3),
+            credit_limit: Number(InputBox3),
             pin: Number(InputBox2)
         };
 
@@ -171,16 +171,16 @@ export const BankTransactionManagement = () => {
             .catch((error) => {
                 console.error(error.data);
                 alert("Create account failed please try again");
-                
+
             });
     };
 
-    const CreateBankTransaction = async ({InputBox1,InputBox3,InputBox4,selectedButton}) => {
+    const CreateBankTransaction = async () => {
         const data = {
-            account_id: 0,//Number(InputBox1),
-            account_number: "InputBox3",
-            type: "deposit",
-            amount: 0//Number(InputBox4),
+            account_id: Number(InputBox1),
+            account_number: InputBox3,
+            type: selectedButton,
+            amount: Number(InputBox4),
         };
 
         await axios
@@ -193,13 +193,42 @@ export const BankTransactionManagement = () => {
             })
             .then((response) => {
                 console.log(response);
-                alert("Add Transaction Success");
             })
             .catch((error) => {
                 console.error(error.data);
+                alert(selectedButton)
                 alert("Add Transaction failed please try again");
-             });
+            });
     };
+
+    const UpdateAccountMoney = async (b) => {
+        const data = {
+            user_id: retreiveValue.user_id,
+            broker_id: retreiveValue.broker_id,
+            cash_balance: Number(InputBox5),
+            line_available: Number(InputBox6),
+            credit_limit: retreiveValue.credit_limit,
+            pin: retreiveValue.pin
+        };
+
+        await axios
+            .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("Update account balance success");
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Update account balance failed please try again");
+            });
+    };
+
 
 
     //ฟอร์มนี้ทำทั้ง add (bank transaction) และ update (account)
@@ -218,38 +247,34 @@ export const BankTransactionManagement = () => {
             else if (retreiveValue.broker_id !== Number(InputBox0)) {
                 alert("the account isn't belong to your broker")
                 window.location.reload();
-            }   
-            else if(selectedButton !== 'Deposit' && selectedButton !== 'Withdraw')
-            {
+            }
+            else if (selectedButton !== 'deposit' && selectedButton !== 'withdraw') {
                 alert('Please select the transaction type')
                 window.location.reload();
             }
-            else if(isNaN(InputBox3) || !Number.isInteger(Number(InputBox3)) || InputBox3.length !== 10)
-            {
+            else if (isNaN(InputBox3) || !Number.isInteger(Number(InputBox3)) || InputBox3.length !== 10) {
                 alert('Wrong format of bank account number[10 digit number]')
                 window.location.reload();
             }
-            else if(isNaN(InputBox4) || InputBox4 === '')
-            {
+            else if (isNaN(InputBox4) || InputBox4 === '') {
                 alert('Wrong format of amount')
                 window.location.reload();
             }
-            else if(isNaN(InputBox5)|| InputBox5 === '')
-            {
+            else if (isNaN(InputBox5) || InputBox5 === '') {
                 alert('Wrong format of new line available')
                 window.location.reload();
             }
-            else if(isNaN(InputBox6)|| InputBox6 === '')
-            {
+            else if (isNaN(InputBox6) || InputBox6 === '') {
                 alert('Wrong format of new cash balance')
                 window.location.reload();
-            }                 
-            else{
-                await CreateBankTransaction({InputBox1,InputBox3,InputBox4,selectedButton});
-             }
+            }
+            else {
+                await CreateBankTransaction();
+                await UpdateAccountMoney();
+            }
         }
         )();
- 
+
     }
 
 
@@ -262,14 +287,14 @@ export const BankTransactionManagement = () => {
             </pre>
             <div className="button-group">
                 <button
-                    className={`buttonDeposit ${selectedButton === 'Deposit' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Deposit')}
+                    className={`buttonDeposit ${selectedButton === 'deposit' ? 'selected' : ''}`}
+                    onClick={() => handleButtonClick('deposit')}
                 >
                     Deposit
                 </button>
                 <button
-                    className={`buttonWithdraw ${selectedButton === 'Withdraw' ? 'selected' : ''}`}
-                    onClick={() => handleButtonClick('Withdraw')}
+                    className={`buttonWithdraw ${selectedButton === 'withdraw' ? 'selected' : ''}`}
+                    onClick={() => handleButtonClick('withdraw')}
                 >
                     Withdraw
 
