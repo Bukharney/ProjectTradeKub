@@ -1,6 +1,7 @@
 import React from "react";
 import "./SelectAcc.css";
 import { Account } from "./AccountDB.js";
+import Logo from "./Logo.svg";
 
 export const SelectAccount = () => {
   const { account } = Account;
@@ -10,7 +11,7 @@ export const SelectAccount = () => {
     const selectedAccount = account.find(
       (acc) => acc.AccID === selectedAccountId
     );
-    if (selectedAccount) {
+    if (selectedAccount) { 
       // Update the broker and cash balance display based on the selected account
       document.getElementById("SelectedBroker").textContent =
         selectedAccount.BrokerID;
@@ -28,23 +29,33 @@ export const SelectAccount = () => {
       <div className="boxSelectAcc">
         <div className="Head-Text-SelectAcc">
           Welcome to <br />
-          TradeKub
+          <div className="Head-Text-SelectAcc-2">
+            <div className="Slect__Logo">
+              <img src={Logo} alt="Logo" />
+            </div>
+          </div>
         </div>
         <div className="TextUsernameSelectAcc">UsernameFromLogin</div>
         <div className="TextBoxSelectAcc">
           <div className="SelectAccDropDownBox">
-            <select
-              id="SelectAccDropDown"
-              className="SelectAccDropDown"
-              onChange={handleAccountChange}
-            >
-              <option value="">Select an Account</option>
-              {account.map((acc, index) => (
-                <option key={index} value={acc.AccID}>
-                  {acc.AccID}
-                </option>
-              ))}
-            </select>
+            <div className="SelectAccDropDown">
+              <select
+                id="SelectAccDropDown"
+                className="SelectAccDropDownText"
+                onChange={handleAccountChange}
+              >
+                <option value="">Select an Account</option>
+                {account.map((acc, index) => (
+                  <option
+                    key={index}
+                    value={acc.AccID}
+                    className="SelectAccOption"
+                  >
+                    {acc.AccID}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div className="SelectBrokerIDandCash_Box">
             <div className="SelectBrokerIDandCash_Text">Broker</div>

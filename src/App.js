@@ -22,6 +22,7 @@ import { AccountManagement } from "./component/Page/AccountManagement/AccountMan
 import { NewsManagement } from "./component/Page/NewsManagement/NewsManagement";
 import { BankTransactionManagement } from "./component/Page/BankTransactionManagement/BankTransactionManagement";
 import { SelectAccount } from "./component/Page/SelectAccount/SelectAccount";
+import { EditUser } from "./component/Page/EditUserProfile/EditUser";
 
 import axios from "axios";
 
@@ -169,6 +170,15 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <SelectAccount />
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  <Route
+                    path="/EditUserProfile"
+                    element={
+                      <ProtectedRoute>
+                        <EditUser />
                       </ProtectedRoute>
                     }
                   />

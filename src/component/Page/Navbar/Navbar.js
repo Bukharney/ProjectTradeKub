@@ -53,7 +53,8 @@ export const Navbar = () => {
     location.pathname === "/AccountManagement" ||
     location.pathname === "/NewsManagement" ||
     location.pathname === "/BankTransactionManagement" ||
-    location.pathname === "/SelectAccount"
+    location.pathname === "/SelectAccount" ||
+    location.pathname === "/EditUserProfile" 
   ) {
     return null;
   }
