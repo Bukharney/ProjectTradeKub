@@ -6,4 +6,4 @@ import { createRoot } from "react-dom/client";
 import EditUser from "./component/Page/EditUserProfile/EditUser";
 
 const root = createRoot(document.getElementById("root"));
-root.render(<EditUser />);
+root.render(<App />);
