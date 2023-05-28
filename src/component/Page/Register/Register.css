@@ -100,7 +100,7 @@
 
 .stone1 {
     position: absolute;
-    top: 60%;
+    top: 58%;
     left: 20%;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
