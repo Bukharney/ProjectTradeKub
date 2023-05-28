@@ -84,7 +84,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   if (value["key"] !== 3) {
     return null;
-  } else if (data == null || data.length === 0) {
+  } else if (data == null || (data && data.length === 0)) {
     return (
       <div className="Notification">
         <div className="Nofitication__Container">

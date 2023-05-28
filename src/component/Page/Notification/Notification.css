@@ -21,7 +21,7 @@
 
 .Notication__Box {
   height: 100vh;
-  background: linear-gradient(90deg, #282A2E 0%, #1A1B1E 100%);
+  background: #242529;
   box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.25);
   width: 15rem;
 }
@@ -39,7 +39,7 @@
 
 .Notification__Body {
   background: #1a1b1e;
-  height: 4.5rem;
+  height: 5.7rem;
   width: 15rem;
   margin-bottom: 0.5rem;
 }
@@ -53,7 +53,7 @@
 .Notification_Dot {
   background-color: #ccff00;
   position: absolute;
-  margin-top: 2rem;
+  margin-top: 2.6rem;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;

@@ -184,20 +184,21 @@
     z-index: -5;
 }
 
+
 .stone-image {
-    width: 90%; 
-    height: 90%;
-    
+  background: none;
+    width: 70%; 
+    height: 70%;
 }
 
 .creditcardS{
     z-index: -2;
+    width: 23%;
     position: absolute;
 }
 
 .Reis___background {
     position: absolute; 
-    width: 23%;
     z-index: -99;
   }
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { Notification } from "../Notification/Notification.js";
-import { NotificationInbox } from "../Notification/DBNotification.js";
 
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
@@ -97,9 +96,7 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-                {NotificationInbox.result.length !== 0 && (
                   <div className="Nav__Noti__dot"></div>
-                )}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />

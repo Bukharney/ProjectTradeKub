@@ -78,7 +78,7 @@ const Register = () => {
           Create new <br />
           TradeKub account
           
-        </div>
+        </div> 
         <div
           className="TextBoxInsert1"
           style={{ borderColor: inputBorderColor1 }}
@@ -130,7 +130,6 @@ const Register = () => {
           <button className="RegisConfirm">Confirm</button>
         </div>
       </div>
-
       <div className="stone1" style={{ transform: `translate(${stoneOffset.offsetX * 60}px, ${stoneOffset.offsetY * 60}px)` }}>
         <img src={s1} alt="Stone" className="stone-image" />
       </div>
