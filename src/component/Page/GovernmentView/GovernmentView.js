@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./GovernmentView.css";
 import Table from "./Table";
 import {
@@ -10,6 +10,7 @@ import {
   tablesRows,
 } from "./databaseTables.js";
 import Logo from "./Logo.svg";
+import {AllDataUpdate} from './allData'
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
@@ -17,6 +18,8 @@ let roleIndex = storedRoleIndex ? JSON.parse(storedRoleIndex) : defaultRoleI;
 
 let storedLabel = localStorage.getItem("Label");
 let defaultLabel = "";
+let loading = false;
+
 
 export const GovernmentView = () => {
   const [Label, setLabel] = useState(defaultLabel);
@@ -30,6 +33,7 @@ export const GovernmentView = () => {
   const handleClick2 = (i) => {
     roleIndex = i;
     localStorage.setItem("roleI", JSON.stringify(roleIndex));
+    localStorage.setItem("Label", JSON.stringify(''));
     window.location.reload();
   };
 
@@ -110,6 +114,7 @@ export const GovernmentView = () => {
     InputFocusBG_GV1("#CCFF00");
   };
 
+
   return (
     <div className="GovernmentView__container">
       <GettingRoleIndex roleIndexGet={roleIndex} />
@@ -118,6 +123,9 @@ export const GovernmentView = () => {
       />
       <SearchFunction></SearchFunction>
       <Updating></Updating>
+      {loading = <AllDataUpdate></AllDataUpdate>}
+
+       {loading === true ? 'sdadas' :
       <div className="GovernmentView__data__container">
         <div className="GovernmentView__Header__container">
           <img src={Logo} alt="logo" className="GovernmentView__logo" />
@@ -206,6 +214,7 @@ export const GovernmentView = () => {
           </div>
         </div>
       </div>
+}
     </div>
   );
 };
