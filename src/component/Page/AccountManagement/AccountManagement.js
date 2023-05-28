@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import './AccountManagement.css'; // Import the CSS file for additional styles
 import axios from 'axios';
 import TokenContext from "../../../Context/TokenContext";
-import AccountContext from "../../../Context/AccountContext";
 import { async } from 'q';
 
 export const AccountManagement = () => {
@@ -15,9 +14,7 @@ export const AccountManagement = () => {
     const [InputBox5, setInputBox5] = useState('');
 
     const Token = useContext(TokenContext);
-    const Account = useContext(AccountContext);
-
-    const [retreiveValue, setRetreive] = useState({});
+    let retreiveValue = [{}];
 
     const handleReset = () => {
         setInputBox1('');
@@ -105,12 +102,30 @@ export const AccountManagement = () => {
           })
           .then((response) => {
             console.log(response.data);
-            setRetreive(response.data);
+            retreiveValue = response.data;
           })
           .catch((error) => {
             console.error(error);
           });
       };
+
+    const Get_account_data = async (a) => {
+        await axios
+          .get(`https://www.tradekub.me/account/${a}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            retreiveValue = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
 
     const AccountExist = async (b) => {
         try {
@@ -133,7 +148,7 @@ export const AccountManagement = () => {
 
     const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
         const data = {
-            user_id: retreiveValue.id,
+            user_id: Number(retreiveValue.id),
             broker_id: Number(InputBox0),
             cash_balance: 0,
             line_available: 0,
@@ -152,6 +167,7 @@ export const AccountManagement = () => {
             .then((response) => {
                 console.log(response);
                 alert("Create account successfull");
+                window.location.reload();
             })
             .catch((error) => {
                 console.error(error.data);
@@ -162,8 +178,9 @@ export const AccountManagement = () => {
     // Function to handle form submission
     const handleSubmit1 = (event) => {
         event.preventDefault();
+        
         (async () => {
-            if (await BrokerExist(InputBox0) === 0) {
+             if (await BrokerExist(InputBox0) === 0) {
                 alert('Cannot find your broker ID')
                 window.location.reload();
             }
@@ -180,8 +197,8 @@ export const AccountManagement = () => {
                 window.location.reload();
             }
             else {
-                Get_user_data(InputBox1);
-                CreateAccount({ InputBox0, InputBox2, InputBox3 });
+                await Get_user_data(InputBox1).then(()=>{CreateAccount({InputBox0,InputBox2,InputBox3})})
+            // 
             }
 
         })();
@@ -217,19 +234,20 @@ export const AccountManagement = () => {
     const handleSubmit2 = (event) => {
         event.preventDefault();
         (async () => {
+            await Get_account_data(InputBox1);
             if (await BrokerExist(InputBox0) === 0) {
                 alert('Cannot find your broker ID')
                 window.location.reload();
             }
-            else if (await AccountExist(InputBox1) === 0) {
+            else if (await AccountExist(Number(InputBox1)) === 0) {
                 alert('Cannot find the Account')
                 window.location.reload();
             }
-            else if (retreiveValue.broker_id !== InputBox0) {
+            else if (retreiveValue.broker_id !== Number(InputBox0)) {
                 alert("the account isn't belong to your broker")
                 window.location.reload();
             }
-            else if (isNaN(InputBox2) || !Number.isInteger(InputBox2) || InputBox2.length !== 6) {
+            else if (isNaN(InputBox2) || !Number.isInteger(Number(InputBox2)) || InputBox2.length !== 6) {
                 alert('Wrong format of pin')
                 window.location.reload();
             }
@@ -248,7 +266,7 @@ export const AccountManagement = () => {
                 window.location.reload();
             }            
             else {
-                    
+                // window.location.reload();
             }
         })();
 
@@ -264,7 +282,7 @@ export const AccountManagement = () => {
                 window.location.reload();
     
             }
-            else if(isNaN(InputBox2) || !Number.isInteger(InputBox2) || InputBox2.length !== 6)
+            else if(isNaN(InputBox2) || !Number.isInteger(์NumberInputBox2) || InputBox2.length !== 6)
             {
                 alert('Wrong format of pin')
                 window.location.reload();
@@ -296,7 +314,6 @@ export const AccountManagement = () => {
             InputBox4 //line available ที่ต้องการอัพเดท
             InputBox5 //credit limit ที่ต้องการอัพเดท*/
             //******************** Edit*/
-            window.location.reload();
         };
 
         const handleSubmit3 = (event) => {
@@ -317,7 +334,7 @@ export const AccountManagement = () => {
             */
             /*InputBox1 //accountID ที่ต้องการลบ
             //********************ยัดข้อมูลตรงนี้ Delete*/
-            window.location.reload();
+            // window.location.reload();
         };
 
 
