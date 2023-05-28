@@ -5,20 +5,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
-
+  
 .boxRegis {
-  width: 15%;
-  height: 40%;
+  width: 20%;
+  height: 48%;
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .Head-Text {
   font-weight: 600;
   width: 100%;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 1.4rem;
 }
 
 .TextBoxInsert1,
@@ -95,12 +98,108 @@
   transform: translateY(-2px);
 }
 
-.Reis___background {
-  position: absolute; 
-  width: 23%;
-  z-index: -99;
+.stone1 {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+
+.stone2 {
+    position: absolute;
+    top: 18%;
+    left: 32%;
+    transform: translate(-60%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -5;
+}
+.stone3 {
+    position: absolute;
+    top: 40%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -4;
+  }
+
+.stone4 {
+    position: absolute;
+    top: 20%;
+    left: 54%;
+    transform: translate(-60%, -50%);
+    transition: transform 0.1s ease;
+    z-index: 3;
+}
+.stone5 {
+    position: absolute;
+    top: 52%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+
+  }
+
+.stone6 {
+    position: absolute;
+    top: 42%;
+    left: 58%;
+    transform: translate(-60%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -5;
 }
 
+.stone7 {
+    position: absolute;
+    top: 70%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -4;
+  }
+
+.stone8 {
+    position: absolute;
+    top: 12%;
+    left: 44%;
+    transform: translate(-60%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -5;
+}
+.stone9 {
+    position: absolute;
+    top: 74%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+
+  }
+
+.stone10 {
+    position: absolute;
+    top: 74%;
+    left: 46%;
+    transform: translate(-60%, -50%);
+    transition: transform 0.1s ease;
+    z-index: -5;
+}
+
+.stone-image {
+    width: 90%; 
+    height: 90%;
+    
+}
+
+.creditcardS{
+    z-index: -2;
+    position: absolute;
+}
+
+.Reis___background {
+    position: absolute; 
+    width: 23%;
+    z-index: -99;
+  }
 
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
   .TextBoxInsert input {
