@@ -129,9 +129,9 @@ export const Profile = () => {
         });
     };
 
-    const get_tsc = async () => {
+    const get_tsc = async (account_id) => {
       await axios
-        .get(`https://www.tradekub.me/bank_tsc/my`, {
+        .get(`https://www.tradekub.me/bank_tsc/my/${account_id}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -167,7 +167,7 @@ export const Profile = () => {
     get_user_info();
     get_account_info(Accounts.account);
     get_user_log();
-    get_tsc();
+    get_tsc(Accounts.account);
     get_portfolio(Accounts.account);
   }, [Accounts.account, Token.token]);
 
@@ -279,7 +279,7 @@ export const Profile = () => {
 
             <div className="wallet__Line__Available">
               <div className="balance__Total__Topic">
-                Available
+                Line Available
                 <div className="wallet__Line__Available__value">
                   <div>
                     {userAccount.id ? (
