@@ -68,29 +68,29 @@ export const Navbar = () => {
         setData([]);
       });
   };
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Call your API functions here
         get_noti(Account.account);
         // ... other API calls
-        
+
       } catch (error) {
         console.error(error);
       }
     };
-  
+
     // Fetch data immediately
     fetchData();
-  
+
     // Fetch data every 10 seconds
     const interval = setInterval(fetchData, 10000);
-  
+
     // Clean up the interval on unmount
     return () => clearInterval(interval);
   }, []);
-  
+
 
   if (
     location.pathname === "/" ||
@@ -109,6 +109,10 @@ export const Navbar = () => {
   {
     value["key"] = 0;
     localStorage.setItem("key", JSON.stringify(value));
+    if (location.pathname.toLowerCase() !== "/governmentview") {
+      localStorage.setItem("roleI", JSON.stringify(0));
+      localStorage.setItem("Label", JSON.stringify(""));
+    }
     return null;
   }
 
@@ -150,7 +154,7 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-                {data.length > 0 &&<div className="Nav__Noti__dot"></div>}
+                {data.length > 0 && <div className="Nav__Noti__dot"></div>}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />

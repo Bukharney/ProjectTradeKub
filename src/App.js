@@ -28,6 +28,7 @@ import { DividentManagement } from "./component/Page/DividentManagement/Divident
 import axios from "axios";
 import EditUser from "./component/Page/EditUserProfile/EditUser";
 import { PortfolioManagement } from "./component/Page/PortfolioManagement/PortfolioManagement";
+import { BrokerManagement } from "./component/Page/BrokerManagement/BrokerManagement";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -222,6 +223,15 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route
+                  path="/BrokerManagement"
+                  element={
+                    <ProtectedRoute>
+                      <BrokerManagement />
+                    </ProtectedRoute>
+                  }
+                />
+
 
               </Routes>
             </div>
