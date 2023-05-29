@@ -86,7 +86,8 @@ export const Wallet = () => {
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/";
+          setUserPort([]);
+          setIsloading(false);
         });
     };
 

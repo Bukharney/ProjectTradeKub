@@ -42,7 +42,7 @@ export const SelectAccount = () => {
     const get_account = async () => {
       console.log("Token.token", Token.token);
       await axios
-        .get(`https://www.tradekub.me/account/`, {
+        .get(`https://www.tradekub.me/account/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
