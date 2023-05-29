@@ -22,7 +22,7 @@ let storedLabel = localStorage.getItem("Label");
 let defaultLabel = "";
 let loading = false;
 
-export const GovernmentView = () => {
+export const View = () => {
   const [Label, setLabel] = useState(defaultLabel);
 
   const [index, setIndex] = useState(-1);
@@ -252,4 +252,4 @@ export const GovernmentView = () => {
     </div>
   );
 };
-export default GovernmentView;
+export default View;
