@@ -26,6 +26,7 @@ import { StockTransactionManagement } from "./component/Page/StockTransactionMan
 import { DividentManagement } from "./component/Page/DividentManagement/DividentManagement";
 
 import axios from "axios";
+import EditUser from "./component/Page/EditUserProfile/EditUser";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -199,6 +200,15 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <Register />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/EditUser"
+                  element={
+                    <ProtectedRoute>
+                      <EditUser />
                     </ProtectedRoute>
                   }
                 />

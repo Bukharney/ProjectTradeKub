@@ -40,7 +40,8 @@
 .TextBoxInsertEditUser1,
 .TextBoxInsertEditUser2,
 .TextBoxInsertEditUser3,
-.TextBoxInsertEditUser4 {
+.TextBoxInsertEditUser4,
+.TextBoxInsertEditUser5 {
   border: 1px solid #4e4f51;
   background-color: #282a2e;
   color: #ffffff;
@@ -154,16 +155,13 @@
     font-size: 1rem;
   }
 
-
   .EditCancel,
   .EditDeleteAcc {
     font-size: 1rem;
   }
 
-
   .EditConfirm {
     font-size: 1rem;
-
   }
 }
 
@@ -176,7 +174,6 @@
     font-size: 1rem;
   }
 
-
   .TextBoxInsertEditUser1 input,
   .TextBoxInsertEditUser2 input,
   .TextBoxInsertEditUser3 input,
@@ -184,15 +181,12 @@
     font-size: 1rem;
   }
 
-
   .EditCancel,
   .EditDeleteAcc {
     font-size: 1rem;
   }
 
-
   .EditConfirm {
     font-size: 1rem;
-
   }
 }

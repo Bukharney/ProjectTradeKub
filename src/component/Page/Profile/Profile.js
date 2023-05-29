@@ -43,6 +43,7 @@ export const Profile = () => {
   const handleClickLogout = () => {
     Auth.setAuth(false);
     Cookies.remove("token");
+    Cookies.remove("account");
     window.location.href = "/";
   };
 
@@ -173,8 +174,7 @@ export const Profile = () => {
   useEffect(() => {
     const series = SortedStock.map((stock) =>
       parseFloat(
-        stock.volume *
-          (stock.market_status === "CLOSE_E" ? stock.close : stock.last_price)
+        stock.volume * (stock.close == 0 ? stock.last_price : stock.close)
       )
     );
     const labels = SortedStock.map((stock) => stock.symbol);
@@ -258,9 +258,8 @@ export const Profile = () => {
             <div className="balance__Total__Wealth__value">
               {userPort.map((stock) => {
                 total +=
-                  (stock.market_status === "CLOSE_E"
-                    ? stock.close
-                    : stock.last_price) * stock.volume;
+                  (stock.close == 0 ? stock.last_price : stock.close) *
+                  stock.volume;
                 return;
               })}
               {formatNumber(total)}

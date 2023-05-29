@@ -24,12 +24,7 @@ export const SelectAccount = () => {
     console.log("selectedCB", selectedCB);
     console.log("selectedBroker", selectedBroker);
     console.log("account", account);
-
-    if (account == null) {
-      alert("Please select account");
-    } else {
-      window.location.href = "/Market";
-    }
+    window.location.href = "/Market";
   };
 
   useEffect(() => {

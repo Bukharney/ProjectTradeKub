@@ -411,7 +411,6 @@ export const Market = () => {
                       ? marketData.quote_symbol.percentChange
                       : 0
                   )}
-                  %
                 </div>
               </div>
               <div className="Market__container__volume">

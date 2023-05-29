@@ -49,7 +49,7 @@ export const Wallet = () => {
   };
 
   const calpl = (e) => {
-    if (e.market_status === "CLOSE_E") {
+    if (e.close != 0) {
       e["upl"] = e.volume * e.close - e.volume * e.avg_price;
       e["upl_per"] = ((e.close - e.avg_price) / e.avg_price) * 100;
     } else {
@@ -132,8 +132,7 @@ export const Wallet = () => {
   useEffect(() => {
     const series = SortedStock.map((stock) =>
       parseFloat(
-        stock.volume *
-          (stock.market_status == "CLOSE_E" ? stock.close : stock.last_price)
+        stock.volume * (stock.close == 0 ? stock.last_price : stock.close)
       )
     );
 
@@ -211,9 +210,8 @@ export const Wallet = () => {
           <div className="balance__Total__Wealth__value">
             {userPort.map((stock) => {
               total +=
-                (stock.market_status == "CLOSE_E"
-                  ? stock.close
-                  : stock.last_price) * stock.volume;
+                (stock.close == 0 ? stock.last_price : stock.close) *
+                stock.volume;
               calpl(stock);
             })}
             {formatNumber(total)}
@@ -299,7 +297,7 @@ export const Wallet = () => {
                   {stock.change > 0
                     ? `+${formatNumber(stock.change)}%`
                     : stock.change < 0
-                    ? `-${formatNumber(stock.change)}%`
+                    ? `${formatNumber(stock.change)}%`
                     : `${formatNumber(stock.change)}%`}
                 </div>
               </div>
@@ -325,9 +323,8 @@ export const Wallet = () => {
                 Market Value
                 <div className="wallet__table__Maket__Value">
                   {formatNumber(
-                    (stock.market_status == "CLOSE_E"
-                      ? stock.close
-                      : stock.last_price) * stock.volume
+                    (stock.close == 0 ? stock.last_price : stock.close) *
+                      stock.volume
                   )}
                 </div>
               </div>
