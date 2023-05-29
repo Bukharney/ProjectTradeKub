@@ -371,7 +371,6 @@ export const PortfolioManagement = () => {
                 // window.location.reload();
             }
             else {
-                await UpdateAccountMoney();
                 await AddPort();
                 // window.location.reload();
             }
