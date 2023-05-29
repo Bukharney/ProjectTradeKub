@@ -511,19 +511,51 @@ export const AllDataUpdate = () => {
     Get_Divident_data();
     Get_News_data();
   }, []);
-  UserData = UserDataServer;
-  AccountData = AccountDataServer;
-  BrokerData = BrokerDataServer;
-  StockOrderData = StockOrderDataServer;
+  UserData = UserDataServer.sort(
+    (a, b) =>
+      b.id - a.id
+  );
+  AccountData = AccountDataServer.sort(
+    (a, b) =>
+    b.created_at.toLowerCase().localeCompare(a.created_at.toLowerCase())
+    );
+  BrokerData = BrokerDataServer.sort(
+    (a, b) =>
+      b.created_at.toLowerCase().localeCompare(a.created_at.toLowerCase())
+  );
+  StockOrderData = StockOrderDataServer.sort(
+    (a, b) =>
+    b.time.toLowerCase().localeCompare(a.time.toLowerCase())
+    );
 
-  BankTransData = BankTransDataServer;
-  StockTransData = StockTransDataServer;
-  LogInOutData = LoginoutDataServer;
-  CompanyData = CompanyDataServer;
+  BankTransData = BankTransDataServer.sort(
+    (a, b) =>
+    b.timestamp.toLowerCase().localeCompare(a.timestamp.toLowerCase())
+    );
 
-  TurnoverData = TurnoverDataServer;
-  DividentData = DividentDataServer;
-  NewsData = NewsDataServer;
+  StockTransData = StockTransDataServer.sort(
+    (a, b) =>
+      b.id - a.id
+  );
+  LogInOutData = LoginoutDataServer.sort(
+    (a, b) =>
+    b.login.toLowerCase().localeCompare(a.login.toLowerCase())
+  );
+  CompanyData = CompanyDataServer.sort((a, b) => a.symbol.toLowerCase().localeCompare(b.symbol.toLowerCase()));
+
+
+  TurnoverData = TurnoverDataServer.sort(
+    (a, b) =>
+      b.id - a.id
+  );
+  DividentData = DividentDataServer.sort(
+    (a, b) =>
+      b.id - a.id
+  );
+  NewsData = NewsDataServer.sort(
+    (a, b) =>
+    b.id - a.id
+    );
   return isLoading;
 };
 

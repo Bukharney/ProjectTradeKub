@@ -414,7 +414,7 @@ export const PortfolioManagement = () => {
 
     return (
         <div>
-            <h className='ManagementHeader4'>Portfolio Management</h>
+            <h className='ManagementHeader5'>Portfolio Management</h>
 
 
 
