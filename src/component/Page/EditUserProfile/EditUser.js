@@ -99,6 +99,9 @@ export const EditUser = () => {
     get_user_info();
   }, []);
 
+  const handleClicklink = () => {
+    window.location.href = "/SelectAccount";}
+
   return (
     <div className="AllsectionEditUser">
       <div className="boxEditUser">
@@ -165,7 +168,7 @@ export const EditUser = () => {
         </div>
 
         <div className="CancelConfirm-Edit">
-          <button className="EditCancel">Cancel</button>
+          <button className="EditCancel"onClick={handleClicklink}>Cancel</button>
           <button className="EditConfirm" onClick={handleClick}>
             Confirm
           </button>

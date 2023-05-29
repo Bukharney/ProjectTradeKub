@@ -93,7 +93,6 @@ export const Navbar = () => {
 
 
   if (
-    
     location.pathname === "/" ||
     location.pathname.toLowerCase() === "/login" ||
     location.pathname.toLowerCase() === "/register" ||
@@ -105,10 +104,9 @@ export const Navbar = () => {
     location.pathname.toLowerCase() === "/newsmanagement" ||
     location.pathname.toLowerCase() === "/banktransactionmanagement" ||
     location.pathname.toLowerCase() === "/selectaccount" ||
-    location.pathname.toLowerCase() === "/edituserprofile" ||
-    location.pathname.toLowerCase() === "/brokermanagement"
-
-  ) {
+    location.pathname.toLowerCase() === "/edituser" 
+  )
+  {
     value["key"] = 0;
     localStorage.setItem("key", JSON.stringify(value));
     if (location.pathname.toLowerCase() !== "/governmentview") {
