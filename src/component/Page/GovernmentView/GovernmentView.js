@@ -11,6 +11,8 @@ import {
 } from "./databaseTables.js";
 import Logo from "./Logo.svg";
 import { AllDataUpdate } from "./allData";
+import { Link } from "react-router-dom";
+
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
@@ -187,7 +189,7 @@ export const GovernmentView = () => {
                       className="GovernmentView__insert__button"
                       onChange={handleInputChange}
                       placeholder="Username"
-                      // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
+                    // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
                     />
                   </div>
                   <button type="submit" className="GovernmentView__src__button">
@@ -197,21 +199,53 @@ export const GovernmentView = () => {
               )}
 
               {roleIndex === 1 && (
-                <form onSubmit={handleSubmit}>
-                  <div className="GovernmentView__container____serch__input">
-                    <i class="bx bx-search"></i>
-                    <input
-                      type="text"
-                      value={Label}
-                      className="GovernmentView__insert__button"
-                      onChange={handleInputChange}
-                      placeholder="Broker name"
-                    />
-                  </div>
-                  <button type="submit" className="GovernmentView__src__button">
-                    <p>Submit</p>
+                <div>
+                  <form onSubmit={handleSubmit}>
+                    <div className="GovernmentView__container____serch__input">
+                      <i class="bx bx-search"></i>
+                      <input
+                        type="text"
+                        value={Label}
+                        className="GovernmentView__insert__button"
+                        onChange={handleInputChange}
+                        placeholder="Broker name"
+                      />
+                    </div>
+                    <button type="submit" className="GovernmentView__src__button">
+                      <p>Submit</p>
+                    </button>
+                  </form>
+
+                  <button className="button__contactBroker">
+                    <Link
+                      to="/AccountManagement/"
+                      className="wallet__button__contactBroker"
+                      onClick={handleClick}
+                    >
+                      Account Infomation Mangement
+                    </Link>
                   </button>
-                </form>
+
+                  <button className="button__contactBroker">
+                    <Link
+                      to="/BankTransactionManagement/"
+                      className="wallet__button__contactBroker"
+                      onClick={handleClick}
+                    >
+                      Account Bank Transaction Mangement
+                    </Link>
+                  </button>
+
+                  <button className="button__contactBroker">
+                    <Link
+                      to="/DividentManagement/"
+                      className="wallet__button__contactBroker"
+                      onClick={handleClick}
+                    >
+                      Account Divident Management
+                    </Link>
+                  </button>
+                </div>
               )}
             </div>
           </div>
