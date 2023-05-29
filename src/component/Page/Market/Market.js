@@ -66,7 +66,14 @@ export const Market = () => {
 
   const handleOrderClick = () => {
     console.log("Place order clicked");
-    place_order();
+    (async () => {
+     await place_order();
+      setVolume("");
+      setPrice("");
+      setPin("");
+  }
+  )();
+
   };
 
   const handleResetClick = () => {
@@ -796,7 +803,7 @@ export const Market = () => {
                   <div className="Market__container__stock__div">
                     {userOrder.map((stock, index) => (
                       <button
-                        onClick={() => togglePopup(stock)}
+                        onClick={stock.status === 'C' ? () => {} : () => togglePopup(stock)}
                         key={index}
                         className={`Market__container__right__Container__box2 ${
                           selectedStock === stock ? "selected" : ""
