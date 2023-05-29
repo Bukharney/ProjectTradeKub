@@ -94,20 +94,25 @@ export const Navbar = () => {
 
   if (
     location.pathname === "/" ||
-    location.pathname === "/Login" ||
-    location.pathname === "/Register" ||
-    location.pathname === "/GovernmentView" ||
-    location.pathname === "/AnalyticPage" ||
-    location.pathname === "/AccountManagement" ||
-    location.pathname === "/NewsManagement" ||
-    location.pathname === "/BankTransactionManagement" ||
-    location.pathname === "/SelectAccount" ||
-    location.pathname === "/EditUserProfile"
-  ) {
+    location.pathname.toLowerCase() === "/login" ||
+    location.pathname.toLowerCase() === "/register" ||
+    location.pathname.toLowerCase() === "/governmentview" ||
+    location.pathname.toLowerCase() === "/analyticpage" ||
+    location.pathname.toLowerCase() === "/accountmanagement" ||
+    location.pathname.toLowerCase() === "/dividentmanagement" ||
+    location.pathname.toLowerCase() === "/portfoliomanagement" ||
+    location.pathname.toLowerCase() === "/newsmanagement" ||
+    location.pathname.toLowerCase() === "/banktransactionmanagement" ||
+    location.pathname.toLowerCase() === "/selectaccount" ||
+    location.pathname.toLowerCase() === "/edituserprofile"
+  )
+  {
+    value["key"] = 0;
+    localStorage.setItem("key", JSON.stringify(value));
     return null;
   }
 
-  return (
+  else return (
     <nav className="navbar">
       <div className="nav-container">
         <Notification value={value} hasRefresh={hasRefresh} />
