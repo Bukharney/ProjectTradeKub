@@ -1,28 +1,98 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./AnalyticPage.css";
-import TableWithBlankRow from "./TableWithBlankRow";
-import TableWithoutBlankRow from "./TableWithoutBlankRow";
-import { tablesColumns, tablesRows } from "./AnalyticData";
 import Logo from "./Logo.svg";
+import axios from "axios";
+import TableMapping from "./TableMap";
 
 let index = 0;
 
 export const AnalyticPage = () => {
   const [click, setClick] = useState(false);
-  const [dateRange, setDateRange] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-
+  const [data, setData] = useState([]);
   const handleClick = (i) => {
+    console.log("i", i);
     index = i;
     setClick(!click);
   };
 
-  const handleDateRangeChange = (event) => {
-    setDateRange(event.target.value);
+  const get_vol_sum_stock = async (startDate, endDate) => {
+    await axios
+      .get(
+        `https://www.tradekub.me/analytics/most_vol_stock/${startDate}/${endDate}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const get_most_new_acc = async (startDate, endDate) => {
+    await axios
+      .get(
+        `https://www.tradekub.me/analytics/most_new_contract_broker/${startDate}/${endDate}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const get_most_cancel = async (startDate, endDate) => {
+    await axios
+      .get(
+        `https://www.tradekub.me/analytics/most_cancel_ratio/${startDate}/${endDate}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const get_most_value = async (startDate, endDate) => {
+    await axios
+      .get(
+        `https://www.tradekub.me/analytics/most_closed_value/${startDate}/${endDate}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleStartDateChange = (event) => {
@@ -42,9 +112,22 @@ export const AnalyticPage = () => {
   };
 
   const handleDateRangeSubmit = () => {
-    // Perform desired action with the date and time range
-    console.log("Selected date range:", startDate, "-", endDate);
-    console.log("Selected time range:", startTime, "-", endTime);
+    console.log("startDate", startDate);
+    console.log("endDate", endDate);
+    console.log("startTime", startTime);
+    console.log("endTime", endTime);
+    if (index == 1) {
+      get_vol_sum_stock(startDate + " " + startTime, endDate + " " + endTime);
+    }
+    if (index == 2) {
+      get_most_new_acc(startDate + " " + startTime, endDate + " " + endTime);
+    }
+    if (index == 3) {
+      get_most_value(startDate + " " + startTime, endDate + " " + endTime);
+    }
+    if (index == 4) {
+      get_most_cancel(startDate + " " + startTime, endDate + " " + endTime);
+    }
   };
 
   const [inputBorderColor1, setInputBorderColor1] = useState("");
@@ -222,12 +305,11 @@ export const AnalyticPage = () => {
                 onFocus={handleInputFocus10}
                 onBlur={handleInputBlur10}
                 className="Analytic__date__input"
-                placeholder="Start Date (dd-mm-yyyy)"
+                placeholder="Start Date (yyyy-mm-dd)"
                 value={startDate}
                 onChange={handleStartDateChange}
               />
             </div>
-
             <div className="Analytic__date__TO"> To </div>
             <div
               className="Analytic__date__input"
@@ -256,7 +338,7 @@ export const AnalyticPage = () => {
                 onFocus={handleInputFocus12}
                 onBlur={handleInputBlur12}
                 className="Analytic__date__input"
-                placeholder="End Date (dd-mm-yyyy)"
+                placeholder="End Date (yyyy-mm-dd)"
                 value={endDate}
                 onChange={handleEndDateChange}
               />
@@ -272,30 +354,10 @@ export const AnalyticPage = () => {
 
           <div className="Analytic__data_______container">
             <div className="Analytic__data__table__container__size">
-              {index === 1 && (
-                <TableWithoutBlankRow
-                  columns={tablesColumns[0]}
-                  rows={tablesRows[0]}
-                />
-              )}
-              {index === 2 && (
-                <TableWithoutBlankRow
-                  columns={tablesColumns[1]}
-                  rows={tablesRows[1]}
-                />
-              )}
-              {index === 3 && (
-                <TableWithoutBlankRow
-                  columns={tablesColumns[2]}
-                  rows={tablesRows[2]}
-                />
-              )}
-              {index === 4 && (
-                <TableWithoutBlankRow
-                  columns={tablesColumns[3]}
-                  rows={tablesRows[3]}
-                />
-              )}
+              {index === 1 && <TableMapping data={data} />}
+              {index === 2 && <TableMapping data={data} />}
+              {index === 3 && <TableMapping data={data} />}
+              {index === 4 && <TableMapping data={data} />}
             </div>
           </div>
         </div>
