@@ -396,7 +396,7 @@ export const Profile = () => {
           </div>
 
           <div className="profile__Account__Topic">
-            Account Name
+            User Name
             <span className="profile__Account__Name__value">
               {userData.name}
             </span>

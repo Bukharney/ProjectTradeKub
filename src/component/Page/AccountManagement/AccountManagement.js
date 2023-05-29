@@ -176,7 +176,7 @@ export const AccountManagement = () => {
     };
 
     const UpdateAccount = async (b) => {
-        let data = {
+        const data = {
             user_id: retreiveValue.user_id,
             broker_id: retreiveValue.broker_id,
             cash_balance: retreiveValue.cash_balance,
@@ -298,19 +298,19 @@ export const AccountManagement = () => {
                 alert("the account isn't belong to your broker")
                 window.location.reload();
             }
-            else if (isNaN(InputBox2) || !Number.isInteger(Number(InputBox2)) || InputBox2.length !== 6) {
+            else if (InputBox2 !== '' && (isNaN(InputBox2) || !Number.isInteger(Number(InputBox2)) || InputBox2.length !== 6)) {
                 alert('Wrong format of pin')
                 window.location.reload();
             }
-            else if (isNaN(InputBox3)) {
+            else if (InputBox3 !== '' && isNaN(InputBox3)) {
                 alert('Wrong format of credit limit')
                 window.location.reload();
             }
-            else if (isNaN(InputBox4)) {
+            else if (InputBox4 !== '' && isNaN(InputBox4)) {
                 alert('Wrong format of line available')
                 window.location.reload();
             }
-            else if (isNaN(InputBox5)) {
+            else if (InputBox5 !== '' && isNaN(InputBox5)) {
                 alert('Wrong format of credit limit')
                 window.location.reload();
             }
