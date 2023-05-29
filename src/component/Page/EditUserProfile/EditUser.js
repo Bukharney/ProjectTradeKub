@@ -4,6 +4,7 @@ import { Username } from "./UserDB.js";
 import EdituserBG from "./EdituserBG.svg";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
+import Logo from "./Logo.svg";
 
 export const EditUser = () => {
   const Token = useContext(TokenContext);
@@ -106,7 +107,9 @@ export const EditUser = () => {
     <div className="AllsectionEditUser">
       <div className="boxEditUser">
         <div className="Head-Text-EditUser">Edit User Profile</div>
-        <div className="TextUsernameEditUser">UsernameFromLogin</div>
+        <div className="Slect__Logo">
+            <img src={Logo} alt="Logo" />
+          </div>
         <div
           className="TextBoxInsertEditUser1"
           style={{ borderColor: inputBorderColor1 }}
