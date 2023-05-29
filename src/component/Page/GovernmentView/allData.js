@@ -517,45 +517,157 @@ export const AllDataUpdate = () => {
   );
   AccountData = AccountDataServer.sort(
     (a, b) =>
-    b.created_at.toLowerCase().localeCompare(a.created_at.toLowerCase())
-    );
+      b.created_at.toLowerCase().localeCompare(a.created_at.toLowerCase())
+  );
   BrokerData = BrokerDataServer.sort(
     (a, b) =>
       b.created_at.toLowerCase().localeCompare(a.created_at.toLowerCase())
-  );
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id','name','api_key','created_at'].indexOf(a);
+      const indexB = ['id','name','api_key','created_at'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
   StockOrderData = StockOrderDataServer.sort(
     (a, b) =>
-    b.time.toLowerCase().localeCompare(a.time.toLowerCase())
-    );
+      b.time.toLowerCase().localeCompare(a.time.toLowerCase())
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id', 'account_id', 'side', 'type', 'validity', 'status', 'cancelled', 'price', 'volume', 'matched', 'balance', 'symbol', 'time'].indexOf(a);
+      const indexB = ['id', 'account_id', 'side', 'type', 'validity', 'status', 'cancelled', 'price', 'volume', 'matched', 'balance', 'symbol', 'time'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
 
   BankTransData = BankTransDataServer.sort(
     (a, b) =>
-    b.timestamp.toLowerCase().localeCompare(a.timestamp.toLowerCase())
-    );
+      b.timestamp.toLowerCase().localeCompare(a.timestamp.toLowerCase())
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id', 'account_id','account_number','timestamp', 'bank_account_number', 'type', 'amount',].indexOf(a);
+      const indexB = ['id', 'account_id','account_number','timestamp', 'bank_account_number', 'type', 'amount'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
 
   StockTransData = StockTransDataServer.sort(
     (a, b) =>
       b.id - a.id
-  );
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id','order_id','price','volume','timestamp'].indexOf(a);
+      const indexB = ['id','order_id','price','volume','timestamp'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
   LogInOutData = LoginoutDataServer.sort(
     (a, b) =>
-    b.login.toLowerCase().localeCompare(a.login.toLowerCase())
-  );
-  CompanyData = CompanyDataServer.sort((a, b) => a.symbol.toLowerCase().localeCompare(b.symbol.toLowerCase()));
+      b.login.toLowerCase().localeCompare(a.login.toLowerCase())
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id', 'user_id', 'login', 'logout', 'device', 'ip'].indexOf(a);
+      const indexB = ['id', 'user_id', 'login', 'logout', 'device', 'ip'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
+  CompanyData = CompanyDataServer.sort((a, b) => a.symbol.toLowerCase().localeCompare(b.symbol.toLowerCase())).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['symbol', 'company_name', 'stock_industry', 'registered_capital','market_value', 'volume','major_shareholders','free_float','ipo_price','established_date','market_entry_date','address','website','telephone','created_at'].indexOf(a);
+      const indexB = ['symbol', 'company_name', 'stock_industry', 'registered_capital','market_value', 'volume','major_shareholders','free_float','ipo_price','established_date','market_entry_date','address','website','telephone','created_at'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
 
 
   TurnoverData = TurnoverDataServer.sort(
     (a, b) =>
       b.id - a.id
-  );
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id', 'symbol', 'asset', 'dept', 'dividend_per_unit', 'pbv','eps','net_profit','timestamp'].indexOf(a);
+      const indexB = ['id', 'symbol', 'asset', 'dept', 'dividend_per_unit', 'pbv','eps','net_profit','timestamp'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
   DividentData = DividentDataServer.sort(
     (a, b) =>
       b.id - a.id
   );
+
   NewsData = NewsDataServer.sort(
     (a, b) =>
-    b.id - a.id
-    );
+      b.id - a.id
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id','topic','content','news_time','file'].indexOf(a);
+      const indexB = ['id','topic','content','news_time','file'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
+
+
   return isLoading;
 };
 
