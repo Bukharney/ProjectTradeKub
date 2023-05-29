@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './DividentManagement.css'; // Import the CSS file for additional styles
+import axios from 'axios';
+import TokenContext from '../../../Context/TokenContext';
+import { async } from 'q';
+
 
 export const DividentManagement = () => {
     const [selectedButton, setSelectedButton] = useState('');
@@ -33,6 +37,11 @@ export const DividentManagement = () => {
 
     };
 
+    const Token = useContext(TokenContext);
+    let retreiveValue = [{}];
+    let retreiveValue2 = [{}];
+
+
 
     // Function to handle input change
     const handleInputChange0 = (event) => {
@@ -61,42 +70,343 @@ export const DividentManagement = () => {
         setInputBox6(event.target.value);
     };
 
-    // Function to handle form submission
-    //ไม่ใช้ handleSubmit 1 กับ 3 , ใช้ handleSubmit2 ซึ่งดัดแปลงมาจาก edit ของ Newsmanagement แต่เปลี่ยนเป็น add+edit แทน
-    const handleSubmit1 = (event) => {
-        event.preventDefault();
-        /*
-        if(InputBox0 ไม่เจอใน databases)
-        {
-            alert('Cannot find your broker ID')
-            window.location.reload();
+    const BrokerExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/broker/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
 
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
         }
-        else if(InputBox1 ไม่เจอใน database){
-            alert('Cannot find the username')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox2) || !Number.isInteger(InputBox2) || InputBox2.length !== 6)
-        {
-            alert('Wrong format of pin')
-            window.location.reload();
-        }
-        else if(isNaN(InputBox3))
-        {
-            alert('Wrong format of credit limit')
-            window.location.reload();
-        }
-        else{ // เตรียมยัดข้อมูลตรงนี้}
-        InputBox1 //username สำหรับสร้าง account ของ user เพิ่ม โดยมี InputBox0 คือ broker
-        InputBox2 //pin
-        InputBox3 //credit limit
-        //******************** ADD*/
-        window.location.reload();
     };
+
+    const UserExist = async (u) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+            console.log(response.data);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const Get_user_data = async (u) => {
+        await axios
+            .get(`https://www.tradekub.me/users/username/${u}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const Get_account_data = async (a) => {
+        await axios
+            .get(`https://www.tradekub.me/account/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+    const AccountExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/account/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+
+            console.log(response);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const OrderExist = async (b) => {
+        try {
+            const response = await axios.get(`https://www.tradekub.me/order/one/${b}`, {
+                headers: {
+                    accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            });
+
+            console.log(response);
+            return 1; // Resolving the Promise with the desired value
+        } catch (error) {
+            console.error(error);
+            return 0; // Resolving the Promise with the desired value
+        }
+    };
+
+    const Get_order_data = async (a) => {
+        await axios
+            .get(`https://www.tradekub.me/order/one/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue2 = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+
+    const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
+        const data = {
+            user_id: Number(retreiveValue.id),
+            broker_id: Number(InputBox0),
+            cash_balance: 0,
+            line_available: 0,
+            credit_limit: Number(InputBox3),
+            pin: Number(InputBox2)
+        };
+
+        await axios
+            .post("https://www.tradekub.me/account/", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("Create account successfull");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Create account failed please try again");
+            });
+    };
+
+    const AddStockTransaction = async () => {
+        const data = {
+            order_id: retreiveValue2.id,
+            price: Number(InputBox4),
+            volume: Number(InputBox3)
+        };
+
+        await axios
+            .post("https://www.tradekub.me/stock/transactions", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("commit stock transaction successfull");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("stock transaction failed please try again");
+            });
+    };
+
+
+    const UpdateAccountMoney = async (b) => {
+        const data = {
+            user_id: retreiveValue.user_id,
+            broker_id: retreiveValue.broker_id,
+            cash_balance: retreiveValue.cash_balance,
+            line_available: retreiveValue.line_available + Number(InputBox3),
+            credit_limit: retreiveValue.credit_limit,
+            pin: retreiveValue.pin
+        };
+
+        await axios
+            .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Update account balance failed please try again");
+                window.location.reload();
+            });
+    };
+
+    const UpdateOrder = async (b) => {
+        let sum = Number(InputBox3) * Number(InputBox4);
+        const data = {
+            user_id: retreiveValue.user_id,
+            broker_id: retreiveValue.broker_id,
+            cash_balance: retreiveValue.cash_balance,
+            line_available: retreiveValue.line_available + sum,
+            credit_limit: retreiveValue.credit_limit,
+            pin: retreiveValue.pin
+        };
+
+        await axios
+            .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("Update order failed please try again");
+                window.location.reload();
+            });
+    };
+
+    const Get_stock_data = async (a) => {
+        await axios
+            .get(`https://www.tradekub.me/account/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue2 = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const AddDividendTransaction = async () => {
+        const data = {
+            symbol: InputBox2,
+            account_id: Number(InputBox1),
+            value: Number(InputBox3)
+        };
+
+        await axios
+            .post("https://www.tradekub.me/dividend/", data, {
+                headers: {
+                    accep: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                alert("commit stock transaction successfull");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error.data);
+                alert("stock transaction failed please try again");
+            });
+    };
+
+
+
+    const Get_port_data = async (a) => {
+        await axios
+            .get(`https://www.tradekub.me/portfolio/${a}`, {
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer " + Token.token,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                retreiveValue2 = response.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
 
     //ฟอร์มนี้ทำทั้ง add (bank transaction) และ update (account)
     const handleSubmit2 = (event) => {
         event.preventDefault();
+        (async () => {
+            await Get_account_data(InputBox1);
+            await Get_port_data(InputBox1);
+            if (await BrokerExist(InputBox0) === 0) {
+                alert('Cannot find your broker ID')
+                window.location.reload();
+            }
+            else if (await AccountExist(Number(InputBox1)) === 0) {
+                alert('Cannot find the Account')
+                // window.location.reload();
+            }
+            else if (retreiveValue.broker_id !== Number(InputBox0)) {
+                alert("The account isn't belong to your broker")
+                window.location.reload();
+            }
+            else if (retreiveValue2.find(item => item.symbol === InputBox2) === undefined) {
+                alert("Your account is not the holder of the stock")
+                window.location.reload();
+            }
+            else if (isNaN(InputBox3) || InputBox3 === '') {
+                alert('Wrong format of amount')
+                window.location.reload();
+            }
+            else {
+                await UpdateAccountMoney();
+                await AddDividendTransaction();
+                window.location.reload();
+            }
+        }
+        )();
+
+
         // Perform any necessary actions with the input value
         /*
          if(InputBox1 ไม่เจอใน database){
@@ -107,7 +417,7 @@ export const DividentManagement = () => {
         {
             alert('the account isn't belong to your broker')
             window.location.reload();
-
+ 
         }
         else if(InputBox2(stock symbol) ไม่มีใน database)
         {
@@ -128,22 +438,6 @@ export const DividentManagement = () => {
         InputBox3 //amount
          */
         //******************** Edit*/
-        window.location.reload();
-    };
-
-    const handleSubmit3 = (event) => {
-        event.preventDefault();
-        // Perform any necessary actions with the input value
-        /*
-         if(InputBox1 ไม่เจอใน database){
-            alert('Cannot find the account id')
-            window.location.reload();
-        }
-        else{//ลบ accountID}
-        */
-        /*InputBox1 //accountID ที่ต้องการลบ
-        //********************ยัดข้อมูลตรงนี้ Delete*/
-        window.location.reload();
     };
 
 
@@ -151,7 +445,7 @@ export const DividentManagement = () => {
     return (
         <div>
             <pre className='ManagementHeader'>
-                <br></br>Divident Transaction
+                <br></br>Dividend Transaction
                 <br></br>Management
             </pre>
 
