@@ -51,7 +51,7 @@ export const GovernmentView = () => {
     window.location.reload();
   };
 
-  const RoleNames = ["User", "Broker", "Government", "Admin", "Company"];
+  const RoleNames = ["User", "Broker", "Government", "Admin"];
 
   const tableNames = [
     [
@@ -106,7 +106,6 @@ export const GovernmentView = () => {
       "Divident",
       "News",
     ],
-    ["Company Details", "Turnover", "Divident", "News"], //<only company can view these
   ];
 
   const [FocusBG_GV1, InputFocusBG_GV1] = useState("");
@@ -215,37 +214,36 @@ export const GovernmentView = () => {
                       <p>Submit</p>
                     </button>
                   </form>
-
-                  <button className="button__contactBroker">
+                  <div className="contact__position__">
+                  <button className="button__contactBroker__more">
                     <Link
                       to="/AccountManagement/"
-                      className="wallet__button__contactBroker"
+
                       onClick={handleClick}
                     >
                       Account Infomation Mangement
                     </Link>
                   </button>
 
-                  <button className="button__contactBroker">
+                  <button className="button__contactBroker__more">
                     <Link
                       to="/BankTransactionManagement/"
-                      className="wallet__button__contactBroker"
+
                       onClick={handleClick}
                     >
                       Account Bank Transaction Mangement
                     </Link>
                   </button>
 
-                  <button className="button__contactBroker">
+                  <button className="button__contactBroker__more">
                     <Link
                       to="/DividentManagement/"
-                      className="wallet__button__contactBroker"
                       onClick={handleClick}
                     >
                       Account Divident Management
                     </Link>
                   </button>
-                </div>
+                </div></div>
               )}
             </div>
           </div>

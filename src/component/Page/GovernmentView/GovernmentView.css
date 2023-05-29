@@ -64,7 +64,6 @@
   align-items: center;
   flex-direction: column;
   width: 19%;
-  height: 100%;
 }
 
 .GovernmentView__src__button{
@@ -91,6 +90,8 @@
   outline: none;
   border: none;
   width: 80%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .GovernmentView__container____serch__input{
@@ -230,3 +231,32 @@
     font-size: 0.75rem;
   }
 
+  .button__contactBroker__more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    margin-right: 0.75rem;
+    background-color: #242529;
+    margin-top: 10px;
+    padding: 10px;
+    margin-left: 20px;
+  }
+
+
+  .button__contactBroker__more :hover{
+    transform: translateY(-2px);
+  }
+
+  .contact__position__{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+    margin-right: 9%;
+  }
