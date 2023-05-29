@@ -102,7 +102,7 @@ export const Navbar = () => {
     location.pathname === "/NewsManagement" ||
     location.pathname === "/BankTransactionManagement" ||
     location.pathname === "/SelectAccount" ||
-    location.pathname === "/EditUserProfile"
+    location.pathname === "/EditUser"
   ) {
     return null;
   }
