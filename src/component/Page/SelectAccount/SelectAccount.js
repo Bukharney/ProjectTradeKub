@@ -27,6 +27,10 @@ export const SelectAccount = () => {
     window.location.href = "/Market";
   };
 
+  const handleAccounEdittSelected = () => {
+    window.location.href = "/EditUser";
+  }
+
   useEffect(() => {
     data.map((item) => {
       if (item.id == selectedAccountId) {
@@ -102,9 +106,11 @@ export const SelectAccount = () => {
           <button className="GoToMarket" onClick={handleAccountSelected}>
             Go To Market
           </button>
-          <button className="AccEdit">Edit Account</button>
+          <button className="AccEdit"
+          onClick={handleAccounEdittSelected}
+          >Edit user Profile</button>
         </div>
-      </div>
+      </div> 
     </div>
   );
 };
