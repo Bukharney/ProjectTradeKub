@@ -96,7 +96,7 @@ export const Navbar = () => {
     location.pathname === "/" ||
     location.pathname.toLowerCase() === "/login" ||
     location.pathname.toLowerCase() === "/register" ||
-    location.pathname.toLowerCase() === "/governmentview" ||
+    location.pathname.toLowerCase() === "/view" ||
     location.pathname.toLowerCase() === "/analyticpage" ||
     location.pathname.toLowerCase() === "/accountmanagement" ||
     location.pathname.toLowerCase() === "/dividentmanagement" ||
@@ -109,7 +109,7 @@ export const Navbar = () => {
   {
     value["key"] = 0;
     localStorage.setItem("key", JSON.stringify(value));
-    if (location.pathname.toLowerCase() !== "/governmentview") {
+    if (location.pathname.toLowerCase() !== "/view") {
       localStorage.setItem("roleI", JSON.stringify(0));
       localStorage.setItem("Label", JSON.stringify(""));
     }

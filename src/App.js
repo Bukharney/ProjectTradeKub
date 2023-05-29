@@ -15,7 +15,7 @@ import { ProtectedRoute } from "./Context/ProtectedRoute";
 import Cookies from "js-cookie";
 import "./App.css";
 import Register from "./component/Page/Register/Register";
-import { GovernmentView } from "./component/Page/GovernmentView/GovernmentView";
+import { View } from "./component/Page/View/View";
 
 import { AnalyticPage } from "./component/Page/AnalyticPage/AnalyticPage";
 import { AccountManagement } from "./component/Page/AccountManagement/AccountManagement";
@@ -133,7 +133,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-                <Route path="/GovernmentView" element={<GovernmentView />} />
+                <Route path="/View" element={<View />} />
                 <Route
                   path="/AnalyticPage"
                   element={

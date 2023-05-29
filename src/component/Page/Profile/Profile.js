@@ -340,7 +340,7 @@ export const Profile = () => {
                         className="Wallet__transaction__side"
                         style={{
                           color:
-                            transaction.type.toUpperCase() == "DEPOSIT"
+                            transaction.type === "Deposit"
                               ? "#42A93C"
                               : "#CD3D42",
                         }}
