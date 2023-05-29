@@ -647,7 +647,20 @@ export const AllDataUpdate = () => {
   DividentData = DividentDataServer.sort(
     (a, b) =>
       b.id - a.id
-  );
+  ).map(obj => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      const indexA = ['id','account_id','symbol','value','timestamp'].indexOf(a);
+      const indexB = ['id','account_id','symbol','value','timestamp'].indexOf(b);
+      return indexA - indexB;
+    });
+
+    const sortedObj = {};
+    sortedKeys.forEach(key => {
+      sortedObj[key] = obj[key];
+    });
+
+    return sortedObj;
+  });
 
   NewsData = NewsDataServer.sort(
     (a, b) =>
