@@ -27,6 +27,7 @@ import { DividentManagement } from "./component/Page/DividentManagement/Divident
 
 import axios from "axios";
 import EditUser from "./component/Page/EditUserProfile/EditUser";
+import { PortfolioManagement } from "./component/Page/PortfolioManagement/PortfolioManagement";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -212,6 +213,16 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+
+                <Route
+                  path="/PortfolioManagement"
+                  element={
+                    <ProtectedRoute>
+                      <PortfolioManagement />
+                    </ProtectedRoute>
+                  }
+                />
+
               </Routes>
             </div>
           </Router>

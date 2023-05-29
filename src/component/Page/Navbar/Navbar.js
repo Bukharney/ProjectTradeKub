@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { Notification } from "../Notification/Notification.js";
@@ -6,6 +6,9 @@ import { Notification } from "../Notification/Notification.js";
 import "boxicons/css/boxicons.min.css";
 import Logo from "./Logo.svg";
 import Task from "./Task.svg";
+import axios from "axios";
+import TokenContext from "../../../Context/TokenContext";
+import AccountContext from "../../../Context/AccountContext";
 
 const storedValue = localStorage.getItem("key");
 const defaultValue = { key: 0 };
@@ -14,6 +17,10 @@ export const hasRefresh = { rkey: 1 };
 export const Navbar = () => {
   const [click, setClick] = useState(false);
   const location = useLocation();
+  const [data, setData] = useState([]);
+  const Token = useContext(TokenContext);
+  const Account = useContext(AccountContext);
+
 
   const handleClick = (index) => {
     value["key"] = index;
@@ -44,6 +51,47 @@ export const Navbar = () => {
     }
   }
 
+  const get_noti = async (e) => {
+    await axios
+      .get(`https://www.tradekub.me/noti/${e}`, {
+        headers: {
+          accept: "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error.response);
+        setData([]);
+      });
+  };
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Call your API functions here
+        get_noti(Account.account);
+        // ... other API calls
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    // Fetch data immediately
+    fetchData();
+  
+    // Fetch data every 10 seconds
+    const interval = setInterval(fetchData, 10000);
+  
+    // Clean up the interval on unmount
+    return () => clearInterval(interval);
+  }, []);
+  
+
   if (
     location.pathname === "/" ||
     location.pathname === "/Login" ||
@@ -54,7 +102,7 @@ export const Navbar = () => {
     location.pathname === "/NewsManagement" ||
     location.pathname === "/BankTransactionManagement" ||
     location.pathname === "/SelectAccount" ||
-    location.pathname === "/EditUserProfile" 
+    location.pathname === "/EditUserProfile"
   ) {
     return null;
   }
@@ -97,7 +145,7 @@ export const Navbar = () => {
           <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
             <NavLink exact onClick={() => handleClick(3)}>
               <i className="bx bx-notification">
-                  <div className="Nav__Noti__dot"></div>
+                {data.length > 0 &&<div className="Nav__Noti__dot"></div>}
               </i>
               {value["key"] === 3 && (
                 <img src={Task} alt="Task" className="Task" />
