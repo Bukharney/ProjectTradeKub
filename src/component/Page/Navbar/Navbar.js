@@ -92,6 +92,25 @@ export const Navbar = () => {
   }, []);
   
 
+  if (
+    location.pathname === "/" ||
+    location.pathname.toLowerCase() === "/login" ||
+    location.pathname.toLowerCase() === "/register" ||
+    location.pathname.toLowerCase() === "/governmentview" ||
+    location.pathname.toLowerCase() === "/analyticpage" ||
+    location.pathname.toLowerCase() === "/accountmanagement" ||
+    location.pathname.toLowerCase() === "/dividentmanagement" ||
+    location.pathname.toLowerCase() === "/portfoliomanagement" ||
+    location.pathname.toLowerCase() === "/newsmanagement" ||
+    location.pathname.toLowerCase() === "/banktransactionmanagement" ||
+    location.pathname.toLowerCase() === "/selectaccount" ||
+    location.pathname.toLowerCase() === "/edituser" 
+  )
+  {
+    value["key"] = 0;
+    localStorage.setItem("key", JSON.stringify(value));
+    return null;
+  }
 
   else return (
     <nav className="navbar">
