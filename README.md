@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# TradeKub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TradeKub is an online trading application built with React, PostgreSQL, and FastAPI. This README file provides essential information about the TradeKub project, including its features, technology stack, and relevant links.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- TradeKub allows users to engage in online trading activities.
+- Users can create an account and securely log in to access their trading dashboard.
+- The application provides real-time market data and price charts for various assets.
+- Users can place buy and sell orders for stocks.
+- TradeKub offers a portfolio management feature, allowing users to track their investments and performance.
+- The application provides detailed transaction history and account balance information.
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The TradeKub application is developed using the following technologies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React: A JavaScript library for building user interfaces.
+- PostgreSQL: A powerful, open-source relational database management system.
+- FastAPI: A modern, fast (high-performance), web framework for building APIs.
 
-### `npm test`
+## Links
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- API Documentation: The API documentation for TradeKub can be found at [https://www.tradekub.me/docs](https://www.tradekub.me/docs).
+- Application: TradeKub's web application can be accessed at [https://www.projecttradekub.me/](https://www.projecttradekub.me/).
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run TradeKub locally on your machine, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository: 
+   ```
+   git clone https://github.com/your-username/tradekub.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install the dependencies:
+   ```
+   cd tradekub
+   npm install
+   ```
 
-### `npm run eject`
+3. Start the application:
+   ```
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Access the TradeKub application in your browser at `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+We welcome contributions to the TradeKub project. If you would like to contribute, please follow these guidelines:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Fork the repository and create a new branch for your contribution.
+2. Make your changes and ensure that the code passes all tests.
+3. Submit a pull request with a clear description of your changes and their purpose.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The TradeKub project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
