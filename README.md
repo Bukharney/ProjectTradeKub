@@ -23,6 +23,10 @@ The TradeKub application is developed using the following technologies:
 
 - API Documentation: The API documentation for TradeKub can be found at [https://www.tradekub.me/docs](https://www.tradekub.me/docs).
 - Application: TradeKub's web application can be accessed at [https://www.projecttradekub.me/](https://www.projecttradekub.me/).
+- GitHub
+   - Front-end sourcecode[https://github.com/Bukharney/ProjectTradeKub/](https://github.com/Bukharney/ProjectTradeKub/).
+   - Back-end sourcecode [https://github.com/Bukharney/Tradekub_api/](https://github.com/Bukharney/Tradekub_api/).
+
 
 ## Getting Started
 
