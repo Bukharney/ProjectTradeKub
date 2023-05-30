@@ -95,21 +95,32 @@ export const Navbar = () => {
   if (
     location.pathname === "/" ||
     location.pathname.toLowerCase() === "/login" ||
+    location.pathname.toLowerCase() === "/login/" ||
     location.pathname.toLowerCase() === "/register" ||
+    location.pathname.toLowerCase() === "/register/" ||
     location.pathname.toLowerCase() === "/view" ||
+    location.pathname.toLowerCase() === "/view/" ||
     location.pathname.toLowerCase() === "/analyticpage" ||
+    location.pathname.toLowerCase() === "/analyticpage/" ||
     location.pathname.toLowerCase() === "/accountmanagement" ||
+    location.pathname.toLowerCase() === "/accountmanagement/" ||
     location.pathname.toLowerCase() === "/dividentmanagement" ||
+    location.pathname.toLowerCase() === "/dividentmanagement/" ||
     location.pathname.toLowerCase() === "/portfoliomanagement" ||
+    location.pathname.toLowerCase() === "/portfoliomanagement/" ||
     location.pathname.toLowerCase() === "/newsmanagement" ||
+    location.pathname.toLowerCase() === "/newsmanagement/" ||
     location.pathname.toLowerCase() === "/banktransactionmanagement" ||
+    location.pathname.toLowerCase() === "/banktransactionmanagement/" ||
     location.pathname.toLowerCase() === "/selectaccount" ||
-    location.pathname.toLowerCase() === "/edituser" 
+    location.pathname.toLowerCase() === "/selectaccount/" ||
+    location.pathname.toLowerCase() === "/edituser"||
+    location.pathname.toLowerCase() === "/edituser/" 
   )
   {
     value["key"] = 0;
     localStorage.setItem("key", JSON.stringify(value));
-    if (location.pathname.toLowerCase() !== "/view") {
+    if (location.pathname.toLowerCase() !== "/view" && location.pathname.toLowerCase() !== "/view/") {
       localStorage.setItem("roleI", JSON.stringify(0));
       localStorage.setItem("Label", JSON.stringify(""));
     }
