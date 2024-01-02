@@ -14,7 +14,7 @@ export const News = () => {
   useEffect(() => {
     const get_news = async () => {
       await axios
-        .get(`https://www.tradekub.me/news/`, {
+        .get(`https://tradekub.me/news/`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,

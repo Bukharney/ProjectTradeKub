@@ -46,7 +46,7 @@ export const SelectAccount = () => {
     const get_account = async () => {
       console.log("Token.token", Token.token);
       await axios
-        .get(`https://www.tradekub.me/account/my`, {
+        .get(`https://tradekub.me/account/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -63,7 +63,14 @@ export const SelectAccount = () => {
     };
 
     get_account();
-  }, []);
+  }, [
+    Token.token,
+    selectedAccountId,
+    selectedCB,
+    selectedBroker,
+    account,
+    setAccount,
+  ]);
 
   if (isLoading) {
     return <div className="AllsectionSelectAcc">Loading...</div>;

@@ -61,6 +61,7 @@ export const Profile = () => {
     setClick(!click);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const palettes = [
     "#00CB76",
     "#AD00FF",
@@ -77,7 +78,7 @@ export const Profile = () => {
   useEffect(() => {
     const get_user_info = async () => {
       await axios
-        .get(`https://www.tradekub.me/users/my`, {
+        .get(`https://tradekub.me/users/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -94,7 +95,7 @@ export const Profile = () => {
 
     const get_account_info = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/account/${e}`, {
+        .get(`https://tradekub.me/account/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -114,7 +115,7 @@ export const Profile = () => {
 
     const get_user_log = async () => {
       await axios
-        .get(`https://www.tradekub.me/users/login_info`, {
+        .get(`https://tradekub.me/users/login_info`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -131,7 +132,7 @@ export const Profile = () => {
 
     const get_tsc = async (account_id) => {
       await axios
-        .get(`https://www.tradekub.me/bank_tsc/my/${account_id}`, {
+        .get(`https://tradekub.me/bank_tsc/my/${account_id}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -148,7 +149,7 @@ export const Profile = () => {
 
     const get_portfolio = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/portfolio/${e}`, {
+        .get(`https://tradekub.me/portfolio/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
