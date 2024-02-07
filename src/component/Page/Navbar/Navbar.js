@@ -21,7 +21,6 @@ export const Navbar = () => {
   const Token = useContext(TokenContext);
   const Account = useContext(AccountContext);
 
-
   const handleClick = (index) => {
     value["key"] = index;
     setClick(!click);
@@ -53,7 +52,7 @@ export const Navbar = () => {
 
   const get_noti = async (e) => {
     await axios
-      .get(`https://www.tradekub.me/noti/${e}`, {
+      .get(`https://tradekub.me/noti/${e}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -75,7 +74,6 @@ export const Navbar = () => {
         // Call your API functions here
         get_noti(Account.account);
         // ... other API calls
-
       } catch (error) {
         console.error(error);
       }
@@ -90,7 +88,6 @@ export const Navbar = () => {
     // Clean up the interval on unmount
     return () => clearInterval(interval);
   }, []);
-
 
   if (
     location.pathname === "/" ||
@@ -114,74 +111,75 @@ export const Navbar = () => {
     location.pathname.toLowerCase() === "/banktransactionmanagement/" ||
     location.pathname.toLowerCase() === "/selectaccount" ||
     location.pathname.toLowerCase() === "/selectaccount/" ||
-    location.pathname.toLowerCase() === "/edituser"||
-    location.pathname.toLowerCase() === "/edituser/" 
-  )
-  {
+    location.pathname.toLowerCase() === "/edituser" ||
+    location.pathname.toLowerCase() === "/edituser/"
+  ) {
     value["key"] = 0;
     localStorage.setItem("key", JSON.stringify(value));
-    if (location.pathname.toLowerCase() !== "/view" && location.pathname.toLowerCase() !== "/view/") {
+    if (
+      location.pathname.toLowerCase() !== "/view" &&
+      location.pathname.toLowerCase() !== "/view/"
+    ) {
       localStorage.setItem("roleI", JSON.stringify(0));
       localStorage.setItem("Label", JSON.stringify(""));
     }
     return null;
-  }
+  } else
+    return (
+      <nav className="navbar">
+        <div className="nav-container">
+          <Notification value={value} hasRefresh={hasRefresh} />
+          <ul className={click ? " " : " "}>
+            <li className="nav-logo">
+              <NavLink exact to="/" onClick={() => handleClick(0)}>
+                <img src={Logo} alt="Logo" />
+              </NavLink>
+            </li>
 
-  else return (
-    <nav className="navbar">
-      <div className="nav-container">
-        <Notification value={value} hasRefresh={hasRefresh} />
-        <ul className={click ? " " : " "}>
-          <li className="nav-logo">
-            <NavLink exact to="/" onClick={() => handleClick(0)}>
-              <img src={Logo} alt="Logo" />
-            </NavLink>
-          </li>
-
-          <li className={value["key"] === 0 ? "nav-itemClicked" : "nav-item"}>
-            <NavLink exact to="/Market" onClick={() => handleClick(0)}>
-              <i className="bx bxs-dashboard"></i>
-              {value["key"] === 0 && (
-                <img src={Task} alt="Task" className="Task" />
-              )}
-            </NavLink>
-          </li>
-          <li className={value["key"] === 1 ? "nav-itemClicked" : "nav-item"}>
-            <NavLink exact to="/Wallet" onClick={() => handleClick(1)}>
-              <i className="bx bx-wallet"></i>
-              {value["key"] === 1 && (
-                <img src={Task} alt="Task" className="Task" />
-              )}
-            </NavLink>
-          </li>
-          <li className={value["key"] === 2 ? "nav-itemClicked" : "nav-item"}>
-            <NavLink exact to="/News" onClick={() => handleClick(2)}>
-              <i className="bx bx-news"></i>
-              {value["key"] === 2 && (
-                <img src={Task} alt="Task" className="Task" />
-              )}
-            </NavLink>
-          </li>
-          <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
-            <NavLink exact onClick={() => handleClick(3)}>
-              <i className="bx bx-notification">
-                {data.length > 0 && <div className="Nav__Noti__dot"></div>}
-              </i>
-              {value["key"] === 3 && (
-                <img src={Task} alt="Task" className="Task" />
-              )}
-            </NavLink>
-          </li>
-          <li className={value["key"] === 4 ? "nav-itemClicked" : "nav-item"}>
-            <NavLink exact to="/Profile" onClick={() => handleClick(4)}>
-              <i className="bx bx-user"></i>
-              {value["key"] === 4 && (
-                <img src={Task} alt="Task" className="Task" />
-              )}
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
+            <li className={value["key"] === 0 ? "nav-itemClicked" : "nav-item"}>
+              <NavLink exact to="/Market" onClick={() => handleClick(0)}>
+                <i className="bx bxs-dashboard"></i>
+                {value["key"] === 0 && (
+                  <img src={Task} alt="Task" className="Task" />
+                )}
+              </NavLink>
+            </li>
+            <li className={value["key"] === 1 ? "nav-itemClicked" : "nav-item"}>
+              <NavLink exact to="/Wallet" onClick={() => handleClick(1)}>
+                <i className="bx bx-wallet"></i>
+                {value["key"] === 1 && (
+                  <img src={Task} alt="Task" className="Task" />
+                )}
+              </NavLink>
+            </li>
+            <li className={value["key"] === 2 ? "nav-itemClicked" : "nav-item"}>
+              <NavLink exact to="/News" onClick={() => handleClick(2)}>
+                <i className="bx bx-news"></i>
+                {value["key"] === 2 && (
+                  <img src={Task} alt="Task" className="Task" />
+                )}
+              </NavLink>
+            </li>
+            <li className={value["key"] === 3 ? "nav-itemClicked" : "nav-item"}>
+              <NavLink exact onClick={() => handleClick(3)}>
+                <i className="bx bx-notification">
+                  {data.length > 0 && <div className="Nav__Noti__dot"></div>}
+                </i>
+                {value["key"] === 3 && (
+                  <img src={Task} alt="Task" className="Task" />
+                )}
+              </NavLink>
+            </li>
+            <li className={value["key"] === 4 ? "nav-itemClicked" : "nav-item"}>
+              <NavLink exact to="/Profile" onClick={() => handleClick(4)}>
+                <i className="bx bx-user"></i>
+                {value["key"] === 4 && (
+                  <img src={Task} alt="Task" className="Task" />
+                )}
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    );
 };

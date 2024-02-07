@@ -31,7 +31,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   const del_noti = async (e) => {
     await axios
-      .get(`https://www.tradekub.me/noti/delete/${e}`, {
+      .get(`https://tradekub.me/noti/delete/${e}`, {
         headers: {
           accept: "*/*",
           Authorization: "Bearer " + Token.token,
@@ -48,7 +48,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   const get_noti = async (e) => {
     await axios
-      .get(`https://www.tradekub.me/noti/${e}`, {
+      .get(`https://tradekub.me/noti/${e}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,

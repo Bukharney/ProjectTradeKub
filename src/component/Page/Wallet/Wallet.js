@@ -73,7 +73,7 @@ export const Wallet = () => {
   useEffect(() => {
     const get_portfolio = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/portfolio/${e}`, {
+        .get(`https://tradekub.me/portfolio/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -93,7 +93,7 @@ export const Wallet = () => {
 
     const get_account_info = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/account/${e}`, {
+        .get(`https://tradekub.me/account/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -110,7 +110,7 @@ export const Wallet = () => {
 
     const get_account_tsc = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/stock/transactions/${e}`, {
+        .get(`https://tradekub.me/stock/transactions/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,

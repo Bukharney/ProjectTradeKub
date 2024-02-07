@@ -44,7 +44,7 @@ function App() {
       setToken(token);
       setAuth(true);
       await axios
-        .get("https://www.tradekub.me/users/token", {
+        .get("https://tradekub.me/users/token", {
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -231,8 +231,6 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-
-
               </Routes>
             </div>
           </Router>
