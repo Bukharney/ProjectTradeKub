@@ -33,7 +33,7 @@ export const Login = () => {
     };
     const news = async () => {
       let res = await axios
-        .post("https://www.tradekub.me/login", data, {
+        .post("https://tradekub.me/login", data, {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
