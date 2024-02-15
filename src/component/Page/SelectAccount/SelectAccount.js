@@ -6,7 +6,7 @@ import AccountContext from "../../../Context/AccountContext";
 import Logo from "./Logo.svg";
 import Cookies from "js-cookie";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const SelectAccount = () => {
   const [data, setData] = useState([]);

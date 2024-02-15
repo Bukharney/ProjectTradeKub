@@ -10,7 +10,7 @@ import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 const storedValue = localStorage.getItem("key");
 const defaultValue = { key: 0 };

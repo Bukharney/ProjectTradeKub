@@ -5,7 +5,7 @@ import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import Logo from "./Logo.svg";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const EditUser = () => {
   const Token = useContext(TokenContext);

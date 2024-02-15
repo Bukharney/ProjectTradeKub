@@ -6,7 +6,7 @@ import TokenContext from "../../../Context/TokenContext";
 import axios from "axios";
 import AccountContext from "../../../Context/AccountContext";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const Notification = ({ value, hasRefresh }) => {
   const [click, setClick] = useState(false);

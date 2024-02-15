@@ -11,7 +11,7 @@ import LoadingOverlay from "react-loading-overlay";
 import PopUP from "./PopUP";
 import { cancelOrder, placeOrder } from "../../../API/API";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const Market = () => {
   const Token = useContext(TokenContext);

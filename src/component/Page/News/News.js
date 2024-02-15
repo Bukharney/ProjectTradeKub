@@ -4,7 +4,7 @@ import "boxicons/css/boxicons.min.css";
 import TokenContext from "../../../Context/TokenContext";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const News = () => {
   const [data, setData] = useState([]);

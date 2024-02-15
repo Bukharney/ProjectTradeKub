@@ -13,7 +13,7 @@ import s10 from "./imgStone/stone 10.svg";
 import creditcard from "./imgStone/Credit cards.svg";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 const Register = () => {
   const [inputBorderColor1, setInputBorderColor1] = useState("");

@@ -30,7 +30,7 @@ import EditUser from "./component/Page/EditUserProfile/EditUser";
 import { PortfolioManagement } from "./component/Page/PortfolioManagement/PortfolioManagement";
 import { BrokerManagement } from "./component/Page/BrokerManagement/BrokerManagement";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://tradekub.me";
 
 function App() {
   const [auth, setAuth] = useState(false);
