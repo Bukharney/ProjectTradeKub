@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./EditUser.css";
-import { Username } from "./UserDB.js";
 import EdituserBG from "./EdituserBG.svg";
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import Logo from "./Logo.svg";
+
+axios.defaults.baseURL = "http://localhost:8000";
 
 export const EditUser = () => {
   const Token = useContext(TokenContext);
@@ -60,7 +61,7 @@ export const EditUser = () => {
     };
 
     await axios
-      .put("https://www.tradekub.me/users/update", data, {
+      .put("/users/update", data, {
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
@@ -79,7 +80,7 @@ export const EditUser = () => {
   useEffect(() => {
     const get_user_info = async () => {
       await axios
-        .get(`https://www.tradekub.me/users/my`, {
+        .get(`/users/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -98,18 +99,19 @@ export const EditUser = () => {
     };
 
     get_user_info();
-  }, []);
+  }, [Token.token]);
 
   const handleClicklink = () => {
-    window.location.href = "/SelectAccount";}
+    window.location.href = "/SelectAccount";
+  };
 
   return (
     <div className="AllsectionEditUser">
       <div className="boxEditUser">
         <div className="Head-Text-EditUser">Edit User Profile</div>
         <div className="Slect__Logo">
-            <img src={Logo} alt="Logo" />
-          </div>
+          <img src={Logo} alt="Logo" />
+        </div>
         <div
           className="TextBoxInsertEditUser1"
           style={{ borderColor: inputBorderColor1 }}
@@ -171,7 +173,9 @@ export const EditUser = () => {
         </div>
 
         <div className="CancelConfirm-Edit">
-          <button className="EditCancel"onClick={handleClicklink}>Cancel</button>
+          <button className="EditCancel" onClick={handleClicklink}>
+            Cancel
+          </button>
           <button className="EditConfirm" onClick={handleClick}>
             Confirm
           </button>
@@ -181,7 +185,7 @@ export const EditUser = () => {
         </div>
       </div>
       <div className="creditcardSSSS">
-        <img src={EdituserBG} />
+        <img src={EdituserBG} alt="bg" />
       </div>
     </div>
   );

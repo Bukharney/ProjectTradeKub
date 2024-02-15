@@ -10,6 +10,8 @@ import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 
+axios.defaults.baseURL = "http://localhost:8000";
+
 const storedValue = localStorage.getItem("key");
 const defaultValue = { key: 0 };
 export const value = storedValue ? JSON.parse(storedValue) : defaultValue;
@@ -25,9 +27,9 @@ export const Navbar = () => {
     value["key"] = index;
     setClick(!click);
     localStorage.setItem("key", JSON.stringify(value));
-    if (index == 3 && hasRefresh["rkey"] == 1) {
+    if (index === 3 && hasRefresh["rkey"] === 1) {
       hasRefresh["rkey"] = 0;
-    } else if (index == 3 && hasRefresh["rkey"] == 0) {
+    } else if (index === 3 && hasRefresh["rkey"] === 0) {
       hasRefresh["rkey"] = 1;
     } else {
       hasRefresh["rkey"] = 1;
@@ -50,30 +52,28 @@ export const Navbar = () => {
     }
   }
 
-  const get_noti = async (e) => {
-    await axios
-      .get(`https://tradekub.me/noti/${e}`, {
-        headers: {
-          accept: "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error(error.response);
-        setData([]);
-      });
-  };
-
   useEffect(() => {
+    const get_noti = async (e) => {
+      await axios
+        .get(`/noti/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setData(response.data);
+        })
+        .catch((error) => {
+          console.error(error.response);
+          setData([]);
+        });
+    };
+
     const fetchData = async () => {
       try {
-        // Call your API functions here
         get_noti(Account.account);
-        // ... other API calls
       } catch (error) {
         console.error(error);
       }
@@ -81,13 +81,7 @@ export const Navbar = () => {
 
     // Fetch data immediately
     fetchData();
-
-    // Fetch data every 10 seconds
-    const interval = setInterval(fetchData, 10000);
-
-    // Clean up the interval on unmount
-    return () => clearInterval(interval);
-  }, []);
+  }, [Account.account, Token.token]);
 
   if (
     location.pathname === "/" ||

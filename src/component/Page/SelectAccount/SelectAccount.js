@@ -6,6 +6,8 @@ import AccountContext from "../../../Context/AccountContext";
 import Logo from "./Logo.svg";
 import Cookies from "js-cookie";
 
+axios.defaults.baseURL = "http://localhost:8000";
+
 export const SelectAccount = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,20 +35,21 @@ export const SelectAccount = () => {
 
   useEffect(() => {
     data.map((item) => {
-      if (item.id == selectedAccountId) {
+      if (item.id === selectedAccountId) {
         setSelectedCB(item.cash_balance);
         setSelectedBroker(item.broker_id);
       }
+      return null;
     });
     console.log(Cookies.set("account", selectedAccountId));
     console.log("Account", account);
-  }, [selectedAccountId, selectedCB, selectedBroker]);
+  }, [selectedAccountId, selectedCB, selectedBroker, data, account]);
 
   useEffect(() => {
     const get_account = async () => {
       console.log("Token.token", Token.token);
       await axios
-        .get(`https://tradekub.me/account/my`, {
+        .get(`/account/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,

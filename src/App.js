@@ -30,6 +30,8 @@ import EditUser from "./component/Page/EditUserProfile/EditUser";
 import { PortfolioManagement } from "./component/Page/PortfolioManagement/PortfolioManagement";
 import { BrokerManagement } from "./component/Page/BrokerManagement/BrokerManagement";
 
+axios.defaults.baseURL = "http://localhost:8000";
+
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState("");
@@ -44,7 +46,7 @@ function App() {
       setToken(token);
       setAuth(true);
       await axios
-        .get("https://tradekub.me/users/token", {
+        .get("/users/token", {
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${token}`,

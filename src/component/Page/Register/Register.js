@@ -13,6 +13,8 @@ import s10 from "./imgStone/stone 10.svg";
 import creditcard from "./imgStone/Credit cards.svg";
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:8000";
+
 const Register = () => {
   const [inputBorderColor1, setInputBorderColor1] = useState("");
   const [inputBorderColor2, setInputBorderColor2] = useState("");
@@ -83,7 +85,7 @@ const Register = () => {
       password: password,
     };
     await axios
-      .post("https://www.tradekub.me/users/", data, {
+      .post("/users/", data, {
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
@@ -274,7 +276,7 @@ const Register = () => {
         <img src={s10} alt="Stone" className="stone-image" />
       </div>
       <div className="creditcardS">
-        <img src={creditcard} className="Reis___backgroun" />
+        <img src={creditcard} className="Reis___backgroun" alt="rbg" />
       </div>
     </div>
   );
