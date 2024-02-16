@@ -4,6 +4,8 @@ import "boxicons/css/boxicons.min.css";
 import TokenContext from "../../../Context/TokenContext";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://tradekub.me";
+
 export const News = () => {
   const [data, setData] = useState([]);
   const Token = useContext(TokenContext);
@@ -14,7 +16,7 @@ export const News = () => {
   useEffect(() => {
     const get_news = async () => {
       await axios
-        .get(`https://tradekub.me/news/`, {
+        .get(`/news/`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -30,7 +32,7 @@ export const News = () => {
     };
 
     get_news();
-  }, []);
+  }, [Token.token]);
 
   return (
     <div className="news-container">
@@ -45,7 +47,7 @@ export const News = () => {
             </div>
           ))
         ) : (
-          <div></div>
+          <div>News not found</div>
         )}
         <div className="news-footer"></div>
       </div>

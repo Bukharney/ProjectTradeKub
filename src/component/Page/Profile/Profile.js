@@ -11,6 +11,8 @@ import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import LoadingOverlay from "react-loading-overlay";
 
+axios.defaults.baseURL = "https://tradekub.me";
+
 export const Profile = () => {
   const Token = React.useContext(TokenContext);
   const Auth = React.useContext(AuthContext);
@@ -78,7 +80,7 @@ export const Profile = () => {
   useEffect(() => {
     const get_user_info = async () => {
       await axios
-        .get(`https://tradekub.me/users/my`, {
+        .get(`/users/my`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -95,7 +97,7 @@ export const Profile = () => {
 
     const get_account_info = async (e) => {
       await axios
-        .get(`https://tradekub.me/account/${e}`, {
+        .get(`/account/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -115,7 +117,7 @@ export const Profile = () => {
 
     const get_user_log = async () => {
       await axios
-        .get(`https://tradekub.me/users/login_info`, {
+        .get(`/users/login_info`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -132,7 +134,7 @@ export const Profile = () => {
 
     const get_tsc = async (account_id) => {
       await axios
-        .get(`https://tradekub.me/bank_tsc/my/${account_id}`, {
+        .get(`/bank_tsc/my/${account_id}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -149,7 +151,7 @@ export const Profile = () => {
 
     const get_portfolio = async (e) => {
       await axios
-        .get(`https://tradekub.me/portfolio/${e}`, {
+        .get(`/portfolio/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -170,12 +172,12 @@ export const Profile = () => {
     get_user_log();
     get_tsc(Accounts.account);
     get_portfolio(Accounts.account);
-  }, [Accounts.account, Token.token]);
+  }, [Accounts.account, Auth, Token.token]);
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
       parseFloat(
-        stock.volume * (stock.close == 0 ? stock.last_price : stock.close)
+        stock.volume * (stock.close === 0 ? stock.last_price : stock.close)
       )
     );
     const labels = SortedStock.map((stock) => stock.symbol);
@@ -259,9 +261,9 @@ export const Profile = () => {
             <div className="balance__Total__Wealth__value">
               {userPort.map((stock) => {
                 total +=
-                  (stock.close == 0 ? stock.last_price : stock.close) *
+                  (stock.close === 0 ? stock.last_price : stock.close) *
                   stock.volume;
-                return;
+                return total;
               })}
               {formatNumber(total)}
             </div>

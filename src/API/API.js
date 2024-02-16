@@ -20,3 +20,103 @@ export const handleLogin = async (data) => {
       return false;
     });
 };
+
+export const cancelOrder = async (
+  id,
+  cancelPin,
+  Token,
+  setUserOrder,
+  Account
+) => {
+  const data = {
+    id: id,
+    pin: Number(cancelPin),
+  };
+
+  await axios
+    .post("/order/cancel", data, {
+      headers: {
+        accep: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Token.token,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      alert("Cancle order successfull");
+      const get_order = async (e) => {
+        await axios
+          .get(`/order/${e}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            setUserOrder(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      get_order(Account.account);
+    })
+    .catch((error) => {
+      console.error(error.data);
+      alert("Cancle order failed please try again");
+    });
+};
+
+export const placeOrder = async (data, Token, Account) => {
+  await axios
+    .post("/order", data, {
+      headers: {
+        accep: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Token.token,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      alert("Order successfull");
+      const get_order = async (e) => {
+        await axios
+          .get(`/order/${e}`, {
+            headers: {
+              accept: "application/json",
+              Authorization: "Bearer " + Token.token,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+            return response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      get_order(Account.account);
+    })
+    .catch((error) => {
+      console.error(error.data);
+      alert("Order failed please try again");
+    });
+};
+
+export const getSearchStock = async (symbol, Token) => {
+  await axios
+    .get(`/stock/search/${symbol}`, {
+      headers: {
+        accept: "application/json",
+        Authorization: "Bearer " + Token.token,
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};

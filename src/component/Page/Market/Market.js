@@ -9,6 +9,9 @@ import AccountContext from "../../../Context/AccountContext";
 import { NumericFormat, PatternFormat } from "react-number-format";
 import LoadingOverlay from "react-loading-overlay";
 import PopUP from "./PopUP";
+import { cancelOrder, placeOrder } from "../../../API/API";
+
+axios.defaults.baseURL = "https://tradekub.me";
 
 export const Market = () => {
   const Token = useContext(TokenContext);
@@ -56,7 +59,7 @@ export const Market = () => {
 
   const handleOkClick = () => {
     console.log("OK Clicked");
-    cancal_order(selectedStock.id);
+    cancelOrder(selectedStock.id);
     togglePopup(null);
   };
 
@@ -66,14 +69,22 @@ export const Market = () => {
 
   const handleOrderClick = () => {
     console.log("Place order clicked");
+    const data = {
+      account_id: Account.account,
+      symbol: symbol,
+      type: "Normal",
+      volume: Number(Volume),
+      price: Number(Price),
+      side: selectedOption,
+      validity: "Day",
+      pin: Number(Pin),
+    };
     (async () => {
-     await place_order();
+      setUserOrder(await placeOrder(data, Token, Account));
       setVolume("");
       setPrice("");
       setPin("");
-  }
-  )();
-
+    })();
   };
 
   const handleResetClick = () => {
@@ -113,97 +124,9 @@ export const Market = () => {
     setInputBorderColor3("");
   };
 
-  const cancal_order = async (id) => {
-    const data = {
-      id: id,
-      pin: Number(cancelPin),
-    };
-
-    await axios
-      .post("https://www.tradekub.me/order/cancel", data, {
-        headers: {
-          accep: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        alert("Cancle order successfull");
-        const get_order = async (e) => {
-          await axios
-            .get(`https://www.tradekub.me/order/${e}`, {
-              headers: {
-                accept: "application/json",
-                Authorization: "Bearer " + Token.token,
-              },
-            })
-            .then((response) => {
-              console.log(response.data);
-              setUserOrder(response.data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        };
-        get_order(Account.account);
-      })
-      .catch((error) => {
-        console.error(error.data);
-        alert("Cancle order failed please try again");
-      });
-  };
-
-  const place_order = async (e) => {
-    const data = {
-      account_id: Account.account,
-      symbol: symbol,
-      type: "Normal",
-      volume: Number(Volume),
-      price: Number(Price),
-      side: selectedOption,
-      validity: "Day",
-      pin: Number(Pin),
-    };
-
-    await axios
-      .post("https://www.tradekub.me/order/", data, {
-        headers: {
-          accep: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        alert("Order successfull");
-        const get_order = async (e) => {
-          await axios
-            .get(`https://www.tradekub.me/order/${e}`, {
-              headers: {
-                accept: "application/json",
-                Authorization: "Bearer " + Token.token,
-              },
-            })
-            .then((response) => {
-              console.log(response.data);
-              setUserOrder(response.data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        };
-        get_order(Account.account);
-      })
-      .catch((error) => {
-        console.error(error.data);
-        alert("Order failed please try again");
-      });
-  };
-
   const get_search_stock = async (symbol) => {
     await axios
-      .get(`https://www.tradekub.me/stock/search/${symbol}`, {
+      .get(`/stock/search/${symbol}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -229,7 +152,7 @@ export const Market = () => {
     setIsLoadingGraph(true);
     const get_market_data = async (symbol) => {
       await axios
-        .get(`https://www.tradekub.me/stock/market_data/${symbol}`, {
+        .get(`/stock/market_data/${symbol}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -243,13 +166,12 @@ export const Market = () => {
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/News";
         });
     };
 
     const get_account_info = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/account/${e}`, {
+        .get(`/account/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -261,12 +183,12 @@ export const Market = () => {
         })
         .catch((error) => {
           console.error(error);
-          window.location.href = "/News";
         });
     };
+
     const get_order = async (e) => {
       await axios
-        .get(`https://www.tradekub.me/order/${e}`, {
+        .get(`/order/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -291,7 +213,7 @@ export const Market = () => {
   useEffect(() => {
     const get_stock = async () => {
       await axios
-        .get(`https://www.tradekub.me/stock/`, {
+        .get(`/stock/`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -307,7 +229,7 @@ export const Market = () => {
     };
 
     get_stock();
-  }, []);
+  }, [Token.token]);
 
   if (isLoading) {
     return (
@@ -541,7 +463,7 @@ export const Market = () => {
                   : 0
               )}
             </span>
-            <sapn className="Market__stock__Average">Average</sapn>
+            <span className="Market__stock__Average">Average</span>
             <span className="Market__stock__Average__value">
               {formatNumber(
                 marketData.quote_symbol.average
@@ -599,19 +521,25 @@ export const Market = () => {
               <div className="Market__Accont__Credit__limit">
                 Credit Limit
                 <span className="Market__Accont__Credit__limit__value">
-                  {formatNumber(userAccount.credit_limit)}
+                  {formatNumber(
+                    userAccount.credit_limit ? userAccount.credit_limit : 0
+                  )}
                 </span>
               </div>
               <div className="Market__Accont__Cash__balance">
                 Cash Balance
                 <span className="Market__Accont__Cash__balance__value">
-                  {formatNumber(userAccount.cash_balance)}
+                  {formatNumber(
+                    userAccount.cash_balance ? userAccount.cash_balance : 0
+                  )}
                 </span>
               </div>
               <div className="Market__Accont__Line_Available">
                 Line Available
                 <span className="Market__Accont__Line_Available__value">
-                  {formatNumber(userAccount.line_available)}
+                  {formatNumber(
+                    userAccount.line_available ? userAccount.line_available : 0
+                  )}
                 </span>
               </div>
             </div>
@@ -800,45 +728,52 @@ export const Market = () => {
               </div>
               <div className="Market__container__right__Container__stock">
                 <div className="Market__container__stock__box">
-                  <div className="Market__container__stock__div">
-                    {userOrder.map((stock, index) => (
-                      <button
-                        onClick={stock.status === 'C' ? () => {} : () => togglePopup(stock)}
-                        key={index}
-                        className={`Market__container__right__Container__box2 ${
-                          selectedStock === stock ? "selected" : ""
-                        }`}
-                      >
-                        <div className="Market__container__right__status__Symbol">
-                          {stock.symbol}
-                        </div>
-                        <div className="Market__container__right__stock__Side">
-                          {stock.side === "Buy" ? "B" : "S"}
-                        </div>
-                        <div className="Market__container__right__status__Price">
-                          {stock.price.toFixed(2)}
-                        </div>
-                        <div className="Market__container__right__status__Volume">
-                          {stock.volume}
-                        </div>
-                        <div className="Market__container__right__status__Status">
-                          {stock.status}
-                        </div>
-                      </button>
-                    ))}
-
-                    <div className="PopUP">
-                      {isPopupOpen && (
-                        <PopUP
-                          pin={cancelPin}
-                          handlePinChange={handlePinChange}
-                          selectedStock={selectedStock.symbol}
-                          handleCancelOrder={handleCancelOrder}
-                          handleOkClick={handleOkClick}
-                        />
-                      )}
+                  {userOrder ? (
+                    <div className="Market__container__stock__div">
+                      {userOrder.map((stock, index) => (
+                        <button
+                          onClick={
+                            stock.status === "C"
+                              ? () => {}
+                              : () => togglePopup(stock)
+                          }
+                          key={index}
+                          className={`Market__container__right__Container__box2 ${
+                            selectedStock === stock ? "selected" : ""
+                          }`}
+                        >
+                          <div className="Market__container__right__status__Symbol">
+                            {stock.symbol}
+                          </div>
+                          <div className="Market__container__right__stock__Side">
+                            {stock.side === "Buy" ? "B" : "S"}
+                          </div>
+                          <div className="Market__container__right__status__Price">
+                            {stock.price.toFixed(2)}
+                          </div>
+                          <div className="Market__container__right__status__Volume">
+                            {stock.volume}
+                          </div>
+                          <div className="Market__container__right__status__Status">
+                            {stock.status}
+                          </div>
+                        </button>
+                      ))}{" "}
+                      <div className="PopUP">
+                        {isPopupOpen && (
+                          <PopUP
+                            pin={cancelPin}
+                            handlePinChange={handlePinChange}
+                            selectedStock={selectedStock.symbol}
+                            handleCancelOrder={handleCancelOrder}
+                            handleOkClick={handleOkClick}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>

@@ -29,7 +29,7 @@ export const Home = () => {
         <p>
           Better way <br /> to invest
         </p>
-        <a>
+        <a href="?">
           Tradekub simplifies securities trading by acting as an online
           intermediary for
           <br />
@@ -245,7 +245,7 @@ export const Home = () => {
           <div className="News__box__1">
             {News.map((newsItem) => (
               <div className="News__item">
-                <img src={newsItem.Picture} className="PicNews" />
+                <img src={newsItem.Picture} className="PicNews" alt="News" />
                 <div className="News__title">
                   <p>{newsItem.Time}</p>
                   <h2>{newsItem.Title}</h2>
@@ -258,7 +258,7 @@ export const Home = () => {
           <div className="News__box__2">
             {News.map((newsItem) => (
               <div className="News__item">
-                <img src={newsItem.Picture1} className="PicNews" />
+                <img src={newsItem.Picture1} className="PicNews" alt="News" />
                 <div className="News__title">
                   <p>{newsItem.Time1}</p>
                   <h2>{newsItem.Title1}</h2>

@@ -8,6 +8,8 @@ import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import LoadingOverlay from "react-loading-overlay";
 
+axios.defaults.baseURL = "https://tradekub.me";
+
 export const Wallet = () => {
   const Token = useContext(TokenContext);
   const Account = useContext(AccountContext);
@@ -73,7 +75,7 @@ export const Wallet = () => {
   useEffect(() => {
     const get_portfolio = async (e) => {
       await axios
-        .get(`https://tradekub.me/portfolio/${e}`, {
+        .get(`/portfolio/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -93,7 +95,7 @@ export const Wallet = () => {
 
     const get_account_info = async (e) => {
       await axios
-        .get(`https://tradekub.me/account/${e}`, {
+        .get(`/account/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -110,7 +112,7 @@ export const Wallet = () => {
 
     const get_account_tsc = async (e) => {
       await axios
-        .get(`https://tradekub.me/stock/transactions/${e}`, {
+        .get(`/stock/transactions/${e}`, {
           headers: {
             accept: "application/json",
             Authorization: "Bearer " + Token.token,
@@ -128,12 +130,12 @@ export const Wallet = () => {
     get_account_tsc(Account.account);
     get_account_info(Account.account);
     get_portfolio(Account.account);
-  }, [Account.account]);
+  }, [Account.account, Token.token]);
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
       parseFloat(
-        stock.volume * (stock.close == 0 ? stock.last_price : stock.close)
+        stock.volume * (stock.close === 0 ? stock.last_price : stock.close)
       )
     );
 

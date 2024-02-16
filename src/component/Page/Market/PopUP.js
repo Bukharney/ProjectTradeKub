@@ -8,7 +8,7 @@ const PopUP = ({
   handleCancelOrder,
   handleOkClick,
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen] = useState(true);
   const [inputBorderColor4, setInputBorderColor4] = useState("");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const PopUP = ({
           <div className="PopupContent">
             <h2>Cancel Order</h2>
             <p>
-              Enter your PIN to cancel <br/>
+              Enter your PIN to cancel <br />
               {selectedStock}
             </p>
             <input

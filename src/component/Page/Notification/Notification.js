@@ -6,6 +6,8 @@ import TokenContext from "../../../Context/TokenContext";
 import axios from "axios";
 import AccountContext from "../../../Context/AccountContext";
 
+axios.defaults.baseURL = "https://tradekub.me";
+
 export const Notification = ({ value, hasRefresh }) => {
   const [click, setClick] = useState(false);
   const [data, setData] = useState([]);
@@ -31,7 +33,7 @@ export const Notification = ({ value, hasRefresh }) => {
 
   const del_noti = async (e) => {
     await axios
-      .get(`https://tradekub.me/noti/delete/${e}`, {
+      .get(`/noti/delete/${e}`, {
         headers: {
           accept: "*/*",
           Authorization: "Bearer " + Token.token,
@@ -46,34 +48,27 @@ export const Notification = ({ value, hasRefresh }) => {
       });
   };
 
-  const get_noti = async (e) => {
-    await axios
-      .get(`https://tradekub.me/noti/${e}`, {
-        headers: {
-          accept: "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error(error.response);
-        setData([]);
-      });
-  };
-
   useEffect(() => {
+    const get_noti = async (e) => {
+      await axios
+        .get(`/noti/${e}`, {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer " + Token.token,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setData(response.data);
+        })
+        .catch((error) => {
+          console.error(error.response);
+          setData([]);
+        });
+    };
+
     get_noti(Account.account);
-  }, [Account.account, click]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      get_noti(Account.account);
-    }, 1000 * 10);
-    return () => clearInterval(intervalId);
-  }, []);
+  }, [Account.account, Token.token, click]);
 
   const handleClick1 = () => {
     value["key"] = 1;

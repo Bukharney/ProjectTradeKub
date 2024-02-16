@@ -3,6 +3,8 @@ import "./AccountManagement.css"; // Import the CSS file for additional styles
 import axios from "axios";
 import TokenContext from "../../../Context/TokenContext";
 
+axios.defaults.baseURL = "http://localhost:8000";
+
 export const AccountManagement = () => {
   const [selectedButton, setSelectedButton] = useState("Add"); // Initial selection is 'Add'
   const [InputBox0, setInputBox0] = useState("");
@@ -55,7 +57,7 @@ export const AccountManagement = () => {
 
   const BrokerExist = async (b) => {
     try {
-      const response = await axios.get(`https://www.tradekub.me/broker/${b}`, {
+      const response = await axios.get(`/broker/${b}`, {
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -73,16 +75,13 @@ export const AccountManagement = () => {
 
   const UserExist = async (u) => {
     try {
-      const response = await axios.get(
-        `https://www.tradekub.me/users/username/${u}`,
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        }
-      );
+      const response = await axios.get(`/users/username/${u}`, {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Token.token,
+        },
+      });
       console.log(response.data);
       return 1; // Resolving the Promise with the desired value
     } catch (error) {
@@ -93,7 +92,7 @@ export const AccountManagement = () => {
 
   const Get_user_data = async (u) => {
     await axios
-      .get(`https://www.tradekub.me/users/username/${u}`, {
+      .get(`/users/username/${u}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -110,7 +109,7 @@ export const AccountManagement = () => {
 
   const Get_account_data = async (a) => {
     await axios
-      .get(`https://www.tradekub.me/account/${a}`, {
+      .get(`/account/${a}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
@@ -127,7 +126,7 @@ export const AccountManagement = () => {
 
   const AccountExist = async (b) => {
     try {
-      const response = await axios.get(`https://www.tradekub.me/account/${b}`, {
+      const response = await axios.get(`/account/${b}`, {
         headers: {
           accept: "application/json",
           "Content-Type": "application/json",
@@ -154,7 +153,7 @@ export const AccountManagement = () => {
     };
 
     await axios
-      .post("https://www.tradekub.me/account/", data, {
+      .post("/account/", data, {
         headers: {
           accep: "application/json",
           "Content-Type": "application/json",
@@ -196,7 +195,7 @@ export const AccountManagement = () => {
     } // ยัด InputBox5 อัพเดทค่า credit limit ของ accountID
 
     await axios
-      .put(`https://www.tradekub.me/account/${InputBox1}`, data, {
+      .put(`/account/${InputBox1}`, data, {
         headers: {
           accep: "application/json",
           "Content-Type": "application/json",
@@ -215,7 +214,7 @@ export const AccountManagement = () => {
 
   const DeleteAccoount = async (a) => {
     await axios
-      .delete(`https://www.tradekub.me/account/${a}`, {
+      .delete(`/account/${a}`, {
         headers: {
           accept: "application/json",
           Authorization: "Bearer " + Token.token,
