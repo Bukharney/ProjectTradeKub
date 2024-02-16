@@ -20,7 +20,7 @@ The TradeKub application is developed using the following technologies:
 - FastAPI: A modern, fast (high-performance), web framework for building APIs.
 
 ## Links
-
+- For Testing username: admin@example.com password: admin
 - API Documentation: The API documentation for TradeKub can be found at [https://www.tradekub.me/docs](https://tradekub.me/docs).
 - Application: TradeKub's web application can be accessed at [https://www.projecttradekub.me/](https://projecttradekub.me/).
 - GitHub
