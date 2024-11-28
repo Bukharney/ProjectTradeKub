@@ -11,8 +11,6 @@ import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import LoadingOverlay from "react-loading-overlay";
 
-axios.defaults.baseURL = "https://tradekub.me";
-
 export const Profile = () => {
   const Token = React.useContext(TokenContext);
   const Auth = React.useContext(AuthContext);
@@ -263,7 +261,6 @@ export const Profile = () => {
                 total +=
                   (stock.close === 0 ? stock.last_price : stock.close) *
                   stock.volume;
-                return total;
               })}
               {formatNumber(total)}
             </div>

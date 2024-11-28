@@ -8,8 +8,6 @@ import TokenContext from "../../../Context/TokenContext";
 import AccountContext from "../../../Context/AccountContext";
 import LoadingOverlay from "react-loading-overlay";
 
-axios.defaults.baseURL = "https://tradekub.me";
-
 export const Wallet = () => {
   const Token = useContext(TokenContext);
   const Account = useContext(AccountContext);
@@ -217,7 +215,6 @@ export const Wallet = () => {
                 (stock.close === 0 ? stock.last_price : stock.close) *
                 stock.volume;
               calpl(stock);
-              return total;
             })}
             {formatNumber(total)}
           </div>
@@ -376,11 +373,10 @@ export const Wallet = () => {
       <div className="transaction__list__container">
         <div className="transaction__box">
           <div className="transaction__list__title">Transaction List</div>
-
           <div className="transaction__list__box">
             {userTsc.map((transaction, index) => (
-              <div className="transaction__list">
-                <div className="transaction__item" key={index}>
+              <div className="transaction__list" key={index}>
+                <div className="transaction__item">
                   <div className="transaction__details">
                     <span
                       className="transaction__side"
