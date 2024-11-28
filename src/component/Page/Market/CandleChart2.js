@@ -45,8 +45,8 @@ function CandleChart2({ data }) {
           type: "datetime",
           labels: {
             style: {
-              height: '1px',
-              colors: '#4E4F51',
+              height: "1px",
+              colors: "#4E4F51",
             },
           },
         },
@@ -57,7 +57,7 @@ function CandleChart2({ data }) {
           opposite: true,
           labels: {
             style: {
-              colors: '#4E4F51',
+              colors: "#4E4F51",
             },
           },
         },
@@ -90,18 +90,18 @@ function CandleChart2({ data }) {
     }
   }, [data]);
 
-  const formatDataWithColor = (data) => {
-    return data.map((item, index) => {
-      const close = item.y[3];
-      const color =
-        index > 0 && close > data[index - 1].y[3] ? "#00b894" : "#e74c3c";
-      return {
-        x: item.x,
-        y: item.y,
-        color: color,
-      };
-    });
-  };
+  // const formatDataWithColor = (data) => {
+  //   return data.map((item, index) => {
+  //     const close = item.y[3];
+  //     const color =
+  //       index > 0 && close > data[index - 1].y[3] ? "#00b894" : "#e74c3c";
+  //     return {
+  //       x: item.x,
+  //       y: item.y,
+  //       color: color,
+  //     };
+  //   });
+  // };
 
   return <div ref={chartRef} />;
 }

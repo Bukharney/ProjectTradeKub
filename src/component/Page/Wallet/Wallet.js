@@ -51,7 +51,7 @@ export const Wallet = () => {
   };
 
   const calpl = (e) => {
-    if (e.close != 0) {
+    if (e.close !== 0) {
       e["upl"] = e.volume * e.close - e.volume * e.avg_price;
       e["upl_per"] = ((e.close - e.avg_price) / e.avg_price) * 100;
     } else {
@@ -60,15 +60,6 @@ export const Wallet = () => {
     }
   };
 
-  const palettes = [
-    "#00CB76",
-    "#AD00FF",
-    "#29B1C3",
-    "#424CA0",
-    "#C0A724",
-    "#CD573D",
-    "#B9B9B9",
-  ];
   const chartRef = useRef(null);
   const colorRef = useRef({});
 
@@ -131,6 +122,16 @@ export const Wallet = () => {
     get_account_info(Account.account);
     get_portfolio(Account.account);
   }, [Account.account, Token.token]);
+
+  const palettes = [
+    "#00CB76",
+    "#AD00FF",
+    "#29B1C3",
+    "#424CA0",
+    "#C0A724",
+    "#CD573D",
+    "#B9B9B9",
+  ];
 
   useEffect(() => {
     const series = SortedStock.map((stock) =>
@@ -213,9 +214,10 @@ export const Wallet = () => {
           <div className="balance__Total__Wealth__value">
             {userPort.map((stock) => {
               total +=
-                (stock.close == 0 ? stock.last_price : stock.close) *
+                (stock.close === 0 ? stock.last_price : stock.close) *
                 stock.volume;
               calpl(stock);
+              return total;
             })}
             {formatNumber(total)}
           </div>
@@ -326,7 +328,7 @@ export const Wallet = () => {
                 Market Value
                 <div className="wallet__table__Maket__Value">
                   {formatNumber(
-                    (stock.close == 0 ? stock.last_price : stock.close) *
+                    (stock.close === 0 ? stock.last_price : stock.close) *
                       stock.volume
                   )}
                 </div>

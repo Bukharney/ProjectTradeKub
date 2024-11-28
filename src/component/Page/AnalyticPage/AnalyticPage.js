@@ -116,16 +116,16 @@ export const AnalyticPage = () => {
     console.log("endDate", endDate);
     console.log("startTime", startTime);
     console.log("endTime", endTime);
-    if (index == 1) {
+    if (index === 1) {
       get_vol_sum_stock(startDate + " " + startTime, endDate + " " + endTime);
     }
-    if (index == 2) {
+    if (index === 2) {
       get_most_new_acc(startDate + " " + startTime, endDate + " " + endTime);
     }
-    if (index == 3) {
+    if (index === 3) {
       get_most_value(startDate + " " + startTime, endDate + " " + endTime);
     }
-    if (index == 4) {
+    if (index === 4) {
       get_most_cancel(startDate + " " + startTime, endDate + " " + endTime);
     }
   };

@@ -30,8 +30,8 @@ export const GettingRoleIndex = ({ roleIndexGet }) => {
 };
 let ViewerLabel = "";
 
-let search = "";
-let search2 = "";
+// let search = "";
+// let search2 = "";
 export const SearchGeting = ({ ViewerLabelGet }) => {
   //search = searchGet;
   //search2 = searchGet2;
@@ -433,7 +433,7 @@ else if (roleIndex_inDB == 4) { }//company
 export const SearchFunction = () => {
   view_TurnoverData = TurnoverData;
   view_CompanyData = CompanyData;
-  view_NewsData = NewsData
+  view_NewsData = NewsData;
 
   if (roleIndex_inDB === 0) {
     view_UserData = UserData.filter((item) => item.name === ViewerLabel);

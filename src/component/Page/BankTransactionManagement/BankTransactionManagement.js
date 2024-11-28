@@ -68,42 +68,42 @@ export const BankTransactionManagement = () => {
     }
   };
 
-  const UserExist = async (u) => {
-    try {
-      const response = await axios.get(
-        `https://www.tradekub.me/users/username/${u}`,
-        {
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + Token.token,
-          },
-        }
-      );
-      console.log(response.data);
-      return 1; // Resolving the Promise with the desired value
-    } catch (error) {
-      console.error(error);
-      return 0; // Resolving the Promise with the desired value
-    }
-  };
+  // const UserExist = async (u) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://www.tradekub.me/users/username/${u}`,
+  //       {
+  //         headers: {
+  //           accept: "application/json",
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + Token.token,
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data);
+  //     return 1; // Resolving the Promise with the desired value
+  //   } catch (error) {
+  //     console.error(error);
+  //     return 0; // Resolving the Promise with the desired value
+  //   }
+  // };
 
-  const Get_user_data = async (u) => {
-    await axios
-      .get(`https://www.tradekub.me/users/username/${u}`, {
-        headers: {
-          accept: "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        retreiveValue = response.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const Get_user_data = async (u) => {
+  //   await axios
+  //     .get(`https://www.tradekub.me/users/username/${u}`, {
+  //       headers: {
+  //         accept: "application/json",
+  //         Authorization: "Bearer " + Token.token,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       retreiveValue = response.data;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   const Get_account_data = async (a) => {
     await axios
@@ -140,34 +140,34 @@ export const BankTransactionManagement = () => {
     }
   };
 
-  const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
-    const data = {
-      user_id: Number(retreiveValue.id),
-      broker_id: Number(InputBox0),
-      cash_balance: 0,
-      line_available: 0,
-      credit_limit: Number(InputBox3),
-      pin: Number(InputBox2),
-    };
+  // const CreateAccount = async ({ InputBox0, InputBox2, InputBox3 }) => {
+  //   const data = {
+  //     user_id: Number(retreiveValue.id),
+  //     broker_id: Number(InputBox0),
+  //     cash_balance: 0,
+  //     line_available: 0,
+  //     credit_limit: Number(InputBox3),
+  //     pin: Number(InputBox2),
+  //   };
 
-    await axios
-      .post("https://www.tradekub.me/account/", data, {
-        headers: {
-          accep: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + Token.token,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        alert("Create account successfull");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error(error.data);
-        alert("Create account failed please try again");
-      });
-  };
+  //   await axios
+  //     .post("https://www.tradekub.me/account/", data, {
+  //       headers: {
+  //         accep: "application/json",
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + Token.token,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       alert("Create account successfull");
+  //       window.location.reload();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error.data);
+  //       alert("Create account failed please try again");
+  //     });
+  // };
 
   const CreateBankTransaction = async () => {
     const data = {

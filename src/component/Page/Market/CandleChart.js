@@ -26,10 +26,6 @@ function CandleChart({ data }) {
           width: "235%",
           height: "95%",
           foreColor: "#4E4F51",
-          type: "candlestick",
-          width: "235%",
-          height: "95%",
-          foreColor: "#4E4F51",
           toolbar: {
             show: false,
           },
@@ -50,7 +46,6 @@ function CandleChart({ data }) {
           labels: {
             style: {
               height: "1px",
-              colors: "#4E4F51",
               colors: "#4E4F51",
             },
           },
@@ -94,18 +89,18 @@ function CandleChart({ data }) {
     }
   }, [data]);
 
-  const formatDataWithColor = (data) => {
-    return data.map((item, index) => {
-      const close = item.y[3];
-      const color =
-        index > 0 && close > data[index - 1].y[3] ? "#00b894" : "#e74c3c";
-      return {
-        x: item.x,
-        y: item.y,
-        color: color,
-      };
-    });
-  };
+  // const formatDataWithColor = (data) => {
+  //   return data.map((item, index) => {
+  //     const close = item.y[3];
+  //     const color =
+  //       index > 0 && close > data[index - 1].y[3] ? "#00b894" : "#e74c3c";
+  //     return {
+  //       x: item.x,
+  //       y: item.y,
+  //       color: color,
+  //     };
+  //   });
+  // };
 
   return <div ref={chartRef} />;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./GovernmentView.css";
 import Table from "./Table";
 import {
@@ -12,7 +12,6 @@ import {
 import Logo from "./Logo.svg";
 import { AllDataUpdate } from "./allData";
 import { Link } from "react-router-dom";
-
 
 let storedRoleIndex = localStorage.getItem("roleI");
 let defaultRoleI = 0;
@@ -178,7 +177,7 @@ export const View = () => {
                 </div>
               ))}
 
-              {roleIndex == 0 && (
+              {roleIndex === 0 && (
                 <form onSubmit={handleSubmit}>
                   <div className="GovernmentView__container____serch__input">
                     <i class="bx bx-search"></i>
@@ -188,7 +187,7 @@ export const View = () => {
                       className="GovernmentView__insert__button"
                       onChange={handleInputChange}
                       placeholder="Username"
-                    // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
+                      // กรอกฟอร์ม username/broker organization/ไม่ต้องกรอกถ้าเป็น company,government หรือ admin
                     />
                   </div>
                   <button type="submit" className="GovernmentView__src__button">
@@ -210,40 +209,36 @@ export const View = () => {
                         placeholder="Broker name"
                       />
                     </div>
-                    <button type="submit" className="GovernmentView__src__button">
+                    <button
+                      type="submit"
+                      className="GovernmentView__src__button"
+                    >
                       <p>Submit</p>
                     </button>
                   </form>
                   <div className="contact__position__">
-                  <button className="button__contactBroker__more">
-                    <Link
-                      to="/AccountManagement/"
+                    <button className="button__contactBroker__more">
+                      <Link to="/AccountManagement/" onClick={handleClick}>
+                        Account Infomation Mangement
+                      </Link>
+                    </button>
 
-                      onClick={handleClick}
-                    >
-                      Account Infomation Mangement
-                    </Link>
-                  </button>
+                    <button className="button__contactBroker__more">
+                      <Link
+                        to="/BankTransactionManagement/"
+                        onClick={handleClick}
+                      >
+                        Account Bank Transaction Mangement
+                      </Link>
+                    </button>
 
-                  <button className="button__contactBroker__more">
-                    <Link
-                      to="/BankTransactionManagement/"
-
-                      onClick={handleClick}
-                    >
-                      Account Bank Transaction Mangement
-                    </Link>
-                  </button>
-
-                  <button className="button__contactBroker__more">
-                    <Link
-                      to="/DividentManagement/"
-                      onClick={handleClick}
-                    >
-                      Account Divident Management
-                    </Link>
-                  </button>
-                </div></div>
+                    <button className="button__contactBroker__more">
+                      <Link to="/DividentManagement/" onClick={handleClick}>
+                        Account Divident Management
+                      </Link>
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
           </div>
